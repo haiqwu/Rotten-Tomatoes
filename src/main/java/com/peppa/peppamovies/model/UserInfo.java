@@ -1,6 +1,7 @@
 package com.peppa.peppamovies.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -8,14 +9,15 @@ import java.util.List;
 
 @Entity
 @Table(name = "UserInfo")
-public class UserInfo {
+public class UserInfo implements Serializable{
     @Id
     @GeneratedValue
-    private int userID;
+    private Long userID;
+    private String userName;
     private String firstName;
     private String lastName;
     private String Email;
-    private Byte[] password;
+    private Byte[] passW;
     private boolean isCritic;
     private boolean isEmailVerified;
     private String photo;
@@ -45,11 +47,11 @@ public class UserInfo {
     public Byte[] hashPassword(String password){Byte[] passW = new Byte[5]; return passW;}
     public boolean verifyEmail(String email){return true;}
 
-    public int getUserID() {
+    public Long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Long userID) {
         this.userID = userID;
     }
 
@@ -125,14 +127,6 @@ public class UserInfo {
         this.group = group;
     }
 
-    public Byte[] getPassword() {
-        return password;
-    }
-
-    public void setPassword(Byte[] password) {
-        this.password = password;
-    }
-
     public BusinessProposal getBp() {
         return bp;
     }
@@ -173,23 +167,42 @@ public class UserInfo {
         this.movieReviews = movieReviews;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Byte[] getPassW() {
+        return passW;
+    }
+
+    public void setPassW(Byte[] passW) {
+        this.passW = passW;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "userID=" + userID +
+                ", username='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", Email='" + Email + '\'' +
-                ", password=" + Arrays.toString(password) +
+                ", passW=" + Arrays.toString(passW) +
                 ", isCritic=" + isCritic +
                 ", isEmailVerified=" + isEmailVerified +
-                ", photo=" + photo +
+                ", photo='" + photo + '\'' +
                 ", dateBecomingCritic=" + dateBecomingCritic +
                 ", dateDeActivatedFromCritic=" + dateDeActivatedFromCritic +
-                //", wantsToSeeList=" + wantsToSeeList +
-                ", movieReviewsvies=" + movieReviews +
-                ", followedSocialMedias=" + followedSocialMedias +
+                ", followedSocialMedias='" + followedSocialMedias + '\'' +
+                ", wantsToSeeList=" + wantsToSeeList +
+                ", movieReviews=" + movieReviews +
                 ", group=" + group +
+                ", bp=" + bp +
+                ", newsL=" + newsL +
                 '}';
     }
 }
