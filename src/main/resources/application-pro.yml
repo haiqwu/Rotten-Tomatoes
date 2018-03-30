@@ -1,0 +1,21 @@
+#生产环境
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysql3.cs.stonybrook.edu:3306/peppa?useUnicode=true&characterEncoding=utf-8
+    username: peppa
+    password: changeit
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+logging:
+  level:
+    root: warn
+    com.peppa.peppamovies: info
+  file: log/blog-pro.log
+server:
+  port: 8081
+
+

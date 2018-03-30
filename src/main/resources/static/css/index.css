@@ -1,0 +1,26 @@
+.search_bar{
+    padding-top: 12px; !important;
+    width: 300px; !important;
+}
+
+.search_area{
+    width:300px; !important;
+}
+
+.right_div{
+    margin-left: 10px; !important;
+}
+
+.right_cor{
+    padding-left: 50px; !important;
+}
+
+/* login form*/
+#login_modal{
+    width:600px; !important;
+    /*height: 800px; !important;*/
+}
+
+#cancel{
+    margin-left: 0em; !important;
+}

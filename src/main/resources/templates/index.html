@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peppa</title>
+    <!--<link rel="stylesheet" href="static/css/semantic.min.css">-->
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+
+</head>
+<body>
+<!-- nav bar-->
+<nav class="ui inverted attached segment ">
+    <div class="ui container">
+        <div class="ui inverted secondary menu">
+            <h2 class="ui  header teal item">Peppa</h2>
+            <div class="ui search search_bar ">
+                <div class="ui icon input search_area">
+                    <input class="prompt" type="text" placeholder="Search countries...">
+                    <i class="search icon"></i>
+                </div>
+                <div class="results"></div>
+            </div>
+
+
+            <div class="right menu ">
+                <a href="#" id="login" class="ui inverted item button " onclick="login_fun()">Log in</a>
+                <a href="#" id="signup" class="ui inverted item button "> Sign Up</a>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="ui container">
+        <div class="ui inverted secondary menu">
+            <div class="ui pointing simple dropdown link item ">
+                <span class="text">MOVIES & DVDS</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="header">MOVIES IN THEATERS</div>
+                    <div class="divider"></div>
+                    <div class="item">Opening This Week</div>
+                    <div class="item">Top Box Office</div>
+                    <div class="item">Comming Soon</div>
+                    <div class="item">Certified Movies</div>
+                </div>
+
+
+            </div>
+            <div class="ui pointing simple dropdown link item ">
+                <span class="text">TV</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="header">OPENING TV</div>
+                    <div class="divider"></div>
+                    <div class="item">Most Popular TV</div>
+                    <div class="item">Top TV Shows</div>
+                    <div class="item">Certified TV</div>
+                    <div class="item">More</div>
+                </div>
+            </div>
+
+            <div class="ui item ">
+                <a href="#"> TRAILERS & VIDEOS</a>
+            </div>
+
+            <div class="ui item ">
+                <a href="#">REVIEWS </a>
+            </div>
+
+            <div class="right menu">
+                <div class="ui item">
+                    <a href=""> what is Peppameter?</a>
+                </div>
+                <div class="ui item">
+                    <a href=""> PT Critics</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- login modal-->
+    <div class="ui modal" id="login_modal">
+        <i class="close icon"></i>
+
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        WELCOME
+                    </div>
+                </h2>
+                <form class="ui form" method="post" action="#">
+                    <div class="ui  segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="ui fluid large teal submit button">Log In</button>
+                        </div>
+
+                        <div class="actions field" >
+                            <div class="ui fluid large red deny button " id="cancel">
+                                Cancel
+                                <!--<button class="ui fluid large red deny button ">Cancel</button>-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="ui error mini message"></div>-->
+                    <!--<div class="ui mini negative message" >用户名和密码错误</div>-->
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!-- main -->
+<div>
+
+
+</div>
+
+<!--footer-->
+<footer>
+
+</footer>
+
+
+<!--<script src="static/js/semantic.min.js"></script>-->
+<!--<script src=" static/js/jquery-3.3.1.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script>
+    function login_fun() {
+        $('.ui.modal')
+            .modal('show')
+        ;
+
+    }
+
+    $(function () {
+        $("#login_modal").modal({
+            closable: true
+        });
+    });
+
+
+</script>
+
+</body>
+
+</html>
