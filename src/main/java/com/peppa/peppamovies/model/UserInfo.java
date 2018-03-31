@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "UserInfo")
-public class UserInfo implements Serializable{
+public class UserInfo{
     @Id
     @GeneratedValue
     private Long userID;

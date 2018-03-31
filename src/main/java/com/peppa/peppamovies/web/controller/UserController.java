@@ -9,8 +9,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
+
+
+
 @Controller
 public class UserController {
+
 
     @Autowired
     private UserService userService;
@@ -22,10 +26,13 @@ public class UserController {
     @PostMapping("/login")
     public String handleLogin(@RequestParam String username, @RequestParam String password,
                               HttpSession session, RedirectAttributes attributes){
-        UserInfo user = userService.checkUser(username, password);
+        byte[] temp =password.getBytes();
+        Byte[] passwdByte = toByteArr(temp);
+
+        UserInfo user = userService.checkUser(username, passwdByte);
         if(user != null){
             user.setPassW(null);
-            System.out.println("Login Check: " +session);
+            System.out.println("Login Check: " + session);
             session.setAttribute("user", user);
             System.out.println("Login");
             return "index";
@@ -57,4 +64,11 @@ public class UserController {
     public void handleViewCriticGroups(){}
     public void handleViewLatestReviews(){}
     public void handleViewCriticsCriteria(){}
+    public Byte[] toByteArr(byte[] bytes){
+        Byte[] byteObjects = new Byte[bytes.length];
+        int i = 0;
+        for(byte b: bytes)
+            byteObjects[i++] = b;
+        return byteObjects;
+    }
 }

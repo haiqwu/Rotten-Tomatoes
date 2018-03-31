@@ -11,8 +11,11 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+
+    String x = "";
     @Override
-    public UserInfo checkUser(String username, String password) {
+    public UserInfo checkUser(String username, Byte[] password) {
+
         UserInfo user = userRepository.findByUserNameAndPassW(username,password);
         return user;
     }
