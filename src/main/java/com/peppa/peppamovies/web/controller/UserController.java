@@ -32,17 +32,25 @@ public class UserController {
         UserInfo user = userService.checkUser(username, passwdByte);
         if(user != null){
             user.setPassW(null);
-            System.out.println("Login Check: " + session);
+            //System.out.println("Login Check: " + session);
             session.setAttribute("user", user);
-            System.out.println("Login");
+            //System.out.println("Login");
             return "index";
         }else{
             attributes.addFlashAttribute("message", "usename and password not match");
-            System.out.println("NOLogin");
-            return "redirect:index";
+            //System.out.println("NOLogin");
+            return "redirect:/";
         }
     }
-    public void handleLogout(){}
+
+    @GetMapping("/logout")
+    public String handleLogout(HttpSession session){
+        session.removeAttribute("user");
+        return "redirect:/";
+
+    }
+
+
     public void handleRegisterButton(){}
     public void handleSucMesg(){}
     public void handleFailMesg(){}
