@@ -6,8 +6,20 @@
     <title th:replace="${title}">Title</title>
     <!--<link rel="stylesheet" href="static/css/semantic.min.css">-->
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">-->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" href="static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}" >
+
+    <!--slick css-->
+    <link rel="stylesheet" type="text/css" href="../static/slick/slick.css"  th:href="@{/slick/slick.css}"   />
+    <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" th:href="@{/slick/slick-theme.css}" />
+
+
+    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js " ></script>
+    <script type="text/javascript" src="../static/slick/slick.min.js"  th:src="@{/slick/slick.min.js}"></script>
+
 
 </head>
 <!--thymeleaf 建立css关系 th:href/src(看是什么格式)="@{/css/index.css}"-->

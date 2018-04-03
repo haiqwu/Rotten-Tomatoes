@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
-
-
     @Autowired
     private UserService userService;
 
@@ -34,7 +32,7 @@ public class UserController {
             user.setPassW(null);
             //System.out.println("Login Check: " + session);
             session.setAttribute("user", user);
-            //System.out.println("Login");
+            //System.out.println("LoginSuccess");
             return "index";
         }else{
             attributes.addFlashAttribute("message", "usename and password not match");
