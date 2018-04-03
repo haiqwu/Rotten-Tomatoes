@@ -1,0 +1,27 @@
+body {
+    background-color: #3a3d3e;
+}
+
+.m-padded-bottom-big {
+    padding: 0px 0px 50px !important;
+}
+
+.m-padded-bottom-small {
+    padding: 0px 0px 30px !important;
+}
+
+.m-padded-top-bottom-small {
+    padding: 30px 0px 30px !important;
+}
+
+.m-padded-top-bottom-mini {
+    padding: 10px 0px 10px !important;
+}
+
+/*text*/
+.m-bold-text {
+
+}
+/*.m-white {*/
+    /*color: white;*/
+/*}*/
