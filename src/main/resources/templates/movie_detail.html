@@ -4,77 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
     <title>Movie Detail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="static/css/mycss.css">
 </head>
 <body>
 
-    <div class="ui container">
-        <div class="ui inverted attached segment">
-            <div class="ui grid">
-                <!--Trailer-->
-                <div class="sixteen wide column">trailer</div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+            <!--Trailer-->
+            <div class="sixteen wide column">trailer</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-                <!--review-->
-                <div class="sixteen wide column">
-                    <div class="ui grid">
-                        <div class="four wide column">
-                            <a href="#"><img class="ui fluid image" src="static/images/1.jpg" alt="Image"></a>
-                        </div>
-                        <div class="twelve wide column">
-                            <div class="sixteen wide column">
-                                <div class="ui grid">
-                                    <div class="class eleven wide column">
-                                        <div class="ui grid">
-                                            <div class="class six wide column">
-                                                <h4>TOMATOMETER</h4>
-                                                <a href="#"><h1>92%</h1></a>
-                                                <p>Average Rating: 7.5/10</p>
-                                                <p>Reviews Counted: 118</p>
-                                                <p>Fresh: 108</p>
-                                                <p>Rotten: 10</p>
-                                            </div>
-                                            <div class="class eight wide column">
-                                                <h5>All Critics  |  Top Critics</h5>
-                                                <p class="m-opacity-mini">
-                                                    Critics Consensus: Love, Simon hits its coming-of-age beats more deftly than many entries
-                                                    in this well-traveled genre -- and represents an overdue, if not entirely successful,
-                                                    milestone of inclusion.
-                                                </p>
-                                            </div>
+            <!--review-->
+            <div class="sixteen wide column">
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <a href="#"><img class="ui fluid image" src="static/images/1.jpg" alt="Image"></a>
+                    </div>
+                    <div class="twelve wide column">
+                        <div class="sixteen wide column">
+                            <div class="ui grid">
+                                <div class="class eleven wide column">
+                                    <div class="ui grid">
+                                        <div class="class six wide column">
+                                            <h4>TOMATOMETER</h4>
+                                            <a href="#"><h1>92%</h1></a>
+                                            <p>Average Rating: 7.5/10</p>
+                                            <p>Reviews Counted: 118</p>
+                                            <p>Fresh: 108</p>
+                                            <p>Rotten: 10</p>
+                                        </div>
+                                        <div class="class eight wide column">
+                                            <h5>All Critics | Top Critics</h5>
+                                            <p class="m-opacity-mini">
+                                                Critics Consensus: Love, Simon hits its coming-of-age beats more deftly
+                                                than many entries
+                                                in this well-traveled genre -- and represents an overdue, if not
+                                                entirely successful,
+                                                milestone of inclusion.
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="ui five wide column">
-                                        <h4>AUDIENCE SCORE</h4>
-                                        <a href="#"><h1>90%</h1><h5>like it</h5></a>
-                                        <p>Average Rating: 4.5/5</p>
-                                        <p>User Ratings: 3,642</p>
-                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <h4>AUDIENCE SCORE</h4>
+                                    <a href="#"><h1>90%</h1><h5>like it</h5></a>
+                                    <p>Average Rating: 4.5/5</p>
+                                    <p>User Ratings: 3,642</p>
                                 </div>
                             </div>
-                            <!--comment input text-->
-                            <div class="sixteen wide column">
-                                <div class="ui grid">
-                                    <div class="four wide column">
-                                        <a href="#"><img class="ui fluid image" src="static/images/portrait.png" alt="Image"></a>
-                                    </div>
+                        </div>
+                        <!--comment input text-->
+                        <div class="sixteen wide column">
+                            <div class="ui grid">
+                                <div class="four wide column">
+                                    <a href="#"><img class="ui fluid image" src="static/images/portrait.png"
+                                                     alt="Image"></a>
+                                </div>
 
-                                    <form class="review form" method="post" action="movie_review_post">
+                                <form class="review form" method="post" action="movie_review_post">
 
                                     <div class="twelve wide column">
-                                        <button class="ui mini red button">+ WANT TO SEE</button>
-                                        <button class="ui mini grey button">- NOT INTERESTED</button>
+
+                                        <!--<button class="ui mini red button">+ WANT TO SEE</button>-->
+                                        <!--<button class="ui mini grey button">- NOT INTERESTED</button>-->
+
+                                        <div class="row">
+                                            <!--<button type="button"  name="want_to_see_btn" class="ui mini red button active">+ WANT TO SEE</button>-->
+                                            <!--<button  type="button" name="not_interested_btn" class="ui mini grey button">- NOT INTERESTED</button>-->
+
+                                            <div type="button" class="ui mini animated fade red button" tabindex="0" onClick="jQuery(this).toggleClass('active')">
+                                                <div class="visible content">+ WANT TO SEE</div>
+                                                <div class="hidden content">
+                                                    <i class="heart icon"></i>
+                                                </div>
+                                            </div>
+
+                                            <div type="button" class="ui mini animated fade grey button" tabindex="0">
+                                                <div class="visible content">- NOT INTERESTED</div>
+                                                <div class="hidden content">
+                                                    <i class="thumbs down icon"></i>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div id="star_rate" class="rate ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating"></div>
+                                        </div>
+
+
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea name="review_text" placeholder="Add a Review (Optional)" rows="7"></textarea>
+                                                <textarea name="review_text" placeholder="Add a Review (Optional)"
+                                                          rows="7"></textarea>
                                             </div>
                                         </div>
                                         <div class="ui grid">
@@ -84,121 +116,146 @@
                                         </div>
                                     </div>
 
-                                    </form>
+                                </form>
 
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--review end-->
-
-                <!--tickets & showtime-->
-                <!--<div class="m-padded-small">-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">TICKETS &amp; SHOWTIMES</div>
-                <div class="ui grid">
-                    <div class="sixteen wide column">
-                        <p>Showtimes for <b>today</b> near <b>East Setauket, NY</b><a href="#"> &nbsp; Change Location</a></p>
-                        <hr>
-                        <p><a href="#"> P.J. CINEMAS </a> 1068 Route 112 | <a href="#"> Map </a> | <a href="#"> 631-928-3456 </a></p>
-                        <br>
-                        <p class="m-opacity-mini">STANDARD SHOWTIMES</p>
-                        <button class="ui small yellow button">12:50pm</button>
-                        <button class="ui small yellow button">12:50pm</button>
-                        <button class="ui small yellow button">12:50pm</button>
-                        <button class="ui small yellow button">12:50pm</button>
-                    </div>
-                </div>
-                    <!--tickets & showtime end-->
-
-                    <!--movie info-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">MOVIE INFO</div>
-                <div class="ui grid">
-                    <div class="sixteen wide column">
-                        <p class="m-opacity-mini">
-                            In the year 2045, people can escape their harsh reality in the OASIS, an immersive virtual world
-                            where you can go anywhere, do anything, be anyone-the only limits are your own imagination. OASIS
-                            creator James Halliday left his immense fortune and control of the Oasis to the winner of a contest
-                            designed to find a worthy heir. When unlikely hero Wade Watts conquers the first challenge of the
-                            reality-bending treasure hunt, he and his friends-known as the High Five-are hurled into a fantastical \
-                            universe of discovery and danger to save the OASIS and their world.
-                        </p>
-                        <div class="ui list">
-                            <div class="item">
-                                Rating: &nbsp; &nbsp; PG-13 (for sequences of sci-fi action violence, bloody images, some suggestive material, partial nudity and language)
-                            </div>
-                            <div class="item">
-                                Genre: &nbsp; &nbsp; <a href="#">Action & Adventure</a>, <a href="#">Science Fiction & Fantasy</a>
-                            </div>
-                            <div class="item">
-                                Directed By: &nbsp; &nbsp; <a href="#">Steven Spielberg</a>
-                            </div>
-                            <div class="item">
-                                Written By: &nbsp; &nbsp; <a href="#">Zak Penn</a>, <a href="#">Ernest Cline</a>
-                            </div>
-                            <div class="item">
-                                In Theaters: &nbsp; &nbsp; Mar 29, 2018  Wide
-                            </div>
-                            <div class="item">
-                                Runtime: &nbsp; &nbsp; 140 minutes
-                            </div>
-                            <div class="item">
-                                Studio: &nbsp; &nbsp; <a href="#">Warner Bros. Pictures</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--</div>-->
-                <!--movie info end-->
-
-                <!--cast-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">CAST</div>
-                <div class="ui grid">
-                    <div class="ui sixteen wide column">
-                        <div class="ui relaxed horizontal list">
-                            <div class="item">
-                                <img class="ui avatar image" src="static/images/portrait.png">
-                                <div class="content">
-                                    <a class="header">Daniel Louise</a>
-                                    <span class="m-description">as Wade Owen Watts / Parzival</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="static/images/portrait.png">
-                                <div class="content">
-                                    <a class="header">Daniel Louise</a>
-                                    <span class="m-description">as Wade Owen Watts / Parzival</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="static/images/portrait.png">
-                                <div class="content">
-                                    <a class="header">Daniel Louise</a>
-                                    <span class="m-description">as Wade Owen Watts / Parzival</span>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="static/images/portrait.png">
-                                <div class="content">
-                                    <a class="header">Daniel Louise</a>
-                                    <span class="m-description">as Wade Owen Watts / Parzival</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--cast end-->
-
-                <!--critics review-->
-                <!--critics review end-->
-
             </div>
+            <!--review end-->
+
+            <!--tickets & showtime-->
+            <!--<div class="m-padded-small">-->
+            <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">TICKETS &amp;
+                SHOWTIMES
+            </div>
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <p>Showtimes for <b>today</b> near <b>East Setauket, NY</b><a href="#"> &nbsp; Change Location</a>
+                    </p>
+                    <hr>
+                    <p><a href="#"> P.J. CINEMAS </a> 1068 Route 112 | <a href="#"> Map </a> | <a href="#">
+                        631-928-3456 </a></p>
+                    <br>
+                    <p class="m-opacity-mini">STANDARD SHOWTIMES</p>
+                    <button class="ui small yellow button">12:50pm</button>
+                    <button class="ui small yellow button">12:50pm</button>
+                    <button class="ui small yellow button">12:50pm</button>
+                    <button class="ui small yellow button">12:50pm</button>
+                </div>
+            </div>
+            <!--tickets & showtime end-->
+
+            <!--movie info-->
+            <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">MOVIE INFO</div>
+            <div class="ui grid">
+                <div class="sixteen wide column">
+                    <p class="m-opacity-mini">
+                        In the year 2045, people can escape their harsh reality in the OASIS, an immersive virtual world
+                        where you can go anywhere, do anything, be anyone-the only limits are your own imagination.
+                        OASIS
+                        creator James Halliday left his immense fortune and control of the Oasis to the winner of a
+                        contest
+                        designed to find a worthy heir. When unlikely hero Wade Watts conquers the first challenge of
+                        the
+                        reality-bending treasure hunt, he and his friends-known as the High Five-are hurled into a
+                        fantastical \
+                        universe of discovery and danger to save the OASIS and their world.
+                    </p>
+                    <div class="ui list">
+                        <div class="item">
+                            Rating: &nbsp; &nbsp; PG-13 (for sequences of sci-fi action violence, bloody images, some
+                            suggestive material, partial nudity and language)
+                        </div>
+                        <div class="item">
+                            Genre: &nbsp; &nbsp; <a href="#">Action & Adventure</a>, <a href="#">Science Fiction &
+                            Fantasy</a>
+                        </div>
+                        <div class="item">
+                            Directed By: &nbsp; &nbsp; <a href="#">Steven Spielberg</a>
+                        </div>
+                        <div class="item">
+                            Written By: &nbsp; &nbsp; <a href="#">Zak Penn</a>, <a href="#">Ernest Cline</a>
+                        </div>
+                        <div class="item">
+                            In Theaters: &nbsp; &nbsp; Mar 29, 2018 Wide
+                        </div>
+                        <div class="item">
+                            Runtime: &nbsp; &nbsp; 140 minutes
+                        </div>
+                        <div class="item">
+                            Studio: &nbsp; &nbsp; <a href="#">Warner Bros. Pictures</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+            <!--movie info end-->
+
+            <!--cast-->
+            <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">CAST</div>
+            <div class="ui grid">
+                <div class="ui sixteen wide column">
+                    <div class="ui relaxed horizontal list">
+                        <div class="item">
+                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--cast end-->
+
+            <!--critics review-->
+            <!--critics review end-->
+
         </div>
     </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script type="text/javascript">
+
+    $('.ui.rating')
+        .rating({
+            initialRating: 3,
+            maxRating: 5
+        });
+
+    $('.rating')
+        .rating('setting', 'clearable', true);
+
+
+</script>
+
+
 </body>
 </html>
