@@ -11,6 +11,7 @@ public class MovieInfo {
     @Id
     @GeneratedValue
     private Long movieID;
+    private String secondaryID;
     private String movieName;
     @Temporal(TemporalType.DATE)
     private Date yearOpening;
@@ -32,6 +33,14 @@ public class MovieInfo {
 
     public Long getMovieID() {
         return movieID;
+    }
+
+    public String getSecondaryID() {
+        return secondaryID;
+    }
+
+    public void setSecondaryID(String secondaryID) {
+        this.secondaryID = secondaryID;
     }
 
     public void setMovieID(Long movieID) {
@@ -138,6 +147,7 @@ public class MovieInfo {
     public String toString() {
         return "MovieInfo{" +
                 "movieID=" + movieID +
+                ", secondaryID='" + secondaryID + '\'' +
                 ", movieName='" + movieName + '\'' +
                 ", yearOpening=" + yearOpening +
                 ", briefIntro='" + briefIntro + '\'' +
@@ -149,6 +159,7 @@ public class MovieInfo {
                 ", movieTrailers='" + movieTrailers + '\'' +
                 ", movieRank=" + movieRank +
                 ", movieActors=" + movieActors +
+                ", interestedUsers=" + interestedUsers +
                 '}';
     }
 }

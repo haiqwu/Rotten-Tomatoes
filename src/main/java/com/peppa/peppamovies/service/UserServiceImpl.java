@@ -16,16 +16,16 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserInfo checkUser(String username, Byte[] password) {
-
         UserInfo user = userRepository.findByUserNameAndPassW(username,password);
         return user;
     }
-    @Transactional
 
+    @Transactional
     @Override
     public UserInfo saveUser(UserInfo user) {
         return userRepository.save(user);
     }
+
     @Transactional
     @Override
     public UserInfo getUser(Long id) {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
     <title>Movie Detail</title>
@@ -66,12 +66,15 @@
                                     <div class="four wide column">
                                         <a href="#"><img class="ui fluid image" src="static/images/portrait.png" alt="Image"></a>
                                     </div>
+
+                                    <form class="review form" method="post" action="movie_review_post">
+
                                     <div class="twelve wide column">
                                         <button class="ui mini red button">+ WANT TO SEE</button>
                                         <button class="ui mini grey button">- NOT INTERESTED</button>
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea placeholder="Add a Review (Optional)" rows="7"></textarea>
+                                                <textarea name="review_text" placeholder="Add a Review (Optional)" rows="7"></textarea>
                                             </div>
                                         </div>
                                         <div class="ui grid">
@@ -80,6 +83,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    </form>
+
+
                                 </div>
                             </div>
                         </div>
