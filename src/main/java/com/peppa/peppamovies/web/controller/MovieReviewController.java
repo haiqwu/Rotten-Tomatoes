@@ -4,9 +4,7 @@ import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.service.MovieReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -25,12 +23,14 @@ public class MovieReviewController {
 
 
     @PostMapping("/movie_review_post")
-    public String handlePostReview(@RequestParam String review_text, HttpSession session,
+    public String handlePostReview(@RequestParam String review_text,
+
+                                   HttpSession session,
                                    RedirectAttributes attributes){
         MovieReview movieReview = new MovieReview();
         movieReview.setComment(review_text);
         //movie name by id? to set the movie to review
-
+        //System.out.println(star_rate);
 
 
         movieReviewService.saveMovieReview(movieReview);
