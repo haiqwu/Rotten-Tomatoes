@@ -17,11 +17,11 @@
 </head>
 <body>
 <!-- nav bar-->
-<nav class="ui sticky inverted attached segment " >
+<nav class="ui sticky inverted teal attached segment " th:replace="_fragments :: navBar()">
     <div class="ui container  ">
     <div class="ui container ">
         <div class="ui inverted secondary menu">
-            <h2 class="ui  header teal item">Peppa</h2>
+            <h2 class="ui  header item">Peppa</h2>
             <div class="ui search search_bar ">
                 <div class="ui icon input search_area">
                     <input class="prompt" type="text" placeholder="Search Movies...">
@@ -93,7 +93,7 @@
     </div>
 
     <!-- login modal-->
-    <div class="ui modal" id="login_modal">
+    <div class="ui m-padded-big modal" id="login_modal">
         <i class="close icon"></i>
 
         <div class="ui aligned center aligned grid">
@@ -103,7 +103,7 @@
                         WELCOME
                     </div>
                 </h2>
-                <form class="ui form" method="post" action="#">
+                <form class="ui form" method="post" action="login">
                     <div class="ui  segment">
                         <div class="field">
                             <div class="ui left icon input">
@@ -141,7 +141,7 @@
     </div>
 
     <!--+++++++++++ sign up +++++++++++++-->
-    <div class="ui modal" id="signup_modal">
+    <div class="ui m-padded-big modal" id="signup_modal">
         <i class="close icon"></i>
 
         <div class="ui aligned center aligned grid">
@@ -151,13 +151,24 @@
                         WELCOME
                     </div>
                 </h2>
-                <form class="ui form" method="post" action="#">
+                <form class="ui form" method="post" action="signup">
                     <div class="ui  segment">
                         <div class="field ">
-                            <div class="ui left icon input">
-                                <i class="user icon"></i>
-                                <input  type="text" name="firstname" placeholder="First Name">
-                                <input  type="text" name="lastname" placeholder="Last Name">
+                            <!--<div class="ui left icon input">-->
+                                <!--<i class="user icon"></i>-->
+                                <!--&lt;!&ndash;<input type="text" name="firstname" placeholder="First Name">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input  type="text" name="lastname" placeholder="Last Name">&ndash;&gt;-->
+                            <!--</div>-->
+                            <div class="two fields">
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="user icon"></i>
+                                        <input type="text" name="firstname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="lastname" placeholder="Last Name">
+                                </div>
                             </div>
                         </div>
 
@@ -208,34 +219,33 @@
 </nav>
 
 <!-- main -->
-<div class="ui container margin-m  main bg"   >
+<div class="ui container margin-m segment main inverted segment"   >
+    <!--<div class="ui attached segment"></div>-->
 
     <div class="slicks container center aligned">
-<!--th src added ,may be removed if effective fragment used-->
-        <div><a href=""> <img src="../static/images/shawshank.jpg" th:src="@{/images/shawshank.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-dark-knight.jpg" th:src="@{/images/the-dark-knight.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-godfather.jpg" th:src="@{/images/the-godfather.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/shawshank.jpg" th:src="@{/images/shawshank.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-dark-knight.jpg" th:src="@{/images/the-dark-knight.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-godfather.jpg" th:src="@{/images/the-godfather.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/shawshank.jpg" th:src="@{/images/shawshank.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-dark-knight.jpg" th:src="@{/images/the-dark-knight.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/the-godfather.jpg" th:src="@{/images/the-godfather.jpg}" alt="" /></a></div>
-        <div><a href=""> <img src="../static/images/shawshank.jpg" th:src="@{/images/shawshank.jpg}" alt="" /></a></div>
 
-        <!--th src added ,may be removed if effective fragment used-->
+        <div><a href="" name=""> <img src="static/images/shawshank.jpg" th:src="@{/images/shawshank.jpg}"/></a></div>
+        <div><a href=""> <img src="static/images/the-dark-knight.jpg" th:src="@{/images/the-dark-knight.jpg}"/></a></div>
+        <div><a href=""> <img src="static/images/the-godfather.jpg" th:src="@{/images/the-godfather.jpg}"/></a></div>
+        <!--<div><a href=""> <img src="static/images/shawshank.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/the-dark-knight.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/the-godfather.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/shawshank.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/the-dark-knight.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/the-godfather.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+        <!--<div><a href=""> <img src="static/images/shawshank.jpg" th:src="@{/images/1.jpg}"/></a></div>-->
+
     </div>
-
-    <div class="ui container main-body ">
+    <div class="ui container ">
         <div class="ui grid">
             <!--left main part-->
             <div class="thirteen wide column">
 
                 <!-- ++++++++++++++++++++++++ opening in theater +++++++++++++++++++-->
-                <div class="ui  attached wide movie-section  ">
+                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="header inverted ">Opening In Theater</h2>
+                            <h2 class="teal header inverted ">Top Box Office</h2>
                         </div>
 
                         <div class="column right aligned inverted ">
@@ -245,52 +255,66 @@
 
                         </div>
                     </div>
+                </div>
+                <!--<div class="ui  attached  inverted">-->
+                    <!--<div class="ui container top m-padded-bottom-big movie-title two column grid">-->
+                        <!--<div class="column">-->
+                            <!--<h2 class="header inverted ">Opening In Theater</h2>-->
+                        <!--</div>-->
+
+                        <!--<div class="column right aligned inverted ">-->
+                            <!--<div class="view-all">-->
+                                <!--<a  href="#">view all <i class="angle double right icon"></i></a>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
                     <!--movie body-->
-                    <div class="ui grid container grey inverted segment  movie-body">
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                    <div class="ui grid container inverted movie-body">
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
 
 
                 <!--++++++++++++++++++++++++ top box Office +++++++++++++++++++++++++++-->
-                <div class="ui  attached  movie-section">
+                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="header inverted ">Top Box Office</h2>
+                            <h2 class="teal header inverted ">Top Box Office</h2>
                         </div>
 
                         <div class="column right aligned inverted ">
@@ -300,52 +324,66 @@
 
                         </div>
                     </div>
+                </div>
+                <!--<div class="ui  attached  inverted">-->
+                    <!--<div class="ui container top m-padded-bottom-big movie-title two column grid">-->
+                        <!--<div class="column">-->
+                            <!--<h2 class="teal header inverted ">Top Box Office</h2>-->
+                        <!--</div>-->
+
+                        <!--<div class="column right aligned inverted ">-->
+                            <!--<div class="view-all">-->
+                                <!--<a  href="#">view all <i class="angle double right icon"></i></a>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
                     <!--movie body-->
-                    <div class="ui grid container grey inverted segment   movie-body">
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                    <div class="ui grid container inverted movie-body">
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
 
 
                 <!--++++++++++++++++++++++++ Certified Fresh Peppa +++++++++++++++++++++++++++-->
-                <div class="ui  attached  movie-section">
+                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="header inverted ">Certified Fresh Peppa</h2>
+                            <h2 class="teal header inverted ">Top Box Office</h2>
                         </div>
 
                         <div class="column right aligned inverted ">
@@ -355,53 +393,66 @@
 
                         </div>
                     </div>
+                </div>
+                <!--<div class="ui  attached  inverted">-->
+                    <!--<div class="ui container top m-padded-bottom-big movie-title two column grid">-->
+                        <!--<div class="column">-->
+                            <!--<h2 class="header inverted ">Certified Fresh Peppa</h2>-->
+                        <!--</div>-->
+
+                        <!--<div class="column right aligned inverted ">-->
+                            <!--<div class="view-all">-->
+                                <!--<a  href="#">view all <i class="angle double right icon"></i></a>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!--movie body-->
-                    <div class="ui grid container grey inverted segment  movie-body">
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                    <div class="ui grid container inverted movie-body">
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
 
                 <!--++++++++++++++++++++++++ Comming Soon +++++++++++++++++++++++++++-->
-                <div class="ui  attached  movie-section">
-
+                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="header inverted ">Coming Soon</h2>
+                            <h2 class="teal header inverted ">Top Box Office</h2>
                         </div>
 
                         <div class="column right aligned inverted ">
@@ -411,51 +462,66 @@
 
                         </div>
                     </div>
+                </div>
+                <!--<div class="ui  attached  inverted">-->
+
+                    <!--<div class="ui container top m-padded-bottom-big movie-title two column grid">-->
+                        <!--<div class="column">-->
+                            <!--<h2 class="header inverted ">Coming Soon</h2>-->
+                        <!--</div>-->
+
+                        <!--<div class="column right aligned inverted ">-->
+                            <!--<div class="view-all">-->
+                                <!--<a  href="#">view all <i class="angle double right icon"></i></a>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!--movie body-->
-                    <div class="ui grid container grey inverted segment  movie-body">
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                    <div class="ui grid container inverted movie-body">
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
-                        <div class="four wide center aligned column">
-                            <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" alt="Image"></a>
+                        <div class="four wide center aligned column" th:replace="_fragments :: img()">
+                            <a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>
                             <h4>Black Panther</h4>
                             <p>2 HR 14 MIN13</p>
                             <p>Released Feb 16</p>
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
 
             </div>
 
             <!--right aside part-->
-            <div class=" three wide column side-part">
+            <div class="three wide column">
 
             </div>
         </div>
@@ -466,7 +532,7 @@
 
 
 <!--footer-->
-<footer class="ui inverted vertical segment f-padding" id="navbar">
+<footer class="ui inverted vertical segment f-padding" id="navbar" th:replace="_fragments :: footerImg()">
     <div class="ui center aligned container">
         <div class="ui inverted divided grid">
 
@@ -474,7 +540,7 @@
                 <h4 class="ui inverted header">FQA</h4>
                 <div class="ui inverted link list">
                     <a href="#" class="item">Help</a>
-                    <a href="#" class="item">About Peppa Tomatoes</a>
+                    <a href="about" class="item">About Peppa Tomatoes</a>
                     <a href="#" class="item">What's the Peppameter?</a>
                     <a href="#" class="item">Feedback</a>
                 </div>
@@ -483,7 +549,7 @@
                 <h4 class="ui inverted header">INFO</h4>
                 <div class="ui inverted link list">
                     <a href="#" class="item">Critic Submission</a>
-                    <a href="#" class="item">Licensing</a>
+                    <a href="licensing" class="item">Licensing</a>
                     <a href="#" class="item">Advertise</a>
                     <a href="#" class="item">Careers</a>
                 </div>

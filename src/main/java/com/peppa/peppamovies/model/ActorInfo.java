@@ -10,7 +10,7 @@ import java.util.List;
 public class ActorInfo {
     @Id
     @GeneratedValue
-    private int actorID;
+    private Long actorID;
     private String firstName;
     private String lastName;
     @Temporal(TemporalType.DATE)
@@ -22,11 +22,11 @@ public class ActorInfo {
     public ActorInfo() {
     }
 
-    public int getActorID() {
+    public Long getActorID() {
         return actorID;
     }
 
-    public void setActorID(int actorID) {
+    public void setActorID(Long actorID) {
         this.actorID = actorID;
     }
 

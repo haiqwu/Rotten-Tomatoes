@@ -48,7 +48,7 @@ div.slick{
 }
 
 .movie-title{
-    background-color: teal;
+    /*background-color: teal;*/
     min-width: 20px;
     height: 50px;
     padding-left: 10px;
@@ -153,3 +153,16 @@ line-height: 1.8; !important;
 
 }
 
+/*xin*/
+.m-margin-top-bottom-small {
+    margin: 40px 0px 20px 0px !important;
+}
+
+.m-header-median {
+    font-weight: bold !important;
+    font-size: 20px !important;
+}
+
+.m-padded-big {
+    padding: 50px 20px !important;
+}

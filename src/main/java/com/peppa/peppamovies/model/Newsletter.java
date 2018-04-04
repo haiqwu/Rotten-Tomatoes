@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Newsletter {
     @Id
     @GeneratedValue
-    private int newsletterID;
+    private Long newsletterID;
     private String firstName;
     private String lastName;
     private String email;
@@ -22,11 +22,11 @@ public class Newsletter {
     public boolean checkEmailFormat(){return true;}
     public boolean verifyEmail(String email){return true;}
 
-    public int getNewsletterID() {
+    public Long getNewsletterID() {
         return newsletterID;
     }
 
-    public void setNewsletterID(int newsletterID) {
+    public void setNewsletterID(Long newsletterID) {
         this.newsletterID = newsletterID;
     }
 

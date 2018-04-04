@@ -10,7 +10,7 @@ import java.util.List;
 public class MovieInfo {
     @Id
     @GeneratedValue
-    private int movieID;
+    private Long movieID;
     private String movieName;
     @Temporal(TemporalType.DATE)
     private Date yearOpening;
@@ -30,11 +30,11 @@ public class MovieInfo {
     public MovieInfo() {
     }
 
-    public int getMovieID() {
+    public Long getMovieID() {
         return movieID;
     }
 
-    public void setMovieID(int movieID) {
+    public void setMovieID(Long movieID) {
         this.movieID = movieID;
     }
 

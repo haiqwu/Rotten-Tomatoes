@@ -9,7 +9,7 @@ import java.util.List;
 public class CriticGroup {
     @Id
     @GeneratedValue
-    private int groupID;
+    private Long groupID;
     private String groupName;
     private String groupIntro;
     @OneToMany(mappedBy = "group")
@@ -18,11 +18,11 @@ public class CriticGroup {
     public CriticGroup() {
     }
 
-    public int getGroupID() {
+    public Long getGroupID() {
         return groupID;
     }
 
-    public void setGroupID(int groupID) {
+    public void setGroupID(Long groupID) {
         this.groupID = groupID;
     }
 
@@ -46,7 +46,7 @@ public class CriticGroup {
         return groupParticipents;
     }
 
-    public void setGroupparticipents(List<UserInfo> groupParticipents) {
+    public void setGroupParticipents(List<UserInfo> groupParticipents) {
         this.groupParticipents = groupParticipents;
     }
 

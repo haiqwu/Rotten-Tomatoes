@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}" >
 
     <!--slick css-->
-    <link rel="stylesheet" type="text/css" href="../static/slick/slick.css"  th:href="@{/slick/slick.css}"   />
-    <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" th:href="@{/slick/slick-theme.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/slick/slick.css"  th:href="@{/slick/slick.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" th:href="@{/slick/slick-theme.css}"/>
 
 
     <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}" ></script>
@@ -22,8 +22,280 @@
 
 
 </head>
+
+<!--footer-->
+<footer class="ui inverted vertical segment f-padding" id="navbar" th:fragment="footerImg()">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided grid">
+
+            <div class="three wide column">
+                <h4 class="ui inverted header">FQA</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Help</a>
+                    <a href="about" class="item" methods="get">About Peppa Tomatoes</a>
+                    <a href="#" class="item">What's the Peppameter?</a>
+                    <a href="#" class="item">Feedback</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">INFO</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Critic Submission</a>
+                    <a href="licensing" class="item" methods="get">Licensing</a>
+                    <a href="#" class="item">Advertise</a>
+                    <a href="#" class="item">Careers</a>
+                </div>
+            </div>
+            <div class="four wide column">
+
+                <h4 class="ui inverted header"><i class="envelope outline icon"></i>JOIN THE NEWSLETTER</h4>
+                <div class="ui inverted link list center">
+                    <div class="item">Get the freshest reviews, news, and more delivered right to your inbox!</div>
+                    <div class="item">
+                        <a href="#" class=" ui teal button "> Join the Newsletter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <h4 class="ui inverted header">FOLLOW US <i class="angle double down icon"></i></h4>
+                <div class="follow"><a href="#" class="item"><img src="static/images/004-facebook.png" th:src="@{/images/004-facebook.png}"
+                                                                  alt="loading"></a></div>
+                <div class="follow"><a href="#" class="item"><img src="static/images/003-twitter.png" th:src="@{/images/003-twitter.png}"
+                                                                  alt="loading"></a>
+                </div>
+                <div class="follow"><a href="#" class="item"><img src="static/images/if_snapchat_386706.png" th:src="@{/images/if_snapchat_386706.png}"
+                                                                  alt="loading"></a></div>
+                <div class="follow"><a href="#" class="item"><img src="static/images/001-instagram.png" th:src="@{/images/001-instagram.png}"
+                                                                  alt="loading"></a></div>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="f-text-lined f-text-space f-text-thin">Copyright © 2018 - 2019 Peppa Designed by Peppa. All rights
+            reserved. </p>
+    </div>
+
+</footer>
+
+
+<div class="four wide center aligned column" th:fragment="img()">
+    <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
+    <h4>Black Panther</h4>
+    <p>2 HR 14 MIN13</p>
+    <p>Released Feb 16</p>
+    <button class="ui mini red button">Get Tickets</button>
+</div>
 <!--thymeleaf 建立css关系 th:href/src(看是什么格式)="@{/css/index.css}"-->
 <body>
+<!-- nav bar-->
+<nav class="ui sticky inverted teal attached segment " th:fragment="navBar()">
+    <div class="ui container  ">
+        <div class="ui container ">
+            <div class="ui inverted secondary menu">
+                <h2 class="ui  header item">Peppa</h2>
+                <div class="ui search search_bar ">
+                    <div class="ui icon input search_area">
+                        <input class="prompt" type="text" placeholder="Search Movies...">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+
+
+                <div class="right menu ">
+                    <a href="#" id="login" class="ui inverted item button " onclick="login_fun()">Log in</a>
+                    <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="ui container">
+            <div class="ui inverted secondary menu">
+                <div class="ui pointing simple dropdown link item ">
+                    <span class="text">MOVIES & DVDS</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">MOVIES IN THEATERS</div>
+                        <div class="divider"></div>
+                        <div class="item">Opening This Week</div>
+                        <div class="item">Top Box Office</div>
+                        <div class="item">Comming Soon</div>
+                        <div class="item">Certified Movies</div>
+                    </div>
+
+
+                </div>
+                <div class="ui pointing simple dropdown link item ">
+                    <span class="text">TV</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">OPENING TV</div>
+                        <div class="divider"></div>
+                        <div class="item">Most Popular TV</div>
+                        <div class="item">Top TV Shows</div>
+                        <div class="item">Certified TV</div>
+                        <div class="item">More</div>
+                    </div>
+                </div>
+
+                <div class="ui item ">
+                    <a href="#"> TRAILERS & VIDEOS</a>
+                </div>
+
+                <div class="ui item ">
+                    <a href="#"> TICKETS & SHOWTIMES </a>
+                </div>
+
+                <div class="ui item ">
+                    <a href="#">REVIEWS </a>
+                </div>
+
+                <div class="right menu">
+                    <div class="ui item">
+                        <a href=""> what is Peppameter?</a>
+                    </div>
+                    <div class="ui item">
+                        <a href=""> PT Critics</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- login modal-->
+    <div class="ui m-padded-big modal" id="login_modal">
+        <i class="close icon"></i>
+
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        WELCOME
+                    </div>
+                </h2>
+                <form class="ui form" method="post" action="login">
+                    <div class="ui  segment">
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="ui fluid large teal submit button">Log In</button>
+                        </div>
+
+                        <div class="actions field">
+                            <div class="ui fluid large red deny button " id="cancel" >
+                                Cancel
+                                <!--<button class="ui fluid large red deny button ">Cancel</button>-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="ui error mini message"></div>-->
+                    <!--<div class="ui mini negative message" >用户名和密码错误</div>-->
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!--+++++++++++ sign up +++++++++++++-->
+    <div class="ui m-padded-big modal" id="signup_modal">
+        <i class="close icon"></i>
+
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        WELCOME
+                    </div>
+                </h2>
+                <form class="ui form" method="post" action="signup">
+                    <div class="ui  segment">
+                        <div class="field ">
+                            <!--<div class="ui left icon input">-->
+                            <!--<i class="user icon"></i>-->
+                            <!--&lt;!&ndash;<input type="text" name="firstname" placeholder="First Name">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<input  type="text" name="lastname" placeholder="Last Name">&ndash;&gt;-->
+                            <!--</div>-->
+                            <div class="two fields">
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="user icon"></i>
+                                        <input type="text" name="firstname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <input type="text" name="lastname" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user circle icon"></i>
+                                <input type="text" name="username" placeholder="Username">
+
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="envelope icon"></i>
+                                <input type="text" name="email" placeholder="Email">
+
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="re_password" placeholder="Confirm Password">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <button class="ui fluid large teal submit button">Register</button>
+                        </div>
+
+                        <div class="actions field">
+                            <div class="ui fluid large red deny button" id="cancel2" >
+                                Cancel
+                                <!--<button class="ui fluid large red deny button ">Cancel</button>-->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="ui error mini message"></div>-->
+                    <!--<div class="ui mini negative message" >用户名和密码错误</div>-->
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</nav>
 
 </body>
 </html>

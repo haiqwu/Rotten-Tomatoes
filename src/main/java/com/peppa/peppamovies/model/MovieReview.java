@@ -10,7 +10,7 @@ import java.util.List;
 public class MovieReview {
     @Id
     @GeneratedValue
-    private int reviewID;
+    private Long reviewID;
     private double rate;
     private String comment;
     @Temporal(TemporalType.DATE)
@@ -23,11 +23,11 @@ public class MovieReview {
     public MovieReview() {
     }
 
-    public int getReviewID() {
+    public Long getReviewID() {
         return reviewID;
     }
 
-    public void setReviewID(int reviewID) {
+    public void setReviewID(Long reviewID) {
         this.reviewID = reviewID;
     }
 

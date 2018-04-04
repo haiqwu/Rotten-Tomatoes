@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
     <title>About Peppa</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
-    <link rel="stylesheet" href="static/css/mycss.css">
+    <link rel="stylesheet" href="static/css/mycss.css" th:href="@{/css/mycss.css}">
 </head>
 <body>
 <div class="ui container">
@@ -14,10 +14,10 @@
         <div class="ui stackable grid">
             <!--about peppa-->
             <div class="twelve wide column">
-                <div class="ui inverted attached segment">
+                <!--<div class="ui inverted attached segment">-->
                     <div class="m-padded-top-bottom-small">
-                        <h2 class="ui inverted header">ABOUT ROTTEN TOMATOES</h2>
-                        <p>
+                        <h2 class="ui teal inverted header">ABOUT ROTTEN TOMATOES</h2>
+                        <p class="m-opacity-mini">
                             Rotten Tomatoes® and the Tomatometer® score are the most trusted recommendation sources for
                             quality entertainment. As the leading online aggregator of movie and TV show reviews from
                             professional critics, Rotten Tomatoes offers the most comprehensive guide to what's Fresh.
@@ -27,16 +27,17 @@
                             accolade is awarded with a Tomatometer score of 75% and higher and a required minimum number
                             of reviews.
                         </p>
-                        <p>
+                        <p class="m-opacity-mini">
                             In 2016, Flixster and Rotten Tomatoes became part of Fandango's portfolio of digital properties,
                             serving moviegoers and entertainment fans.
                         </p>
                     </div>
-                    <hr class="ui inverted">
+
+                    <div class="ui divider"></div>
 
                     <div class="m-padded-top-bottom-small">
-                        <h2 class="ui inverted header">ABOUT ROTTEN TOMATOES</h2>
-                        <p>
+                        <h2 class="ui teal inverted header">ABOUT ROTTEN TOMATOES</h2>
+                        <p class="m-opacity-mini">
                             Rotten Tomatoes® and the Tomatometer® score are the most trusted recommendation sources for
                             quality entertainment. As the leading online aggregator of movie and TV show reviews from
                             professional critics, Rotten Tomatoes offers the most comprehensive guide to what's Fresh.
@@ -46,16 +47,17 @@
                             accolade is awarded with a Tomatometer score of 75% and higher and a required minimum number
                             of reviews.
                         </p>
-                        <p>
+                        <p class="m-opacity-mini">
                             In 2016, Flixster and Rotten Tomatoes became part of Fandango's portfolio of digital properties,
                             serving moviegoers and entertainment fans.
                         </p>
                     </div>
-                    <hr class="ui inverted">
+
+                    <div class="ui divider"></div>
 
                     <div class="m-padded-top-bottom-small">
-                        <h2 class="ui inverted header">ABOUT ROTTEN TOMATOES</h2>
-                        <p>
+                        <h2 class="ui teal inverted header">ABOUT ROTTEN TOMATOES</h2>
+                        <p class="m-opacity-mini">
                             Rotten Tomatoes® and the Tomatometer® score are the most trusted recommendation sources for
                             quality entertainment. As the leading online aggregator of movie and TV show reviews from
                             professional critics, Rotten Tomatoes offers the most comprehensive guide to what's Fresh.
@@ -65,50 +67,69 @@
                             accolade is awarded with a Tomatometer score of 75% and higher and a required minimum number
                             of reviews.
                         </p>
-                        <p>
+                        <p class="m-opacity-mini">
                             In 2016, Flixster and Rotten Tomatoes became part of Fandango's portfolio of digital properties,
                             serving moviegoers and entertainment fans.
                         </p>
                     </div>
 
-                </div>
+                <!--</div>-->
             </div>
 
             <!--contact us-->
-            <div class="four wide column">
-                <div class="ui inverted attached segment">
-                    <h2 class="ui header">CONTACT US</h2>
-                </div>
-                <div class="ui inverted attached segment">
-                    <div class="m-padded-bottom-small">
-                        <h4 class="ui inverted header">Customer Support</h4>
-                        <p>Visit our FAQs or fill out our Email Form.</p>
+            <div class="m-padded-median four wide column">
+                <h2 class="ui teal inverted header">CONTACT US</h2>
+                <div class="ui inverted list">
+                    <div class="m-padded-top-bottom-mini item">
+                        <div class="ui median header">Customer Support</div>
+                        <span class="m-opacity-mini">Visit our FAQs or fill out our Email Form.</span>
                     </div>
-                    <hr class="ui inverted">
-                    <div class="m-padded-bottom-small">
-                        <h4 class="ui inverted header">Licensing or Partnership Inquiries</h4>
-                        <p>Fill out our Business Proposal Form.</p>
+                    <div class="m-padded-top-bottom-mini item">
+                        <div class="ui median header header">Chicago</div>
+                        <span class="m-opacity-mini">Visit our FAQs or fill out our Email Form.</span>
                     </div>
-                    <hr class="ui inverted">
-                    <div class="m-padded-bottom-small">
-                        <h4 class="ui inverted header">Submit Movie Information</h4>
-                        <p>Tell us about missing or incorrect movie or TV information.</p>
+                    <div class="m-padded-top-bottom-mini item">
+                        <div class="ui median header header">Los Angeles</div>
+                        <span class="m-opacity-mini">Visit our FAQs or fill out our Email Form.</span>
                     </div>
-                    <hr class="ui inverted">
-                    <div class="m-padded-bottom-small">
-                        <h4 class="ui inverted header">Customer Support</h4>
-                        <p>Visit our FAQs or fill out our Email Form.</p>
-                    </div>
-                    <div class="m-padded-bottom-small">
-                        <h4 class="ui inverted header">Advertise</h4>
-                        <p>Review Fandango Advertising Opportunities.</p>
-                    </div>
-                    <hr class="ui inverted">
-                    <div>
-                        <h4 class="ui inverted header">Follow Us</h4>
-                        <p>Review Fandango Advertising Opportunities.</p>
+                    <div class="m-padded-top-bottom-mini item">
+                        <div class="ui median header header">San Francisco</div>
+                        <span class="m-opacity-mini">Visit our FAQs or fill out our Email Form.</span>
                     </div>
                 </div>
+
+                <!--<div class="ui inverted attached segment">-->
+                    <!--<h2 class="ui header">CONTACT US</h2>-->
+                <!--</div>-->
+                <!--<div class="ui inverted attached segment">-->
+                    <!--<div class="m-padded-bottom-small">-->
+                        <!--<h4 class="ui inverted header">Customer Support</h4>-->
+                        <!--<p>Visit our FAQs or fill out our Email Form.</p>-->
+                    <!--</div>-->
+                    <!--<div class="m-padded-bottom-small">-->
+                        <!--<h4 class="ui inverted header">Licensing or Partnership Inquiries</h4>-->
+                        <!--<p>Fill out our Business Proposal Form.</p>-->
+                    <!--</div>-->
+                    <!--<div class="ui divider"></div>-->
+                    <!--<div class="m-padded-bottom-small">-->
+                        <!--<h4 class="ui inverted header">Submit Movie Information</h4>-->
+                        <!--<p>Tell us about missing or incorrect movie or TV information.</p>-->
+                    <!--</div>-->
+                    <!--<div class="ui divider"></div>-->
+                    <!--<div class="m-padded-bottom-small">-->
+                        <!--<h4 class="ui inverted header">Customer Support</h4>-->
+                        <!--<p>Visit our FAQs or fill out our Email Form.</p>-->
+                    <!--</div>-->
+                    <!--<div class="m-padded-bottom-small">-->
+                        <!--<h4 class="ui inverted header">Advertise</h4>-->
+                        <!--<p>Review Fandango Advertising Opportunities.</p>-->
+                    <!--</div>-->
+                    <!--<div class="ui divider"></div>-->
+                    <!--<div>-->
+                        <!--<h4 class="ui inverted header">Follow Us</h4>-->
+                        <!--<p>Review Fandango Advertising Opportunities.</p>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
             </div>

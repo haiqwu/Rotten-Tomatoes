@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class BusinessProposal {
     @Id
     @GeneratedValue
-    private int BPID;
+    private Long BPID;
     private String firstname;
     private String lastname;
     private String companyname;
@@ -29,11 +29,11 @@ public class BusinessProposal {
     public boolean checkContentsPlan(){return true;}
     public boolean verifyEmail(String email){return true;}
 
-    public int getBPID() {
+    public Long getBPID() {
         return BPID;
     }
 
-    public void setBPID(int BPID) {
+    public void setBPID(Long BPID) {
         this.BPID = BPID;
     }
 

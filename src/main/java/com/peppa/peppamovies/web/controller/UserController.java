@@ -30,13 +30,12 @@ public class UserController {
         UserInfo user = userService.checkUser(username, passwdByte);
         if(user != null){
             user.setPassW(null);
-            //System.out.println("Login Check: " + session);
             session.setAttribute("user", user);
-            //System.out.println("LoginSuccess");
+            System.out.println("LoginSuccess");
             return "index";
         }else{
             attributes.addFlashAttribute("message", "usename and password not match");
-            //System.out.println("NOLogin");
+            System.out.println("NOLogin");
             return "redirect:/";
         }
     }
@@ -48,8 +47,24 @@ public class UserController {
 
     }
 
+    @PostMapping("/signup")
+    public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
+                             @RequestParam String email, @RequestParam String password, @RequestParam String re_password,
+                             HttpSession session, RedirectAttributes attributes){
+        UserInfo user = new UserInfo();
+        user.setFirstName(firstname);
+        user.setLastName(lastname);
+        user.setUserName(username);
+        user.setEmail(email);
+        if(password.equals(re_password)){
+            byte[] temp =password.getBytes();
+            Byte[] passwdByte = toByteArr(temp);
+            user.setPassW(passwdByte);
+        }else{}
+        userService.saveUser(user);
+        return "redirect:/";
+    }
 
-    public void handleRegisterButton(){}
     public void handleSucMesg(){}
     public void handleFailMesg(){}
     public void handleJoinNewsletter(){}
@@ -57,10 +72,16 @@ public class UserController {
     public void handleChangePassword(){}
     public void handleUserHelpService(){}
     public void handleBusinessProposal(){}
-    public void handleShowLicenseInfo(){}
+    @GetMapping("/licensing")
+    public String handleShowLicenseInfo(){
+        return "licensing";
+    }
     public void handleOpenPersonalInfo(){}
     public void handleShowCriticInfo(){}
-    public void handleAboutPeppaTom(){}
+    @GetMapping("/about")
+    public String handleAboutPeppaTom(){
+        return "about";
+    }
     public void handleTomatometerRatingRule(){}
     public void handleCriticSearchBarFocus(){}
     public void handleCriticSearchBarTextChanging(){}
