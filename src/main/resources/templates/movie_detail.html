@@ -99,8 +99,12 @@
 
                                         </div>
                                         <div class="row">
-                                            
-                                            <div id="star_rate" class="rate ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating"></div>
+
+                                            <div id="star_rate" class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">
+
+                                            </div>
+                                            <p id="rate_num" name="rate_num" ></p>
+
                                         </div>
 
 
@@ -243,8 +247,8 @@
 
 <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>-->
-<script src="../static/js/jquery-3.3.1.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<!--<script src="../static/js/jquery-3.3.1.min.js" ></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>-->
 
 
 <script type="text/javascript">
@@ -252,11 +256,20 @@
     $('.ui.rating')
         .rating({
             initialRating: 3,
-            maxRating: 5
+            maxRating: 5,
+            onRate: function (rating) {
+                // alert(rating)
+
+                // var rate2= rating;
+                 $('#rate_num').html(rating);
+                // document.getElementById("rate_num").innerText(rate);
+            }
         });
 
     $('.rating')
         .rating('setting', 'clearable', true);
+
+
 
 
 </script>
