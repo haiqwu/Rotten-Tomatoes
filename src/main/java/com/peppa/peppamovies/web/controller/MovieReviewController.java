@@ -16,13 +16,13 @@ public class MovieReviewController {
     private MovieReviewService movieReviewService;
 
 
-    @GetMapping("/movie_detail")
-    public String handleMovieDetail(){
-        return "movie_detail";
-    }
+    //@GetMapping("/movie_detail")
+    //public String handleMovieDetail(){
+    //    return "movie_detail";
+    //}
 
 
-    @PostMapping("/movie_review_post")
+    @PostMapping("movie/movie_review_post")
     public String handlePostReview(@RequestParam String review_text,
 
                                    HttpSession session,

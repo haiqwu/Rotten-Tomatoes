@@ -27,7 +27,7 @@
             <div class="sixteen wide column">
                 <div class="ui grid">
                     <div class="four wide column">
-                        <a href="#"><img class="ui fluid image" src="static/images/1.jpg" alt="Image"></a>
+                        <a href="#"><img class="ui fluid image" name="poster main"  alt="Image" th:src="@{${movie.moviePoster}}" ></a>
                     </div>
                     <div class="twelve wide column">
                         <div class="sixteen wide column">
@@ -66,7 +66,7 @@
                         <div class="sixteen wide column">
                             <div class="ui grid">
                                 <div class="four wide column">
-                                    <a href="#"><img class="ui fluid image" src="static/images/portrait.png"
+                                    <a href="#"><img class="ui fluid image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}"
                                                      alt="Image"></a>
                                 </div>
 
@@ -157,17 +157,8 @@
             <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">MOVIE INFO</div>
             <div class="ui grid">
                 <div class="sixteen wide column">
-                    <p class="m-opacity-mini">
-                        In the year 2045, people can escape their harsh reality in the OASIS, an immersive virtual world
-                        where you can go anywhere, do anything, be anyone-the only limits are your own imagination.
-                        OASIS
-                        creator James Halliday left his immense fortune and control of the Oasis to the winner of a
-                        contest
-                        designed to find a worthy heir. When unlikely hero Wade Watts conquers the first challenge of
-                        the
-                        reality-bending treasure hunt, he and his friends-known as the High Five-are hurled into a
-                        fantastical \
-                        universe of discovery and danger to save the OASIS and their world.
+
+                    <p class="m-opacity-mini" th:text="${movie.briefIntro}" >placeholder
                     </p>
                     <div class="ui list">
                         <div class="item">
@@ -202,31 +193,31 @@
             <!--cast-->
             <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">CAST</div>
             <div class="ui grid">
-                <div class="ui sixteen wide column">
+                <div class="ui sixteen wide column" >
                     <div class="ui relaxed horizontal list">
                         <div class="item">
-                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}" >
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="static/images/portrait.png">
+                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>

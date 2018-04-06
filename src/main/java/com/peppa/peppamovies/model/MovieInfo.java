@@ -12,6 +12,17 @@ public class MovieInfo {
     @GeneratedValue
     private Long movieID;
     private String secondaryID;
+
+
+    private String titleType;
+    private String originalTitle;
+    private int isAdult;
+    private int startYear;
+    private String endYear;
+    private int runtimeMinutes;
+    private String genres;
+
+
     private String movieName;
     @Temporal(TemporalType.DATE)
     private Date yearOpening;
@@ -96,7 +107,7 @@ public class MovieInfo {
     }
 
     public String getMoviePoster() {
-        return moviePoster;
+        return "/images/movie_posters/"+ getSecondaryID() +"poster_1.jpeg" ;
     }
 
     public void setMoviePoster(String moviePoster) {
@@ -143,11 +154,74 @@ public class MovieInfo {
         this.interestedUsers = interestedUsers;
     }
 
+    public String getTitleType() {
+        return titleType;
+    }
+
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    public int getIsAdult() {
+        return isAdult;
+    }
+
+    public int getStartYear() {
+        return startYear;
+    }
+
+    public String getEndYear() {
+        return endYear;
+    }
+
+    public int getRuntimeMinutes() {
+        return runtimeMinutes;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setTitleType(String titleType) {
+        this.titleType = titleType;
+    }
+
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    public void setIsAdult(int isAdult) {
+        this.isAdult = isAdult;
+    }
+
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    public void setEndYear(String endYear) {
+        this.endYear = endYear;
+    }
+
+    public void setRuntimeMinutes(int runtimeMinutes) {
+        this.runtimeMinutes = runtimeMinutes;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
+
     @Override
     public String toString() {
         return "MovieInfo{" +
                 "movieID=" + movieID +
                 ", secondaryID='" + secondaryID + '\'' +
+                ", titleType='" + titleType + '\'' +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", isAdult=" + isAdult +
+                ", startYear=" + startYear +
+                ", endYear='" + endYear + '\'' +
+                ", runtimeMinutes=" + runtimeMinutes +
+                ", genres='" + genres + '\'' +
                 ", movieName='" + movieName + '\'' +
                 ", yearOpening=" + yearOpening +
                 ", briefIntro='" + briefIntro + '\'' +
