@@ -166,3 +166,7 @@ line-height: 1.8; !important;
 .m-padded-big {
     padding: 50px 20px !important;
 }
+
+.m-nav-opacity {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}

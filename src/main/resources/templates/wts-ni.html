@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Profile Summary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css">
+</head>
+<body>
+
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+
+            <div class="ui teal m-title inverted attached segment">
+                <div class="ui tiny header item">WANT TO SEE LIST</div>
+            </div>
+
+            <div class="ui grid">
+                <div class="two wide column">
+                    <a href="#"><img class="ui image" src="../static/images/1.jpg" alt="Image"></a>
+                </div>
+                <div class="fourteen wide column">
+                    <div>
+                        <a href="#">Jumanji: Welcome to the Jungle</a>(2017)
+                    </div>
+                    <div id="star_rate" class=" ui big star rating"></div>
+                    <div>Opening April 6, 2018 -PG-13,1 hr. 30 min. -
+                        <span><a href="#">Showtimes</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="right aligned sixteen wide column">
+                <a href="#">More...</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script type="text/javascript">
+    $('.ui.rating')
+        .rating({
+            initialRating: 3,
+            maxRating: 5
+        })
+        .rating('disable');
+</script>
+
+</body>
+</html>

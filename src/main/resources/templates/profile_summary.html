@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Profile Summary</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css">
+</head>
+<body>
+
+    <div class="ui container">
+        <div class="ui inverted attached segment">
+            <div class="ui grid">
+
+                <!--want to see movies-->
+                <div class="ui teal m-title inverted attached segment">
+                    <div class="ui tiny header item">WANT-TO-SEE MOVIES</div>
+                </div>
+                <div class="center aligned four wide column">
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a>Black Panther</a>
+                </div>
+                <div class="center aligned four wide column">
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a>Black Panther</a>
+                </div>
+                <div class="center aligned four wide column">
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a>Black Panther</a>
+                </div>
+                <div class="center aligned four wide column">
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a>Black Panther</a>
+                </div>
+                <div class="right aligned sixteen wide column">
+                    <a href="#">More...</a>
+                </div>
+
+
+                <!--rating histoty-->
+                <div class="ui teal m-title inverted attached segment">
+                    <div class="ui tiny header item">RATING HISTORY</div>
+                </div>
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <a href="#"><img class="ui image" src="../static/images/1.jpg" alt="Image"></a>
+                    </div>
+                    <div class="twelve wide column">
+                        <div>
+                            <a href="#">Jumanji: Welcome to the Jungle</a>(2017)
+                        </div>
+                        <div id="star_rate" class=" ui big star rating"></div>
+                        <div>Comment</div>
+                        <div class="m-description">2 months ago via Peppa</div>
+                    </div>
+                </div>
+                <div class="right aligned sixteen wide column">
+                    <a href="#">More...</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script type="text/javascript">
+        $('.ui.rating')
+            .rating({
+                initialRating: 3,
+                maxRating: 5
+            })
+            .rating('disable');
+    </script>
+
+</body>
+</html>
