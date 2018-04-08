@@ -69,11 +69,20 @@ body {
 .m-opacity-mini {
     opacity: 0.8 !important;
 }
-/*.m-white {*/
-    /*color: white;*/
-/*}*/
 
 .m-description {
     font-size: 10px !important;
     opacity: 0.8 !important;
+}
+
+/*title*/
+.m-title {
+    font-weight: bold !important;
+    font-size: 20px !important;
+    margin: 40px 0px 20px 0px !important;
+}
+
+/*profile*/
+.m-profile-left-inner-padding {
+    padding: 30px 0px 0px !important;
 }
