@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js " ></script>
     <script type="text/javascript" src="../static/slick/slick.min.js"  th:src="@{/slick/slick.min.js}"></script>
-
+    <script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
 </head>
 
 <!--footer-->
@@ -78,13 +78,13 @@
 </footer>
 
 
-<div class="four wide center aligned column" th:fragment="img()">
-    <a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
-    <h4>Black Panther</h4>
-    <p>2 HR 14 MIN13</p>
-    <p>Released Feb 16</p>
-    <button class="ui mini red button">Get Tickets</button>
-</div>
+<!--<div class="four wide center aligned column" th:fragment="img()" th: >-->
+    <!--<a href="#"><img class="ui fluid rounded image" src="static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>-->
+    <!--<h4>Black Panther</h4>-->
+    <!--<p>2 HR 14 MIN13</p>-->
+    <!--<p>Released Feb 16</p>-->
+    <!--<button class="ui mini red button">Get Tickets</button>-->
+<!--</div>-->
 <!--thymeleaf 建立css关系 th:href/src(看是什么格式)="@{/css/index.css}"-->
 <body>
 <!-- nav bar-->
@@ -100,13 +100,28 @@
                     </div>
                     <div class="results"></div>
                 </div>
+                <!--if no user info is being passed -->
+                <div class="right menu " th:unless="${user_info}">
 
+                        <a href="#" id="login" class="ui inverted item button " onclick="login_fun()" >Log in</a>
+                        <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
 
-                <div class="right menu ">
-                    <a href="#" id="login" class="ui inverted item button " onclick="login_fun()">Log in</a>
-                    <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
+                <div class = "right menu" th:if="${user_info}">
+
+                    <div id="username" class="ui simple dropdown item">
+                        <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
+                        <div class="text" th:text="${user_info.userName}"></div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="/logout"  class="item">Log Out</a>
+                        </div>
+
+                    </div>
+
+
+                </div>
 
             </div>
         </div>
@@ -296,6 +311,9 @@
         </div>
     </div>
 </nav>
+
+
+
 
 </body>
 </html>
