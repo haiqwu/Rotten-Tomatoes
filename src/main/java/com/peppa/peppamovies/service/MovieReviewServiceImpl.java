@@ -24,19 +24,21 @@ public class MovieReviewServiceImpl implements MovieReviewService {
     public MovieReview getMovieReview(Long id) {
         return movieReviewRepository.getOne(id);
     }
+
     @Transactional
     @Override
     public MovieReview updateMovieReview(Long id, MovieReview movieReview) {
         MovieReview findMovieReview = movieReviewRepository.getOne(id);
-        if(findMovieReview == null){
+        if (findMovieReview == null) {
             //throw new ChangeSetPersister.NotFoundException("NOT EXIST!");
         }
-        BeanUtils.copyProperties(movieReview,findMovieReview);
+        BeanUtils.copyProperties(movieReview, findMovieReview);
         return movieReviewRepository.save(movieReview);
     }
+
     @Transactional
     @Override
     public void deleteMovieReview(Long id) {
-        movieReviewRepository.deleteById(id );
+        movieReviewRepository.deleteById(id);
     }
 }

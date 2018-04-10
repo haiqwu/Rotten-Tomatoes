@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "UserInfo")
-public class UserInfo{
+public class UserInfo {
     @Id
     @GeneratedValue
     private Long userID;
@@ -26,7 +26,6 @@ public class UserInfo{
     @Temporal(TemporalType.DATE)
     private Date dateDeActivatedFromCritic;
     private String followedSocialMedias;
-
     @ManyToMany(mappedBy = "interestedUsers")
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
     @OneToMany(mappedBy = "movie")
@@ -41,11 +40,26 @@ public class UserInfo{
     public UserInfo() {
     }
 
-    public boolean checkName(){return true;}
-    public boolean checkEmailFormat(){return true;}
-    public boolean checkPassword(){return true;}
-    public Byte[] hashPassword(String password){Byte[] passW = new Byte[5]; return passW;}
-    public boolean verifyEmail(String email){return true;}
+    public boolean checkName() {
+        return true;
+    }
+
+    public boolean checkEmailFormat() {
+        return true;
+    }
+
+    public boolean checkPassword() {
+        return true;
+    }
+
+    public Byte[] hashPassword(String password) {
+        Byte[] passW = new Byte[5];
+        return passW;
+    }
+
+    public boolean verifyEmail(String email) {
+        return true;
+    }
 
     public Long getUserID() {
         return userID;

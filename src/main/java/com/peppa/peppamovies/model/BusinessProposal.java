@@ -23,12 +23,6 @@ public class BusinessProposal {
     public BusinessProposal() {
     }
 
-    public boolean checkName(){return true;}
-    public boolean checkEmailFormat(){return true;}
-    public boolean checkPhoneNumFormat(){return true;}
-    public boolean checkContentsPlan(){return true;}
-    public boolean verifyEmail(String email){return true;}
-
     public Long getBPID() {
         return BPID;
     }

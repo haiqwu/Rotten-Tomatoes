@@ -19,7 +19,6 @@ public class MovieReview {
     @ManyToOne
     private MovieInfo movie;
 
-
     public MovieReview() {
     }
 

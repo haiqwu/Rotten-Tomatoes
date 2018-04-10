@@ -1,277 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head th:replace="_fragments :: head(~{::title})">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peppa</title>
-    <!--<link rel="stylesheet" href="static/css/semantic.min.css">-->
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css">-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-    <link rel="stylesheet" href="static/css/index.css">
-
-    <!--slick css-->
-    <link rel="stylesheet" type="text/css" href="static/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="static/slick/slick-theme.css"/>
-
-
 </head>
+
 <body>
 <!-- nav bar-->
-<nav class="ui sticky inverted m-nav-opacity attached segment " th:replace="_fragments :: navBar()">
-    <div class="ui container  ">
-    <div class="ui container ">
-        <div class="ui inverted secondary menu">
-            <h2 class="ui  header item">Peppa</h2>
-            <div class="ui search search_bar ">
-                <div class="ui icon input search_area">
-                    <input class="prompt" type="text" placeholder="Search Movies...">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
-            </div>
-
-
-            <div class="right menu " >
-                <a href="#" id="login" class="ui inverted item button " onclick="login_fun()" >Log in</a>
-                <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
-
-            </div>
-
-            <!--<p th:text="${user_info.userName}"> </p>-->
-
-        </div>
-    </div>
-    <div class="ui container">
-        <div class="ui inverted secondary menu">
-            <div class="ui pointing simple dropdown link item ">
-                <span class="text">MOVIES & DVDS</span>
-                <i class="dropdown icon"></i>
-
-                <div  class="menu">
-                    <div class="header">MOVIES IN THEATERS</div>
-                    <div class="divider"></div>
-                    <div class="item">Opening This Week</div>
-                    <div class="item">Top Box Office</div>
-                    <div class="item">Comming Soon</div>
-                    <div class="item">Certified Movies</div>
-                </div>
-
-
-            </div>
-            <div class="ui pointing simple dropdown link item ">
-                <span class="text">TV</span>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="header">OPENING TV</div>
-                    <div class="divider"></div>
-                    <div class="item">Most Popular TV</div>
-                    <div class="item">Top TV Shows</div>
-                    <div class="item">Certified TV</div>
-                    <div class="item">More</div>
-                </div>
-            </div>
-
-            <div class="ui item ">
-                <a href="#"> TRAILERS & VIDEOS</a>
-            </div>
-
-            <div class="ui item ">
-                <a href="#"> TICKETS & SHOWTIMES </a>
-            </div>
-
-            <div class="ui item ">
-                <a href="#">REVIEWS </a>
-            </div>
-
-            <div class="right menu">
-                <div class="ui item">
-                    <a href=""> what is Peppameter?</a>
-                </div>
-                <div class="ui item">
-                    <a href=""> PT Critics</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <!-- login modal-->
-    <div class="ui m-padded-big modal" id="login_modal">
-        <i class="close icon"></i>
-
-        <div class="ui aligned center aligned grid">
-            <div class="column">
-                <h2 class="ui image header">
-                    <div class="content">
-                        WELCOME
-                    </div>
-                </h2>
-                <form class="ui form" method="post" action="login">
-                    <div class="ui  segment">
-                        <div class="field">
-                            <div class="ui left icon input">
-                                <i class="user icon"></i>
-                                <input type="text" name="username" placeholder="Username">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui left icon input">
-                                <i class="lock icon"></i>
-                                <input type="password" name="password" placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <button class="ui fluid large teal submit button">Log In</button>
-                        </div>
-
-                        <div class="actions field">
-                            <div class="ui fluid large red deny button " id="cancel" >
-                                Cancel
-                                <!--<button class="ui fluid large red deny button ">Cancel</button>-->
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!--<div class="ui error mini message"></div>-->
-                    <!--<div class="ui mini negative message" >用户名和密码错误</div>-->
-
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-    <!--+++++++++++ sign up +++++++++++++-->
-    <div class="ui m-padded-big modal" id="signup_modal">
-        <i class="close icon"></i>
-
-        <div class="ui aligned center aligned grid">
-            <div class="column">
-                <h2 class="ui image header">
-                    <div class="content">
-                        WELCOME
-                    </div>
-                </h2>
-                <form class="ui form" method="post" action="signup">
-                    <div class="ui  segment">
-                        <div class="field ">
-                            <!--<div class="ui left icon input">-->
-                                <!--<i class="user icon"></i>-->
-                                <!--&lt;!&ndash;<input type="text" name="firstname" placeholder="First Name">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<input  type="text" name="lastname" placeholder="Last Name">&ndash;&gt;-->
-                            <!--</div>-->
-                            <div class="two fields">
-                                <div class="field">
-                                    <div class="ui left icon input">
-                                        <i class="user icon"></i>
-                                        <input type="text" name="firstname" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <input type="text" name="lastname" placeholder="Last Name">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="ui left icon input">
-                                <i class="envelope icon"></i>
-                                <input type="text" name="email" placeholder="Email">
-
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="ui left icon input">
-                                <i class="lock icon"></i>
-                                <input type="password" name="password" placeholder="Password">
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <div class="ui left icon input">
-                                <i class="lock icon"></i>
-                                <input type="password" name="re_password" placeholder="Confirm Password">
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <button class="ui fluid large teal submit button">Register</button>
-                        </div>
-
-                        <div class="actions field">
-                            <div class="ui fluid large red deny button" id="cancel2" >
-                                Cancel
-                                <!--<button class="ui fluid large red deny button ">Cancel</button>-->
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!--<div class="ui error mini message"></div>-->
-                    <!--<div class="ui mini negative message" >用户名和密码错误</div>-->
-
-
-                </form>
-
-            </div>
-        </div>
-    </div>
-</nav>
-
-
+<nav th:replace="_fragments :: navBar()"></nav>
 <div class="slicks container center aligned">
-
-    <div><a href="movie_detail" name="1"> <img src="../static/images/rolling_img/black_panther.jpg" th:src="@{/images/rolling_img/black_panther.jpg}"/></a></div>
-    <div><a href="movie_detail" name="2"> <img src="../static/images/rolling_img/i_can_only_imagine.jpg" th:src="@{/images/rolling_img/i_can_only_imagine.jpg}"/></a></div>
-    <div><a href="movie_detail" name="3"> <img src="../static/images/rolling_img/jumanji.jpg" th:src="@{/images/rolling_img/jumanji.jpg}"/></a></div>
-    <div><a href="movie_detail" name="4"> <img src="../static/images/rolling_img/pacific.jpg" th:src="@{/images/rolling_img/pacific.jpg}"/></a></div>
-    <div><a href="movie_detail" name="5"> <img src="../static/images/rolling_img/the_shape_of_water.jpg" th:src="@{/images/rolling_img/the_shape_of_water.jpg}"/></a></div>
-
-
-
+    <div><a href="movie_detail" th:href="@{/movie/1309}" name="1"> <img src="../static/images/rolling_img/black_panther.jpg" th:src="@{/images/rolling_img/black_panther.jpg}"/></a></div>
+    <div><a href="movie_detail" th:href="@{/movie/2032}" name="2"> <img src="../static/images/rolling_img/i_can_only_imagine.jpg" th:src="@{/images/rolling_img/i_can_only_imagine.jpg}"/></a></div>
+    <div><a href="movie_detail" th:href="@{/movie/2006}" name="3"> <img src="../static/images/rolling_img/jumanji.jpg" th:src="@{/images/rolling_img/jumanji.jpg}"/></a></div>
+    <div><a href="movie_detail" th:href="@{/movie/2033}" name="4"> <img src="../static/images/rolling_img/pacific.jpg" th:src="@{/images/rolling_img/pacific.jpg}"/></a></div>
+    <div><a href="movie_detail" th:href="@{/movie/2005}" name="5"> <img src="../static/images/rolling_img/the_shape_of_water.jpg" th:src="@{/images/rolling_img/the_shape_of_water.jpg}"/></a></div>
 </div>
 
 <!-- main -->
 <div class="ui container margin-m segment main inverted segment"   >
-    <!--<div class="ui attached segment"></div>-->
-
-
     <div class="ui container ">
         <div class="ui grid">
             <!--left main part-->
             <div class="thirteen wide column">
-
                 <!-- ++++++++++++++++++++++++ opening in theater +++++++++++++++++++-->
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Opening In Theater</h2>
                         </div>
-
                         <div class="column right aligned inverted ">
                             <div class="view-all">
                                 <a  href="#">view all <i class="angle double right icon"></i></a>
                             </div>
-
                         </div>
                     </div>
                 </div>
-                <!--<div class="ui  attached  inverted">-->
-                    <!--<div class="ui container top m-padded-bottom-big movie-title two column grid">-->
-                        <!--<div class="column">-->
-                            <!--<h2 class="header inverted ">Opening In Theater</h2>-->
-                        <!--</div>-->
-
-                        <!--<div class="column right aligned inverted ">-->
-                            <!--<div class="view-all">-->
-                                <!--<a  href="#">view all <i class="angle double right icon"></i></a>-->
-                            <!--</div>-->
-
-                        <!--</div>-->
-                    <!--</div>-->
                     <!--movie body-->
                     <div class="ui grid container inverted movie-body">
                         <div class="four wide center aligned column"  th:each="tag : ${movie_lists[0]}"  >
@@ -284,9 +47,6 @@
 
 
                     </div>
-                <!--</div>-->
-
-
                 <!--++++++++++++++++++++++++ top box Office +++++++++++++++++++++++++++-->
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
@@ -303,7 +63,6 @@
                     </div>
                 </div>
 
-
                 <div class="ui grid container inverted movie-body">
                     <div class="four wide center aligned column"  th:each="tag : ${movie_lists[1]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
@@ -312,41 +71,21 @@
                         <!--<p>Released Feb 16</p>-->
                         <button class="ui mini red button">Get Tickets</button>
                     </div>
-
-
                 </div>
-                    <!--<div class="ui grid container inverted movie-body">-->
-                        <!---->
-                        <!--<div class="four wide center aligned column"  >-->
-                            <!--<a href="#"><img class="ui fluid  image" src="static/images/1.jpg" alt="Image"></a>-->
-                            <!--<h4>Black Panther</h4>-->
-                            <!--<p>2 HR 14 MIN13</p>-->
-                            <!--<p>Released Feb 16</p>-->
-                            <!--<button class="ui mini red button">Get Tickets</button>-->
-                        <!--</div>-->
-                  <!---->
-                        <!---->
-                    <!--</div>-->
-                <!--</div>-->
-
-
                 <!--++++++++++++++++++++++++ Certified Fresh Peppa +++++++++++++++++++++++++++-->
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Certified Fresh</h2>
                         </div>
-
                         <div class="column right aligned inverted ">
                             <div class="view-all">
                                 <a  href="#">view all <i class="angle double right icon"></i></a>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-                    <!--movie body-->
+                <!--movie body-->
                 <div class="ui grid container inverted movie-body">
                     <div class="four wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
@@ -355,28 +94,21 @@
                         <!--<p>Released Feb 16</p>-->
                         <button class="ui mini red button">Get Tickets</button>
                     </div>
-
-
                 </div>
-                <!--</div>-->
-
                 <!--++++++++++++++++++++++++ Comming Soon +++++++++++++++++++++++++++-->
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Comming Soon</h2>
                         </div>
-
                         <div class="column right aligned inverted ">
                             <div class="view-all">
                                 <a  href="#">view all <i class="angle double right icon"></i></a>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-                    <!--movie body-->
+                <!--movie body-->
                 <div class="ui grid container inverted movie-body">
                     <div class="four wide center aligned column"  th:each="tag : ${movie_lists[3]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
@@ -385,13 +117,8 @@
                         <!--<p>Released Feb 16</p>-->
                         <button class="ui mini red button">Get Tickets</button>
                     </div>
-
-
                 </div>
-                <!--</div>-->
-
             </div>
-
             <!--right aside part-->
             <div class="three wide column">
                 <!--<a href="#"><img class="ui fluid  image" src="../static/images/1.jpg" alt="Image"></a>-->
@@ -401,136 +128,11 @@
                 <!--<a href="#"><img class="ui fluid  image" src="../static/images/1.jpg" alt="Image"></a>-->
             </div>
         </div>
-
     </div>
-
 </div>
 
-
 <!--footer-->
-<footer class="ui inverted vertical segment f-padding" id="navbar" th:replace="_fragments :: footerImg()">
-    <div class="ui center aligned container">
-        <div class="ui inverted divided grid">
-
-            <div class="three wide column">
-                <h4 class="ui inverted header">FQA</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Help</a>
-                    <a href="about" class="item">About Peppa Tomatoes</a>
-                    <a href="#" class="item">What's the Peppameter?</a>
-                    <a href="#" class="item">Feedback</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">INFO</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Critic Submission</a>
-                    <a href="licensing" class="item">Licensing</a>
-                    <a href="#" class="item">Advertise</a>
-                    <a href="#" class="item">Careers</a>
-                </div>
-            </div>
-            <div class="four wide column">
-
-                <h4 class="ui inverted header"><i class="envelope outline icon"></i>JOIN THE NEWSLETTER</h4>
-                <div class="ui inverted link list center">
-                    <div class="item">Get the freshest reviews, news, and more delivered right to your inbox!</div>
-                    <div class="item">
-                        <a href="#" class=" ui teal button "> Join the Newsletter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="six wide column">
-                <h4 class="ui inverted header">FOLLOW US <i class="angle double down icon"></i></h4>
-                <div class="follow"><a href="#" class="item"><img src="static/images/004-facebook.png"
-                                                                  alt="loading"></a></div>
-                <div class="follow"><a href="#" class="item"><img src="static/images/003-twitter.png" alt="loading"></a>
-                </div>
-                <div class="follow"><a href="#" class="item"><img src="static/images/if_snapchat_386706.png"
-                                                                  alt="loading"></a></div>
-                <div class="follow"><a href="#" class="item"><img src="static/images/001-instagram.png"
-                                                                  alt="loading"></a></div>
-            </div>
-
-        </div>
-        <div class="ui inverted section divider"></div>
-        <p class="f-text-lined f-text-space f-text-thin">Copyright © 2018 - 2019 Peppa Designed by Peppa. All rights
-            reserved. </p>
-    </div>
-
-</footer>
-
-
-<!--<script src="static/js/semantic.min.js"></script>-->
-<script src=" static/js/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
-<script type="text/javascript" src="static/slick/slick.min.js"></script>
-<script>
-
-
-
-    $('.ui.search')
-        .search({
-            // source: content,
-            // searchFullText: false
-            apiSettings:{
-                url: "https://api.github.com/search/repositories?q={query}"
-            },
-            fields:{
-                results:'items',
-                title:'name',
-                url:'html_url'
-            }
-        });
-
-
-    $('.ui.sticky').sticky({
-        context: '#navbar'
-    });
-
-
-    function login_fun() {
-        $('#login_modal')
-            .modal('show')
-        ;
-
-    }
-
-    function signup_fun(){
-        $('#signup_modal')
-            .modal('show')
-        ;
-    }
-
-    $(function () {
-        $("#login_modal").modal({
-            closable: true
-        });
-    });
-
-</script>
-<!--slick script-->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.slicks').slick({
-            adaptiveHeight:true,
-            arrows:true,
-            dots:true,
-            slidesToShow: 1,
-            autoplay: true,
-            pauseOnDotsHover: true,
-            infinite:true,
-            fade:true,
-            // prevArrow:"<button type='button' class='slick-prev pull-left'><i class='angle double left icon' aria-hidden='true'></i></button>",
-            // nextArrow:"<button type='button' class='slick-next pull-right'><i class='angle double right icon'  aria-hidden='true'></i></button>"
-            // prevArrow:"<i class='angle double left icon' aria-hidden='true'></i>",
-            // nextArrow:"<i class='angle double right icon' aria-hidden='true'></i>"
-
-        });
-    });
-</script>
-
+<footer th:replace="_fragments :: footerImg()"></footer>
 </body>
 
 </html>

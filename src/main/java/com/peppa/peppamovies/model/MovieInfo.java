@@ -12,8 +12,6 @@ public class MovieInfo {
     @GeneratedValue
     private Long movieID;
     private String secondaryID;
-
-
     private String titleType;
     private String originalTitle;
     private int isAdult;
@@ -21,8 +19,6 @@ public class MovieInfo {
     private String endYear;
     private int runtimeMinutes;
     private String genres;
-
-
     private String movieName;
     @Temporal(TemporalType.DATE)
     private Date yearOpening;
@@ -107,7 +103,7 @@ public class MovieInfo {
     }
 
     public String getMoviePoster() {
-        return "/images/movie_posters/"+ getSecondaryID() +"poster_1.jpeg" ;
+        return "/images/movie_posters/" + getSecondaryID() + "poster_1.jpeg";
     }
 
     public void setMoviePoster(String moviePoster) {

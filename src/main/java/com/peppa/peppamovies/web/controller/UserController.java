@@ -26,41 +26,34 @@ public class UserController {
     private MovieService movieService;
     @Autowired
     private MovieReviewService movieReviewService;
-
     MovieRankingData movieRankingData;
 
     @GetMapping("/")
-    public String loginPage(){
+    public String loginPage() {
         return "index";
     }
-    @PostMapping("/login")
-    public String handleLogin(@RequestParam String username, @RequestParam String password,
-                              HttpSession session, RedirectAttributes attributes) {
-        byte[] temp =password.getBytes();
-        Byte[] passwdByte = toByteArr(temp);
 
+    @PostMapping("/login")
+    public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
+        byte[] temp = password.getBytes();
+        Byte[] passwdByte = toByteArr(temp);
         UserInfo user = userService.checkUser(username, passwdByte);
-        if(user != null){
+        if (user != null) {
             user.setPassW(null);
             session.setAttribute("user", user);
-            System.out.println("LoginSuccess");
-
             return "index";
-//            return "redirect:/";
-        }else{
-            attributes.addFlashAttribute("message", "usename and password not match");
+        } else {
             System.out.println("NOLogin");
             return "redirect:/";
         }
     }
 
     @GetMapping("/logout")
-    public String handleLogout(HttpSession session)
-    {
+    public String handleLogout(HttpSession session) {
         session.removeAttribute("user");
         return "redirect:/";
-
     }
+
     @GetMapping("/my_profile")
     public String handleProfileSummaryPage() {
         return "profile_template";
@@ -68,66 +61,100 @@ public class UserController {
 
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
-                             @RequestParam String email, @RequestParam String password, @RequestParam String re_password,
-                             HttpSession session, RedirectAttributes attributes){
+                               @RequestParam String email, @RequestParam String password, @RequestParam String re_password) {
         UserInfo user = new UserInfo();
         user.setFirstName(firstname);
         user.setLastName(lastname);
         user.setUserName(username);
         user.setEmail(email);
-        if(password.equals(re_password)){
-            byte[] temp =password.getBytes();
+        if (password.equals(re_password)) {
+            byte[] temp = password.getBytes();
             Byte[] passwdByte = toByteArr(temp);
             user.setPassW(passwdByte);
-        }else{}
+        } else {
+        }
         userService.saveUser(user);
         return "redirect:/";
     }
 
     @PostMapping("movie/movie_review_post")
-    public String handlePostReview(@RequestParam String review_text,
-
-                                   HttpSession session,
-                                   RedirectAttributes attributes){
+    public String handlePostReview(@RequestParam String review_text) {
         MovieReview movieReview = new MovieReview();
         movieReview.setComment(review_text);
-        //movie name by id? to set the movie to review
-        //System.out.println(star_rate);
-
-
         movieReviewService.saveMovieReview(movieReview);
         return "redirect:/movie_detail";
     }
 
-    public void handleSucMesg(){}
-    public void handleFailMesg(){}
-    public void handleJoinNewsletter(){}
-    public void handleFollowSocialMedia(){}
-    public void handleChangePassword(){}
-    public void handleUserHelpService(){}
-    public void handleBusinessProposal(){}
     @GetMapping("/licensing")
-    public String handleShowLicenseInfo(){
+    public String handleShowLicenseInfo() {
         return "licensing";
     }
-    public void handleOpenPersonalInfo(){}
+
     @GetMapping("/profile_summary")
-    public String handlePersonalProfileSummary(){return "profile_summary";}
-    public void handleShowCriticInfo(){}
+    public String handlePersonalProfileSummary() {
+        return "profile_summary";
+    }
+
     @GetMapping("/about")
-    public String handleAboutPeppaTom(){
+    public String handleAboutPeppaTom() {
         return "about";
     }
-    public void handleTomatometerRatingRule(){}
-    public void handleCriticSearchBarFocus(){}
-    public void handleCriticSearchBarTextChanging(){}
-    public void handleCriticSearch(){}
-    public void handleRTCriticHomeButton(){}
-    public void handleCriticListButton(){}
-    public void handleViewCriticGroups(){}
-    public void handleViewLatestReviews(){}
-    public void handleViewCriticsCriteria(){}
 
+    public void handleShowCriticInfo() {
+    }
+
+    public void handleOpenPersonalInfo() {
+    }
+
+    public void handleSucMesg() {
+    }
+
+    public void handleFailMesg() {
+    }
+
+    public void handleJoinNewsletter() {
+    }
+
+    public void handleFollowSocialMedia() {
+    }
+
+    public void handleChangePassword() {
+    }
+
+    public void handleUserHelpService() {
+    }
+
+    public void handleBusinessProposal() {
+    }
+
+    public void handleTomatometerRatingRule() {
+    }
+
+    public void handleCriticSearchBarFocus() {
+    }
+
+    public void handleCriticSearchBarTextChanging() {
+    }
+
+    public void handleCriticSearch() {
+    }
+
+    public void handleRTCriticHomeButton() {
+    }
+
+    public void handleCriticListButton() {
+    }
+
+    public void handleViewCriticGroups() {
+    }
+
+    public void handleViewLatestReviews() {
+    }
+
+    public void handleViewCriticsCriteria() {
+    }
+
+    /*helper functions*/
     @ModelAttribute("movie_lists")
     public ArrayList<ArrayList<MovieInfo>> loadMovieLists() {
         movieRankingData = new MovieRankingData();
@@ -165,10 +192,10 @@ public class UserController {
         return loaded_movie_lists;
     }
 
-    public Byte[] toByteArr(byte[] bytes){
+    public Byte[] toByteArr(byte[] bytes) {
         Byte[] byteObjects = new Byte[bytes.length];
         int i = 0;
-        for(byte b: bytes)
+        for (byte b : bytes)
             byteObjects[i++] = b;
         return byteObjects;
     }
