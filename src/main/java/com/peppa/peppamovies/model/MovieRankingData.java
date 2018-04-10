@@ -23,6 +23,7 @@ public class MovieRankingData {
         webBackgroundMovie = new MovieInfo();
     }
 
+
     public ArrayList<MovieInfo> getMoviesOpeningThisWeek() {
         return moviesOpeningThisWeek;
     }

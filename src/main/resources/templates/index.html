@@ -274,7 +274,7 @@
                     <!--</div>-->
                     <!--movie body-->
                     <div class="ui grid container inverted movie-body">
-                        <div class="four wide center aligned column"  th:each="tag : ${m1}"  >
+                        <div class="four wide center aligned column"  th:each="tag : ${movie_lists[0]}"  >
                             <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                             <h4 th:text="${tag.movieName}">Black Panther   </h4>
                             <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
@@ -305,7 +305,7 @@
 
 
                 <div class="ui grid container inverted movie-body">
-                    <div class="four wide center aligned column"  th:each="tag : ${m2}"  >
+                    <div class="four wide center aligned column"  th:each="tag : ${movie_lists[1]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
                         <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
@@ -348,7 +348,7 @@
 
                     <!--movie body-->
                 <div class="ui grid container inverted movie-body">
-                    <div class="four wide center aligned column"  th:each="tag : ${m3}"  >
+                    <div class="four wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
                         <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
@@ -378,7 +378,7 @@
 
                     <!--movie body-->
                 <div class="ui grid container inverted movie-body">
-                    <div class="four wide center aligned column"  th:each="tag : ${m4}"  >
+                    <div class="four wide center aligned column"  th:each="tag : ${movie_lists[3]}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
                         <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
