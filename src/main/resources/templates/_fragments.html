@@ -92,7 +92,10 @@
     <div class="ui container  ">
         <div class="ui container ">
             <div class="ui inverted secondary menu">
-                <h2 class="ui  header item">Peppa</h2>
+                <h2 class="ui header item">
+                    <!-- sbhq -->
+                <a href=" index.html " > Peppa </a>
+                </h2>
                 <div class="ui search search_bar ">
                     <div class="ui icon input search_area">
                         <input class="prompt" type="text" placeholder="Search Movies...">
@@ -115,7 +118,17 @@
                         <div class="text" th:text="${user_info.userName}"></div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a href="/logout"  class="item">Log Out</a>
+                            <div class="item">
+                                <i class="user icon"></i>
+                                <!-- sbhq -->
+
+                                <a href=" profile_summary.html " >Profile </a>
+                            </div>
+                            <div class="item">
+                                <i class="power off icon"></i>
+                                <a href="/logout" >Log Out</a>
+                            </div>
+
                         </div>
 
                     </div>
@@ -133,10 +146,12 @@
                     <div class="menu">
                         <div class="header">MOVIES IN THEATERS</div>
                         <div class="divider"></div>
-                        <div class="item">Opening This Week</div>
-                        <div class="item">Top Box Office</div>
-                        <div class="item">Comming Soon</div>
-                        <div class="item">Certified Movies</div>
+                        <!-- sbhq -->
+                        <a href="opening_this_week.html" class="item" >Opening This Week</a>
+                            <a href="top_box_office.html" class="item">Top Box Office</a>
+                            <a href="comming_soon.html" class="item">Comming Soon</a>
+                            <a href="certified_fresh_movies.html" class="item">Certified Movies</a>
+
                     </div>
 
 
@@ -147,10 +162,10 @@
                     <div class="menu">
                         <div class="header">OPENING TV</div>
                         <div class="divider"></div>
-                        <div class="item">Most Popular TV</div>
-                        <div class="item">Top TV Shows</div>
-                        <div class="item">Certified TV</div>
-                        <div class="item">More</div>
+                        <a href="" class="item">Most Popular TV</a>
+                        <a class="item">Top TV Shows</a>
+                        <a class="item">Certified TV</a>
+                        <a class="item">More</a>
                     </div>
                 </div>
 

@@ -22,26 +22,21 @@ public class UserController {
     @Autowired
     private MovieService movieService;
 
+
     @GetMapping("/")
     public String loginPage(Model model){
         MovieRankingData movieRankingData = new MovieRankingData();
         ArrayList<long[]> ranks =  movieRankingData.loadMovieRankingData();
         int num_per_list = 8;
-
         //1. get top box office movies:
         long[] top_box_office_list =  ranks.get(0);
-
-
         for (int i = 0; i < num_per_list; i++) {
             MovieInfo movie = movieService.getMovie(  (Long) (top_box_office_list[i]) );
 
             movieRankingData.getTopBoxMovies().add(movie);
         }
-
         //2. get comming_soon:
         long[] comming_soon_list =  ranks.get(1);
-
-
         for (int i = 0; i < num_per_list; i++) {
             MovieInfo movie = movieService.getMovie(  (Long) (comming_soon_list[i]) );
 
@@ -49,8 +44,6 @@ public class UserController {
         }
         //3. get opening_this_week:
         long[] opening_this_week_list =  ranks.get(2);
-
-
         for (int i = 0; i < num_per_list; i++) {
             MovieInfo movie = movieService.getMovie(  (Long) (opening_this_week_list[i]) );
 
@@ -58,7 +51,6 @@ public class UserController {
         }
         //4. certified_fresh_movies:
         long[] certified_fresh_movies_list =  ranks.get(3);
-
         for (int i = 0; i < num_per_list; i++) {
             MovieInfo movie = movieService.getMovie(  (Long) (certified_fresh_movies_list[i]) );
 
@@ -72,7 +64,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public String handleLogin(@RequestParam String username, @RequestParam String password,
-                              HttpSession session, RedirectAttributes attributes,Model model) {
+                              HttpSession session, RedirectAttributes attributes, Model  model) {
         byte[] temp =password.getBytes();
         Byte[] passwdByte = toByteArr(temp);
 
@@ -84,6 +76,7 @@ public class UserController {
             System.out.println("LoginSuccess");
 
             return "index";
+//            return "redirect:/";
         }else{
             attributes.addFlashAttribute("message", "usename and password not match");
             System.out.println("NOLogin");
