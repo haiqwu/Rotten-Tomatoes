@@ -31,10 +31,26 @@ public class MovieController {
     }
 
 
+
+
+
     public void handleHoveringMovieCategory(){}
-    public void handleViewMoviesOpeningThisWeek(){}
-    public void handleViewTopBoxMovies(){}
-    public void handleViewComingSoonMovies(){}
-    public void handleViewCertifiedFreshesMovies(){}
+    @GetMapping("/opening_this_week")
+    public String handleViewMoviesOpeningThisWeek(){
+        return "opening_this_week";
+    }
+    @GetMapping("/top_box_office")
+    public String handleViewTopBoxMovies(){
+        return "top_box_office";
+    }
+    @GetMapping("/comming_soon")
+    public String handleViewComingSoonMovies(){
+        return "comming_soon";
+    }
+    @GetMapping("/certified_fresh_movies")
+    public String handleViewCertifiedFreshesMovies(){
+        return "certified_fresh_movies";
+    }
+
     public void handleTopMovies(){}
 }

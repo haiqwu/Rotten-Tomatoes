@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})" >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
     <title>Profile Template</title>
@@ -16,7 +16,7 @@
             <div class="four wide column">
 
                 <div class="m-profile-left-inner-padding">
-                    <div><a id="portrait_img" href="#"><img class="ui small image" src="../static/images/portrait.png" alt="Image"></a></div>
+                    <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="@{/images/portrait.png}" alt="Image"></a></div>
                     <a href="#">First Last</a>
                     <div><a href="#">Manage Account</a></div>
                     <div><a href="#">Profile Summary</a></div>

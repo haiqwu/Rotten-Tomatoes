@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
@@ -37,7 +37,7 @@
 
                             <div class="ui grid container">
                                 <div class="column">
-                                    <a href="#"><img class="ui fluid rounded image" src="../static/images/1.jpg" alt="Image"></a>
+                                    <a href="#"><img class="ui fluid rounded image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                         <h2 class="ui teal center aligned header">Coming Soon</h2>
                         <div class="ui center aligned grid container">
                             <div class="four wide column">
-                                <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                                <a href="#"><img class="ui fluid image" src="../static/images/1.jpg"  th:src="@{/images/1.jpg}" alt="Image"></a>
                                 <h4>Black Panther</h4>
                                 <div id="star_rate" class=" ui big star rating"></div>
                                 <p class="m-opacity-mini">In Theaters Apr 6</p>

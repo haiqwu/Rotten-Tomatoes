@@ -56,6 +56,10 @@ public class UserController {
         return "redirect:/";
 
     }
+    @GetMapping("/my_profile")
+    public String handleProfileSummaryPage() {
+        return "profile_template";
+    }
 
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
