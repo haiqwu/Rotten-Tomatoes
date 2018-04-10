@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/css/mycss.css">
 </head>
 <body>
-
+<nav th:replace="_fragments :: navBar()"></nav>
     <div class="ui container">
         <div class="ui inverted attached segment">
             <div class="ui grid">
@@ -18,19 +18,19 @@
                     <div class="ui tiny header item">WANT-TO-SEE MOVIES</div>
                 </div>
                 <div class="center aligned four wide column">
-                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                     <a>Black Panther</a>
                 </div>
                 <div class="center aligned four wide column">
-                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                     <a>Black Panther</a>
                 </div>
                 <div class="center aligned four wide column">
-                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                     <a>Black Panther</a>
                 </div>
                 <div class="center aligned four wide column">
-                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" alt="Image"></a>
+                    <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                     <a>Black Panther</a>
                 </div>
                 <div class="right aligned sixteen wide column">
@@ -44,7 +44,7 @@
                 </div>
                 <div class="ui grid">
                     <div class="four wide column">
-                        <a href="#"><img class="ui image" src="../static/images/1.jpg" alt="Image"></a>
+                        <a href="#"><img class="ui image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="Image"></a>
                     </div>
                     <div class="twelve wide column">
                         <div>
@@ -77,4 +77,5 @@
     </script>
 
 </body>
+<footer th:replace="_fragments :: footerImg()"></footer>
 </html>

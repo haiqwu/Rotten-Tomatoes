@@ -2,7 +2,9 @@ package com.peppa.peppamovies.web.controller;
 
 import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieRankingData;
+import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.model.UserInfo;
+import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -21,6 +24,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private MovieReviewService movieReviewService;
 
     MovieRankingData movieRankingData;
 
@@ -30,7 +35,7 @@ public class UserController {
     }
     @PostMapping("/login")
     public String handleLogin(@RequestParam String username, @RequestParam String password,
-                              HttpSession session, RedirectAttributes attributes, Model  model) {
+                              HttpSession session, RedirectAttributes attributes) {
         byte[] temp =password.getBytes();
         Byte[] passwdByte = toByteArr(temp);
 
@@ -38,7 +43,6 @@ public class UserController {
         if(user != null){
             user.setPassW(null);
             session.setAttribute("user", user);
-            model.addAttribute("user_info", user  );
             System.out.println("LoginSuccess");
 
             return "index";
@@ -51,7 +55,8 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String handleLogout(HttpSession session){
+    public String handleLogout(HttpSession session)
+    {
         session.removeAttribute("user");
         return "redirect:/";
 
@@ -79,6 +84,21 @@ public class UserController {
         return "redirect:/";
     }
 
+    @PostMapping("movie/movie_review_post")
+    public String handlePostReview(@RequestParam String review_text,
+
+                                   HttpSession session,
+                                   RedirectAttributes attributes){
+        MovieReview movieReview = new MovieReview();
+        movieReview.setComment(review_text);
+        //movie name by id? to set the movie to review
+        //System.out.println(star_rate);
+
+
+        movieReviewService.saveMovieReview(movieReview);
+        return "redirect:/movie_detail";
+    }
+
     public void handleSucMesg(){}
     public void handleFailMesg(){}
     public void handleJoinNewsletter(){}
@@ -91,6 +111,8 @@ public class UserController {
         return "licensing";
     }
     public void handleOpenPersonalInfo(){}
+    @GetMapping("/profile_summary")
+    public String handlePersonalProfileSummary(){return "profile_summary";}
     public void handleShowCriticInfo(){}
     @GetMapping("/about")
     public String handleAboutPeppaTom(){

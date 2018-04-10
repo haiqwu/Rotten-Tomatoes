@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/css/mycss.css">
 </head>
 <body>
+<nav th:replace="_fragments :: navBar()"></nav>
 <div class="ui container">
     <div class="ui inverted attached segment">
         <div class="ui grid">
@@ -57,7 +58,7 @@
 
                 <div class="ui inverted segment">
                     <div class="ui inverted secondary pointing menu">
-                        <a class="active item">Summary</a>
+                        <a th:href=@{/profile_summary}  href="profile_summary.html" class="item">Summary</a>
                         <a class="item">Movie Ratings</a>
                         <a class="item">Want to see / Not Interested</a>
                         <a class="item">My critics</a>
@@ -76,4 +77,5 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
 </body>
+<footer th:replace="_fragments :: footerImg()"></footer>
 </html>

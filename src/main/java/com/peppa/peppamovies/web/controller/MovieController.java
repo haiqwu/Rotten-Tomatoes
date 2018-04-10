@@ -1,6 +1,5 @@
 package com.peppa.peppamovies.web.controller;
 
-import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,19 +36,19 @@ public class MovieController {
     public void handleHoveringMovieCategory(){}
     @GetMapping("/opening_this_week")
     public String handleViewMoviesOpeningThisWeek(){
-        return "opening_this_week";
+        return "movie_category_info";
     }
     @GetMapping("/top_box_office")
     public String handleViewTopBoxMovies(){
-        return "top_box_office";
+        return "movie_category_info";
     }
     @GetMapping("/comming_soon")
     public String handleViewComingSoonMovies(){
-        return "comming_soon";
+        return "movie_category_info";
     }
     @GetMapping("/certified_fresh_movies")
     public String handleViewCertifiedFreshesMovies(){
-        return "certified_fresh_movies";
+        return "movie_category_info";
     }
 
     public void handleTopMovies(){}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
     <title>Comming Soon</title>
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/css/mycss.css">
 </head>
 <body>
+<nav th:replace="_fragments :: navBar()"></nav>
     <div class="ui container">
         <div class="ui inverted attached segment">
             <div class="ui stackable grid">
@@ -98,4 +99,5 @@
     </script>
 
 </body>
+<footer th:replace="_fragments :: footerImg()"></footer>
 </html>
