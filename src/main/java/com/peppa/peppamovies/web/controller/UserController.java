@@ -44,6 +44,8 @@ public class UserController {
             return "index";
         } else {
             System.out.println("NOLogin");
+            user.setUserName("*");
+            session.setAttribute("user", user);
             return "redirect:/";
         }
     }

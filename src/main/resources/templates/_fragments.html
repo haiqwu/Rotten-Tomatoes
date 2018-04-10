@@ -16,58 +16,59 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
     <script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
     <script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
     <!--js functions-->
-    <script>
-    $('.ui.search')
-    .search({
-    // source: content,
-    // searchFullText: false
-    apiSettings:{
-    url: "https://api.github.com/search/repositories?q={query}"
-    },
-    fields:{
-    results:'items',
-    title:'name',
-    url:'html_url'
-    }
-    });
+    <!--<script>-->
+    <!--$('.ui.search')-->
+    <!--.search({-->
+    <!--// source: content,-->
+    <!--// searchFullText: false-->
+    <!--apiSettings:{-->
+    <!--url: "https://api.github.com/search/repositories?q={query}"-->
+    <!--},-->
+    <!--fields:{-->
+    <!--results:'items',-->
+    <!--title:'name',-->
+    <!--url:'html_url'-->
+    <!--}-->
+    <!--});-->
 
-    $('.ui.sticky').sticky({
-    context: '#navbar'
-    });
+    <!--$('.ui.sticky').sticky({-->
+    <!--context: '#navbar'-->
+    <!--});-->
 
-    function login_fun() {
-    $('#login_modal')
-    .modal('show');
-    }
+    <!--function login_fun() {-->
+    <!--$('#login_modal')-->
+    <!--.modal('show');-->
+    <!--}-->
 
-    function signup_fun(){
-    $('#signup_modal')
-    .modal('show');
-    }
+    <!--function signup_fun(){-->
+    <!--$('#signup_modal')-->
+    <!--.modal('show');-->
+    <!--}-->
 
-    $(function () {
-    $("#login_modal").modal({
-    closable: true
-    });
-    });
+    <!--$(function () {-->
+    <!--$("#login_modal").modal({-->
+    <!--closable: true-->
+    <!--});-->
+    <!--});-->
 
-    </script>
-    <!--slick script-->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('.slicks').slick({
-                adaptiveHeight:true,
-                arrows:true,
-                dots:true,
-                slidesToShow: 1,
-                autoplay: true,
-                pauseOnDotsHover: true,
-                infinite:true,
-                fade:true,
-            });
-        });
-    </script>
+    <!--</script>-->
+    <!--&lt;!&ndash;slick script&ndash;&gt;-->
+    <!--<script type="text/javascript">-->
+    <!--$(document).ready(function(){-->
+    <!--$('.slicks').slick({-->
+    <!--adaptiveHeight:true,-->
+    <!--arrows:true,-->
+    <!--dots:true,-->
+    <!--slidesToShow: 1,-->
+    <!--autoplay: true,-->
+    <!--pauseOnDotsHover: true,-->
+    <!--infinite:true,-->
+    <!--fade:true,-->
+    <!--});-->
+    <!--});-->
+    <!--</script>-->
 </head>
 
 <!--footer-->
@@ -144,76 +145,70 @@
                 </div>
                 <!--if no user info is being passed -->
                 <div class="right menu " th:unless="${session.user }">
-                    <a href="#" id="login" class="ui inverted item button " onclick="login_fun()" >Log in </a>
+                    <a href="#" id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
-            <div class="right menu" th:if="${session.user }">
-                <div id="username" class="ui simple dropdown item">
-                    <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
-                    <div class="text" th:text="${session.user.userName}"></div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">
-                            <i class="user icon"></i>
-                            <a th:href=@{/my_profile}>Profile </a>
-                        </div>
-                        <div class="item">
-                            <i class="power off icon"></i>
-                            <a href="/logout" >Log Out</a>
+                <div class="right menu" th:if="${session.user }">
+                    <div id="username" class="ui dropdown item">
+                        <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
+                        <div class="text" th:text="${session.user.userName}"></div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a th:href=@{/my_profile} class="item"><i class="user icon"></i>Profile </a>
+                            <a href="/logout" class="item"><i class="power off icon"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ui container">
-        <div class="ui inverted secondary menu">
-            <div class="ui pointing simple dropdown link item ">
-                <span class="text">MOVIES & DVDS</span>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="header">MOVIES IN THEATERS</div>
-                    <div class="divider"></div>
-                    <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This Week</a>
-                    <a th:href=@{/top_box_office} href="movie_category_info.html" class="item">Top Box Office</a>
-                    <a th:href=@{/comming_soon} href="movie_category_info.html" class="item">Comming Soon</a>
-                    <a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified
-                        Movies</a>
+        <div class="ui container">
+            <div class="ui inverted secondary menu">
+                <div class="ui dropdown pointing link item ">
+                    <span class="text">MOVIES & DVDS</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">MOVIES IN THEATERS</div>
+                        <div class="divider"></div>
+                        <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This Week</a>
+                        <a th:href=@{/top_box_office} href="movie_category_info.html" class="item">Top Box Office</a>
+                        <a th:href=@{/comming_soon} href="movie_category_info.html" class="item">Comming Soon</a>
+                        <a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified
+                            Movies</a>
+                    </div>
                 </div>
-            </div>
-            <div class="ui pointing simple dropdown link item ">
-                <span class="text">TV</span>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="header">OPENING TV</div>
-                    <div class="divider"></div>
-                    <a href="" class="item">Most Popular TV</a>
-                    <a class="item">Top TV Shows</a>
-                    <a class="item">Certified TV</a>
-                    <a class="item">More</a>
+                <div class="ui dropdown pointing  link item ">
+                    <span class="text">TV</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">OPENING TV</div>
+                        <div class="divider"></div>
+                        <a href="" class="item">Most Popular TV</a>
+                        <a class="item">Top TV Shows</a>
+                        <a class="item">Certified TV</a>
+                        <a class="item">More</a>
+                    </div>
                 </div>
-            </div>
-            <div class="ui item ">
-                <a href="#"> TRAILERS & VIDEOS</a>
-            </div>
+                <div class="ui item ">
+                    <a href="#"> TRAILERS & VIDEOS</a>
+                </div>
 
-            <div class="ui item ">
-                <a href="#"> TICKETS & SHOWTIMES </a>
-            </div>
-
-            <div class="ui item ">
-                <a href="#">REVIEWS </a>
-            </div>
-            <div class="right menu">
-                <div class="ui item">
-                    <a href=""> what is Peppameter?</a>
+                <div class="ui item ">
+                    <a href="#"> TICKETS & SHOWTIMES </a>
                 </div>
-                <div class="ui item">
-                    <a href=""> PT Critics</a>
+
+                <div class="ui item ">
+                    <a href="#">REVIEWS </a>
+                </div>
+                <div class="right menu">
+                    <div class="ui item">
+                        <a href=""> what is Peppameter?</a>
+                    </div>
+                    <div class="ui item">
+                        <a href=""> PT Critics</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- login modal-->
     <div class="ui m-padded-big modal" id="login_modal">
@@ -222,17 +217,21 @@
             <div class="column">
                 <h2 class="ui image header">
                     <div class="content">
-                        WELCOME
+                        WELCOME LOG IN
                     </div>
                 </h2>
                 <form class="ui form" method="post" action="login">
                     <div class="ui  segment">
+                        <div class="ui error message"></div>
+
+                        <!--username-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="user icon"></i>
                                 <input type="text" name="username" placeholder="Username">
                             </div>
                         </div>
+                        <!--password-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
@@ -248,6 +247,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ui grid">
+                        <div class="sixteen wide column">
+                           <div>
+                               <p class="">Forget Your <a href=""> password ? </a></p>
+                               <p class="">Create <a href=""> New Account </a></p>
+                           </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -258,25 +265,30 @@
         <div class="ui aligned center aligned grid">
             <div class="column">
                 <h2 class="ui image header">
-                    <div class="content">
-                        WELCOME
+                    <div class="content teal">
+                         SIGN UP FOR PEPPA
                     </div>
                 </h2>
                 <form class="ui form" method="post" action="signup">
+                    <div class="ui error message"></div>
                     <div class="ui  segment">
+
                         <div class="field ">
                             <div class="two fields">
+                                <!--first name-->
                                 <div class="field">
                                     <div class="ui left icon input">
                                         <i class="user icon"></i>
                                         <input type="text" name="firstname" placeholder="First Name">
                                     </div>
                                 </div>
+                                <!--last name-->
                                 <div class="field">
                                     <input type="text" name="lastname" placeholder="Last Name">
                                 </div>
                             </div>
                         </div>
+                        <!--username-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="user circle icon"></i>
@@ -284,18 +296,21 @@
 
                             </div>
                         </div>
+                        <!--email-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="envelope icon"></i>
                                 <input type="text" name="email" placeholder="Email">
                             </div>
                         </div>
+                        <!--password-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
+                        <!--repeat password-->
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
@@ -303,7 +318,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <button class="ui fluid large teal submit button">Register</button>
+                            <button class="ui fluid large teal submit button">Sign Up</button>
                         </div>
                         <div class="actions field">
                             <div class="ui fluid large red deny button" id="cancel2">
@@ -311,6 +326,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="ui grid">
+                        <div class="sixteen wide column">
+                            <div>
+                                <p class="">Already have an account <a href=""> Log In </a></p>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
         </div>
