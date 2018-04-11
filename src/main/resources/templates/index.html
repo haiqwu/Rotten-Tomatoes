@@ -8,7 +8,7 @@
 <body>
 <!-- nav bar-->
 <nav th:replace="_fragments :: navBar()"></nav>
-<div class="slicks ui fluid container center aligned" >
+<div class="slicks container center aligned" >
     <div><a href="movie_detail" th:href="@{/movie/1309}" name="1"> <img src="../static/images/rolling_img/black_panther.jpg" th:src="@{/images/rolling_img/black_panther.jpg}" /></a></div>
     <div><a href="movie_detail" th:href="@{/movie/2032}" name="2"> <img src="../static/images/rolling_img/i_can_only_imagine.jpg" th:src="@{/images/rolling_img/i_can_only_imagine.jpg}" /></a></div>
     <div><a href="movie_detail" th:href="@{/movie/2006}" name="3"> <img src="../static/images/rolling_img/jumanji.jpg" th:src="@{/images/rolling_img/jumanji.jpg}" /></a></div>
@@ -135,6 +135,7 @@
 <footer th:replace="_fragments :: footerImg()"></footer>
 
 <script th:inline="javascript">
+
     $('.ui.dropdown').dropdown();
 
     $('form').form({

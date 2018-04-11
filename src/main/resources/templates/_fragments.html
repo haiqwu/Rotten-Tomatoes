@@ -72,7 +72,7 @@
 </head>
 
 <!--footer-->
-<footer class="ui inverted vertical segment f-padding" id="navbar" th:fragment="footerImg()">
+<footer class="ui inverted vertical segment f-padding" id="footer" th:fragment="footerImg()">
     <div class="ui center aligned container">
         <div class="ui inverted divided grid">
             <div class="three wide column">
@@ -145,7 +145,7 @@
                 </div>
                 <!--if no user info is being passed -->
                 <div class="right menu " th:unless="${session.user }">
-                    <a href="#" id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
+                    <a  id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
                 <div class="right menu" th:if="${session.user }">
@@ -220,7 +220,7 @@
                         WELCOME LOG IN
                     </div>
                 </h2>
-                <form class="ui form" method="post" action="login">
+                <form class="ui form" method="post" action="/login">
                     <div class="ui  segment">
                         <div class="ui error message"></div>
 
@@ -269,7 +269,7 @@
                          SIGN UP FOR PEPPA
                     </div>
                 </h2>
-                <form class="ui form" method="post" action="signup">
+                <form class="ui form" method="post" action="/signup">
                     <div class="ui error message"></div>
                     <div class="ui  segment">
 

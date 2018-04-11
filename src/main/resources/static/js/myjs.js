@@ -15,7 +15,7 @@ $('.ui.search')
     });
 
 $('.ui.sticky').sticky({
-    context: '#navbar'
+    context: '#footer'
 });
 
 function login_fun() {
