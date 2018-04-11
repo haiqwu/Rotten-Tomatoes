@@ -52,7 +52,7 @@
                     <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">Previous Page</a>
                 </div>
                 <div class="right aligned column">
-                    <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.lsat}" class="ui mini teal basic button">Next Page</a>
+                    <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini teal basic button">Next Page</a>
                 </div>
             </div>
         </div>
