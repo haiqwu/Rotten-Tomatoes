@@ -4,6 +4,8 @@ import com.peppa.peppamovies.dao.MovieRepository;
 import com.peppa.peppamovies.model.MovieInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -42,5 +44,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void deleteMovie(Long id) {
         movieRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<MovieInfo> listMovie(String query, Pageable pageable) {
+        return movieRepository.findByQuery(query, pageable);
     }
 }

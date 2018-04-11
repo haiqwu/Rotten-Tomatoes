@@ -8,6 +8,7 @@
 <body>
 <!-- nav bar-->
 <nav th:replace="_fragments :: navBar()"></nav>
+
 <div class="slicks container center aligned" >
     <div><a href="movie_detail" th:href="@{/movie/1309}" name="1"> <img src="../static/images/rolling_img/black_panther.jpg" th:src="@{/images/rolling_img/black_panther.jpg}" /></a></div>
     <div><a href="movie_detail" th:href="@{/movie/2032}" name="2"> <img src="../static/images/rolling_img/i_can_only_imagine.jpg" th:src="@{/images/rolling_img/i_can_only_imagine.jpg}" /></a></div>
@@ -133,53 +134,12 @@
 
 <!--footer-->
 <footer th:replace="_fragments :: footerImg()"></footer>
-
-<script th:inline="javascript">
-
-    $('.ui.dropdown').dropdown();
-
-    $('form').form({
-        on: 'blur',
-        fields: {
-            username: {
-                rules: [{
-                    type: 'empty',
-                    prompt: 'Please enter a username'
-                },
-                    {
-                        type: 'minLength[4]',
-                        prompt: 'Username must longer than 6 characters'
-                    }
-                ]
-            },
-            password: {
-                rules: [{
-                    type: 'empty',
-                    prompt: 'Please select a password'
-                },
-                    {
-                        type: 'minLength[4]',
-                        prompt: 'Password must longer than 6 characters'
-                    }
-                ]
-            },
-
-            email: {
-                rules:[{
-                    type: 'email',
-                    prompt: 'Invalid Email Address'
-                }]
-            },
-            re_password:{
-                rules:[{
-                    type: 'match[password]',
-                    prompt: 'Repeated Password Is Different'
-                }]
-            }
-        }
-    });
-
-</script>
+<!--js-->
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
 
 </body>
 

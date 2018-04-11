@@ -10,65 +10,6 @@
     <!--slick css-->
     <link rel="stylesheet" type="text/css" href="../static/slick/slick.css" th:href="@{/slick/slick.css}"/>
     <link rel="stylesheet" type="text/css" href="../static/slick/slick-theme.css" th:href="@{/slick/slick-theme.css}"/>
-    <!--js-->
-    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
-    <script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
-    <script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
-
-    <!--js functions-->
-    <!--<script>-->
-    <!--$('.ui.search')-->
-    <!--.search({-->
-    <!--// source: content,-->
-    <!--// searchFullText: false-->
-    <!--apiSettings:{-->
-    <!--url: "https://api.github.com/search/repositories?q={query}"-->
-    <!--},-->
-    <!--fields:{-->
-    <!--results:'items',-->
-    <!--title:'name',-->
-    <!--url:'html_url'-->
-    <!--}-->
-    <!--});-->
-
-    <!--$('.ui.sticky').sticky({-->
-    <!--context: '#navbar'-->
-    <!--});-->
-
-    <!--function login_fun() {-->
-    <!--$('#login_modal')-->
-    <!--.modal('show');-->
-    <!--}-->
-
-    <!--function signup_fun(){-->
-    <!--$('#signup_modal')-->
-    <!--.modal('show');-->
-    <!--}-->
-
-    <!--$(function () {-->
-    <!--$("#login_modal").modal({-->
-    <!--closable: true-->
-    <!--});-->
-    <!--});-->
-
-    <!--</script>-->
-    <!--&lt;!&ndash;slick script&ndash;&gt;-->
-    <!--<script type="text/javascript">-->
-    <!--$(document).ready(function(){-->
-    <!--$('.slicks').slick({-->
-    <!--adaptiveHeight:true,-->
-    <!--arrows:true,-->
-    <!--dots:true,-->
-    <!--slidesToShow: 1,-->
-    <!--autoplay: true,-->
-    <!--pauseOnDotsHover: true,-->
-    <!--infinite:true,-->
-    <!--fade:true,-->
-    <!--});-->
-    <!--});-->
-    <!--</script>-->
 </head>
 
 <!--footer-->
@@ -136,18 +77,23 @@
                 <h2 class="ui header item">
                     <a href=" index.html " th:href=@{/}> Peppa </a>
                 </h2>
+
                 <div class="ui search search_bar ">
+                    <form name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
                     <div class="ui icon input search_area">
-                        <input class="prompt" type="text" placeholder="Search Movies...">
-                        <i class="search icon"></i>
+                        <input class="prompt" type="text" name="query" placeholder="Search Movies..." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
                     </div>
+                    </form>
                     <div class="results"></div>
                 </div>
+
                 <!--if no user info is being passed -->
                 <div class="right menu " th:unless="${session.user }">
                     <a  id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
+
                 <div class="right menu" th:if="${session.user }">
                     <div id="username" class="ui dropdown item">
                         <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
@@ -339,6 +285,6 @@
         </div>
     </div>
 </nav>
-</body>
 
+</body>
 </html>
