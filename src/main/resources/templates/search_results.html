@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">-->
+    <link rel="stylesheet" href="../static/css/mycss.css">
+</head>
+
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+
+<div>
+    <div class="ui container">
+        <div class="ui top attached inverted segment">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h2 class="ui teal header">Search Results</h2>
+                </div>
+                <div class="right aligned column">
+                        Found<h2 class="ui teal header" th:test="${page.totalElements}">  </h2>movies
+                </div>
+            </div>
+        </div>
+
+        <div class="ui top attached inverted segment">
+            <div class="ui padded vertical inverted segment" th:each="singleMovie : ${page.content}">
+                <div class="ui middle aligned mobile reversed stackable grid" >
+                    <div class="ui grid">
+                        <div class="four wide column">
+                            <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image"></a>
+                        </div>
+                        <div class="twelve wide column">
+                            <div class="m-padded-bottom-mini">
+                                <a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a>(2017)
+                            </div>
+                            <div class="m-padded-bottom-mini">
+                                <a href="#">actor</a>,
+                                <a href="#">actor</a>
+                            </div>
+                            <div class="ui big star rating"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui bottom attached inverted segment" th:if="${page.totalPages}>1">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">Previous Page</a>
+                </div>
+                <div class="right aligned column">
+                    <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.lsat}" class="ui mini teal basic button">Next Page</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+<!--<script type="text/javascript">-->
+    <!--$('.ui.rating')-->
+        <!--.rating({-->
+            <!--initialRating: 3,-->
+            <!--maxRating: 5-->
+        <!--})-->
+        <!--.rating('disable');-->
+<!--</script>-->
+
+</body>
+</html>

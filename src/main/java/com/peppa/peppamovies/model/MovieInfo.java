@@ -103,7 +103,7 @@ public class MovieInfo {
     }
 
     public String getMoviePoster() {
-        return "/images/movie_posters/" + getSecondaryID() + "poster_1.jpeg";
+        return this.moviePoster;
     }
 
     public void setMoviePoster(String moviePoster) {
