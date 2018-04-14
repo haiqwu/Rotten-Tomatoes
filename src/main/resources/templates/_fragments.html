@@ -91,13 +91,13 @@
                     <div class="results"></div>
                 </div>
 
-                <!--if no user info is being passed -->
+                <!-- code if no user info is being passed -->
                 <div class="right menu " th:unless="${session.user }">
                     <a  id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
-                <div class="right menu" th:if="${session.user }">
+                <div class="right menu " th:if="${session.user }">
                     <div id="username" class="ui dropdown item">
                         <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
                         <div class="text" th:text="${session.user.userName}"></div>
@@ -159,7 +159,8 @@
             </div>
         </div>
     </div>
-    <!-- login modal-->
+
+    <!-- code login modal-->
     <div class="ui m-padded-big modal" id="login_modal">
         <i class="close icon"></i>
         <div class="ui aligned center aligned grid">
@@ -187,6 +188,16 @@
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
+                        
+                        <div class="field">
+                            <div class="ui left toggle checkbox">
+
+                                <input type="checkbox" name="public">
+                                <label>Critics</label>
+
+                            </div>
+                        </div>
+
                         <div class="field">
                             <button class="ui fluid large teal submit button">Log In</button>
                         </div>
