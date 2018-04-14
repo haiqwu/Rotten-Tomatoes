@@ -34,14 +34,15 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
+    public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
         byte[] temp = password.getBytes();
         Byte[] passwdByte = toByteArr(temp);
         UserInfo user = userService.checkUser(username, passwdByte);
         if (user != null) {
             user.setPassW(null);
             session.setAttribute("user", user);
-            return "index";
+            return "redirect:" + referer;
         } else {
             System.out.println("NOLogin");
             return "redirect:/";
@@ -49,9 +50,10 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String handleLogout(HttpSession session) {
+    public String handleLogout(HttpSession session, HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
         session.removeAttribute("user");
-        return "redirect:/";
+        return "redirect:"+referer;
     }
 
     @GetMapping("/my_profile")
@@ -61,7 +63,9 @@ public class UserController {
 
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
-                               @RequestParam String email, @RequestParam String password, @RequestParam String re_password) {
+                               @RequestParam String email, @RequestParam String password, @RequestParam String re_password,
+                               HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
         UserInfo user = new UserInfo();
         user.setFirstName(firstname);
         user.setLastName(lastname);
@@ -74,7 +78,7 @@ public class UserController {
         } else {
         }
         userService.saveUser(user);
-        return "redirect:/";
+        return "redirect:" + referer;
     }
 
     @PostMapping("movie/movie_review_post")
