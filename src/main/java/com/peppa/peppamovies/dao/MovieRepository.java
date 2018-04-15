@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface MovieRepository extends JpaRepository<MovieInfo,Long> {
-    @Query("select m from MovieInfo m where m.movieName like ?1")
+    @Query("select m from MovieInfo m where LOWER(m.movieName) like LOWER(?1) ")
     Page<MovieInfo> findByQuery(String query, Pageable pageable);
 }
