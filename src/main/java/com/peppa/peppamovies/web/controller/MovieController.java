@@ -48,8 +48,8 @@ public class MovieController {
     }
 
     @PostMapping("/search")
-    public String handleSearchAction(@PageableDefault(size = 8, sort ={"movieID"},
-            direction = Sort.Direction.DESC)Pageable pageable,
+    public String handleSearchAction(@PageableDefault(size = 8, sort ={"movieName"},
+                                     direction = Sort.Direction.DESC)Pageable pageable,
                                      @RequestParam String query, Model model) {
         model.addAttribute("page",movieService.listMovie("%"+query+"%", pageable));
         model.addAttribute("query",query);

@@ -5,6 +5,8 @@ import com.peppa.peppamovies.model.UserInfo;
 public interface UserService {
     UserInfo checkUser(String username, Byte[] password);
 
+    boolean registeredEmail(String email);
+
     UserInfo saveUser(UserInfo user);
 
     UserInfo getUser(Long id);

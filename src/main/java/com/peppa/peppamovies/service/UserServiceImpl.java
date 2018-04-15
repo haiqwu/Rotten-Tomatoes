@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    @Override
+    public boolean registeredEmail(String email) {
+        return false;
+    }
+
     @Transactional
     @Override
     public UserInfo saveUser(UserInfo user) {
