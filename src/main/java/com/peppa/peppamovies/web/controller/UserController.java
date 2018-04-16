@@ -71,13 +71,15 @@ public class UserController {
         user.setLastName(lastname);
         user.setUserName(username);
         user.setEmail(email);
-        if (password.equals(re_password)) {
+        if (password.equals(re_password) &&  user.checkEmailFormat(email) && !userService.registeredEmail(email)) {
             byte[] temp = password.getBytes();
             Byte[] passwdByte = toByteArr(temp);
             user.setPassW(passwdByte);
+            userService.saveUser(user);
         } else {
+            System.out.println("Register Fail");
         }
-        userService.saveUser(user);
+        //userService.saveUser(user);
         return "redirect:" + referer;
     }
 

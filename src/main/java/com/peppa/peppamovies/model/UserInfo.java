@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
 @Table(name = "UserInfo")
@@ -44,8 +46,8 @@ public class UserInfo {
         return true;
     }
 
-    public boolean checkEmailFormat() {
-        return true;
+    public boolean checkEmailFormat(String email) {
+        return validateEmail(email);
     }
 
     public boolean checkPassword() {
@@ -218,5 +220,12 @@ public class UserInfo {
                 ", bp=" + bp +
                 ", newsL=" + newsL +
                 '}';
+    }
+    public final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        return matcher.find();
     }
 }

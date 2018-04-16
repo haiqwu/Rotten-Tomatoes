@@ -1,7 +1,9 @@
 package com.peppa.peppamovies.web.controller;
 
+import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -48,10 +50,13 @@ public class MovieController {
     }
 
     @PostMapping("/search")
-    public String handleSearchAction(@PageableDefault(size = 8, sort ={"movieID"},
-            direction = Sort.Direction.DESC)Pageable pageable,
+    public String handleSearchAction(@PageableDefault(size = 8, sort ={"movieName"},
+                                     direction = Sort.Direction.DESC)Pageable pageable,
                                      @RequestParam String query, Model model) {
-        model.addAttribute("page",movieService.listMovie("%"+query+"%", pageable));
+        query = query.trim();
+        query = query.replaceAll("\\s+"," ");
+        Page<MovieInfo> queryResult = movieService.listMovie("%"+query+"%", pageable);
+        model.addAttribute("page",queryResult);
         model.addAttribute("query",query);
         return "search_results";
     }
