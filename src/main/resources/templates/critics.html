@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Peppa Critics</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css" th:href="@{/css/mycss.css}">
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+            <div class="ui sixteen wide column">
+                <div class="ui inverted secondary menu">
+                    <a class="item">Critics Home</a>
+                    <a class="item">Critics List</a>
+                    <a class="item">Publication List</a>
+                    <a class="item">Critics Groups</a>
+                    <a class="item">Latest Film Reviews</a>
+                    <a class="item">Critics Criteria</a>
+                </div>
+
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h2 class="ui inverted header">PEPPA CRITICS</h2>
+                    </div>
+                    <div class="right aligned column">
+                        <button class="ui inverted button">Become a Peppa Critic</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CRITIC SPOTLIGHT</h2>
+
+            <div class="ui four wide column">
+                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}" alt="Image"></a>
+                <a href="#">First Last</a>
+            </div>
+            <div class="ui four wide column">
+                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}" alt="Image"></a>
+                <a href="#">First Last</a>
+            </div>
+            <div class="ui four wide column">
+                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}" alt="Image"></a>
+                <a href="#">First Last</a>
+            </div>
+            <div class="ui four wide column">
+                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}" alt="Image"></a>
+                <a href="#">First Last</a>
+            </div>
+
+            <!--latest review-->
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">LATEST REVIEWS</h2>
+            <div class="ui sixteen wide column m-padded-small">
+                <div class="ui top attached segment">
+                    <a href="#">After Auschwitz</a>
+                    <div class="m-left-padded-mini">
+                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
+                            shattering experiences in that camp and how they prevailed to the present day.
+                        </div>
+                        <div>
+                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui inverted attached segment">
+                    <a href="#">After Auschwitz</a>
+                    <div class="m-left-padded-mini">
+                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
+                            shattering experiences in that camp and how they prevailed to the present day.
+                        </div>
+                        <div>
+                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui bottom attached segment">
+                    <a href="#">After Auschwitz</a>
+                    <div class="m-left-padded-mini">
+                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
+                            shattering experiences in that camp and how they prevailed to the present day.
+                        </div>
+                        <div>
+                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--critics buzz-->
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CRITICS BUZZ</h2>
+
+            <div class="ui sixteen wide column">
+
+                <div class="ui two column grid">
+                    <div class="column">
+                        <div class="ui grid">
+                            <div class="four wide column">
+                                <a href="#"><img class="ui image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}"
+                                                 alt="Image"></a>
+                            </div>
+                            <div class="twelve wide column">
+                                <div>
+                                    <a href="#">Jumanji: Welcome to the Jungle</a> Is Certified Fresh!
+                                </div>
+                                <div>70%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="ui grid">
+
+                            <div class="ui ten wide column">
+                                <div class="ui list ">
+                                    <div class="item">What else has the critics talking?</div>
+                                    <a class="item"><span class="m-right-padded-large">95%</span>A Quiet Place</a>
+                                    <a class="item"><span class="m-right-padded-large">95%</span>Blockers</a>
+                                    <a class="item"><span class="m-right-padded-large">95%</span>A Quiet Place</a>
+                                    <a class="item"><span class="m-right-padded-large">95%</span>Blockers</a>
+                                </div>
+                            </div>
+
+                            <div class="ui six wide column">
+                                <div class="ui list ">
+                                    <div class="item">Reviews</div>
+                                    <a class="item" href="#">233</a>
+                                    <a class="item" href="#">233</a>
+                                    <a class="item" href="#">233</a>
+                                    <a class="item" href="#">233</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
+</body>
+
+
+</html>

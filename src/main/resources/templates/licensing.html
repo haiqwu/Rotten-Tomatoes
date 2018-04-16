@@ -1,10 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>About Peppa</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css" th:href="@{/css/mycss.css}">
 </head>
 <body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<div class="ui container">
+    <div class="ui inverted attached segment">
+
+        <div class="ui stackable grid">
+            <div class="eleven wide column">
+
+                <h2 class="ui inverted teal horizontal divider header m-padded-top-bottom-small">LISCENSING</h2>
+                <div class="m-padded-top-bottom-small">
+                    <h2 class="ui inverted header">Contact Us</h2>
+                    <p class="m-opacity-mini">
+                        If you would like to use any of our trademarks or logos, please submit a request with details
+                        of your planned usage via our <a href="#">Business Proposal Form</a> for review and access to assets.
+                    </p>
+                    <p class="m-opacity-mini">
+                        For information about integrating Peppa data into your application (via APIs, data feeds),
+                        please submit a request with details about your application and your planned usage of our data
+                        via our <a href="">Business Proposal Form</a>.
+                    </p>
+                </div>
+
+                <div class="ui divider"></div>
+
+                <div class="m-padded-top-bottom-small">
+                    <h2 class="ui inverted header">Our Trademarks And Logos</h2>
+                    <p class="m-opacity-mini">
+                        Below are our guidelines for using any of our trademarks or logos.
+                    </p>
+                    <div class="ui grid">
+                        <div class="ui center aligned column">
+                            <h3>PEPPA LOGO</h3>
+                            <div class="ui image"><img src="#" alt="Logo"></div>
+                        </div>
+
+                    </div>
+
+                    <p class="m-opacity-mini">
+                        Brand attribution is required in every location where Peppa content is displayed. Please contact
+                        us via the <a href="">Business Proposal Form</a> for the latest Brand Guidelines.
+                    </p>
+
+                    <p class="m-opacity-mini">
+                        Peppa scores and reviews must link back to the corresponding movie pages on
+                        <a href="">https://www.peppa.com</a>.
+                    </p>
+                </div>
+
+            </div>
+
+            <!--contact us-->
+            <div class="m-padded-median five wide column">
+
+                <h2 class="ui teal inverted header">CONTACT US</h2>
+                <div class="ui inverted list">
+                    <div class="m-padded-top-bottom-mini">
+                        <div class="m-sub-header">Customer Support</div>
+                        <span class="m-text">Visit our <a href="#">FAQs</a> or fill out our <a href="#">Email Form</a>.</span>
+                    </div>
+                    <div class="m-padded-top-bottom-mini">
+                        <div class="m-sub-header">Licensing or Partnership Inquiries</div>
+                        <span class="m-text">Fill out our <a class="item" href="#">Business Proposal Form</a>.</span>
+                    </div>
+                    <div class="m-padded-top-bottom-mini">
+                        <div class="m-sub-header">Submit Movie Information</div>
+                        <span class="m-text"><a href="#">Tell us</a> about missing or incorrect movie.</span>
+                    </div>
+                    <div class="m-padded-top-bottom-mini">
+                        <div class="m-sub-header">Advertise</div>
+                        <span class="m-text">Review <a href="#">Fandango Advertising Opportunities</a>.</span>
+                    </div>
+                    <div class="m-padded-top-bottom-mini">
+                        <div class="m-sub-header">Follow Us</div>
+                        <div class="m-follow-us"><a href="#" class="item"><img class="small image" src="static/images/004-facebook.png"
+                                                                               th:src="@{/images/004-facebook.png}"
+                                                                               alt="loading"></a></div>
+                        <div class="m-follow-us"><a href="#" class="item"><img src="static/images/003-twitter.png"
+                                                                               th:src="@{/images/003-twitter.png}"
+                                                                               alt="loading"></a>
+                        </div>
+                        <div class="m-follow-us"><a href="#" class="item"><img src="static/images/if_snapchat_386706.png"
+                                                                               th:src="@{/images/if_snapchat_386706.png}"
+                                                                               alt="loading"></a></div>
+                        <div class="m-follow-us"><a href="#" class="item"><img src="static/images/001-instagram.png"
+                                                                               th:src="@{/images/001-instagram.png}"
+                                                                               alt="loading"></a></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
 
 </body>
+
+
 </html>

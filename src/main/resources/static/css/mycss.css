@@ -1,7 +1,7 @@
-body {
-    background-color: #3a3d3e;
-    /*background: url(../images/spiderman.jpg) no-repeat center center fixed;*/
-}
+/*body {*/
+    /*background-color: #3a3d3e;*/
+    /*!*background: url(../images/spiderman.jpg) no-repeat center center fixed;*!*/
+/*}*/
 
 
 img {
@@ -9,26 +9,59 @@ img {
     max-height: 100%;
 }
 
+.m-left-padded-mini {
+    padding-left: 10px;
+}
+
+.m-left-padded-large {
+    padding-left: 60px;
+}
+
+.m-left-padded-huge {
+    padding-left: 150px;
+}
+
+.m-right-padded-mini {
+    padding-right: 10px;
+}
+
+.m-right-padded-small {
+    padding-right: 20px !important;
+}
+
+.m-right-padded-medium {
+    padding-right: 30px;
+}
+
+.m-right-padded-large {
+    padding-right: 50px;
+}
+
+.m-bottom-padded-medium {
+    padding-bottom: 30px !important;
+}
+
+.m-left-right-bottom-padded-small {
+    padding: 0px 20px 20px 20px;
+}
+
+
+
+
+
 .m-margin-top-bottom-small {
      margin: 40px 0px 20px 0px !important;
 }
-
-/*.m-padded-top-bottom-median {*/
-    /*padding: 45px 0px 30px 0px !important;*/
-/*}*/
 
 .m-margin-top-mini{
     margin: 10px 0px 0px !important;
 }
 
-.m-padded-bottom-mini{
-    padding: 0px 0px 10px !important;
-}
+
 
 .m-padded-top-bottom-tiny {
     padding: 5px 0px 5px !important;
 }
-
 
 .m-padded-mini {
     padding: 20px !important;
@@ -45,14 +78,6 @@ img {
 
 .m-padded-right {
     padding: 0px 10px !important;
-}
-
-.m-padded-bottom-big {
-    padding: 0px 0px 50px !important;
-}
-
-.m-padded-bottom-small {
-    padding: 0px 0px 30px !important;
 }
 
 .m-padded-top-bottom-mini {
@@ -81,6 +106,11 @@ img {
     opacity: 0.8 !important;
 }
 
+.m-text {
+    font-weight: 100 !important;
+    color: #b5b5b5 !important;
+}
+
 /*title*/
 .m-title {
     font-weight: bold !important;
@@ -96,4 +126,25 @@ img {
 .video-js{
     float: left;!important;
     margin: 10px; !important;
+}
+
+.m-follow-us{
+    display: inline-block; !important;
+    margin-right: 10px;
+}
+
+.m-sub-header {
+    font-weight: bold !important;
+    font-size: 18px !important;
+    /*color: #ca3b33 !important;*/
+}
+
+.m-right-aligned {
+    position: absolute !important;
+    left: 0px !important;
+}
+
+
+.m-inline-block{
+    display: inline-block !important;
 }

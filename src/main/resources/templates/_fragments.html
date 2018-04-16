@@ -77,23 +77,25 @@
     <div class="ui container  ">
         <div class="ui container ">
             <div class="ui inverted secondary menu">
+
                 <h2 class="ui header item">
                     <a href=" index.html " th:href=@{/}> Peppa </a>
                 </h2>
 
                 <div class="ui search search_bar ">
                     <form name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
-                    <div class="ui icon input search_area">
-                        <input class="prompt" type="text" name="query" placeholder="Search Movies..." th:value="${query}">
-                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
-                    </div>
+                        <div class="ui icon input search_area">
+                            <input class="prompt" type="text" name="query" placeholder="Search Movies..."
+                                   th:value="${query}">
+                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                        </div>
                     </form>
                     <div class="results"></div>
                 </div>
 
                 <!-- code if no user info is being passed -->
                 <div class="right menu " th:unless="${session.user }">
-                    <a  id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
+                    <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
@@ -118,7 +120,8 @@
                     <div class="menu">
                         <div class="header">MOVIES IN THEATERS</div>
                         <div class="divider"></div>
-                        <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This Week</a>
+                        <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This
+                            Week</a>
                         <a th:href=@{/top_box_office} href="movie_category_info.html" class="item">Top Box Office</a>
                         <a th:href=@{/comming_soon} href="movie_category_info.html" class="item">Comming Soon</a>
                         <a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified
@@ -150,7 +153,7 @@
                 </div>
                 <div class="right menu">
                     <div class="ui item">
-                        <a href=""> what is Peppameter?</a>
+                        <a id="peppameter" href="" onclick="peppameter_fun()"> what is Peppameter?</a>
                     </div>
                     <div class="ui item">
                         <a href=""> PT Critics</a>
@@ -188,7 +191,7 @@
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
-                        
+
                         <div class="field">
                             <div class="ui left toggle checkbox">
 
@@ -209,10 +212,10 @@
                     </div>
                     <div class="ui grid">
                         <div class="sixteen wide column">
-                           <div>
-                               <p class="">Forget Your <a href=""> password ? </a></p>
-                               <p class="">Create <a href=""> New Account </a></p>
-                           </div>
+                            <div>
+                                <p class="">Forget Your <a href=""> password ? </a></p>
+                                <p class="">Create <a href=""> New Account </a></p>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -226,7 +229,7 @@
             <div class="column">
                 <h2 class="ui image header">
                     <div class="content teal">
-                         SIGN UP FOR PEPPA
+                        SIGN UP FOR PEPPA
                     </div>
                 </h2>
                 <form class="ui form" method="post" action="/signup">
@@ -293,11 +296,27 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
+
+    <!--WHAT IS THE PEPPAMETER?-->
+    <div class="ui m-padded-big modal" id="peppameter_modal">
+        <i class="close icon"></i>
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui inverted horizontal divider header">WHAT IS THE PEPPAMETER?</h2>
+                <p class="m-text">
+                    The Tomatometer score — based on the opinions of hundreds of film and television critics — is a
+                    trusted measurement of critical recommendation for millions of fans. It represents the percentage of
+                    professional critic reviews that are positive for a given film or television show.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
 </nav>
 
 </body>

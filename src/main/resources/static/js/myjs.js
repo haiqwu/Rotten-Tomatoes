@@ -28,6 +28,11 @@ function signup_fun() {
         .modal('show');
 }
 
+function peppameter_fun() {
+    $('#peppameter_modal')
+        .modal('show');
+}
+
 $(function () {
     $("#login_modal").modal({
         closable: true

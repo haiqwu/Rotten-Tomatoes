@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Peppametter Criteria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css" th:href="@{/css/mycss.css}">
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+            <div class="ui sixteen wide column">
+                <div class="ui inverted secondary menu">
+                    <a class="item">Critics Home</a>
+                    <a class="item">Critics List</a>
+                    <a class="item">Publication List</a>
+                    <a class="item">Critics Groups</a>
+                    <a class="item">Latest Film Reviews</a>
+                    <a class="item">Critics Criteria</a>
+                </div>
+            </div>
+
+            <div class="ui sixteen wide column">
+                <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">PEPPAMETER CRITERIA</h2>
+
+                <P class="m-text">
+                    Movie and television reviews in the Tomatometer® come from publications (e.g., newspapers,
+                    magazines,
+                    websites, etc.) or individual critics that have been selected by the Rotten Tomatoes® staff. The
+                    criteria for inclusion for both publications and critics are separated across three divisions:
+                    print,
+                    broadcast, and online, each with its own criteria for Tomatometer inclusion, more fully described
+                    below.
+                    In many cases, for a variety of reasons, we may also include publications or critics that do not
+                    meet
+                    the below criteria, and may assign them to the below categories, if we feel that their inclusion
+                    will
+                    benefit the relevance and utility of the Tomatometer.
+                </P>
+
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+
+                <h3>SOURCE APPROVAL</h3>
+
+                <div class="m-text">
+                    <p>Print publications must achieve and maintain status as one of the following:</p>
+
+                    <ul class="ui list">
+                        <div class="item">A top 100 daily US newspaper</div>
+                        <div class="item"> A top 100 weekly US newspaper</div>
+                        <div class="item"> A top 100 magazine</div>
+                        <div class="item"> A top 100 weekly US newspaper</div>
+                    </ul>
+
+                    <p>Sources used to determine national publication ranks include the Audit Bureau of Circulations,
+                        The Magazine Publishers of America, and the Association of Alternative Weeklies. Applications
+                        for international publications will be made on a case-by-case basis, with input from local
+                        Rotten Tomatoes editors when applicable.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
+</body>
+
+
+</html>
