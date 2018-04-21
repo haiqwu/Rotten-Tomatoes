@@ -4,8 +4,12 @@ import com.peppa.peppamovies.dao.UserRepository;
 import com.peppa.peppamovies.model.UserInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 
 @Service
@@ -46,9 +50,15 @@ public class UserServiceImpl implements UserService{
         BeanUtils.copyProperties(user,findUser);
         return userRepository.save(user);
     }
-    @Transactional
+
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id );
+    public Page<UserInfo> listUser(Long movieId, Pageable pageable) {
+        return userRepository.findAll(new Specification<UserInfo>() {
+            @Override
+            public Predicate toPredicate(Root<UserInfo> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
+                Join join = root.join("wantsToSeeList");
+                return cb.equal(join.get("id"),movieId);
+            }
+        },pageable);
     }
 }

@@ -11,13 +11,15 @@ public class MovieReview {
     @Id
     @GeneratedValue
     private Long reviewID;
+    private Long movieID;
     private double rate;
     private String comment;
     @Temporal(TemporalType.DATE)
     private Date dayCommented;
     private String groupName;
     @ManyToOne
-    private MovieInfo movie;
+    @JoinColumn(name="userID", nullable=false)
+    private UserInfo reviewUser;
 
     public MovieReview() {
     }
@@ -30,12 +32,20 @@ public class MovieReview {
         this.reviewID = reviewID;
     }
 
-    public MovieInfo getMovie() {
-        return movie;
+    public Long getMovieID() {
+        return movieID;
     }
 
-    public void setMovie(MovieInfo movie) {
-        this.movie = movie;
+    public void setMovieID(Long movieID) {
+        this.movieID = movieID;
+    }
+
+    public UserInfo getUser() {
+        return reviewUser;
+    }
+
+    public void setUser(UserInfo user) {
+        this.reviewUser = user;
     }
 
     public double getRate() {
@@ -74,10 +84,12 @@ public class MovieReview {
     public String toString() {
         return "MovieReview{" +
                 "reviewID=" + reviewID +
+                ", movieID=" + movieID +
                 ", rate=" + rate +
                 ", comment='" + comment + '\'' +
                 ", dayCommented=" + dayCommented +
                 ", groupName='" + groupName + '\'' +
+                ", user=" + reviewUser +
                 '}';
     }
 }

@@ -8,6 +8,4 @@ public interface MovieReviewService {
     MovieReview getMovieReview(Long id);
 
     MovieReview updateMovieReview(Long id, MovieReview movieReview);
-
-    void deleteMovieReview(Long id);
 }

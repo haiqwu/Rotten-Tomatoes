@@ -1,7 +1,9 @@
 package com.peppa.peppamovies.web.controller;
 
 import com.peppa.peppamovies.model.MovieInfo;
+import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.MovieService;
+import com.peppa.peppamovies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,13 +20,15 @@ import javax.servlet.http.HttpSession;
 public class MovieController {
     @Autowired
     private MovieService movieService;
+    private UserService userService;
 
     @GetMapping("/movie/{id}")
-    public String handleShowMovieInfo(@PathVariable Long id, Model model) {
+    public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
         //MovieInfo movie = movieService.getMovie(id);
         //String secondaryID = movie.getSecondaryID();
 
         model.addAttribute("movie", movieService.getMovie(id));
+        session.setAttribute("movie", movieService.getMovie(id));
 
         return "movie_detail";
     }
@@ -65,6 +69,7 @@ public class MovieController {
         session.setAttribute("queryItem",query);
         return "search_results";
     }
+
 
     public void handleTopMovies() {
     }

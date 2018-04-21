@@ -5,10 +5,13 @@ import com.peppa.peppamovies.model.MovieInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -40,14 +43,15 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.save(movie);
     }
 
-    @Transactional
-    @Override
-    public void deleteMovie(Long id) {
-        movieRepository.deleteById(id);
-    }
-
     @Override
     public Page<MovieInfo> listMovie(String query, Pageable pageable) {
         return movieRepository.findByQuery(query, pageable);
+    }
+
+    @Override
+    public List<MovieInfo> listMovieInfo(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "interestedUsers.size");
+        Pageable pageable = new PageRequest(0, size, sort);
+        return movieRepository.findTop(pageable);
     }
 }

@@ -35,10 +35,4 @@ public class MovieReviewServiceImpl implements MovieReviewService {
         BeanUtils.copyProperties(movieReview, findMovieReview);
         return movieReviewRepository.save(movieReview);
     }
-
-    @Transactional
-    @Override
-    public void deleteMovieReview(Long id) {
-        movieReviewRepository.deleteById(id);
-    }
 }

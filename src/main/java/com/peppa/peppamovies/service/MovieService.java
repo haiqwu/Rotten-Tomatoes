@@ -4,6 +4,8 @@ import com.peppa.peppamovies.model.MovieInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface MovieService {
     MovieInfo saveMovie(MovieInfo movie);
 
@@ -11,7 +13,7 @@ public interface MovieService {
 
     MovieInfo updateMovie(Long id, MovieInfo movie);
 
-    void deleteMovie(Long id);
-
     Page<MovieInfo> listMovie(String query, Pageable pageable);
+
+    List<MovieInfo> listMovieInfo(Integer size);
 }

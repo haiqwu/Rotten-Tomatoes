@@ -32,7 +32,7 @@ public class MovieInfo {
     private int movieRank;
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
-    @ManyToMany
+    @ManyToMany(mappedBy = "wantsToSeeList")
     private List<UserInfo> interestedUsers = new ArrayList<>();
 
     public MovieInfo() {

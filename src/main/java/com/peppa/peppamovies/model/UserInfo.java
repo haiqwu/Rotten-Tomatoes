@@ -16,6 +16,9 @@ public class UserInfo {
     @GeneratedValue
     private Long userID;
     private String userName;
+
+    @Basic(fetch = FetchType.EAGER)
+    @Lob
     private String firstName;
     private String lastName;
     private String Email;
@@ -28,9 +31,9 @@ public class UserInfo {
     @Temporal(TemporalType.DATE)
     private Date dateDeActivatedFromCritic;
     private String followedSocialMedias;
-    @ManyToMany(mappedBy = "interestedUsers")
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "reviewUser")
     private List<MovieReview> movieReviews = new ArrayList<>();
     @ManyToOne
     private CriticGroup group;
@@ -214,8 +217,8 @@ public class UserInfo {
                 ", dateBecomingCritic=" + dateBecomingCritic +
                 ", dateDeActivatedFromCritic=" + dateDeActivatedFromCritic +
                 ", followedSocialMedias='" + followedSocialMedias + '\'' +
-                ", wantsToSeeList=" + wantsToSeeList +
-                ", movieReviews=" + movieReviews +
+//                ", wantsToSeeList=" + wantsToSeeList +
+//                ", movieReviews=" + movieReviews +
                 ", group=" + group +
                 ", bp=" + bp +
                 ", newsL=" + newsL +

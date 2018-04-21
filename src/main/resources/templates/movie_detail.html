@@ -70,31 +70,29 @@
                                                      alt="Image"></a>
                                 </div>
 
-                                <form class="review form" method="post" action="movie_review_post">
-
-                                    <div class="twelve wide column">
+                                    <a class="twelve wide column">
 
                                         <!--<button class="ui mini red button">+ WANT TO SEE</button>-->
                                         <!--<button class="ui mini grey button">- NOT INTERESTED</button>-->
 
-                                        <div class="row">
+                                        <a class="row">
                                             <!--<button type="button"  name="want_to_see_btn" class="ui mini red button active">+ WANT TO SEE</button>-->
                                             <!--<button  type="button" name="not_interested_btn" class="ui mini grey button">- NOT INTERESTED</button>-->
 
-                                            <div type="button" class="ui mini animated fade green button" tabindex="0">
+                                            <a  type="button" class="ui mini animated fade green button" tabindex="0" href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
                                                 <div class="visible content">+ WANT TO SEE</div>
                                                 <div class="hidden content">
                                                     <i class="heart icon"></i>
                                                 </div>
-                                            </div>
+                                            </a>
 
-                                            <div type="button" class="ui mini animated fade grey button" tabindex="0">
+                                            <a  type="button" class="ui mini animated fade green button" tabindex="0" href="#" th:href="@{/movie/{id}/not_interested(id=${movie.movieID})}">
                                                 <div class="visible content">- NOT INTERESTED</div>
                                                 <div class="hidden content">
                                                     <i class="thumbs down icon"></i>
                                                 </div>
 
-                                            </div>
+                                            </a>
 
 
                                         </div>
@@ -116,13 +114,10 @@
                                         </div>
                                         <div class="ui grid">
                                             <div class="ui right aligned column">
-                                                <button class="ui mini grey button">Post</button>
+                                                <a type="button" class="ui mini grey button" href="#" th:href="@{/movie/{id}/post(id=${movie.movieID})}">Post</a>
                                             </div>
                                         </div>
                                     </div>
-
-                                </form>
-
 
                             </div>
                         </div>
