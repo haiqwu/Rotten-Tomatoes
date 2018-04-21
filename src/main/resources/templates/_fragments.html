@@ -100,6 +100,22 @@
                 </div>
 
                 <div class="right menu " th:if="${session.user }">
+
+                    <div class="ui m-padded-big modal" id="after_login_modal">
+                        <i class="close icon"></i>
+                        <div class="ui aligned center aligned grid">
+                            <div class="column">
+                                <h2 class="ui image header">
+                                    <div class="content">
+                                        WELCOME TO PEPPA
+                                    </div>
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div id="username" class="ui dropdown item">
                         <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
                         <div class="text" th:text="${session.user.userName}"></div>
@@ -201,6 +217,11 @@
                             </div>
                         </div>
 
+                        <div class="ui success message">
+                            <div class="header">Login Completed</div>
+                            <p>Login Successful</p>
+                        </div>
+
                         <div class="field">
                             <button class="ui fluid large teal submit button">Log In</button>
                         </div>
@@ -300,6 +321,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 
     <!--WHAT IS THE PEPPAMETER?-->
     <div class="ui m-padded-big modal" id="peppameter_modal">

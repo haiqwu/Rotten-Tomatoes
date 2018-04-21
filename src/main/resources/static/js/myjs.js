@@ -23,6 +23,23 @@ function login_fun() {
         .modal('show');
 }
 
+
+$(window).on('load',function(){
+
+    if (sessionStorage.getItem("login_popup") == undefined) {
+        $('#after_login_modal').modal('show');
+       // $ .cookie("popup_1_2", "2");
+    }
+
+        //$('#after_login_modal').modal('show');
+        // $('#after_login_modal').modal('show');
+        if (  $('#after_login_modal').hasClass('in') == true ){
+            sessionStorage.setItem("login_popup", "1");
+        }
+        
+});
+
+
 function signup_fun() {
     $('#signup_modal')
         .modal('show');
