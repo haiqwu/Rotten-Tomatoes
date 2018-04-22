@@ -44,8 +44,10 @@ public class UserController {
         if (user != null) {
             //user.setPassW(null);
             session.setAttribute("user", user);
+            session.setAttribute("found", true);
             return "redirect:" + referer;
         } else {
+            session.setAttribute("found", false);
             System.out.println("NOLogin");
             return "redirect:/";
         }
@@ -55,6 +57,7 @@ public class UserController {
     public String handleLogout(HttpSession session, HttpServletRequest request) {
         String referer = request.getHeader("Referer");
         session.removeAttribute("user");
+        session.removeAttribute("found");
         return "redirect:"+referer;
     }
 

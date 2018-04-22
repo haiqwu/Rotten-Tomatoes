@@ -94,12 +94,38 @@
                 </div>
 
                 <!-- code if no user info is being passed -->
-                <div class="right menu " th:unless="${session.user }">
-                    <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
-                    <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
+                <div class="right menu " th:if="${session.found == null }">
+                    <a id="login1" class="ui inverted item button " onclick="login_fun()">Log in </a>
+                    <a href="#" id="signup1" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
+
                 </div>
 
-                <div class="right menu " th:if="${session.user }">
+                <!--<div class="right menu " th:unless="${session.user }">-->
+                    <!--<a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>-->
+                    <!--<a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>-->
+
+                <!--</div>-->
+
+                <div class="right menu " th:if="${session.found == false }">
+                    <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
+                    <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
+                    <div class="ui m-padded-big modal" id="notfound_login_modal">
+                        <i class="close icon"></i>
+                        <div class="ui aligned center aligned grid">
+                            <div class="column">
+                                <h2 class="ui image header">
+                                    <div class="content">
+                                        User Not Exist
+                                    </div>
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="right menu " th:if="${session.found == true }">
 
                     <div class="ui m-padded-big modal" id="after_login_modal">
                         <i class="close icon"></i>
@@ -122,10 +148,38 @@
                         <i class="dropdown icon"></i>
                         <div class="menu">
                             <a th:href=@{/my_profile} class="item"><i class="user icon"></i>Profile </a>
-                            <a href="/logout" class="item"><i class="power off icon"></i>Log Out</a>
+                            <a href="/logout" class="item" onclick="logout_fun()"><i class="power off icon"></i>Log Out</a>
                         </div>
                     </div>
                 </div>
+
+                <!--<div class="right menu " th:if="${session.user }">-->
+
+                    <!--<div class="ui m-padded-big modal" id="after_login_modal">-->
+                        <!--<i class="close icon"></i>-->
+                        <!--<div class="ui aligned center aligned grid">-->
+                            <!--<div class="column">-->
+                                <!--<h2 class="ui image header">-->
+                                    <!--<div class="content">-->
+                                        <!--WELCOME TO PEPPA-->
+                                    <!--</div>-->
+                                <!--</h2>-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                    <!--<div id="username" class="ui dropdown item">-->
+                        <!--<img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">-->
+                        <!--<div class="text" th:text="${session.user.userName}"></div>-->
+                        <!--<i class="dropdown icon"></i>-->
+                        <!--<div class="menu">-->
+                            <!--<a th:href=@{/my_profile} class="item"><i class="user icon"></i>Profile </a>-->
+                            <!--<a href="/logout" class="item"><i class="power off icon"></i>Log Out</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
         <div class="ui container">
@@ -217,13 +271,13 @@
                             </div>
                         </div>
 
-                        <div class="ui success message">
-                            <div class="header">Login Completed</div>
-                            <p>Login Successful</p>
-                        </div>
+                        <!--<div class="ui success message">-->
+                            <!--<div class="header">Login Completed</div>-->
+                            <!--<p>Login Successful</p>-->
+                        <!--</div>-->
 
                         <div class="field">
-                            <button class="ui fluid large teal submit button">Log In</button>
+                            <button class="ui fluid large teal submit button" onclick="login_fun2()">Log In</button>
                         </div>
                         <div class="actions field">
                             <div class="ui fluid large red deny button " id="cancel">
@@ -321,9 +375,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 
     <!--WHAT IS THE PEPPAMETER?-->

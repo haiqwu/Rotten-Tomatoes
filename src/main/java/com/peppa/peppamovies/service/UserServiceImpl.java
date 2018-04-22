@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserInfo checkUser(String username, Byte[] password) {
-        UserInfo user = userRepository.findByUserNameAndPassW(username,password);
+        UserInfo user = userRepository.findByUserNameAndPassW(username, password);
         return user;
     }
 

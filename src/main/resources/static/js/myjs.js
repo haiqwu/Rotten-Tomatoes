@@ -23,6 +23,11 @@ function login_fun() {
         .modal('show');
 }
 
+function login_fun2(){
+    sessionStorage.removeItem("login_notfound");
+    sessionStorage.removeItem("login_popup");
+}
+
 
 $(window).on('load',function(){
 
@@ -39,6 +44,25 @@ $(window).on('load',function(){
         
 });
 
+$(window).on('load',function(){
+
+    if (sessionStorage.getItem("login_notfound") == undefined) {
+        $('#notfound_login_modal').modal('show');
+        // $ .cookie("popup_1_2", "2");
+    }
+
+    //$('#after_login_modal').modal('show');
+    // $('#after_login_modal').modal('show');
+    if (  $('#notfound_login_modal').hasClass('in') == true ){
+        sessionStorage.setItem("login_notfound", "1");
+    }
+
+});
+
+function logout_fun(){
+    sessionStorage.removeItem("login_popup");
+    sessionStorage.removeItem(login_notfound);
+}
 
 function signup_fun() {
     $('#signup_modal')
