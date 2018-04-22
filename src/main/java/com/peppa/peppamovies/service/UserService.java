@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
-    UserInfo checkUser(String username, Byte[] password);
+    UserInfo checkUser(String username, String password);
+
+    boolean checkUsername(String username);
 
     boolean registeredEmail(String email);
 

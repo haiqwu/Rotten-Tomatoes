@@ -24,7 +24,7 @@ public class UserInfo {
     private String firstName;
     private String lastName;
     private String Email;
-    private Byte[] passW;
+    private String passW;
     private boolean isCritic;
     private boolean isEmailVerified;
     private String photo;
@@ -66,10 +66,12 @@ public class UserInfo {
         return true;
     }
 
-
-    public Byte[] hashPassword(String password) {
-        Byte[] passW = new Byte[5];
+    public String getPassW() {
         return passW;
+    }
+
+    public void setPassW(String passW) {
+        this.passW = passW;
     }
 
     public boolean verifyEmail(String email) {
@@ -204,13 +206,7 @@ public class UserInfo {
         this.userName = userName;
     }
 
-    public Byte[] getPassW() {
-        return passW;
-    }
 
-    public void setPassW(Byte[] passW) {
-        this.passW = passW;
-    }
 
     public List<MovieInfo> getNotInterestedList() {
         return notInterestedList;
@@ -228,7 +224,7 @@ public class UserInfo {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", Email='" + Email + '\'' +
-                ", passW=" + Arrays.toString(passW) +
+                ", passW='" + passW + '\'' +
                 ", isCritic=" + isCritic +
                 ", isEmailVerified=" + isEmailVerified +
                 ", photo='" + photo + '\'' +

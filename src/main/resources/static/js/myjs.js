@@ -59,6 +59,7 @@ $(window).on('load',function(){
 
 });
 
+
 function logout_fun(){
     sessionStorage.removeItem("login_popup");
     sessionStorage.removeItem(login_notfound);
@@ -119,6 +120,18 @@ $('form').form({
             ]
         },
 
+        password_signup: {
+            rules: [{
+                type: 'empty',
+                prompt: 'Please select a password'
+            },
+                {
+                    type: 'minLength[4]',
+                    prompt: 'Password must longer than 6 characters'
+                }
+            ]
+        },
+
         email: {
             rules:[{
                 type: 'email',
@@ -127,7 +140,7 @@ $('form').form({
         },
         re_password:{
             rules:[{
-                type: 'match[password]',
+                type: 'match[password_signup]',
                 prompt: 'Repeated Password Is Different'
             }]
         }

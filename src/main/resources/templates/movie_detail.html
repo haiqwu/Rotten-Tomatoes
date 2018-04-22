@@ -27,7 +27,8 @@
             <div class="sixteen wide column">
                 <div class="ui grid">
                     <div class="four wide column">
-                        <a href="#"><img class="ui fluid image" name="poster main"  alt="Image" th:src="@{${movie.moviePoster}}" ></a>
+                        <a href="#"><img class="ui fluid image" name="poster main" alt="Image"
+                                         th:src="@{${movie.moviePoster}}"></a>
                     </div>
                     <div class="twelve wide column">
                         <div class="sixteen wide column">
@@ -66,59 +67,70 @@
                         <div class="sixteen wide column">
                             <div class="ui grid">
                                 <div class="four wide column">
-                                    <a href="#"><img class="ui fluid image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}"
+                                    <a href="#"><img class="ui fluid image" src="../static/images/portrait.png"
+                                                     th:src="@{/images/portrait.png}"
                                                      alt="Image"></a>
                                 </div>
 
-                                    <a class="twelve wide column">
+                                <div class="twelve wide column">
 
-                                        <!--<button class="ui mini red button">+ WANT TO SEE</button>-->
-                                        <!--<button class="ui mini grey button">- NOT INTERESTED</button>-->
+                                    <!--<button class="ui mini red button">+ WANT TO SEE</button>-->
+                                    <!--<button class="ui mini grey button">- NOT INTERESTED</button>-->
 
-                                        <a class="row">
-                                            <!--<button type="button"  name="want_to_see_btn" class="ui mini red button active">+ WANT TO SEE</button>-->
-                                            <!--<button  type="button" name="not_interested_btn" class="ui mini grey button">- NOT INTERESTED</button>-->
+                                    <div class="row">
+                                        <!--<button type="button"  name="want_to_see_btn" class="ui mini red button active">+ WANT TO SEE</button>-->
+                                        <!--<button  type="button" name="not_interested_btn" class="ui mini grey button">- NOT INTERESTED</button>-->
 
-                                            <a  type="button" class="ui mini animated fade green button" tabindex="0" href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
-                                                <div class="visible content">+ WANT TO SEE</div>
-                                                <div class="hidden content">
-                                                    <i class="heart icon"></i>
-                                                </div>
-                                            </a>
+                                        <a type="button" class="ui mini animated fade green button" tabindex="0"
+                                           href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
+                                            <div class="visible content">+ WANT TO SEE</div>
+                                            <div class="hidden content">
+                                                <i class="heart icon"></i>
+                                            </div>
+                                        </a>
 
-                                            <a  type="button" class="ui mini animated fade green button" tabindex="0" href="#" th:href="@{/movie/{id}/not_interested(id=${movie.movieID})}">
-                                                <div class="visible content">- NOT INTERESTED</div>
-                                                <div class="hidden content">
-                                                    <i class="thumbs down icon"></i>
-                                                </div>
+                                        <a type="button" class="ui mini animated fade green button" tabindex="0"
+                                           href="#" th:href="@{/movie/{id}/not_interested(id=${movie.movieID})}">
+                                            <div class="visible content">- NOT INTERESTED</div>
+                                            <div class="hidden content">
+                                                <i class="thumbs down icon"></i>
+                                            </div>
 
-                                            </a>
+                                        </a>
 
 
-                                        </div>
+                                    </div>
+
+                                    <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}"  method="post">
+
                                         <div class="row">
 
-                                            <div id="star_rate" class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">
+                                            <div id="star_rate"
+                                                 class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">
 
                                             </div>
-                                            <p id="rate_num" name="rate_num" ></p>
+                                            <p id="rate_num" name="rate_num"></p>
 
                                         </div>
 
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea name="review_text"   placeholder="Add a Review (Optional)"
-                                                          rows="7"></textarea>
+                                                <textarea name="review_text" placeholder="Add a Review (Optional)" rows="7"></textarea>
                                             </div>
                                         </div>
 
+
                                         <div class="ui grid">
                                             <div class="ui right aligned column">
-                                                <a type="button" class="ui mini grey button" href="#" th:href="@{/movie/{id}/post(id=${movie.movieID})}">Post</a>
+                                                <button class="ui mini grey button">Post</button>
                                             </div>
                                         </div>
-                                    </div>
+
+                                    </form>
+
+                                </div>
+
 
                             </div>
                         </div>
@@ -154,7 +166,7 @@
             <div class="ui grid">
                 <div class="sixteen wide column">
 
-                    <p class="m-opacity-mini" th:text="${movie.briefIntro}" >placeholder
+                    <p class="m-opacity-mini" th:text="${movie.briefIntro}">placeholder
                     </p>
                     <div class="ui list">
                         <div class="item">
@@ -189,31 +201,35 @@
             <!--cast-->
             <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">CAST</div>
             <div class="ui grid">
-                <div class="ui sixteen wide column" >
+                <div class="ui sixteen wide column">
                     <div class="ui relaxed horizontal list">
                         <div class="item">
-                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}" >
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>
                             </div>
                         </div>
                         <div class="item">
-                            <img class="ui avatar image" src="../static/images/portrait.png" th:src="@{/images/portrait.png}">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
                             <div class="content">
                                 <a class="header">Daniel Louise</a>
                                 <span class="m-description">as Wade Owen Watts / Parzival</span>

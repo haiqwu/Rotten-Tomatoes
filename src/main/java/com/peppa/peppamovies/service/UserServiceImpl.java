@@ -19,9 +19,18 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
-    public UserInfo checkUser(String username, Byte[] password) {
+    public UserInfo checkUser(String username, String password) {
         UserInfo user = userRepository.findByUserNameAndPassW(username, password);
         return user;
+    }
+
+    @Override
+    public boolean checkUsername(String username) {
+        UserInfo user = userRepository.findByUserName(username);
+        if(user == null){
+            return true;
+        }
+        return false;
     }
 
     @Override
