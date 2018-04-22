@@ -1,7 +1,9 @@
 package com.peppa.peppamovies.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,7 +34,14 @@ public class UserInfo {
     private Date dateDeActivatedFromCritic;
     private String followedSocialMedias;
     @ManyToMany(cascade = {CascadeType.PERSIST})
+    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<MovieInfo> notInterestedList = new ArrayList<>();
+
+
     @OneToMany(mappedBy = "reviewUser")
     private List<MovieReview> movieReviews = new ArrayList<>();
     @ManyToOne
@@ -56,6 +65,7 @@ public class UserInfo {
     public boolean checkPassword() {
         return true;
     }
+
 
     public Byte[] hashPassword(String password) {
         Byte[] passW = new Byte[5];
@@ -202,11 +212,19 @@ public class UserInfo {
         this.passW = passW;
     }
 
+    public List<MovieInfo> getNotInterestedList() {
+        return notInterestedList;
+    }
+
+    public void setNotInterestedList(List<MovieInfo> notInterestedList) {
+        this.notInterestedList = notInterestedList;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "userID=" + userID +
-                ", username='" + userName + '\'' +
+                ", userName='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", Email='" + Email + '\'' +
@@ -217,13 +235,16 @@ public class UserInfo {
                 ", dateBecomingCritic=" + dateBecomingCritic +
                 ", dateDeActivatedFromCritic=" + dateDeActivatedFromCritic +
                 ", followedSocialMedias='" + followedSocialMedias + '\'' +
-//                ", wantsToSeeList=" + wantsToSeeList +
-//                ", movieReviews=" + movieReviews +
+                ", wantsToSeeList=" + wantsToSeeList +
+                ", notInterestedList=" + notInterestedList +
+                ", movieReviews=" + movieReviews +
                 ", group=" + group +
                 ", bp=" + bp +
                 ", newsL=" + newsL +
+                ", VALID_EMAIL_ADDRESS_REGEX=" + VALID_EMAIL_ADDRESS_REGEX +
                 '}';
     }
+
     public final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 

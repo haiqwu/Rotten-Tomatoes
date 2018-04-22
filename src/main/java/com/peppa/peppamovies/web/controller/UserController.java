@@ -42,7 +42,7 @@ public class UserController {
         UserInfo user = userService.checkUser(username, passwdByte);
 
         if (user != null) {
-            user.setPassW(null);
+            //user.setPassW(null);
             session.setAttribute("user", user);
             return "redirect:" + referer;
         } else {
@@ -103,30 +103,39 @@ public class UserController {
     public String handleNotInterested(HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
+
+        if(currentUser != null){
+            currentUser.getNotInterestedList().add(currentMovie);
+            userService.updateUser(currentUser.getUserID(), currentUser);
+        }else{
+            System.out.println("User not log in");
+        }
+
         return "redirect:/movie/"+currentMovie.getMovieID();
     }
 
-    //    @PostMapping("movie/movie_review_post")
-//    public String handlePostReview(@RequestParam String review_text) {
+//    @PostMapping("movie/{id}/movie_review_post")
+//    public String handlePostReview(@RequestParam String review_text, HttpSession session) {
 //        MovieReview movieReview = new MovieReview();
+//        MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
 //        movieReview.setComment(review_text);
 //        movieReviewService.saveMovieReview(movieReview);
-//        return "redirect:/movie_detail";
+//        return "redirect:/movie/"+currentMovie.getMovieID();
 //    }
 
-    @GetMapping("/movie/{id}/post")
-    public String handlePost(HttpSession session) {
-        UserInfo currentUser = (UserInfo) session.getAttribute("user");
-        currentUser.getMovieReviews();
-        MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
-        MovieReview movieReview = new MovieReview();
-        movieReview.setComment("123");
-        movieReview.setMovieID(currentMovie.getMovieID());
-        movieReview.setUser(currentUser);
-
-        movieReviewService.saveMovieReview(movieReview);
-        return "redirect:/movie/"+currentMovie.getMovieID();
-    }
+//    @GetMapping(value = "/movie/{id}/post")
+//    public String handlePost(@RequestParam String review_text, HttpSession session) {
+//        UserInfo currentUser = (UserInfo) session.getAttribute("user");
+//        //currentUser.getMovieReviews();
+//        MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
+//        MovieReview movieReview = new MovieReview();
+//        movieReview.setComment(review_text);
+//        movieReview.setMovieID(currentMovie.getMovieID());
+//        movieReview.setUser(currentUser);
+//
+//        movieReviewService.saveMovieReview(movieReview);
+//        return "redirect:/movie/"+currentMovie.getMovieID();
+//    }
 
     @GetMapping("/licensing")
     public String handleShowLicenseInfo() {

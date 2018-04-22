@@ -1,5 +1,8 @@
 package com.peppa.peppamovies.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +36,12 @@ public class MovieInfo {
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeList")
+    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<UserInfo> interestedUsers = new ArrayList<>();
+    @ManyToMany(mappedBy = "notInterestedList", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<UserInfo> notInterestedUsers = new ArrayList<>();
+
 
     public MovieInfo() {
     }
@@ -206,6 +214,14 @@ public class MovieInfo {
         this.genres = genres;
     }
 
+    public List<UserInfo> getNotInterestedUsers() {
+        return notInterestedUsers;
+    }
+
+    public void setNotInterestedUsers(List<UserInfo> notInterestedUsers) {
+        this.notInterestedUsers = notInterestedUsers;
+    }
+
     @Override
     public String toString() {
         return "MovieInfo{" +
@@ -230,6 +246,7 @@ public class MovieInfo {
                 ", movieRank=" + movieRank +
                 ", movieActors=" + movieActors +
                 ", interestedUsers=" + interestedUsers +
+                ", notInterestedUsers=" + notInterestedUsers +
                 '}';
     }
 }
