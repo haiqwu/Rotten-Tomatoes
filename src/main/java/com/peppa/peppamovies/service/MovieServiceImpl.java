@@ -47,11 +47,4 @@ public class MovieServiceImpl implements MovieService {
     public Page<MovieInfo> listMovie(String query, Pageable pageable) {
         return movieRepository.findByQuery(query, pageable);
     }
-
-    @Override
-    public List<MovieInfo> listMovieInfo(Integer size) {
-        Sort sort = new Sort(Sort.Direction.DESC, "interestedUsers.size");
-        Pageable pageable = new PageRequest(0, size, sort);
-        return movieRepository.findTop(pageable);
-    }
 }

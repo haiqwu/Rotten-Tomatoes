@@ -11,11 +11,9 @@ import com.peppa.peppamovies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-
 
 
 @Controller
@@ -26,7 +24,7 @@ public class UserController {
     private MovieService movieService;
     @Autowired
     private MovieReviewService movieReviewService;
-    MovieRankingData movieRankingData;
+    private MovieRankingData movieRankingData;
 
     @GetMapping("/")
     public String loginPage() {
@@ -38,12 +36,7 @@ public class UserController {
     @PostMapping("/login")
     public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request) {
         String referer = request.getHeader("Referer");
-
-        //byte[] temp = password.getBytes();
-        //Byte[] passwdByte = toByteArr(temp);
-
         UserInfo user = userService.checkUser(username, MD5Util.mdCode(password));
-
         if (user != null) {
             session.setAttribute("user", user);
             session.setAttribute("found", true);
@@ -60,7 +53,7 @@ public class UserController {
         String referer = request.getHeader("Referer");
         session.removeAttribute("user");
         session.removeAttribute("found");
-        return "redirect:"+referer;
+        return "redirect:" + referer;
     }
 
     @GetMapping("/my_profile")
@@ -73,18 +66,17 @@ public class UserController {
                                @RequestParam String email, @RequestParam String password_signup, @RequestParam String re_password,
                                HttpServletRequest request, HttpSession session) {
         String referer = request.getHeader("Referer");
-        if(userService.checkUsername(username)){ // not exist
-            session.setAttribute("exist",false);
+        if (userService.checkUsername(username)) { // not exist
+            session.setAttribute("exist", false);
             UserInfo user = new UserInfo();
             user.setFirstName(firstname);
             user.setLastName(lastname);
             user.setUserName(username);
             user.setEmail(email);
             String hashedPassword = MD5Util.mdCode(password_signup);
-            user.setPassW(hashedPassword );
+            user.setPassW(hashedPassword);
             userService.saveUser(user);
-        }else{ // already exist
-            System.out.println("No");
+        } else { // already exist
             session.setAttribute("exist", true);
         }
         return "redirect:" + referer;
@@ -94,13 +86,13 @@ public class UserController {
     public String handleWantsToSee(HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
-        if(currentUser != null){
+        if (currentUser != null) {
             currentUser.getWantsToSeeList().add(currentMovie);
             userService.updateUser(currentUser.getUserID(), currentUser);
-        }else{
+        } else {
             System.out.println("User not log in");
         }
-        return "redirect:/movie/"+currentMovie.getMovieID();
+        return "redirect:/movie/" + currentMovie.getMovieID();
     }
 
     @GetMapping("/movie/{id}/not_interested")
@@ -108,31 +100,31 @@ public class UserController {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
 
-        if(currentUser != null){
+        if (currentUser != null) {
             currentUser.getNotInterestedList().add(currentMovie);
             userService.updateUser(currentUser.getUserID(), currentUser);
-        }else{
+        } else {
             System.out.println("User not log in");
         }
 
-        return "redirect:/movie/"+currentMovie.getMovieID();
+        return "redirect:/movie/" + currentMovie.getMovieID();
     }
 
     @PostMapping("/movie/{id}/post")
     public String handlePost(@RequestParam String review_text, HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
-        if(currentUser != null){
+        if (currentUser != null) {
             MovieReview movieReview = new MovieReview();
             movieReview.setComment(review_text);
             movieReview.setMovieID(currentMovie.getMovieID());
             movieReview.setUser(currentUser);
             movieReviewService.saveMovieReview(movieReview);
-        }else{
+        } else {
             System.out.println("No login");
         }
 
-        return "redirect:/movie/"+currentMovie.getMovieID();
+        return "redirect:/movie/" + currentMovie.getMovieID();
     }
 
     @GetMapping("/licensing")

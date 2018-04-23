@@ -16,15 +16,15 @@ public class MovieInfo {
     private Long movieID;
     private String secondaryID;
     private String titleType;
-    private String originalTitle;
-    private int isAdult;
-    private int startYear;
-    private String endYear;
+//    private String originalTitle;
+//    private int isAdult;
+//    private int startYear;
+//    private String endYear;
     private int runtimeMinutes;
     private String genres;
     private String movieName;
     @Temporal(TemporalType.DATE)
-    private Date yearOpening;
+    private Date releasedDate;
     private String briefIntro;
     private double audianceRate;
     private double criticRate;
@@ -32,7 +32,7 @@ public class MovieInfo {
     private String moviePoster;
     private String movieImages;
     private String movieTrailers;
-    private int movieRank;
+//    private int movieRank;
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeList")
@@ -70,13 +70,13 @@ public class MovieInfo {
         this.movieName = movieName;
     }
 
-    public Date getYearOpening() {
-        return yearOpening;
-    }
-
-    public void setYearOpening(Date yearOpening) {
-        this.yearOpening = yearOpening;
-    }
+//    public Date getYearOpening() {
+//        return yearOpening;
+//    }
+//
+//    public void setYearOpening(Date yearOpening) {
+//        this.yearOpening = yearOpening;
+//    }
 
     public String getBriefIntro() {
         return briefIntro;
@@ -134,13 +134,13 @@ public class MovieInfo {
         this.movieTrailers = movieTrailers;
     }
 
-    public int getMovieRank() {
-        return movieRank;
-    }
-
-    public void setMovieRank(int movieRank) {
-        this.movieRank = movieRank;
-    }
+//    public int getMovieRank() {
+//        return movieRank;
+//    }
+//
+//    public void setMovieRank(int movieRank) {
+//        this.movieRank = movieRank;
+//    }
 
     public List<ActorInfo> getMovieActors() {
         return movieActors;
@@ -161,22 +161,22 @@ public class MovieInfo {
     public String getTitleType() {
         return titleType;
     }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public int getIsAdult() {
-        return isAdult;
-    }
-
-    public int getStartYear() {
-        return startYear;
-    }
-
-    public String getEndYear() {
-        return endYear;
-    }
+//
+//    public String getOriginalTitle() {
+//        return originalTitle;
+//    }
+//
+//    public int getIsAdult() {
+//        return isAdult;
+//    }
+//
+//    public int getStartYear() {
+//        return startYear;
+//    }
+//
+//    public String getEndYear() {
+//        return endYear;
+//    }
 
     public int getRuntimeMinutes() {
         return runtimeMinutes;
@@ -190,21 +190,29 @@ public class MovieInfo {
         this.titleType = titleType;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+    public Date getReleasedDate() {
+        return releasedDate;
     }
 
-    public void setIsAdult(int isAdult) {
-        this.isAdult = isAdult;
+    public void setReleasedDate(Date releasedDate) {
+        this.releasedDate = releasedDate;
     }
 
-    public void setStartYear(int startYear) {
-        this.startYear = startYear;
-    }
-
-    public void setEndYear(String endYear) {
-        this.endYear = endYear;
-    }
+    //    public void setOriginalTitle(String originalTitle) {
+//        this.originalTitle = originalTitle;
+//    }
+//
+//    public void setIsAdult(int isAdult) {
+//        this.isAdult = isAdult;
+//    }
+//
+//    public void setStartYear(int startYear) {
+//        this.startYear = startYear;
+//    }
+//
+//    public void setEndYear(String endYear) {
+//        this.endYear = endYear;
+//    }
 
     public void setRuntimeMinutes(int runtimeMinutes) {
         this.runtimeMinutes = runtimeMinutes;
@@ -228,14 +236,10 @@ public class MovieInfo {
                 "movieID=" + movieID +
                 ", secondaryID='" + secondaryID + '\'' +
                 ", titleType='" + titleType + '\'' +
-                ", originalTitle='" + originalTitle + '\'' +
-                ", isAdult=" + isAdult +
-                ", startYear=" + startYear +
-                ", endYear='" + endYear + '\'' +
                 ", runtimeMinutes=" + runtimeMinutes +
                 ", genres='" + genres + '\'' +
                 ", movieName='" + movieName + '\'' +
-                ", yearOpening=" + yearOpening +
+                ", releasedDate=" + releasedDate +
                 ", briefIntro='" + briefIntro + '\'' +
                 ", audianceRate=" + audianceRate +
                 ", criticRate=" + criticRate +
@@ -243,7 +247,6 @@ public class MovieInfo {
                 ", moviePoster='" + moviePoster + '\'' +
                 ", movieImages='" + movieImages + '\'' +
                 ", movieTrailers='" + movieTrailers + '\'' +
-                ", movieRank=" + movieRank +
                 ", movieActors=" + movieActors +
                 ", interestedUsers=" + interestedUsers +
                 ", notInterestedUsers=" + notInterestedUsers +

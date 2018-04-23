@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<UserInfo, Long>, JpaSpecificationExecutor<UserInfo> {
+public interface UserRepository extends JpaRepository<UserInfo, Long>{
     UserInfo findByUserNameAndPassW(String username, String password);
     UserInfo findByUserName(String username);
 }

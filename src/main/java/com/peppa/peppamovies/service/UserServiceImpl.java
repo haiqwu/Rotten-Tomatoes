@@ -59,15 +59,4 @@ public class UserServiceImpl implements UserService{
         BeanUtils.copyProperties(user,findUser);
         return userRepository.save(user);
     }
-
-    @Override
-    public Page<UserInfo> listUser(Long movieId, Pageable pageable) {
-        return userRepository.findAll(new Specification<UserInfo>() {
-            @Override
-            public Predicate toPredicate(Root<UserInfo> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
-                Join join = root.join("wantsToSeeList");
-                return cb.equal(join.get("id"),movieId);
-            }
-        },pageable);
-    }
 }

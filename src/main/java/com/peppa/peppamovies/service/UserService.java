@@ -16,6 +16,4 @@ public interface UserService {
     UserInfo getUser(Long id);
 
     UserInfo updateUser(Long id, UserInfo user);
-
-    Page<UserInfo> listUser(Long Id, Pageable pageable);
 }

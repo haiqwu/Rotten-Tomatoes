@@ -14,6 +14,4 @@ public interface MovieService {
     MovieInfo updateMovie(Long id, MovieInfo movie);
 
     Page<MovieInfo> listMovie(String query, Pageable pageable);
-
-    List<MovieInfo> listMovieInfo(Integer size);
 }
