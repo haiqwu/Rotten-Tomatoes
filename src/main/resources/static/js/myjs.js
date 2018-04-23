@@ -29,6 +29,12 @@ function login_fun2(){
 }
 
 
+function signup_fun2() {
+    sessionStorage.removeItem("signup_successful");
+    sessionStorage.removeItem("signup_fail");
+}
+
+
 $(window).on('load',function(){
 
     if (sessionStorage.getItem("login_popup") == undefined) {
@@ -59,6 +65,37 @@ $(window).on('load',function(){
 
 });
 
+$(window).on('load',function(){
+
+    if (sessionStorage.getItem("signup_successful") == undefined) {
+        $('#signup_successful_modal').modal('show');
+        // $ .cookie("popup_1_2", "2");
+    }
+
+    //$('#after_login_modal').modal('show');
+    // $('#after_login_modal').modal('show');
+    if (  $('#signup_successful_modal').hasClass('in') == true ){
+        sessionStorage.setItem("signup_successful", "1");
+    }
+
+});
+
+
+$(window).on('load',function(){
+
+    if (sessionStorage.getItem("signup_fail") == undefined) {
+        $('#signup_fail_modal').modal('show');
+        // $ .cookie("popup_1_2", "2");
+    }
+
+    //$('#after_login_modal').modal('show');
+    // $('#after_login_modal').modal('show');
+    if (  $('#signup_fail_modal').hasClass('in') == true ){
+        sessionStorage.setItem("signup_fail", "1");
+    }
+
+});
+
 
 function logout_fun(){
     sessionStorage.removeItem("login_popup");
@@ -69,6 +106,8 @@ function signup_fun() {
     $('#signup_modal')
         .modal('show');
 }
+
+
 
 function peppameter_fun() {
     $('#peppameter_modal')

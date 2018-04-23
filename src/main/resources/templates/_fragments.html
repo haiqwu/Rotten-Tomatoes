@@ -356,7 +356,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <button class="ui fluid large teal submit button">Sign Up</button>
+                            <button class="ui fluid large teal submit button" onclick="signup_fun2()"> Sign Up</button>
                         </div>
                         <div class="actions field">
                             <div class="ui fluid large red deny button" id="cancel2">
@@ -376,32 +376,32 @@
         </div>
     </div>
 
-    <!--<div class="ui m-padded-big modal" id="signup_successful_modal">-->
-        <!--<i class="close icon"></i>-->
-        <!--<div class="ui aligned center aligned grid">-->
-            <!--<div class="column">-->
-                <!--<h2 class="ui image header">-->
-                    <!--<div class="content">-->
-                        <!--Congradulation! Sign Up Successful!-->
-                    <!--</div>-->
-                <!--</h2>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="ui m-padded-big modal" id="signup_successful_modal" th:if="${session.exist == false}">
+        <i class="close icon"></i>
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        Congradulation! Sign Up Successful!
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
 
 
-    <!--<div class="ui m-padded-big modal" id="signup_fail_modal">-->
-        <!--<i class="close icon"></i>-->
-        <!--<div class="ui aligned center aligned grid">-->
-            <!--<div class="column">-->
-                <!--<h2 class="ui image header">-->
-                    <!--<div class="content">-->
-                        <!--Sorry! UserName Already Exist.-->
-                    <!--</div>-->
-                <!--</h2>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="ui m-padded-big modal" id="signup_fail_modal" th:if="${session.exist == true}" >
+        <i class="close icon"></i>
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        Sorry! UserName Already Exist.
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
     
     <!--WHAT IS THE PEPPAMETER?-->
     <div class="ui m-padded-big modal" id="peppameter_modal">
