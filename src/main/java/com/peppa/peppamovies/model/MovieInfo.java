@@ -16,10 +16,6 @@ public class MovieInfo {
     private Long movieID;
     private String secondaryID;
     private String titleType;
-//    private String originalTitle;
-//    private int isAdult;
-//    private int startYear;
-//    private String endYear;
     private int runtimeMinutes;
     private String genres;
     private String movieName;
@@ -32,7 +28,6 @@ public class MovieInfo {
     private String moviePoster;
     private String movieImages;
     private String movieTrailers;
-//    private int movieRank;
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeList")
@@ -41,7 +36,6 @@ public class MovieInfo {
     @ManyToMany(mappedBy = "notInterestedList", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<UserInfo> notInterestedUsers = new ArrayList<>();
-
 
     public MovieInfo() {
     }
@@ -69,14 +63,6 @@ public class MovieInfo {
     public void setMovieName(String movieName) {
         this.movieName = movieName;
     }
-
-//    public Date getYearOpening() {
-//        return yearOpening;
-//    }
-//
-//    public void setYearOpening(Date yearOpening) {
-//        this.yearOpening = yearOpening;
-//    }
 
     public String getBriefIntro() {
         return briefIntro;
@@ -134,14 +120,6 @@ public class MovieInfo {
         this.movieTrailers = movieTrailers;
     }
 
-//    public int getMovieRank() {
-//        return movieRank;
-//    }
-//
-//    public void setMovieRank(int movieRank) {
-//        this.movieRank = movieRank;
-//    }
-
     public List<ActorInfo> getMovieActors() {
         return movieActors;
     }
@@ -161,22 +139,6 @@ public class MovieInfo {
     public String getTitleType() {
         return titleType;
     }
-//
-//    public String getOriginalTitle() {
-//        return originalTitle;
-//    }
-//
-//    public int getIsAdult() {
-//        return isAdult;
-//    }
-//
-//    public int getStartYear() {
-//        return startYear;
-//    }
-//
-//    public String getEndYear() {
-//        return endYear;
-//    }
 
     public int getRuntimeMinutes() {
         return runtimeMinutes;
@@ -197,22 +159,6 @@ public class MovieInfo {
     public void setReleasedDate(Date releasedDate) {
         this.releasedDate = releasedDate;
     }
-
-    //    public void setOriginalTitle(String originalTitle) {
-//        this.originalTitle = originalTitle;
-//    }
-//
-//    public void setIsAdult(int isAdult) {
-//        this.isAdult = isAdult;
-//    }
-//
-//    public void setStartYear(int startYear) {
-//        this.startYear = startYear;
-//    }
-//
-//    public void setEndYear(String endYear) {
-//        this.endYear = endYear;
-//    }
 
     public void setRuntimeMinutes(int runtimeMinutes) {
         this.runtimeMinutes = runtimeMinutes;

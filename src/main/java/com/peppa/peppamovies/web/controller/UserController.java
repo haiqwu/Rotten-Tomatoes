@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -87,8 +88,18 @@ public class UserController {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
         if (currentUser != null) {
-            currentUser.getWantsToSeeList().add(currentMovie);
-            userService.updateUser(currentUser.getUserID(), currentUser);
+            boolean isDupli = false;
+            List<MovieInfo> wts = currentUser.getWantsToSeeList();
+            for(int i=0; i<wts.size(); i++){
+                if(wts.get(i).getMovieID().equals(currentMovie.getMovieID())){
+                    isDupli = true;
+                    break;
+                }
+            }
+            if(!isDupli){
+                currentUser.getWantsToSeeList().add(currentMovie);
+                userService.updateUser(currentUser.getUserID(), currentUser);
+            }
         } else {
             System.out.println("User not log in");
         }
@@ -99,14 +110,22 @@ public class UserController {
     public String handleNotInterested(HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
-
         if (currentUser != null) {
-            currentUser.getNotInterestedList().add(currentMovie);
-            userService.updateUser(currentUser.getUserID(), currentUser);
+            boolean isDupli = false;
+            List<MovieInfo> wts = currentUser.getNotInterestedList();
+            for(int i=0; i<wts.size(); i++){
+                if(wts.get(i).getMovieID().equals(currentMovie.getMovieID())){
+                    isDupli = true;
+                    break;
+                }
+            }
+            if(!isDupli){
+                currentUser.getNotInterestedList().add(currentMovie);
+                userService.updateUser(currentUser.getUserID(), currentUser);
+            }
         } else {
             System.out.println("User not log in");
         }
-
         return "redirect:/movie/" + currentMovie.getMovieID();
     }
 
