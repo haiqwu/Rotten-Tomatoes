@@ -14,12 +14,12 @@ import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 
 @Controller
 public class UserController {
@@ -30,16 +30,11 @@ public class UserController {
     @Autowired
     private MovieReviewService movieReviewService;
     private MovieRankingData movieRankingData;
-
     @Autowired
     private EmailService emailService;
 
-
-
     @GetMapping("/")
     public String loginPage() {
-        //PropertiesManager props = PropertiesManager.getPropertiesManager();
-        //System.out.println(  props.getProperty(FIRST_PROP.toString()   )  );
         return "index";
     }
 
@@ -87,9 +82,9 @@ public class UserController {
             user.setPassW(hashedPassword);
             final String uuid = UUID.randomUUID().toString();
             user.setRegisterUUID(uuid);
-            try{
+            try {
                 emailService.sendRegisterVerification(user, uuid);
-            }catch (MailException me){
+            } catch (MailException me) {
                 me.printStackTrace();
             }
             userService.saveUser(user);
@@ -102,19 +97,19 @@ public class UserController {
     @GetMapping("/account_verification/{user_name}/{uu_id}")
     public String handleAccountVerification(@PathVariable String uu_id, @PathVariable String user_name) {
         UserInfo user = userService.getUserByUserName(user_name);
-        if( user.isEmailVerified()){
+        if (user.isEmailVerified()) {
             System.out.println("Already verified");
             return "email_verify_repeat";
         }
         String uuid = user.getRegisterUUID();
-        if(uuid == null || !uuid.equals(uu_id) ){
+        if (uuid == null || !uuid.equals(uu_id)) {
             System.out.println("Verify Failed");
             return "email_verify_fail";//time expire or verify key not exist
         }
         System.out.println("Verify Success");
         user.setEmailVerified(true);
         user.setRegisterUUID(null);
-        userService.updateUser(user.getUserID(),user);
+        userService.updateUser(user.getUserID(), user);
         return "email_verify_succ";
     }
 
@@ -125,13 +120,13 @@ public class UserController {
         if (currentUser != null) {
             boolean isDupli = false;
             List<MovieInfo> wts = currentUser.getWantsToSeeList();
-            for(int i=0; i<wts.size(); i++){
-                if(wts.get(i).getMovieID().equals(currentMovie.getMovieID())){
+            for (int i = 0; i < wts.size(); i++) {
+                if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
                     break;
                 }
             }
-            if(!isDupli){
+            if (!isDupli) {
                 currentUser.getWantsToSeeList().add(currentMovie);
                 userService.updateUser(currentUser.getUserID(), currentUser);
             }
@@ -148,13 +143,13 @@ public class UserController {
         if (currentUser != null) {
             boolean isDupli = false;
             List<MovieInfo> wts = currentUser.getNotInterestedList();
-            for(int i=0; i<wts.size(); i++){
-                if(wts.get(i).getMovieID().equals(currentMovie.getMovieID())){
+            for (int i = 0; i < wts.size(); i++) {
+                if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
                     break;
                 }
             }
-            if(!isDupli){
+            if (!isDupli) {
                 currentUser.getNotInterestedList().add(currentMovie);
                 userService.updateUser(currentUser.getUserID(), currentUser);
             }

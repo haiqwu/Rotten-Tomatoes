@@ -13,7 +13,7 @@ import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean checkUsername(String username) {
         UserInfo user = userRepository.findByUserName(username);
-        if(user == null){
+        if (user == null) {
             return true;
         }
         return false;
@@ -55,14 +55,15 @@ public class UserServiceImpl implements UserService{
     public UserInfo getUser(Long id) {
         return userRepository.getOne(id);
     }
+
     @Transactional
     @Override
     public UserInfo updateUser(Long id, UserInfo user) {
         UserInfo findUser = userRepository.getOne(id);
-        if(findUser == null){
+        if (findUser == null) {
             //throw new ChangeSetPersister.NotFoundException("NOT EXIST!");
         }
-        BeanUtils.copyProperties(user,findUser);
+        BeanUtils.copyProperties(user, findUser);
         return userRepository.save(user);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -45,19 +46,19 @@ public class MovieController {
     }
 
     @RequestMapping("/search")
-    public String handleSearchAction(@PageableDefault(size = 8, sort ={"movieName"},
-                                     direction = Sort.Direction.DESC) Pageable pageable,
-                                     String query, Model model,HttpSession session) {
-        if(query == null){
+    public String handleSearchAction(@PageableDefault(size = 8, sort = {"movieName"},
+            direction = Sort.Direction.DESC) Pageable pageable,
+                                     String query, Model model, HttpSession session) {
+        if (query == null) {
             Object queryItem = session.getAttribute("queryItem");
-            query = ((String) queryItem) ;
+            query = ((String) queryItem);
         }
         query = query.trim();
-        query = query.replaceAll("\\s+"," ");
-        Page<MovieInfo> queryResult = movieService.listMovie("%"+query+"%", pageable);
-        model.addAttribute("page",queryResult);
-        model.addAttribute("query",query);
-        session.setAttribute("queryItem",query);
+        query = query.replaceAll("\\s+", " ");
+        Page<MovieInfo> queryResult = movieService.listMovie("%" + query + "%", pageable);
+        model.addAttribute("page", queryResult);
+        model.addAttribute("query", query);
+        session.setAttribute("queryItem", query);
         return "search_results";
     }
 

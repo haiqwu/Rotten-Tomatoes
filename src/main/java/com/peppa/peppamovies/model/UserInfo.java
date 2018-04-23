@@ -18,12 +18,8 @@ public class UserInfo {
     @GeneratedValue
     private Long userID;
     private String userName;
-
     private String registerUUID;
     private String resetPasswordUUID;
-
-    @Basic(fetch = FetchType.EAGER)
-    @Lob
     private String firstName;
     private String lastName;
     private String Email;
@@ -39,12 +35,9 @@ public class UserInfo {
     @ManyToMany(cascade = {CascadeType.PERSIST})
     @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
-
     @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<MovieInfo> notInterestedList = new ArrayList<>();
-
-
     @OneToMany(mappedBy = "reviewUser")
     private List<MovieReview> movieReviews = new ArrayList<>();
     @ManyToOne
@@ -262,7 +255,7 @@ public class UserInfo {
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
 }

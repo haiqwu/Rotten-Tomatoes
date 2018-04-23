@@ -18,7 +18,7 @@ public class MovieReview {
     private Date dayCommented;
     private String groupName;
     @ManyToOne
-    @JoinColumn(name="userID", nullable=false)
+    @JoinColumn(name = "userID", nullable = false)
     private UserInfo reviewUser;
 
     public MovieReview() {
