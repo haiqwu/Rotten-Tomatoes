@@ -1,18 +1,34 @@
 $('.ui.dropdown').dropdown();
 
+// $('.ui.search')
+//     .search({
+//
+//         apiSettings: {
+//             url: "https://api.github.com/search/repositories?q={query}"
+//
+//
+//         },
+//         fields: {
+//             results: 'item',
+//             title: 'name',
+//             url: 'html_url'
+//         }
+//     });
+
 $('.ui.search')
     .search({
-        // source: content,
-        // searchFullText: false
         apiSettings: {
-            url: "https://api.github.com/search/repositories?q={query}"
+            url: '//api.github.com/search/repositories?q={query}'
         },
         fields: {
-            results: 'items',
-            title: 'name',
-            url: 'html_url'
-        }
-    });
+            results : 'items',
+            title   : 'name',
+            url     : 'html_url'
+        },
+        minCharacters : 2
+    })
+;
+
 
 $('.ui.sticky').sticky({
     context: '#footer'

@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head th:replace="_fragments :: head(~{::title})">
-    <title>Email Verify Failed</title>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+
+    <title>Email Verify Fail</title>
+
 </head>
 <body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="ui container inverted ">
+    <div class="ui center aligned container">
 
-<div class="ui message">
-    <div class="header">
-        Sorry! Your Email verification failed, please check the following reason and verify again:
+        <h1> Peppa Email Verification</h1>
     </div>
-    <ul class="list">
-        <li>your request key has expired</li>
-        <li>your key is not correct</li>
-    </ul>
+    <br>
+    <br>
+    <br>
+    <div class="ui center aligned grid">
 
+        <div class="ui negative message">
+            <div class="header">
+                Sorry! Your Email verification failed, please check the following reason and verify again:
+            </div>
+
+                <p> your request key has expired </p>
+                <p> your key is not correct </p>
+
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="ui center aligned container" >
+        <a href="localhost:8080" class="ui red button " >Back To Pappa </a>
+
+    </div>
 </div>
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!--footer-->
-<footer th:replace="_fragments :: footerImg()"></footer>
+<!--<footer th:replace="_fragments :: footerImg()"></footer>-->
 <!--js-->
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
-<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
-<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
-<script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+
 </body>
 </html>
