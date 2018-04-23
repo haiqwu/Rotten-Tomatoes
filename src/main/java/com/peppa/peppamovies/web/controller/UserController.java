@@ -4,17 +4,21 @@ import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieRankingData;
 import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.model.UserInfo;
+import com.peppa.peppamovies.service.EmailService;
 import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.UserService;
 import com.peppa.peppamovies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -26,6 +30,11 @@ public class UserController {
     @Autowired
     private MovieReviewService movieReviewService;
     private MovieRankingData movieRankingData;
+
+    @Autowired
+    private EmailService emailService;
+
+
 
     @GetMapping("/")
     public String loginPage() {
@@ -76,11 +85,37 @@ public class UserController {
             user.setEmail(email);
             String hashedPassword = MD5Util.mdCode(password_signup);
             user.setPassW(hashedPassword);
+            final String uuid = UUID.randomUUID().toString();
+            user.setRegisterUUID(uuid);
+            try{
+                emailService.sendRegisterVerification(user, uuid);
+            }catch (MailException me){
+                me.printStackTrace();
+            }
             userService.saveUser(user);
         } else { // already exist
             session.setAttribute("exist", true);
         }
         return "redirect:" + referer;
+    }
+
+    @GetMapping("/account_verification/{user_name}/{uu_id}")
+    public String handleAccountVerification(@PathVariable String uu_id, @PathVariable String user_name) {
+        UserInfo user = userService.getUserByUserName(user_name);
+        if( user.isEmailVerified()){
+            System.out.println("Already verified");
+            return "email_verify_repeat";
+        }
+        String uuid = user.getRegisterUUID();
+        if(uuid == null || !uuid.equals(uu_id) ){
+            System.out.println("Verify Failed");
+            return "email_verify_fail";//time expire or verify key not exist
+        }
+        System.out.println("Verify Success");
+        user.setEmailVerified(true);
+        user.setRegisterUUID(null);
+        userService.updateUser(user.getUserID(),user);
+        return "email_verify_succ";
     }
 
     @GetMapping("/movie/{id}/wants_to_see")

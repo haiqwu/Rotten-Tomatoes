@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <title>Email Verify Successful</title>
+</head>
+<body>
+<div class="ui message">
+    <div class="header">
+        Congradulation!
+    </div>
+    <p>you have verified your email. Go you Peppa to enjoy it</p>
+</div>
+
+
+<!--footer-->
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+<script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+</body>
+</html>

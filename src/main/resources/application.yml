@@ -3,5 +3,5 @@ spring:
     mode: HTML
   profiles:
     active: dev
-    # active: pro 启动生产环境
+    # active: pro
 

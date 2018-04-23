@@ -9,6 +9,8 @@ public interface UserService {
 
     boolean checkUsername(String username);
 
+    UserInfo getUserByUserName(String username);
+
     boolean registeredEmail(String email);
 
     UserInfo saveUser(UserInfo user);

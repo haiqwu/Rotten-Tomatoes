@@ -80,10 +80,10 @@ public class MovieRankingData {
 
     public ArrayList<long[]> loadMovieRankingData() {
         ArrayList<long[]> arr = new ArrayList<long[]>();
-        long[] top_box_office_list = {1309, 2005, 2032, 2006, 2033, 733, 2034, 2035};//  2007, 2036
-        long[] comming_soon = {2009, 2020, 2023, 2024, 2025, 2026, 2027, 2028};// 2029, 2031
+        long[] top_box_office_list = {1309, 2005, 2032, 2006, 2033, 733, 2056, 2057};//  2007, 2036
+        long[] comming_soon = {2009, 2020, 2023, 2024, 2059, 2060, 2062, 2061};// 2029, 2031
         long[] opening_this_week = {2008, 2010, 2011, 2012, 2013, 2014, 2015, 2016};//, 2017, 2018
-        long[] certified_fresh_movies = {1309, 2038, 2006, 2007, 2005, 2039, 2019, 2037};//, 2030, 2003
+        long[] certified_fresh_movies = {1309, 2058, 2006, 2007, 2005, 2042, 2019, 2055};//, 2030, 2003
         arr.add(top_box_office_list);
         arr.add(comming_soon);
         arr.add(opening_this_week);

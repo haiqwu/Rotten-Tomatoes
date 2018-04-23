@@ -19,6 +19,9 @@ public class UserInfo {
     private Long userID;
     private String userName;
 
+    private String registerUUID;
+    private String resetPasswordUUID;
+
     @Basic(fetch = FetchType.EAGER)
     @Lob
     private String firstName;
@@ -206,7 +209,21 @@ public class UserInfo {
         this.userName = userName;
     }
 
+    public String getRegisterUUID() {
+        return registerUUID;
+    }
 
+    public void setRegisterUUID(String registerUUID) {
+        this.registerUUID = registerUUID;
+    }
+
+    public String getResetPasswordUUID() {
+        return resetPasswordUUID;
+    }
+
+    public void setResetPasswordUUID(String resetPasswordUUID) {
+        this.resetPasswordUUID = resetPasswordUUID;
+    }
 
     public List<MovieInfo> getNotInterestedList() {
         return notInterestedList;
