@@ -97,14 +97,7 @@
                 <div class="right menu " th:if="${session.found == null }">
                     <a id="login1" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup1" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
-
                 </div>
-
-                <!--<div class="right menu " th:unless="${session.user }">-->
-                    <!--<a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>-->
-                    <!--<a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>-->
-
-                <!--</div>-->
 
                 <div class="right menu " th:if="${session.found == false }">
                     <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
@@ -152,34 +145,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!--<div class="right menu " th:if="${session.user }">-->
-
-                    <!--<div class="ui m-padded-big modal" id="after_login_modal">-->
-                        <!--<i class="close icon"></i>-->
-                        <!--<div class="ui aligned center aligned grid">-->
-                            <!--<div class="column">-->
-                                <!--<h2 class="ui image header">-->
-                                    <!--<div class="content">-->
-                                        <!--WELCOME TO PEPPA-->
-                                    <!--</div>-->
-                                <!--</h2>-->
-
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                    <!--<div id="username" class="ui dropdown item">-->
-                        <!--<img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">-->
-                        <!--<div class="text" th:text="${session.user.userName}"></div>-->
-                        <!--<i class="dropdown icon"></i>-->
-                        <!--<div class="menu">-->
-                            <!--<a th:href=@{/my_profile} class="item"><i class="user icon"></i>Profile </a>-->
-                            <!--<a href="/logout" class="item"><i class="power off icon"></i>Log Out</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
         </div>
         <div class="ui container">
@@ -261,21 +226,6 @@
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
-
-                        <!--<div class="field">-->
-                            <!--<div class="ui left toggle checkbox">-->
-
-                                <!--<input type="checkbox" name="public">-->
-                                <!--<label>Critics</label>-->
-
-                            <!--</div>-->
-                        <!--</div>-->
-
-                        <!--<div class="ui success message">-->
-                            <!--<div class="header">Login Completed</div>-->
-                            <!--<p>Login Successful</p>-->
-                        <!--</div>-->
-
                         <div class="field">
                             <button class="ui fluid large teal submit button" onclick="login_fun2()">Log In</button>
                         </div>
@@ -390,7 +340,7 @@
     </div>
 
 
-    <div class="ui m-padded-big modal" id="signup_fail_modal" th:if="${session.exist == true}" >
+    <div class="ui m-padded-big modal" id="signup_fail_modal" th:if="${session.exist == true}">
         <i class="close icon"></i>
         <div class="ui aligned center aligned grid">
             <div class="column">
@@ -402,7 +352,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--WHAT IS THE PEPPAMETER?-->
     <div class="ui m-padded-big modal" id="peppameter_modal">
         <i class="close icon"></i>

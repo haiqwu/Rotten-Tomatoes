@@ -1,20 +1,5 @@
 $('.ui.dropdown').dropdown();
 
-// $('.ui.search')
-//     .search({
-//
-//         apiSettings: {
-//             url: "https://api.github.com/search/repositories?q={query}"
-//
-//
-//         },
-//         fields: {
-//             results: 'item',
-//             title: 'name',
-//             url: 'html_url'
-//         }
-//     });
-
 $('.ui.search')
     .search({
         apiSettings: {
