@@ -1,15 +1,16 @@
 package com.peppa.peppamovies.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MovieRankingData {
-    private ArrayList<MovieInfo> moviesOpeningThisWeek;
-    private ArrayList<MovieInfo> topBoxMovies;
-    private ArrayList<MovieInfo> comingSoonMovies;
-    private ArrayList<MovieInfo> certifiedFreshMovies;
-    private ArrayList<MovieInfo> topMovies;
-    private ArrayList<MovieInfo> rollingBarMovies;
+    private List<MovieInfo> moviesOpeningThisWeek;
+    private List<MovieInfo> topBoxMovies;
+    private List<MovieInfo> comingSoonMovies;
+    private List<MovieInfo> certifiedFreshMovies;
+    private List<MovieInfo> topMovies;
+    private List<MovieInfo> rollingBarMovies;
     private MovieInfo webBackgroundMovie;
 
     public MovieRankingData() {
@@ -22,51 +23,51 @@ public class MovieRankingData {
         webBackgroundMovie = new MovieInfo();
     }
 
-    public ArrayList<MovieInfo> getMoviesOpeningThisWeek() {
+    public List<MovieInfo> getMoviesOpeningThisWeek() {
         return moviesOpeningThisWeek;
     }
 
-    public void setMoviesOpeningThisWeek(ArrayList<MovieInfo> moviesOpeningThisWeek) {
+    public void setMoviesOpeningThisWeek(List<MovieInfo> moviesOpeningThisWeek) {
         this.moviesOpeningThisWeek = moviesOpeningThisWeek;
     }
 
-    public ArrayList<MovieInfo> getTopBoxMovies() {
+    public List<MovieInfo> getTopBoxMovies() {
         return topBoxMovies;
     }
 
-    public void setTopBoxMovies(ArrayList<MovieInfo> topBoxMovies) {
+    public void setTopBoxMovies(List<MovieInfo> topBoxMovies) {
         this.topBoxMovies = topBoxMovies;
     }
 
-    public ArrayList<MovieInfo> getComingSoonMovies() {
+    public List<MovieInfo> getComingSoonMovies() {
         return comingSoonMovies;
     }
 
-    public void setComingSoonMovies(ArrayList<MovieInfo> comingSoonMovies) {
+    public void setComingSoonMovies(List<MovieInfo> comingSoonMovies) {
         this.comingSoonMovies = comingSoonMovies;
     }
 
-    public ArrayList<MovieInfo> getCertifiedFreshMovies() {
+    public List<MovieInfo> getCertifiedFreshMovies() {
         return certifiedFreshMovies;
     }
 
-    public void setCertifiedFreshMovies(ArrayList<MovieInfo> certifiedFreshMovies) {
+    public void setCertifiedFreshMovies(List<MovieInfo> certifiedFreshMovies) {
         this.certifiedFreshMovies = certifiedFreshMovies;
     }
 
-    public ArrayList<MovieInfo> getTopMovies() {
+    public List<MovieInfo> getTopMovies() {
         return topMovies;
     }
 
-    public void setTopMovies(ArrayList<MovieInfo> topMovies) {
+    public void setTopMovies(List<MovieInfo> topMovies) {
         this.topMovies = topMovies;
     }
 
-    public ArrayList<MovieInfo> getRollingBarMovies() {
+    public List<MovieInfo> getRollingBarMovies() {
         return rollingBarMovies;
     }
 
-    public void setRollingBarMovies(ArrayList<MovieInfo> rollingBarMovies) {
+    public void setRollingBarMovies(List<MovieInfo> rollingBarMovies) {
         this.rollingBarMovies = rollingBarMovies;
     }
 

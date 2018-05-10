@@ -33,12 +33,12 @@ public class UserInfo {
     private Date dateDeActivatedFromCritic;
     private String followedSocialMedias;
     @ManyToMany(cascade = {CascadeType.PERSIST})
-    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
+//    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(cascade = {CascadeType.PERSIST})//, fetch = FetchType.EAGER)
+//    @Fetch(value = FetchMode.SUBSELECT)
     private List<MovieInfo> notInterestedList = new ArrayList<>();
-    @OneToMany(mappedBy = "reviewUser")
+    @OneToMany(mappedBy = "reviewUser" )
     private List<MovieReview> movieReviews = new ArrayList<>();
     @ManyToOne
     private CriticGroup group;

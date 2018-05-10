@@ -12,6 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @Controller
 public class MovieController {
@@ -26,12 +31,23 @@ public class MovieController {
     }
 
     @GetMapping("/opening_this_week")
-    public String handleViewMoviesOpeningThisWeek() {
+    public String handleViewMoviesOpeningThisWeek(@PageableDefault(size = 8, sort = {"releasedDate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(2018, Calendar.JANUARY, 1);
+        Date date = cal.getTime();
+        Page<MovieInfo> movies = movieService.listOpeningMovie(date, pageable);
+        model.addAttribute("page", movies);
+        model.addAttribute("link", "/opening_this_week");
         return "movie_category_info";
     }
 
     @GetMapping("/top_box_office")
-    public String handleViewTopBoxMovies() {
+    public String handleViewTopBoxMovies(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Page<MovieInfo> movies = movieService.listTopMovie(pageable);
+        model.addAttribute("page", movies);
+        model.addAttribute("link", "/top_box_office");
         return "movie_category_info";
     }
 

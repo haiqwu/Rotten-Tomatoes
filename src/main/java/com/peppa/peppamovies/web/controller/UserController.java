@@ -10,6 +10,10 @@ import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.UserService;
 import com.peppa.peppamovies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -34,7 +36,15 @@ public class UserController {
     private EmailService emailService;
 
     @GetMapping("/")
-    public String loginPage() {
+    public String loginPage(@PageableDefault(size = 8, sort = {"releasedDate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(2018, Calendar.JANUARY, 1);
+        Date date = cal.getTime();
+        Page<MovieInfo> moviesOpen = movieService.listOpeningMovie(date, pageable);
+        model.addAttribute("pageOpen", moviesOpen);
+        Page<MovieInfo> moviesTop = movieService.listTopMovie(pageable);
+        model.addAttribute("pageTop", moviesTop);
         return "index";
     }
 
@@ -288,27 +298,16 @@ public class UserController {
 
     /*helper functions*/
     @ModelAttribute("movie_lists")
-    public ArrayList<ArrayList<MovieInfo>> loadMovieLists() {
+    public ArrayList<List<MovieInfo>> loadMovieLists() {
         movieRankingData = new MovieRankingData();
         ArrayList<long[]> ranks = movieRankingData.loadMovieRankingData();
         int num_per_list = 8;
-        //1. get top box office movies:
-        long[] top_box_office_list = ranks.get(0);
-        for (int i = 0; i < num_per_list; i++) {
-            MovieInfo movie = movieService.getMovie(top_box_office_list[i]);
-            movieRankingData.getTopBoxMovies().add(movie);
-        }
+
         //2. get comming_soon movies:
         long[] comming_soon_list = ranks.get(1);
         for (int i = 0; i < num_per_list; i++) {
             MovieInfo movie = movieService.getMovie(comming_soon_list[i]);
             movieRankingData.getComingSoonMovies().add(movie);
-        }
-        //3. get opening_this_week movies:
-        long[] opening_this_week_list = ranks.get(2);
-        for (int i = 0; i < num_per_list; i++) {
-            MovieInfo movie = movieService.getMovie(opening_this_week_list[i]);
-            movieRankingData.getMoviesOpeningThisWeek().add(movie);
         }
         //4. certified_fresh_movies movies:
         long[] certified_fresh_movies_list = ranks.get(3);
@@ -316,19 +315,19 @@ public class UserController {
             MovieInfo movie = movieService.getMovie(certified_fresh_movies_list[i]);
             movieRankingData.getCertifiedFreshMovies().add(movie);
         }
-        ArrayList<ArrayList<MovieInfo>> loaded_movie_lists = new ArrayList<>();
+        ArrayList<List<MovieInfo>> loaded_movie_lists = new ArrayList<>();
         loaded_movie_lists.add(movieRankingData.getMoviesOpeningThisWeek());
         loaded_movie_lists.add(movieRankingData.getTopBoxMovies());
         loaded_movie_lists.add(movieRankingData.getCertifiedFreshMovies());
         loaded_movie_lists.add(movieRankingData.getComingSoonMovies());
         return loaded_movie_lists;
     }
-
-    public Byte[] toByteArr(byte[] bytes) {
-        Byte[] byteObjects = new Byte[bytes.length];
-        int i = 0;
-        for (byte b : bytes)
-            byteObjects[i++] = b;
-        return byteObjects;
-    }
+//
+//    public Byte[] toByteArr(byte[] bytes) {
+//        Byte[] byteObjects = new Byte[bytes.length];
+//        int i = 0;
+//        for (byte b : bytes)
+//            byteObjects[i++] = b;
+//        return byteObjects;
+//    }
 }
