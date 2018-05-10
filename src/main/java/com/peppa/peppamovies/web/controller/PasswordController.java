@@ -5,7 +5,6 @@ import com.peppa.peppamovies.service.EmailService;
 import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.UserService;
 import com.peppa.peppamovies.util.MD5Util;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;

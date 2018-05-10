@@ -34,9 +34,42 @@ public class MovieController {
     public String handleViewMoviesOpeningThisWeek(@PageableDefault(size = 8, sort = {"releasedDate"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Calendar cal = Calendar.getInstance();
-        cal.set(2018, Calendar.JANUARY, 1);
-        Date date = cal.getTime();
-        Page<MovieInfo> movies = movieService.listOpeningMovie(date, pageable);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int dd = cal.get(Calendar.DATE);
+        int day = cal.get(Calendar.DAY_OF_WEEK);
+        int dayEnd = -1;
+        int dayStart = -1;
+        switch (day) {
+            case Calendar.SUNDAY:
+                dayStart = dd - 6;
+                dayEnd = dd;
+            case Calendar.MONDAY:
+                dayStart = dd;
+                dayEnd = dd + 6;
+            case Calendar.TUESDAY:
+                dayStart = dd - 1;
+                dayEnd = dd + 5;
+            case Calendar.WEDNESDAY:
+                dayStart = dd - 2;
+                dayEnd = dd + 4;
+            case Calendar.THURSDAY:
+                dayStart = dd - 3;
+                dayEnd = dd + 3;
+            case Calendar.FRIDAY:
+                dayStart = dd - 4;
+                dayEnd = dd + 2;
+            case Calendar.SATURDAY:
+                dayStart = dd - 5;
+                dayEnd = dd + 1;
+        }
+        Calendar calStart = Calendar.getInstance();
+        calStart.set(year, month, dayStart);
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.set(year, month, dayEnd);
+        Date dateStart = calStart.getTime();
+        Date dateEnd = calEnd.getTime();
+        Page<MovieInfo> movies = movieService.listOpeningMovie(dateStart, dateEnd, pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/opening_this_week");
         return "movie_category_info";
@@ -52,7 +85,12 @@ public class MovieController {
     }
 
     @GetMapping("/comming_soon")
-    public String handleViewComingSoonMovies() {
+    public String handleViewComingSoonMovies(@PageableDefault(size = 8, sort = {"releasedDate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Date date = new Date();
+        Page<MovieInfo> movies = movieService.listComing(date, pageable);
+        model.addAttribute("page", movies);
+        model.addAttribute("link", "/comming_soon");
         return "movie_category_info";
     }
 
