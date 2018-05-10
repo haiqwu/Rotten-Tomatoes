@@ -66,4 +66,13 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(user, findUser);
         return userRepository.save(user);
     }
+
+    @Transactional
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.delete( getUser(id) );
+    }
+
+
+
 }

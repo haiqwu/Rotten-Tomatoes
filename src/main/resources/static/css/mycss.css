@@ -148,3 +148,7 @@ img {
 .m-inline-block{
     display: inline-block !important;
 }
+
+.review-padding{
+    margin-bottom: 10px;!important;
+}

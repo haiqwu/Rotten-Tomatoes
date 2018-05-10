@@ -18,8 +18,8 @@
 
                 <div class="m-profile-left-inner-padding">
                     <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="@{/images/portrait.png}" alt="Image"></a></div>
-                    <a href="#">First Last</a>
-                    <div><a href="#">Manage Account</a></div>
+                    <a href="#" th:text="${session.user.userName}">First Last</a>
+                    <div><a href="#" th:href="@{/account/{id}(id=${session.user.userID})}">Manage Account</a></div>
                     <div><a href="#">Profile Summary</a></div>
                 </div>
 
@@ -56,16 +56,190 @@
             <!--right-->
             <div class="twelve wide column">
 
-                <div class="ui inverted segment">
-                    <div class="ui inverted secondary pointing menu">
-                        <a th:href=@{/profile_summary}  href="profile_summary.html" class="item">Summary</a>
-                        <a class="item">Movie Ratings</a>
-                        <a class="item">Want to see / Not Interested</a>
-                        <a class="item">My critics</a>
+                <div class="ui top inverted attached tabular menu ">
+                    <a class="item active" data-tab="first">Summary</a>
+                    <a class="item" data-tab="second">Want To See</a>
+                    <a class="item " data-tab="third">Not Interested</a>
+                    <a class="item " data-tab="four">Rating History</a>
+                </div>
+                <!--Summary detail-->
+                <!--tab 1-->
+                <div class="ui inverted bottom attached tab segment active" data-tab="first">
+
+                    <!--want to see movie-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--NOT INTEREST MOVIE-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--want to see tv-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--NOT INTEREST tv-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--rating movie-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                                    <p>score</p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Want to see second-->
+                <!--tab 2-->
+                <div class="ui inverted bottom attached tab segment" data-tab="second">
+                    <!--want to see movie-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- want to see tv-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- not interest-->
+                <!--tab 3-->
+                <div class="ui inverted bottom attached tab segment " data-tab="third">
+                    <!--NOT INTEREST MOVIE-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!--NOT INTEREST tv-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--rating history-->
+                <!-- tab 4-->
+                <div class="ui inverted bottom attached tab segment " data-tab="four">
+                    <!--rating movie-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                                    <p>score</p>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+
+
 
         </div>
     </div>
@@ -73,10 +247,14 @@
 
 <footer th:replace="_fragments :: footerImg()"></footer>
 <!--js-->
+
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
 <script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
 <script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+<script>
+    $('.menu .item').tab({history:false});
+</script>
 </body>
 </html>

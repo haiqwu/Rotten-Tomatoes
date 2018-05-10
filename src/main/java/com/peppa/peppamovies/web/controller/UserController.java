@@ -65,17 +65,58 @@ public class UserController {
 
     @GetMapping("/logout")
     public String handleLogout(HttpSession session, HttpServletRequest request) {
-        String referer = request.getHeader("Referer");
+        //String referer = request.getHeader("Referer");
         session.removeAttribute("user");
         session.removeAttribute("found");
-        return "redirect:" + referer;
+        return "redirect:" ;
     }
 
-    @GetMapping("/my_profile")
-    public String handleProfileSummaryPage() {
+    @GetMapping("/my_profile/{id}")
+    public String handleProfileSummaryPage(@PathVariable Long id) {
+        //UserInfo user = userService.getUserByUserName(un);
+        //session.setAttribute();
+        System.out.println(id);
+
         return "profile_template";
     }
 
+    @GetMapping("/account/{id}")
+    public String handleAccountSetting(@PathVariable Long id){
+        System.out.println(id);
+        return "account_set";
+    }
+
+    @GetMapping("/personal_info/{id}")
+    public String handlePersonalInfo(@PathVariable Long id){
+        System.out.println(id);
+        return "personal_info";
+    }
+
+    @GetMapping("/change_email/{id}")
+    public String handleChangeEmail(@PathVariable Long id){
+        System.out.println(id);
+        return "change_email";
+    }
+
+    @GetMapping("/change_password/{id}")
+    public String handleChangePassword(@PathVariable Long id){
+        System.out.println(id);
+        return "change_password";
+    }
+
+    @GetMapping("/privacy_setting/{id}")
+    public String handlePrivacySetting(@PathVariable Long id){
+        System.out.println(id);
+        return "privacy_setting";
+    }
+
+    @GetMapping("/delete_account/{id}")
+    public String handleDeleteAccount(@PathVariable Long id){
+        System.out.println(id);
+        return "delete_account";
+    }
+
+    
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
                                @RequestParam String email, @RequestParam String password_signup, @RequestParam String re_password,

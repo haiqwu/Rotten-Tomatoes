@@ -38,7 +38,7 @@ public class UserInfo {
     @ManyToMany(cascade = {CascadeType.PERSIST})//, fetch = FetchType.EAGER)
 //    @Fetch(value = FetchMode.SUBSELECT)
     private List<MovieInfo> notInterestedList = new ArrayList<>();
-    @OneToMany(mappedBy = "reviewUser")
+    @OneToMany(mappedBy = "reviewUser" )
     private List<MovieReview> movieReviews = new ArrayList<>();
     @ManyToOne
     private CriticGroup group;
