@@ -31,10 +31,10 @@ public class MovieInfo {
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeList")
-    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
+//    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<UserInfo> interestedUsers = new ArrayList<>();
-    @ManyToMany(mappedBy = "notInterestedList", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(mappedBy = "notInterestedList")//, fetch = FetchType.EAGER)
+//    @Fetch(value = FetchMode.SUBSELECT)
     private List<UserInfo> notInterestedUsers = new ArrayList<>();
 
     public MovieInfo() {

@@ -19,69 +19,45 @@
                         <div class="ui inverted secondary stackable vertical menu">
                             <div class="ui teal header item">IN THEATERS</div>
                             <div class="m-padded-right">
-                                <a href="#" class="active item">Opening This Week</a>
-                                <a href="#" class="item">Top Box Office</a>
+                                <a th:href=@{/opening_this_week} href="#" class="item">Opening This Week</a>
+                                <a th:href=@{/top_box_office} href="#" class="item">Top Box Office</a>
                                 <a href="#" class="item">Coming Soon</a>
                                 <a href="#" class="item">Certified Fresh Movies</a>
                             </div>
-                        </div>
-
-                        <div class="ui inverted secondary stackable vertical menu">
-                            <div class="ui teal header item">RECOMMENDED MOVIES</div>
-                            <div class="m-padded-right">
-                                <a href="#" class="active item">movie</a>
-                                <a href="#" class="item">movie</a>
-                                <a href="#" class="item">movie</a>
-                                <a href="#" class="item">movie</a>
-                            </div>
-                        </div>
-
-                        <div class="ui grid container">
-                            <div class="column">
-                                <a href="#"><img class="ui fluid rounded image" src="../static/images/1.jpg"
-                                                 th:src="@{/images/1.jpg}" alt="Image"></a>
-                            </div>
-                        </div>
-
-                        <div class="ui medium rectangle ad">
-
-                            <!--<ins class="adsbygoogle"-->
-                            <!--style="display:inline-block;width:300px;height:250px"-->
-                            <!--data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"-->
-                            <!--data-ad-slot="XXXXXXXXXX"></ins>-->
-                            <!--<script>-->
-                            <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
-                            <!--</script>-->
-
-                        </div>
-                        <div class="ui leaderboard ad">
-
-                            <!--<ins class="adsbygoogle"-->
-                            <!--style="display:inline-block;width:728px;height:90px"-->
-                            <!--data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"-->
-                            <!--data-ad-slot="XXXXXXXXXXXXXXXX"></ins>-->
-                            <!--<script>-->
-                            <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
-                            <!--</script>-->
-
                         </div>
                     </div>
                 </nav>
             </div>
 
             <!--movie list-->
-            <div class="twelve wide column">
-                <h2 class="ui teal center aligned header">Coming Soon</h2>
-                <div class="ui center aligned grid container">
-                    <div class="four wide column">
-                        <a href="#"><img class="ui fluid image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}"
-                                         alt="Image"></a>
-                        <h4>Black Panther</h4>
+            <div class="twelve wide column grid">
+                <!--<h2 class="ui teal center aligned header">Coming Soon</h2>-->
+                <div class="ui center aligned  container " th:each="singleMovie : ${page.content}">
+                    <div class="four wide column ">
+                        <a class="ui container" href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
+                        <a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a>
                         <div id="star_rate" class=" ui big star rating"></div>
                         <p class="m-opacity-mini">In Theaters Apr 6</p>
                     </div>
                 </div>
+
+                <div class="ui bottom attached inverted segment" th:if="${page.totalPages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#" th:href="@{${link}(page=${page.number-1},size=${page.size})}" th:unless="${page.first}" class="ui mini teal basic button">Previous Page</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{${link}(page=${page.number+1},size=${page.size})}" th:unless="${page.last}" class="ui mini teal basic button">Next Page</a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
+
+
+
+
         </div>
     </div>
 </div>

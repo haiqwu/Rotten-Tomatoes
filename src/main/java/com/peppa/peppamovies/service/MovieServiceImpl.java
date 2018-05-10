@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -46,5 +48,34 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Page<MovieInfo> listMovie(String query, Pageable pageable) {
         return movieRepository.findByQuery(query, pageable);
+    }
+
+    @Transactional
+    @Override
+    public Page<MovieInfo> listOpeningMovie(Date date, Pageable pageable) {
+        return movieRepository.findByDate(date, pageable);
+    }
+
+    @Transactional
+    @Override
+    public List<MovieInfo> listOpeningMovieL(Date date) {
+        return movieRepository.findByDateList(date);
+    }
+
+    @Transactional
+    @Override
+    public Page<MovieInfo> listTopMovie(Pageable pageable) {
+        return movieRepository.findByRate(pageable);
+    }
+
+    @Transactional
+    @Override
+    public List<MovieInfo> listTopMovieL() {
+        List<MovieInfo> movies = movieRepository.findByRateList();
+        List<MovieInfo> moviesTem = new ArrayList<>();
+        for(int i=0; i<10; i++){
+            moviesTem.add(movies.get(i));
+        }
+        return moviesTem;
     }
 }

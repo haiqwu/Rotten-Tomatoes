@@ -27,7 +27,7 @@
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="teal header inverted ">Opening In Theater</h2>
+                            <h2 class="teal header inverted ">Opening This Week</h2>
                         </div>
                         <div class="column right aligned inverted ">
                             <div class="view-all">
@@ -38,7 +38,7 @@
                 </div>
                     <!--movie body-->
                     <div class="ui grid container inverted movie-body">
-                        <div class="four wide center aligned column"  th:each="tag : ${movie_lists[0]}"  >
+                        <div class="four wide center aligned column"  th:each="tag : ${pageOpen.content}"  >
                             <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                             <h4 th:text="${tag.movieName}">Black Panther   </h4>
                             <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="ui grid container inverted movie-body">
-                    <div class="four wide center aligned column"  th:each="tag : ${movie_lists[1]}"  >
+                    <div class="four wide center aligned column"  th:each="tag : ${pageTop.content}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
                         <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
@@ -140,21 +140,21 @@
         <div class="ui grid">
 
             <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/images/1.jpg" th:poster="@{/videos/black-panther.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/1.mp4}" type='video/mp4'>
+                    poster="../static/images/1.jpg" th:poster="@{/images/movie_posters/tt1825683poster_1.jpeg}" data-setup="{}">
+                <source src="../static/videos/1.mp4" th:src="@{/videos/tt1825683trailer.mp4}" type='video/mp4'>
             </video>
 
             <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/Chappaquiddick.jpeg" th:poster="@{/videos/Chappaquiddick.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/Chappaquiddick.mp4}" type='video/mp4'>
+                    poster="../static/videos/Chappaquiddick.jpeg" th:poster="@{/images/movie_posters/tt2557478poster_1.jpeg}" data-setup="{}">
+                <source src="../static/videos/1.mp4" th:src="@{/videos/tt2557478trailer.mp4}" type='video/mp4'>
             </video>
             <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/pacific.jpeg" th:poster="@{/videos/pacific.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/pacific.mp4}" type='video/mp4'>
+                    poster="../static/videos/pacific.jpeg" th:poster="@{/images/movie_posters/tt5270948poster_1.jpeg}" data-setup="{}">
+                <source src="../static/videos/1.mp4" th:src="@{/videos/tt5270948trailer.mp4}" type='video/mp4'>
             </video>
             <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/read-play-one.jpeg" th:poster="@{/videos/read-play-one.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/ready_player_one.mp4}" type='video/mp4'>
+                    poster="../static/videos/read-play-one.jpeg" th:poster="@{/images/movie_posters/tt6644200poster_1.jpeg}" data-setup="{}">
+                <source src="../static/videos/1.mp4" th:src="@{/videos/tt6644200trailer.mp4}" type='video/mp4'>
             </video>
             <video class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
                    poster="../static/videos/a-quite-place.jpeg" th:poster="@{/videos/a-quite-place.jpeg}" data-setup="{}">

@@ -15,8 +15,8 @@
             <!--Trailer-->
             <div class="sixteen wide column">
                 <video  class="video-js vjs-big-play-centered " width="100%" height="300" controls preload="auto"
-                        poster="../static/images/1.jpg" th:poster="@{/videos/black-panther.jpeg}" data-setup="{}">
-                    <source src="../static/videos/1.mp4" th:src="@{/videos/1.mp4}" type='video/mp4'>
+                        poster="../static/images/1.jpg" th:poster="@{${movie.moviePoster}}" data-setup="{}">
+                    <source src="../static/videos/tt1825683trailer.mp4" th:src="@{${movie.movieTrailers}}" type='video/mp4'>
                 </video>
             </div>
             <br>
