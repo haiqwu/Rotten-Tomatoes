@@ -11,51 +11,10 @@
 <nav th:replace="_fragments :: navBar()"></nav>
 <div class="ui container">
     <div class="ui inverted attached segment">
-        <div class="ui grid">
+        <div class="ui container">
 
-            <!--left-->
-            <div class="four wide column">
-
-                <div class="m-profile-left-inner-padding">
-                    <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="@{/images/portrait.png}" alt="Image"></a></div>
-                    <a href="#" th:text="${session.user.userName}">First Last</a>
-                    <div><a href="#" th:href="@{/account/{id}(id=${session.user.userID})}">Manage Account</a></div>
-                    <div><a href="#">Profile Summary</a></div>
-
-                </div>
-
-                <!--profile stats-->
-                <div>
-                    <div class="ui teal m-title inverted attached segment">
-                        <div class="ui tiny header item">Profile Stats</div>
-                    </div>
-
-                    <div class="">
-                        <h4>Total Profile Views: 0</h4>
-                        <h4>Profile Views Last 7 Days: 0</h4>
-                    </div>
-                </div>
-
-                <!--about-->
-                <div>
-                    <div class="ui teal m-title inverted attached segment two column grid">
-                        <div class="column">
-                            <div class="ui tiny inverted header item">About</div>
-                        </div>
-                        <div class="right aligned column">
-                            <a class="ui right aligned column" href="#">Edit</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Member Since: Feburuary 2018</h4>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!--right-->
-            <div class="twelve wide column">
+            <!--body-->
+            <div class="ui grid">
 
                 <div class="ui top inverted attached tabular menu ">
                     <a class="item active" data-tab="first">Summary</a>

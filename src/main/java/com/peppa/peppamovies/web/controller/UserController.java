@@ -52,12 +52,20 @@ public class UserController {
     public String handleLogin(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request) {
         String referer = request.getHeader("Referer");
         UserInfo user = userService.checkUser(username, MD5Util.mdCode(password));
+        session.setAttribute("type",0); // not login click
         if (user != null) {
             session.setAttribute("user", user);
             session.setAttribute("found", true);
+            if(user.getUserName().equals("admin")){
+                session.setAttribute("type",1); // admin
+            }
+            else{
+                session.setAttribute("type",2); // common user
+            }
             return "redirect:" + referer;
         } else {
             session.setAttribute("found", false);
+            session.setAttribute("type",3); // not found
             System.out.println("NOLogin");
             return "redirect:" + referer;
         }
@@ -68,8 +76,17 @@ public class UserController {
         //String referer = request.getHeader("Referer");
         session.removeAttribute("user");
         session.removeAttribute("found");
+        session.removeAttribute("type");
         return "redirect:" ;
     }
+
+
+    @GetMapping("/admin_summary")
+    public String handleAdminSummary(){
+        return "admin_summary";
+    }
+
+
 
     @GetMapping("/my_profile/{id}")
     public String handleProfileSummaryPage(@PathVariable Long id) {
@@ -240,6 +257,11 @@ public class UserController {
     @GetMapping("/about")
     public String handleAboutPeppaTom() {
         return "about";
+    }
+
+    @GetMapping("/email_verify")
+    public String handleEmailVerify(){
+        return "index";
     }
 
     public void handleShowCriticInfo() {

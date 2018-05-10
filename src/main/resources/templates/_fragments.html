@@ -94,12 +94,12 @@
                 </div>
 
                 <!-- code if no user info is being passed -->
-                <div class="right menu " th:if="${session.found == null }">
+                <div class="right menu " th:unless="${session.type }">
                     <a id="login1" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup1" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
-                <div class="right menu " th:if="${session.found == false }">
+                <div class="right menu " th:if="${session.found == 3 }">
                     <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                     <div class="ui m-padded-big modal" id="notfound_login_modal">
@@ -118,7 +118,7 @@
 
                 </div>
 
-                <div class="right menu " th:if="${session.found == true }">
+                <div class="right menu " th:if="${session.type == 2 }">
 
                     <div class="ui m-padded-big modal" id="after_login_modal">
                         <i class="close icon"></i>
@@ -145,6 +145,24 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <div class="right menu " th:if="${session.type == 1 }">
+
+                    <div id="admin" class="ui dropdown item">
+                        <img class="ui avatar image" src="../static/images/1.jpg" th:src="@{/images/1.jpg}" alt="fail">
+                        <div class="text" th:text="${session.user.userName}"></div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a th:href=@{/admin_summary} class="item"><i class="user icon"></i>Administration </a>
+                            <a href="/logout" class="item" onclick="logout_fun()"><i class="power off icon"></i>Log Out</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
         <div class="ui container">

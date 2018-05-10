@@ -32,10 +32,12 @@
             <!--movie list-->
             <div class="twelve wide column grid">
                 <!--<h2 class="ui teal center aligned header">Coming Soon</h2>-->
-                <div class="ui center aligned  container " th:each="singleMovie : ${page.content}">
-                    <div class="four wide column ">
-                        <a class="ui container" href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
-                        <a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a>
+                <!--<div class="ui center aligned  container " th:each="singleMovie : ${page.content}">-->
+                <div class="ui grid">
+                    <div class="four wide column "  th:each="singleMovie : ${page.content}">
+                        <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
+
+                        <div><a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a></div>
                         <div id="star_rate" class=" ui big star rating"></div>
                         <p class="m-opacity-mini">In Theaters Apr 6</p>
                     </div>
