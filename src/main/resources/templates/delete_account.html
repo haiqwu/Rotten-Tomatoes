@@ -23,9 +23,10 @@
         <p>Your Account will be deleted permanently </p></div>
         <br>
         <br>
-    <div class="ui form">
-        <button class="negative ui button" type="submit">Delete Account</button>
-    </div>
+        <form  th:action="@{/my_profile/{id}/delete_account(id=${session.user.userID})}" method="post" >
+            <button class="negative ui button" type="submit">Delete Account</button>
+        </form>
+
         <br>
         <br>
     </div>

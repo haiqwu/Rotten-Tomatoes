@@ -16,11 +16,9 @@ public interface MovieService {
 
     Page<MovieInfo> listMovie(String query, Pageable pageable);
 
-    Page<MovieInfo> listOpeningMovie(Date date, Pageable pageable);
+    Page<MovieInfo> listOpeningMovie(Date dateStart, Date dateEnd, Pageable pageable);
 
     Page<MovieInfo> listTopMovie(Pageable pageable);
 
-    List<MovieInfo> listOpeningMovieL(Date date);
-
-    List<MovieInfo> listTopMovieL();
+    Page<MovieInfo> listComing(Date date, Pageable pageable);
 }

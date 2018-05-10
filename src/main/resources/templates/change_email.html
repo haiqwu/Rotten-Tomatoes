@@ -15,9 +15,13 @@
 <div class="ui container">
     <div class="ui attached segment">
     <label>Current email</label>
-    <p>haiqi.wu@stonybrook.edu</p>
-    <form class="ui form">
+    <p   th:text="${session.user.Email}">    </p>
+    <form class="ui form"  th:action="@{/my_profile/{id}/change_email(id=${session.user.userID})}" method="post"    >
 
+        <div class="field">
+            <label>Account Password</label>
+            <input type="text" name="enteredPasswd" placeholder="account password">
+        </div>
         <div class="field">
             <label>New email</label>
             <input type="text" name="email_change_email" placeholder="new email">

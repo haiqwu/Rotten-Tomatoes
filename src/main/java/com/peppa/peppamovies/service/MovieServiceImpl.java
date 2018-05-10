@@ -52,14 +52,14 @@ public class MovieServiceImpl implements MovieService {
 
     @Transactional
     @Override
-    public Page<MovieInfo> listOpeningMovie(Date date, Pageable pageable) {
-        return movieRepository.findByDate(date, pageable);
+    public Page<MovieInfo> listOpeningMovie(Date dateStart, Date dateEnd, Pageable pageable) {
+        return movieRepository.findByTwoDate(dateStart, dateEnd, pageable);
     }
 
     @Transactional
     @Override
-    public List<MovieInfo> listOpeningMovieL(Date date) {
-        return movieRepository.findByDateList(date);
+    public Page<MovieInfo> listComing(Date date, Pageable pageable) {
+        return movieRepository.findByDate(date, pageable);
     }
 
     @Transactional
@@ -68,14 +68,4 @@ public class MovieServiceImpl implements MovieService {
         return movieRepository.findByRate(pageable);
     }
 
-    @Transactional
-    @Override
-    public List<MovieInfo> listTopMovieL() {
-        List<MovieInfo> movies = movieRepository.findByRateList();
-        List<MovieInfo> moviesTem = new ArrayList<>();
-        for(int i=0; i<10; i++){
-            moviesTem.add(movies.get(i));
-        }
-        return moviesTem;
-    }
 }
