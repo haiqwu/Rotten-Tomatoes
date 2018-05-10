@@ -14,9 +14,10 @@
         <div class="ui grid">
             <!--Trailer-->
             <div class="sixteen wide column">
-                <video  class="video-js vjs-big-play-centered " width="100%" height="300" controls preload="auto"
-                        poster="../static/images/1.jpg" th:poster="@{${movie.moviePoster}}" data-setup="{}">
-                    <source src="../static/videos/tt1825683trailer.mp4" th:src="@{${movie.movieTrailers}}" type='video/mp4'>
+                <video class="video-js vjs-big-play-centered " width="100%" height="300" controls preload="auto"
+                       poster="../static/images/1.jpg" th:poster="@{${movie.moviePoster}}" data-setup="{}">
+                    <source src="../static/videos/tt1825683trailer.mp4" th:src="@{${movie.movieTrailers}}"
+                            type='video/mp4'>
                 </video>
             </div>
             <br>
@@ -99,7 +100,7 @@
 
                                     </div>
 
-                                    <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}"  method="post">
+                                    <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
                                         <div class="row">
 
@@ -114,7 +115,8 @@
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea name="review_text" placeholder="Add a Review (Optional)" rows="7"></textarea>
+                                                <textarea name="review_text" placeholder="Add a Review (Optional)"
+                                                          rows="7"></textarea>
                                             </div>
                                         </div>
 
@@ -128,9 +130,8 @@
                                     </form>
 
                                 </div>
-
-
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -235,6 +236,81 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- critics review-->
+                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>
+                <div class="ui grid">
+                    <div class="ui eight wide column ">
+                        <!--<div class="ui grid">-->
+                        <!--left is critics review-->
+                        <!--<div class="ui eight wide column" >-->
+                        <div class="row review-padding">
+                            <div class="ui green inverted segment ">
+                                <div class="ui red image label">
+                                    UserName
+                                </div>
+                                <h5></h5>
+                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                    doubling down on its messages with a seriousness that's entirely fitting for its
+                                    time. </p>
+                                <p>May 4, 2018</p>
+
+                            </div>
+                        </div>
+                        <!--</div>-->
+
+                        <!--<div class="ui eight wide column" >-->
+                        <div class="row review-padding">
+                            <div class="ui green inverted segment ">
+                                <div class="ui red image label">
+                                    UserName
+                                </div>
+                                <h5></h5>
+                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                    doubling down on its messages with a seriousness that's entirely fitting for its
+                                    time. </p>
+                                <p>May 4, 2018</p>
+
+                            </div>
+                        </div>
+                        <!--</div>-->
+
+                        <!--</div>-->
+                    </div>
+
+                    <!-- common user  -->
+                    <div class="ui eight wide column  ">
+                        <div class="row review-padding">
+                            <div class="ui grey inverted segment ">
+                                <div class="ui image label">
+                                    UserName
+                                </div>
+                                <h5></h5>
+                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                    doubling down on its messages with a seriousness that's entirely fitting for its
+                                    time. </p>
+                                <p>May 4, 2018</p>
+                            </div>
+                        </div>
+
+                        <div class="row review-padding">
+                            <div class="ui grey inverted segment ">
+                                <div class="ui image label">
+                                    UserName
+                                </div>
+                                <h5></h5>
+                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                    doubling down on its messages with a seriousness that's entirely fitting for its
+                                    time. </p>
+                                <p>May 4, 2018</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <!--cast end-->
 
