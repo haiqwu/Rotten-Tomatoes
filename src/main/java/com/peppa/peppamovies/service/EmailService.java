@@ -29,4 +29,24 @@ public class EmailService {
         javaMailSender.send(mail);
 
     }
+
+    public void sendResetPasswordEmail(UserInfo userInfo, String uuid) throws MailException {
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo(userInfo.getEmail());
+        mail.setFrom("5297haiqi@gmail.com");
+        mail.setSubject("Password Reset Request");
+        mail.setText("Hi, " + userInfo.getFirstName() + " "
+                + userInfo.getLastName() + ":\n" +
+                " You are requesting to reset password, Please click the link below to reset your password.\n\t"
+                +  "*******Note: if you are not attempting to change the password, simply IGNORE this email. "
+                +
+                "http://localhost:8080/reset_password/" + userInfo.getUserName() + "/" + uuid
+        );
+        javaMailSender.send(mail);
+
+    }
+
+
+
+
 }
