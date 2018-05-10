@@ -106,7 +106,7 @@ public class UserController {
         return "delete_account";
     }
 
-    
+
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
                                @RequestParam String email, @RequestParam String password_signup, @RequestParam String re_password,
