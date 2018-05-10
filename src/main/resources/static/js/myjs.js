@@ -1,5 +1,6 @@
 $('.ui.dropdown').dropdown();
 
+
 $('.ui.search')
     .search({
         apiSettings: {
@@ -202,3 +203,5 @@ $('.ui.rating')
 
 $('.rating')
     .rating('setting', 'clearable', true);
+
+

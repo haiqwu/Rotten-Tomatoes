@@ -140,7 +140,7 @@
                         <div class="text" th:text="${session.user.userName}"></div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a th:href=@{/my_profile} class="item"><i class="user icon"></i>Profile </a>
+                            <a th:href=@{/my_profile/{id}(id=${session.user.userID})} class="item"><i class="user icon"></i>Profile </a>
                             <a href="/logout" class="item" onclick="logout_fun()"><i class="power off icon"></i>Log Out</a>
                         </div>
                     </div>
