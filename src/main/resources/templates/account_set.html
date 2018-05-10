@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Manage Account</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >-->
+    <!--<link rel="stylesheet" href="../static/css/mycss.css">-->
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<br>
+<br>
+<br>
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+            <div class="eight wide column">
+                <h3>Personal Information</h3>
+                <p>Edit personal information associated with your Peppa account.</p>
+                <a href="#" th:href="@{/personal_info/{id}(id=${session.user.userID})}" class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>
+            </div>
+
+            <div class="eight wide column">
+                <h3>Change or Confirm Email Address</h3>
+                <p>Change or confirm your email address for your Peppa account.</p>
+                <a href="#" th:href="@{/change_email/{id}(id=${session.user.userID})}" class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>
+            </div>
+
+            <!--<div class="eight wide column">-->
+                <!--<h3>Profile Display Name</h3>-->
+                <!--<p>Edit your public profile display name.</p>-->
+                <!--<a href="#" class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
+            <!--</div>-->
+
+            <div class="eight wide column">
+                <h3>Change Password</h3>
+                <p>Change the password for your Peppa account.</p>
+                <a href="#" th:href="@{/change_password/{id}(id=${session.user.userID})}"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>
+            </div>
+
+            <div class="eight wide column">
+                <h3>Privacy Settings</h3>
+                <p>Manage your profile visibility and share settings.</p>
+                <a href="#"  th:href="@{/privacy_setting/{id}(id=${session.user.userID})}"  class="ui blue label" ><i class="inverted edit outline icon"></i>Edit</a>
+            </div>
+
+            <div class="eight wide column">
+                <h3>Delete Account</h3>
+                <p>Terminate your Peppa account and disconnect from any attached social networks.</p>
+                <a href="" th:href="@{/delete_account/{id}(id=${session.user.userID})}"  class="ui red label" >Delete</a>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+<script>
+    $('.menu .item').tab({history:false});
+</script>
+</body>
+</html>
