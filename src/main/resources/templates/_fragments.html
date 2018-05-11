@@ -22,7 +22,7 @@
             <div class="three wide column">
                 <h4 class="ui inverted header">FQA</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">Help</a>
+                    <a th:href="@{/help}" class="item">Help</a>
                     <a href="about" class="item" methods="get">About Peppa Tomatoes</a>
                     <a href="#" class="item">What's the Peppameter?</a>
                     <a href="#" class="item">Feedback</a>
@@ -99,7 +99,7 @@
                     <a href="#" id="signup1" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
-                <div class="right menu " th:if="${session.found == 3 }">
+                <div class="right menu " th:if="${session.type == 3 }">
                     <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                     <div class="ui m-padded-big modal" id="notfound_login_modal">
@@ -209,7 +209,7 @@
                         <a id="peppameter" href="" onclick="peppameter_fun()"> what is Peppameter?</a>
                     </div>
                     <div class="ui item">
-                        <a href=""> PT Critics</a>
+                        <a href="#" th:href="@{/pt_critics}"> PT Critics</a>
                     </div>
                 </div>
             </div>

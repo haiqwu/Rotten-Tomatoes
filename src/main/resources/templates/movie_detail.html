@@ -98,7 +98,7 @@
                                             </div>
                                         </a>
 
-                                        <a type="button" class="ui mini animated fade green button" tabindex="0"
+                                        <a type="button" class="ui mini animated fade red button" tabindex="0"
                                            href="#" th:href="@{/movie/{id}/not_interested(id=${movie.movieID})}">
                                             <div class="visible content">- NOT INTERESTED</div>
                                             <div class="hidden content">
@@ -113,12 +113,20 @@
                                     <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
                                         <div class="row">
+                                            <!-- star rating-->
+                                            <!--<div id="star_rate"-->
+                                                 <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
 
-                                            <div id="star_rate"
-                                                 class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">
+                                            <!--</div>-->
+                                            <!--<p id="rate_num" name="rate_num"></p>-->
 
-                                            </div>
-                                            <p id="rate_num" name="rate_num"></p>
+                                            <select name="star_rate" class="ui dropdown">
+                                                <option value="1" >&#11088</option>
+                                                <option value="2">&#11088&#11088</option>
+                                                <option value="3">&#11088&#11088&#11088</option>
+                                                <option value="4">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
 
                                         </div>
 

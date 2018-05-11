@@ -300,6 +300,20 @@ public class UserController {
         return "index";
     }
 
+
+    @GetMapping("/pt_critics")
+    public String handlePTCritics(){
+        return "critics";
+    }
+
+
+    @GetMapping("/help")
+    public String handleHelp(){
+        return "help";
+    }
+
+
+
     public void handleShowCriticInfo() {
     }
 

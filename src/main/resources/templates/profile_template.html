@@ -235,16 +235,22 @@
                         <div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
-                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
-                                    <p>score</p>
-                                    <a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>
-                                    <a href="#"  class="ui red label">Delete</a>
+                                <div class="row" th:each="tag : ${movie_lists[2]}">
+                                    <div class="three wide center aligned column">
+                                        <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                        <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                                        <p>score</p>
+                                        <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
 
 
+                                    </div>
+                                    <div class="nine wide column"  >
+                                        <p>fjdafoiadsjfioasjfaiosfjasvjidaosjfdsiaovjcdaisovjaiocjsiaodjciso</p>
+                                        <a href="#"  class="ui red label ">Delete</a>
+                                    </div>
 
                                 </div>
+
                             </div>
 
                         </div>
