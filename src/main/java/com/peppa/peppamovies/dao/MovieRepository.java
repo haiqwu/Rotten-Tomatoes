@@ -12,8 +12,10 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<MovieInfo,Long> {
     @Query("select m from MovieInfo m where LOWER(m.movieName) like LOWER(?1) ")
     Page<MovieInfo> findByQuery(String query, Pageable pageable);
+
     @Query("select m from MovieInfo m where m.releasedDate >= ?1 ")
     Page<MovieInfo> findByDate(Date date, Pageable pageable);
+
     @Query("select m from MovieInfo m where m.releasedDate >= ?1 and m.releasedDate <= ?2")
     Page<MovieInfo> findByTwoDate(Date dateStart, Date dateEnd, Pageable pageable);
     @Query("select m from MovieInfo m order by m.totalRate desc")

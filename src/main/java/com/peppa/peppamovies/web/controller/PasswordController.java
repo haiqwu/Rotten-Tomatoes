@@ -1,7 +1,9 @@
 package com.peppa.peppamovies.web.controller;
 
+import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.EmailService;
+import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.UserService;
 import com.peppa.peppamovies.util.MD5Util;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -24,14 +27,25 @@ public class PasswordController {
     private MovieService movieService;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private MovieReviewService movieReviewService;
 
 
     @PostMapping("/my_profile/{id}/delete_account")
     public String delAccount(@PathVariable Long id, HttpSession session){
-        //UserInfo user = userService.getUser(id);
+        UserInfo user = userService.getUser(id);
         //1. log out usr:
+
         session.removeAttribute("user");
         session.removeAttribute("found");
+        session.removeAttribute("type");
+
+
+
+        List<MovieReview> movieReviews = user.getMovieReviews();
+        for(MovieReview mr: movieReviews){
+            movieReviewService.deleteReview(mr.getReviewID());
+        }
         // delete user:
         userService.deleteUser( id );
         return "redirect:/";
