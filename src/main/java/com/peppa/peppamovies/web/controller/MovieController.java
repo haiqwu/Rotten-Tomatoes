@@ -116,6 +116,18 @@ public class MovieController {
         return "search_results";
     }
 
+    @GetMapping("/edit_movie_detail/{id}")
+    public String handleEditMovieDetail(@PathVariable Long id){
+        System.out.println("movieId: "+ id);
+        return "edit_movie_detail";
+    }
+
+    @GetMapping("/delete_movie_detail/{id}")
+    public String handleDeleteMovieDetail(@PathVariable Long id){
+        System.out.println("movieId: "+ id);
+        return "deleteMovieDetail";
+    }
+
     public void handleTopMovies() {
     }
 

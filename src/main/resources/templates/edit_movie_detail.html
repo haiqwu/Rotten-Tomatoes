@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Edit Page</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >-->
+    <!--<link rel="stylesheet" href="../static/css/mycss.css">-->
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<br>
+<br>
+<br>
+<div class="ui container">
+    <div class="ui  attached segment">
+        <form class="ui form ">
+            <div class="field">
+                <label>Movie Description</label>
+                <textarea rows="3" name="description"></textarea>
+            </div>
+            <div class="field">
+                <label>Movie Name</label>
+                <input type="text" name="movie_name" placeholder="The Shape Of Water">
+            </div>
+            <div class="field">
+                <label>Genres</label>
+                <input type="text" name="movie_genres" placeholder="Action,Drama">
+            </div>
+            <div class="field">
+                <label>Time</label>
+                <input type="text" name="movie_time" placeholder="120">
+            </div>
+            <div class="field">
+                <label>Type</label>
+                <input type="text" name="type" placeholder="movie/tv">
+            </div>
+            <div class="field">
+                <label>Released Date</label>
+                <input type="text" name="movie_date" placeholder="2018-5-10">
+            </div>
+
+            <button class="ui button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
+</body>
+</html>

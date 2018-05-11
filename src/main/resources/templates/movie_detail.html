@@ -11,6 +11,16 @@
 <nav th:replace="_fragments :: navBar()"></nav>
 <div class="ui container">
     <div class="ui inverted attached segment">
+        <div class="ui grid" th:if="${session.type == 1 }">
+                <div class="six column row">
+                    <div class="right floated column">
+                        <a href="#" th:href="@{/edit_movie_detail/{id}(id=${movie.movieID})}"  class="ui blue label">Edit</a>
+                        <a href="#" th:href="@{/delete_movie_detail/{id}(id=${movie.movieID})}"  class="ui red label">Delete</a>
+                    </div>
+                </div>
+        </div>
+
+
         <div class="ui grid">
             <!--Trailer-->
             <div class="sixteen wide column">
