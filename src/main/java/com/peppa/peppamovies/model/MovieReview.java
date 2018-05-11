@@ -12,6 +12,7 @@ public class MovieReview {
     @GeneratedValue
     private Long reviewID;
     private Long movieID;
+
     private double rate;
     private String comment;
     @Temporal(TemporalType.DATE)
@@ -20,6 +21,8 @@ public class MovieReview {
     @ManyToOne
     @JoinColumn(name = "userID", nullable = false)
     private UserInfo reviewUser;
+
+    private boolean reported;
 
     public MovieReview() {
     }
@@ -80,6 +83,22 @@ public class MovieReview {
         this.groupName = groupName;
     }
 
+    public UserInfo getReviewUser() {
+        return reviewUser;
+    }
+
+    public void setReviewUser(UserInfo reviewUser) {
+        this.reviewUser = reviewUser;
+    }
+
+    public boolean isReported() {
+        return reported;
+    }
+
+    public void setReported(boolean reported) {
+        this.reported = reported;
+    }
+
     @Override
     public String toString() {
         return "MovieReview{" +
@@ -89,7 +108,8 @@ public class MovieReview {
                 ", comment='" + comment + '\'' +
                 ", dayCommented=" + dayCommented +
                 ", groupName='" + groupName + '\'' +
-                ", user=" + reviewUser +
+                ", reviewUser=" + reviewUser +
+                ", reported=" + reported +
                 '}';
     }
 }

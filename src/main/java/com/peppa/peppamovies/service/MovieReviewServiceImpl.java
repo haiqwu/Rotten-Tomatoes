@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class MovieReviewServiceImpl implements MovieReviewService {
@@ -34,5 +35,20 @@ public class MovieReviewServiceImpl implements MovieReviewService {
         }
         BeanUtils.copyProperties(movieReview, findMovieReview);
         return movieReviewRepository.save(movieReview);
+    }
+
+    @Override
+    public List<MovieReview> getReportedReviews() {
+        return movieReviewRepository.getAllReportedReviews();
+    }
+
+    @Transactional
+    @Override
+    public void deleteReview(Long id) {
+
+        //userRepository.delete( getUser(id) );
+        movieReviewRepository.delete(  getMovieReview(id)  );
+
+
     }
 }

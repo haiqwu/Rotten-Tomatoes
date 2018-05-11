@@ -99,7 +99,7 @@
                     <a href="#" id="signup1" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                 </div>
 
-                <div class="right menu " th:if="${session.found == 3 }">
+                <div class="right menu " th:if="${session.type == 3 }">
                     <a id="login" class="ui inverted item button " onclick="login_fun()">Log in </a>
                     <a href="#" id="signup" class="ui inverted item button " onclick="signup_fun()"> Sign Up</a>
                     <div class="ui m-padded-big modal" id="notfound_login_modal">
@@ -155,7 +155,7 @@
                         <div class="text" th:text="${session.user.userName}"></div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a th:href=@{/admin_summary} class="item"><i class="user icon"></i>Administration </a>
+                            <a th:href=@{/admin_summary_mapping} class="item"><i class="user icon"></i>Administration </a>
                             <a href="/logout" class="item" onclick="logout_fun()"><i class="power off icon"></i>Log Out</a>
                         </div>
                     </div>

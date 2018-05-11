@@ -25,6 +25,13 @@ public class UserInfo {
     private String Email;
     private String passW;
     private boolean isCritic;
+
+
+    private boolean officially_blocked;
+    private boolean reported;
+    private boolean applying_critic;
+
+
     private boolean isEmailVerified;
     private String photo;
     @Temporal(TemporalType.DATE)
@@ -226,16 +233,45 @@ public class UserInfo {
         this.notInterestedList = notInterestedList;
     }
 
+    public boolean isReported() {
+        return reported;
+    }
+
+    public void setReported(boolean reported) {
+        this.reported = reported;
+    }
+
+    public boolean isApplying_critic() {
+        return applying_critic;
+    }
+
+    public void setApplying_critic(boolean applying_critic) {
+        this.applying_critic = applying_critic;
+    }
+
+    public boolean isOfficially_blocked() {
+        return officially_blocked;
+    }
+
+    public void setOfficially_blocked(boolean officially_blocked) {
+        this.officially_blocked = officially_blocked;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
                 "userID=" + userID +
                 ", userName='" + userName + '\'' +
+                ", registerUUID='" + registerUUID + '\'' +
+                ", resetPasswordUUID='" + resetPasswordUUID + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", Email='" + Email + '\'' +
                 ", passW='" + passW + '\'' +
                 ", isCritic=" + isCritic +
+                ", officially_blocked=" + officially_blocked +
+                ", reported=" + reported +
+                ", applying_critic=" + applying_critic +
                 ", isEmailVerified=" + isEmailVerified +
                 ", photo='" + photo + '\'' +
                 ", dateBecomingCritic=" + dateBecomingCritic +

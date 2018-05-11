@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -73,6 +74,16 @@ public class UserServiceImpl implements UserService {
         userRepository.delete( getUser(id) );
     }
 
+    @Override
+    public List<UserInfo> getReportedUsers() {
+        return userRepository.getAllReportedUsers();
+
+    }
+
+    @Override
+    public List<UserInfo> getCriticApplyers() {
+        return userRepository.getAllCriticApplyers();
+    }
 
 
 }

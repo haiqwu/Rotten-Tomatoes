@@ -17,9 +17,10 @@
             <div class="ui grid">
 
                 <div class="ui top inverted attached tabular menu ">
-                    <a class="item active" data-tab="first">View Application</a>
-                    <a class="item" data-tab="second">View Report</a>
-                    <a class="item " data-tab="third">Create New Page</a>
+                    <a class="item active" data-tab="first">View Reported Users</a>
+                    <a class="item" data-tab="second">View Reported Reviews</a>
+                    <a class="item" data-tab="third">Critic Account Application</a>
+                    <a class="item " data-tab="fourth">Create New Page</a>
                     <!--<a class="item " data-tab="four">Rating History</a>-->
                 </div>
 
@@ -28,20 +29,49 @@
 
                     <div class="ui inverted segment ">
                         <div class="ui grid">
-                            <div class="row" th:each="tag : ${movie_lists[2]}">
+                            <div class="row" th:each="tag : ${reported_user_list}">
                                 <div class="three wide center aligned column">
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}"><img class="ui fluid image"
-                                                                                                 src="../static/images/1.jpg"
-                                                                                                 th:src="${tag.moviePoster}"
-                                                                                                 alt="Image"></a>
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}" th:text="${tag.userName}">
+
+
+                                    </a>
+                                    <p th:text="${tag.userName}">user name  </p>
 
                                     <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
                                 </div>
                                 <div class="nine wide column">
-                                    <a href="#" class="ui green label">Ignore</a>
-                                    <a href="#" class="ui yellow label ">Block</a>
-                                    <a href="#" class="ui red label ">Delete</a>
+                                    <a href="#" th:href="@{/admin_summary/ignore_user/{id}(id=${tag.userID})}" class="ui green label">Ignore</a>
+                                    <a href="#" th:href="@{/admin_summary/block_user/{id}(id=${tag.userID})}" class="ui yellow label ">Block</a>
+                                    <a href="#" th:href="@{/admin_summary/remove_user/{id}(id=${tag.userID})}" class="ui red label ">Delete</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--tab 2-->
+                <div class="ui inverted bottom attached tab segment" data-tab="second">
+
+                    <div class="ui inverted segment ">
+                        <div class="ui grid">
+                            <div class="row" th:each="tag : ${reported_review_list}">
+                                <div class="three wide center aligned column">
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" th:text="${tag[1].movieName}">
+
+
+                                    </a>
+                                    <p th:text="${tag[0].comment}">   </p>
+                                    <p>Reviewed by </p>
+                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">
+
+
+                                    <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
+                                </div>
+                                <div class="nine wide column">
+                                    <a href="#" th:href="@{/admin_summary/ignore_review/{id}(id=${tag[0].reviewID})}" class="ui green label">Ignore</a>
+                                    <a href="#" th:href="@{/admin_summary/remove_review/{id}(id=${tag[0].reviewID})}" class="ui red label ">Delete</a>
                                 </div>
 
                             </div>
@@ -53,23 +83,21 @@
 
 
                 <!--tab 2-->
-                <div class="ui inverted bottom attached tab segment" data-tab="second">
+                <div class="ui inverted bottom attached tab segment" data-tab="third">
                     <div class="ui inverted segment ">
                         <div class="ui grid">
-                            <div class="row" th:each="tag : ${movie_lists[2]}">
+                            <div class="row" th:each="tag : ${critic_applyers}">
                                 <div class="three wide center aligned column">
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}"><img class="ui fluid image"
-                                                                                                 src="../static/images/1.jpg"
-                                                                                                 th:src="${tag.moviePoster}"
-                                                                                                 alt="Image"></a>
+                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}" th:text="${tag.userName}"  >  </a>
+                                    <p th:text="${tag.userName}">user name  </p>
                                     <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
                                     <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
                                 </div>
                                 <div class="nine wide column">
 
-                                    <a href="#" class="ui green label">Approve</a>
-                                    <a href="#" class="ui red label ">Reject</a>
+                                    <a href="#" class="ui green label" th:href="@{/admin_summary/approve_critic/{id}(id=${tag.userID})}">Approve</a>
+                                    <a href="#" class="ui red label " th:href="@{/admin_summary/reject_critic/{id}(id=${tag.userID})}">Reject</a>
                                 </div>
 
                             </div>
@@ -79,7 +107,7 @@
                     </div>
                 </div>
 
-                <div class="ui inverted bottom attached tab segment" data-tab="third">
+                <div class="ui inverted bottom attached tab segment" data-tab="fourth">
                     <!--tab 3-->
                     <form class="ui form inverted">
                         <div class="field">

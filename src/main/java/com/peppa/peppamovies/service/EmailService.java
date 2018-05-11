@@ -47,6 +47,23 @@ public class EmailService {
     }
 
 
+    public void sendRejectCriticApplicationEmail(UserInfo userInfo ) throws MailException {
+        SimpleMailMessage mail = new SimpleMailMessage();
+        mail.setTo(userInfo.getEmail());
+        mail.setFrom("5297haiqi@gmail.com");
+        mail.setSubject("Peppa - Critic Application Result");
+        mail.setText("Hi, " + userInfo.getFirstName() + " "
+                + userInfo.getLastName() + ":\n" +
+                "\tThanks for your application to become a critic.\n\t" +
+                "Based on our record, you may not be qualified for a critic in Peppa Movie yet. " +
+                "You may still want to apply for it again. If you have any question, please feel free" +
+                "to contact us.\n\n\n\t" +
+                "Peppa Team"
+
+        );
+        javaMailSender.send(mail);
+
+    }
 
 
 }
