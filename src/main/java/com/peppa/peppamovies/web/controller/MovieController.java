@@ -1,6 +1,8 @@
 package com.peppa.peppamovies.web.controller;
 
 import com.peppa.peppamovies.model.MovieInfo;
+import com.peppa.peppamovies.model.MovieReview;
+import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,20 @@ public class MovieController {
 
     @GetMapping("/movie/{id}")
     public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        if(user != null){
+            List<MovieReview> movieReviews = user.getMovieReviews();
+            for(MovieReview mr: movieReviews){
+                if(mr.getMovieID().equals(id)){
+                    model.addAttribute("movieReview", mr.getComment());
+                    break;
+                }else{
+                    model.addAttribute("movieReview", null);
+                }
+            }
+        }else{
+            model.addAttribute("movieReview", null);
+        }
         model.addAttribute("movie", movieService.getMovie(id));
         session.setAttribute("movie", movieService.getMovie(id));
         return "movie_detail";

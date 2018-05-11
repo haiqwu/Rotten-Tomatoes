@@ -125,12 +125,40 @@ public class UserController {
 
 
     @GetMapping("/my_profile/{id}")
-    public String handleProfileSummaryPage(@PathVariable Long id) {
-        //UserInfo user = userService.getUserByUserName(un);
-        //session.setAttribute();
-        System.out.println(id);
-
+    public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        List<MovieReview> ratedMovies = user.getMovieReviews();
+        List<List<Object>> movies = new ArrayList<>();
+        List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
+        List<MovieInfo> notInterested = user.getNotInterestedList();
+        for(MovieReview mr: ratedMovies){
+            List<Object> obj = new ArrayList<>();
+            obj.add(mr);
+            obj.add(movieService.getMovie(mr.getMovieID()));
+            movies.add(obj);
+        }
+        model.addAttribute("rateMovies", movies);
+        model.addAttribute("wantToSee", wantsToSeeList);
+        model.addAttribute("notInterested", notInterested);
         return "profile_template";
+    }
+
+    @GetMapping("/my_profile/delete/{mid}")
+    public String handleDeleteReview(@PathVariable Long mid, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        List<MovieReview> ratedMovies = user.getMovieReviews();
+        for(MovieReview mr: ratedMovies){
+            if(mr.getMovieID().equals(mid)){
+                ratedMovies.remove(mr);
+                user.setMovieReviews(ratedMovies);
+                movieReviewService.deleteReview(mr.getReviewID());
+                userService.updateUser(user.getUserID(),user);
+                session.removeAttribute("user");
+                session.setAttribute("user", user);
+                break;
+            }
+        }
+        return "redirect:/my_profile/" + user.getUserID();
     }
 
     @GetMapping("/account/{id}")
@@ -268,11 +296,28 @@ public class UserController {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
         if (currentUser != null) {
-            MovieReview movieReview = new MovieReview();
-            movieReview.setComment(review_text);
-            movieReview.setMovieID(currentMovie.getMovieID());
-            movieReview.setUser(currentUser);
-            movieReviewService.saveMovieReview(movieReview);
+            boolean isReviewed = false;
+            List<MovieReview> movieReviews = currentUser.getMovieReviews();
+            for(MovieReview mr: movieReviews){
+                if(mr.getMovieID().equals(currentMovie.getMovieID())){
+                    mr.setComment(review_text);
+                    movieReviewService.updateMovieReview(mr.getReviewID(), mr);
+                    currentUser.setMovieReviews(movieReviews);
+                    session.setAttribute("user", currentUser);
+                    isReviewed = true;
+                    break;
+                }
+            }
+            if(!isReviewed) {
+                MovieReview movieReview = new MovieReview();
+                movieReview.setComment(review_text);
+                movieReview.setMovieID(currentMovie.getMovieID());
+                movieReview.setUser(currentUser);
+                movieReviewService.saveMovieReview(movieReview);
+                movieReviews.add(movieReview);
+                currentUser.setMovieReviews(movieReviews);
+                session.setAttribute("user", currentUser);
+            }
         } else {
             System.out.println("No login");
         }
