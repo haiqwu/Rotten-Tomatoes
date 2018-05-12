@@ -40,10 +40,8 @@ public class UserInfo {
     private Date dateDeActivatedFromCritic;
     private String followedSocialMedias;
     @ManyToMany(cascade = {CascadeType.PERSIST})
-//    @Fetch(org.hibernate.annotations.FetchMode.JOIN)
     private List<MovieInfo> wantsToSeeList = new ArrayList<>();
-    @ManyToMany(cascade = {CascadeType.PERSIST})//, fetch = FetchType.EAGER)
-//    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<MovieInfo> notInterestedList = new ArrayList<>();
     @OneToMany(mappedBy = "reviewUser" )
     private List<MovieReview> movieReviews = new ArrayList<>();
@@ -53,6 +51,11 @@ public class UserInfo {
     private BusinessProposal bp;
     @OneToOne(mappedBy = "user")
     private Newsletter newsL;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    private List<TVInfo> wantsToSeeListTV = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    private List<TVInfo> notInterestedListTV = new ArrayList<>();
 
     public UserInfo() {
     }
@@ -257,6 +260,34 @@ public class UserInfo {
         this.officially_blocked = officially_blocked;
     }
 
+    public List<TVInfo> getWantsToSeeListTV() {
+        return wantsToSeeListTV;
+    }
+
+    public void setWantsToSeeListTV(List<TVInfo> wantsToSeeListTV) {
+        this.wantsToSeeListTV = wantsToSeeListTV;
+    }
+
+    public List<TVInfo> getNotInterestedListTV() {
+        return notInterestedListTV;
+    }
+
+    public void setNotInterestedListTV(List<TVInfo> notInterestedListTV) {
+        this.notInterestedListTV = notInterestedListTV;
+    }
+
+    public Pattern getVALID_EMAIL_ADDRESS_REGEX() {
+        return VALID_EMAIL_ADDRESS_REGEX;
+    }
+
+    public final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    public boolean validateEmail(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -283,15 +314,9 @@ public class UserInfo {
                 ", group=" + group +
                 ", bp=" + bp +
                 ", newsL=" + newsL +
+                ", wantsToSeeListTV=" + wantsToSeeListTV +
+                ", notInterestedListTV=" + notInterestedListTV +
                 ", VALID_EMAIL_ADDRESS_REGEX=" + VALID_EMAIL_ADDRESS_REGEX +
                 '}';
-    }
-
-    public final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    public boolean validateEmail(String emailStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
     }
 }

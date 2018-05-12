@@ -33,6 +33,7 @@ public class MovieController {
             for(MovieReview mr: movieReviews){
                 if(mr.getMovieID().equals(id)){
                     model.addAttribute("movieReview", mr.getComment());
+                    model.addAttribute("RateReview", mr.getRate()/20);
                     break;
                 }else{
                     model.addAttribute("movieReview", null);

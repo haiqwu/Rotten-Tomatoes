@@ -6,39 +6,44 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "MovieInfo")
-public class MovieInfo {
+@Table(name = "TVInfo")
+public class TVInfo {
     @Id
     @GeneratedValue
-    private Long movieID;
+    private Long tvID;
     private String secondaryID;
+    private int season;
     private String titleType;
     private int runtimeMinutes;
     private String genres;
-    private String movieName;
+    private String tvName;
     @Temporal(TemporalType.DATE)
     private Date releasedDate;
     private String briefIntro;
     private double audianceRate;
     private double criticRate;
     private double totalRate;
-    private String moviePoster;
-    private String movieImages;
-    private String movieTrailers;
+    private String tvPoster;
+    private String tvImages;
     private int criticRateCount;
     private int audiRateCount;
     @ManyToMany
-    private List<ActorInfo> movieActors = new ArrayList<>();
-    @ManyToMany(mappedBy = "wantsToSeeList")
+    private List<ActorInfo> tvActors = new ArrayList<>();
+    @ManyToMany(mappedBy = "wantsToSeeListTV")
     private List<UserInfo> interestedUsers = new ArrayList<>();
-    @ManyToMany(mappedBy = "notInterestedList")
+    @ManyToMany(mappedBy = "notInterestedListTV")
     private List<UserInfo> notInterestedUsers = new ArrayList<>();
 
-    public MovieInfo() {
+    public TVInfo() {
+
     }
 
-    public Long getMovieID() {
-        return movieID;
+    public Long getTvID() {
+        return tvID;
+    }
+
+    public void setTvID(Long tvID) {
+        this.tvID = tvID;
     }
 
     public String getSecondaryID() {
@@ -49,16 +54,52 @@ public class MovieInfo {
         this.secondaryID = secondaryID;
     }
 
-    public void setMovieID(Long movieID) {
-        this.movieID = movieID;
+    public int getSeason() {
+        return season;
     }
 
-    public String getMovieName() {
-        return movieName;
+    public void setSeason(int season) {
+        this.season = season;
     }
 
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public String getTitleType() {
+        return titleType;
+    }
+
+    public void setTitleType(String titleType) {
+        this.titleType = titleType;
+    }
+
+    public int getRuntimeMinutes() {
+        return runtimeMinutes;
+    }
+
+    public void setRuntimeMinutes(int runtimeMinutes) {
+        this.runtimeMinutes = runtimeMinutes;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
+
+    public String getTvName() {
+        return tvName;
+    }
+
+    public void setTvName(String tvName) {
+        this.tvName = tvName;
+    }
+
+    public Date getReleasedDate() {
+        return releasedDate;
+    }
+
+    public void setReleasedDate(Date releasedDate) {
+        this.releasedDate = releasedDate;
     }
 
     public String getBriefIntro() {
@@ -93,36 +134,28 @@ public class MovieInfo {
         this.totalRate = totalRate;
     }
 
-    public String getMoviePoster() {
-        return this.moviePoster;
+    public String getTvPoster() {
+        return tvPoster;
     }
 
-    public void setMoviePoster(String moviePoster) {
-        this.moviePoster = moviePoster;
+    public void setTvPoster(String tvPoster) {
+        this.tvPoster = tvPoster;
     }
 
-    public String getMovieImages() {
-        return movieImages;
+    public String getTvImages() {
+        return tvImages;
     }
 
-    public void setMovieImages(String movieImages) {
-        this.movieImages = movieImages;
+    public void setTvImages(String tvImages) {
+        this.tvImages = tvImages;
     }
 
-    public String getMovieTrailers() {
-        return movieTrailers;
+    public List<ActorInfo> getTvActors() {
+        return tvActors;
     }
 
-    public void setMovieTrailers(String movieTrailers) {
-        this.movieTrailers = movieTrailers;
-    }
-
-    public List<ActorInfo> getMovieActors() {
-        return movieActors;
-    }
-
-    public void setMovieActors(List<ActorInfo> movieActors) {
-        this.movieActors = movieActors;
+    public void setTvActors(List<ActorInfo> tvActors) {
+        this.tvActors = tvActors;
     }
 
     public List<UserInfo> getInterestedUsers() {
@@ -131,38 +164,6 @@ public class MovieInfo {
 
     public void setInterestedUsers(List<UserInfo> interestedUsers) {
         this.interestedUsers = interestedUsers;
-    }
-
-    public String getTitleType() {
-        return titleType;
-    }
-
-    public int getRuntimeMinutes() {
-        return runtimeMinutes;
-    }
-
-    public String getGenres() {
-        return genres;
-    }
-
-    public void setTitleType(String titleType) {
-        this.titleType = titleType;
-    }
-
-    public Date getReleasedDate() {
-        return releasedDate;
-    }
-
-    public void setReleasedDate(Date releasedDate) {
-        this.releasedDate = releasedDate;
-    }
-
-    public void setRuntimeMinutes(int runtimeMinutes) {
-        this.runtimeMinutes = runtimeMinutes;
-    }
-
-    public void setGenres(String genres) {
-        this.genres = genres;
     }
 
     public List<UserInfo> getNotInterestedUsers() {
@@ -191,26 +192,27 @@ public class MovieInfo {
 
     @Override
     public String toString() {
-        return "MovieInfo{" +
-                "movieID=" + movieID +
+        return "TVInfo{" +
+                "tvID=" + tvID +
                 ", secondaryID='" + secondaryID + '\'' +
+                ", season=" + season +
                 ", titleType='" + titleType + '\'' +
                 ", runtimeMinutes=" + runtimeMinutes +
                 ", genres='" + genres + '\'' +
-                ", movieName='" + movieName + '\'' +
+                ", tvName='" + tvName + '\'' +
                 ", releasedDate=" + releasedDate +
                 ", briefIntro='" + briefIntro + '\'' +
                 ", audianceRate=" + audianceRate +
                 ", criticRate=" + criticRate +
                 ", totalRate=" + totalRate +
-                ", moviePoster='" + moviePoster + '\'' +
-                ", movieImages='" + movieImages + '\'' +
-                ", movieTrailers='" + movieTrailers + '\'' +
+                ", tvPoster='" + tvPoster + '\'' +
+                ", tvImages='" + tvImages + '\'' +
                 ", criticRateCount=" + criticRateCount +
                 ", audiRateCount=" + audiRateCount +
-                ", movieActors=" + movieActors +
+                ", tvActors=" + tvActors +
                 ", interestedUsers=" + interestedUsers +
                 ", notInterestedUsers=" + notInterestedUsers +
                 '}';
     }
 }
+

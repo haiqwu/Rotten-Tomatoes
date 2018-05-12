@@ -18,6 +18,8 @@ public class ActorInfo {
     private String personalInfo;
     @ManyToMany(mappedBy = "movieActors")
     private List<MovieInfo> relatedMovies = new ArrayList<>();
+    @ManyToMany(mappedBy = "tvActors")
+    private List<TVInfo> relatedTVs = new ArrayList<>();
 
     public ActorInfo() {
     }
@@ -70,6 +72,14 @@ public class ActorInfo {
         this.relatedMovies = relatedMovies;
     }
 
+    public List<TVInfo> getRelatedTVs() {
+        return relatedTVs;
+    }
+
+    public void setRelatedTVs(List<TVInfo> relatedTVs) {
+        this.relatedTVs = relatedTVs;
+    }
+
     @Override
     public String toString() {
         return "ActorInfo{" +
@@ -79,6 +89,7 @@ public class ActorInfo {
                 ", dayOfBir=" + dayOfBir +
                 ", personalInfo='" + personalInfo + '\'' +
                 ", relatedMovies=" + relatedMovies +
+                ", relatedTVs=" + relatedTVs +
                 '}';
     }
 }

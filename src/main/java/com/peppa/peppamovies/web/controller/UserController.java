@@ -161,6 +161,38 @@ public class UserController {
         return "redirect:/my_profile/" + user.getUserID();
     }
 
+    @GetMapping("/my_profile/delete/wantsToSee/{mid}")
+    public String handleDeleteWantsToSee(@PathVariable Long mid, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        List<MovieInfo> movies = user.getWantsToSeeList();
+        for(MovieInfo mi: movies){
+            if(mi.getMovieID().equals(mid)){
+                movies.remove(mi);
+                user.setWantsToSeeList(movies);
+                userService.updateUser(user.getUserID(),user);
+                session.setAttribute("user", user);
+                break;
+            }
+        }
+        return "redirect:/my_profile/" + user.getUserID();
+    }
+
+    @GetMapping("/my_profile/delete/notInterested/{mid}")
+    public String handleDeleteNotInteresed(@PathVariable Long mid, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        List<MovieInfo> movies = user.getNotInterestedList();
+        for(MovieInfo mi: movies){
+            if(mi.getMovieID().equals(mid)){
+                movies.remove(mi);
+                user.setNotInterestedList(movies);
+                userService.updateUser(user.getUserID(),user);
+                session.setAttribute("user", user);
+                break;
+            }
+        }
+        return "redirect:/my_profile/" + user.getUserID();
+    }
+
     @GetMapping("/account/{id}")
     public String handleAccountSetting(@PathVariable Long id){
         System.out.println(id);
@@ -292,7 +324,7 @@ public class UserController {
     }
 
     @PostMapping("/movie/{id}/post")
-    public String handlePost(@RequestParam String review_text, HttpSession session) {
+    public String handlePost(@RequestParam String review_text, int star_rate, HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
         if (currentUser != null) {
@@ -301,6 +333,7 @@ public class UserController {
             for(MovieReview mr: movieReviews){
                 if(mr.getMovieID().equals(currentMovie.getMovieID())){
                     mr.setComment(review_text);
+                    mr.setRate(star_rate*20);
                     movieReviewService.updateMovieReview(mr.getReviewID(), mr);
                     currentUser.setMovieReviews(movieReviews);
                     session.setAttribute("user", currentUser);
@@ -311,6 +344,7 @@ public class UserController {
             if(!isReviewed) {
                 MovieReview movieReview = new MovieReview();
                 movieReview.setComment(review_text);
+                movieReview.setRate(star_rate*20);
                 movieReview.setMovieID(currentMovie.getMovieID());
                 movieReview.setUser(currentUser);
                 movieReviewService.saveMovieReview(movieReview);
