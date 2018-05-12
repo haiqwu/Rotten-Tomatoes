@@ -14,31 +14,49 @@
 <br>
 <div class="ui container">
     <div class="ui  attached segment">
-        <form class="ui form ">
+        <form class="ui form " method="post" th:action="@{/edit_movie_content/{id}(id=${movie_tbe.movieID})}"      >
             <div class="field">
                 <label>Movie Description</label>
-                <textarea rows="3" name="description"></textarea>
+                <textarea rows="3" name="description" th:text="${movie_tbe.briefIntro}"></textarea>
             </div>
             <div class="field">
                 <label>Movie Name</label>
-                <input type="text" name="movie_name" placeholder="The Shape Of Water">
+                <input type="text" name="movie_name" th:value="${movie_tbe.movieName}" placeholder="The Shape Of Water">
             </div>
             <div class="field">
                 <label>Genres</label>
-                <input type="text" name="movie_genres" placeholder="Action,Drama">
+                <input type="text" name="movie_genres" th:value="${movie_tbe.genres}" placeholder="Action,Drama">
             </div>
             <div class="field">
-                <label>Time</label>
-                <input type="text" name="movie_time" placeholder="120">
+                <label>Runtime Minutes</label>
+                <input type="text" name="runtime_minutes" th:value="${movie_tbe.runtimeMinutes}" placeholder="120">
             </div>
-            <div class="field">
-                <label>Type</label>
-                <input type="text" name="type" placeholder="movie/tv">
-            </div>
+
             <div class="field">
                 <label>Released Date</label>
-                <input type="text" name="movie_date" placeholder="2018-5-10">
+                <input type="text" name="released_date" th:value="${movie_tbe.releasedDate}" placeholder="2018-5-10">
             </div>
+            <div class="field">
+                <label>Box Office</label>
+                <input type="text" name="box_office" th:value="${movie_tbe.box_office}" >
+            </div>
+            <div class="field">
+                <label>Secondary ID</label>
+                <input type="text" name="secondaryid" th:value="${movie_tbe.secondaryID}" >
+            </div>
+            <div class="field">
+                <label>Movie Images(url)</label>
+                <input type="text" name="movie_images" th:value="${movie_tbe.movieImages}" >
+            </div>
+            <div class="field">
+                <label>Movie Poster(url)</label>
+                <input type="text" name="movie_poster" th:value="${movie_tbe.moviePoster}">
+            </div>
+            <div class="field">
+                <label>Movie Trailers(url)</label>
+                <input type="text" name="movie_trailers" th:value="${movie_tbe.movieTrailers}" >
+            </div>
+
 
             <button class="ui button" type="submit">Submit</button>
         </form>

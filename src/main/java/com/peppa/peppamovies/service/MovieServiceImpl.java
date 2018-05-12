@@ -64,6 +64,19 @@ public class MovieServiceImpl implements MovieService {
 
     @Transactional
     @Override
+    public void deleteMovie(Long id) {
+        movieRepository.delete( getMovie(id)   );
+    }
+
+
+
+
+
+
+
+
+    @Transactional
+    @Override
     public Page<MovieInfo> listTopMovie(Pageable pageable) {
         return movieRepository.findByRate(pageable);
     }

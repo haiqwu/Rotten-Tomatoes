@@ -21,4 +21,6 @@ public interface MovieService {
     Page<MovieInfo> listTopMovie(Pageable pageable);
 
     Page<MovieInfo> listComing(Date date, Pageable pageable);
+
+    void deleteMovie(Long id);
 }

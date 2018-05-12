@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "MovieInfo")
 public class MovieInfo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long movieID;
     private String secondaryID;
     private String titleType;
@@ -27,6 +27,7 @@ public class MovieInfo {
     private String movieTrailers;
     private int criticRateCount;
     private int audiRateCount;
+    private int box_office;
     @ManyToMany
     private List<ActorInfo> movieActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeList")
@@ -189,6 +190,14 @@ public class MovieInfo {
         this.audiRateCount = audiRateCount;
     }
 
+    public int getBox_office() {
+        return box_office;
+    }
+
+    public void setBox_office(int box_office) {
+        this.box_office = box_office;
+    }
+
     @Override
     public String toString() {
         return "MovieInfo{" +
@@ -208,6 +217,7 @@ public class MovieInfo {
                 ", movieTrailers='" + movieTrailers + '\'' +
                 ", criticRateCount=" + criticRateCount +
                 ", audiRateCount=" + audiRateCount +
+                ", box_office=" + box_office +
                 ", movieActors=" + movieActors +
                 ", interestedUsers=" + interestedUsers +
                 ", notInterestedUsers=" + notInterestedUsers +
