@@ -13,6 +13,6 @@ public interface MovieReviewRepository extends JpaRepository<MovieReview,Long> {
     @Query("select m from MovieReview m where m.reported = 1 ")
     List<MovieReview> getAllReportedReviews();
 
-
-
+    @Query("select m from MovieReview m")
+    List<MovieReview> getAllReviews();
 }

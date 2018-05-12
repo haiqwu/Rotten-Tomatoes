@@ -3,6 +3,7 @@ package com.peppa.peppamovies.web.controller;
 import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.model.UserInfo;
+import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,19 +17,22 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private MovieReviewService movieReviewService;
+
     @GetMapping("/movie/{id}")
     public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
+        List<MovieReview> moviesAllReviews = movieReviewService.getAllReviews();
+        List<MovieReview> movieAllReviewsByCritic = new ArrayList<>();
+        List<MovieReview> movieAllReviewsByAudiance = new ArrayList<>();
         if(user != null){
             List<MovieReview> movieReviews = user.getMovieReviews();
             for(MovieReview mr: movieReviews){
@@ -43,7 +47,16 @@ public class MovieController {
         }else{
             model.addAttribute("movieReview", null);
         }
+        for(MovieReview mr: moviesAllReviews){
+            if(mr.getMovieID().equals(id) && mr.getUser().isCritic()){
+                movieAllReviewsByCritic.add(mr);
+            }else if(mr.getMovieID().equals(id)&& !(mr.getUser().isCritic())){
+                movieAllReviewsByAudiance.add(mr);
+            }
+        }
         model.addAttribute("movie", movieService.getMovie(id));
+        model.addAttribute("reviewsByCritic", movieAllReviewsByCritic);
+        model.addAttribute("reviewsByAudiance", movieAllReviewsByAudiance);
         session.setAttribute("movie", movieService.getMovie(id));
         return "movie_detail";
     }

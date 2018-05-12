@@ -13,6 +13,8 @@ public interface MovieReviewService {
 
     List<MovieReview> getReportedReviews();
 
+    List<MovieReview> getAllReviews();
+
     void deleteReview(Long id);
 
 }

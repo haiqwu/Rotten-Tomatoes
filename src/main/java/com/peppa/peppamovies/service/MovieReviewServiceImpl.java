@@ -44,6 +44,12 @@ public class MovieReviewServiceImpl implements MovieReviewService {
 
     @Transactional
     @Override
+    public List<MovieReview> getAllReviews() {
+        return movieReviewRepository.getAllReviews();
+    }
+
+    @Transactional
+    @Override
     public void deleteReview(Long id) {
 
         //userRepository.delete( getUser(id) );

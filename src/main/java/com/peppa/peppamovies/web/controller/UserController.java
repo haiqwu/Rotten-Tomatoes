@@ -131,6 +131,8 @@ public class UserController {
         List<List<Object>> movies = new ArrayList<>();
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
         List<MovieInfo> notInterested = user.getNotInterestedList();
+        Set<UserInfo> followers = user.getFollowers();
+        Set<UserInfo> followings = user.getFollowings();
         for(MovieReview mr: ratedMovies){
             List<Object> obj = new ArrayList<>();
             obj.add(mr);
@@ -140,6 +142,8 @@ public class UserController {
         model.addAttribute("rateMovies", movies);
         model.addAttribute("wantToSee", wantsToSeeList);
         model.addAttribute("notInterested", notInterested);
+        model.addAttribute("followers", followers);
+        model.addAttribute("followings", followings);
         return "profile_template";
     }
 
