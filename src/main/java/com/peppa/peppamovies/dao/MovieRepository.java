@@ -20,4 +20,15 @@ public interface MovieRepository extends JpaRepository<MovieInfo,Long> {
     Page<MovieInfo> findByTwoDate(Date dateStart, Date dateEnd, Pageable pageable);
     @Query("select m from MovieInfo m order by m.totalRate desc")
     Page<MovieInfo> findByRate(Pageable pageable);
+
+
+//    @Query("insert into MovieInfo (audiance_rate, box_office, brief_intro, \n" +
+//            "critic_rate, genres, movie_images, movie_name, movie_poster, movie_trailers, \n" +
+//            "released_date, runtime_minutes, secondaryid, title_type, total_rate) values ( )")
+//    void addMovie(double audiance_rate, int box_office,String brief_intro,
+//                  double critic_rate, String genres,String movie_images,
+//                  String movie_name,String movie_poster, String movie_trailers,
+//                  Date released_date, int runtime_minutes,String secondaryid,
+//                  String title_type,double total_rate);
+
 }

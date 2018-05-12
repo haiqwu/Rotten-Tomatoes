@@ -22,7 +22,7 @@
             <p>This Page will be deleted permanently </p></div>
         <br>
         <br>
-        <form  action="" method="post" >
+        <form  action="" th:action="@{/delete_movie_detail2/{id}(id=${movie_tbd_id})}" method="post" >
             <button class="negative ui button" type="submit">Delete Page</button>
         </form>
 

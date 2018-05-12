@@ -1,5 +1,6 @@
 package com.peppa.peppamovies.web.controller;
 
+import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieRankingData;
 import com.peppa.peppamovies.model.MovieReview;
 import com.peppa.peppamovies.model.UserInfo;
@@ -12,11 +13,13 @@ import javafx.beans.binding.ObjectExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -60,8 +63,7 @@ public class AdminSystemController {
     public String removeReportedUser(@PathVariable Long id)
     {
         UserInfo user = userService.getUser(id);
-
-
+        
         List<MovieReview> movieReviews = user.getMovieReviews();
         for(MovieReview mr: movieReviews){
             reviewService.deleteReview(mr.getReviewID());
@@ -157,4 +159,54 @@ public class AdminSystemController {
         return "admin_summary";
 
     }
+
+    @PostMapping("/admin_summary/add_movie")
+    public String addMovie(@RequestParam String description,
+                           @RequestParam String movie_images,
+                           @RequestParam String movie_name,
+                           @RequestParam String movie_poster,
+                           @RequestParam String movie_trailer,
+                           @RequestParam String movie_genres,
+                           @RequestParam String secondary_id,
+                           @RequestParam String box_office,
+                           @RequestParam String movie_time,
+                           @RequestParam String type,
+                           @RequestParam String movie_date
+                           )
+    {
+        MovieInfo m = new MovieInfo();
+        m.setBriefIntro(   description);
+        m.setMovieImages( movie_images );
+        m.setMovieName     ( movie_name);
+        m.setMoviePoster        (movie_poster);
+        m.setMovieTrailers        ( movie_trailer);
+        m.setGenres        ( movie_genres);
+        m.setSecondaryID        (secondary_id);
+        m.setBox_office(   Integer.parseInt(  box_office )  );
+        m.setRuntimeMinutes(  Integer.parseInt(movie_time));
+        m.setTitleType        ( type);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = dateFormat.parse(movie_date);
+            m.setReleasedDate(   date  );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //store to database
+        movieService.saveMovie(m);
+        return "redirect:/admin_summary_mapping";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

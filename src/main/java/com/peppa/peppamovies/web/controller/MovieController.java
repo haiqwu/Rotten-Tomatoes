@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -133,15 +134,63 @@ public class MovieController {
     }
 
     @GetMapping("/edit_movie_detail/{id}")
-    public String handleEditMovieDetail(@PathVariable Long id){
+    public String handleEditMovieDetail(@PathVariable Long id,Model model){
         System.out.println("movieId: "+ id);
+        model.addAttribute( "movie_tbe", movieService.getMovie(id));
         return "edit_movie_detail";
     }
 
+    @PostMapping("/edit_movie_content/{id}")
+    public String handleEditMovieDetailForm(@PathVariable Long id,
+
+                                            @RequestParam String description,
+                                            @RequestParam String movie_name,
+                                            @RequestParam String movie_genres,
+                                            @RequestParam String runtime_minutes,
+                                            @RequestParam String released_date,
+                                            @RequestParam String box_office,
+                                            @RequestParam String secondaryid,
+                                            @RequestParam String movie_images,
+                                            @RequestParam String movie_poster,
+                                            @RequestParam String movie_trailers
+                                            )
+    {
+        MovieInfo m = movieService.getMovie(id);
+
+        m.setBriefIntro( description);
+        m.setMovieName(movie_name);
+        m.setSecondaryID( secondaryid  );
+        m.setGenres( movie_genres);
+        m.setMoviePoster( movie_poster );
+        m.setMovieTrailers(  movie_trailers );
+        m.setMovieImages(movie_images);
+        m.setRuntimeMinutes( Integer.parseInt(  runtime_minutes ) );
+        m.setBox_office( Integer.parseInt( box_office) );
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = dateFormat.parse(released_date);
+            m.setReleasedDate(   date  );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        movieService.updateMovie(  id , m  );
+        return "redirect:/admin_summary_mapping";
+    }
+
     @GetMapping("/delete_movie_detail/{id}")
-    public String handleDeleteMovieDetail(@PathVariable Long id){
+    public String handleDeleteMovieDetail(@PathVariable Long id,Model model){
         System.out.println("movieId: "+ id);
+        model.addAttribute("movie_tbd_id",id);
         return "deleteMovieDetail";
+    }
+
+    @PostMapping("/delete_movie_detail2/{id}")
+    public String del_movie_by_admin(@PathVariable Long id)
+    {
+        movieService.deleteMovie(id);
+        return "redirect:/admin_summary_mapping";
     }
 
     public void handleTopMovies() {
