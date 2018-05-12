@@ -52,12 +52,9 @@
                                 <div class="class eleven wide column">
                                     <div class="ui grid">
                                         <div class="class six wide column">
-                                            <h4>TOMATOMETER</h4>
-                                            <a href="#"><h1>92%</h1></a>
-                                            <p>Average Rating: 7.5/10</p>
-                                            <p>Reviews Counted: 118</p>
-                                            <p>Fresh: 108</p>
-                                            <p>Rotten: 10</p>
+                                            <h4>PEPPAMETER</h4>
+                                            <h1 th:text="${movie.criticRate+'%'}">92%</h1>
+                                            <p th:text="${'Reviews Counted: '+movie.criticRateCount}">Reviews Counted: 118</p>
                                         </div>
                                         <div class="class eight wide column">
                                             <h5>All Critics | Top Critics</h5>
@@ -73,9 +70,8 @@
                                 </div>
                                 <div class="ui five wide column">
                                     <h4>AUDIENCE SCORE</h4>
-                                    <a href="#"><h1>90%</h1><h5>like it</h5></a>
-                                    <p>Average Rating: 4.5/5</p>
-                                    <p>User Ratings: 3,642</p>
+                                    <h1 th:text="${movie.audianceRate+'%'}">92%</h1>
+                                    <p th:text="${'Reviews Counted: '+movie.audiRateCount}">Reviews Counted: 118</p>
                                 </div>
                             </div>
                         </div>
