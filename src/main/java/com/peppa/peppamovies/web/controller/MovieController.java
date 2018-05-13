@@ -35,16 +35,21 @@ public class MovieController {
                 if(mr.getMovieID().equals(id)){
                     model.addAttribute("movieReview", mr.getComment());
                     model.addAttribute("RateReview", mr.getRate()/20);
+                    System.out.println(mr.getRate()/20);
                     break;
                 }else{
                     model.addAttribute("movieReview", null);
+                    model.addAttribute("RateReview", 0.0);
                 }
             }
         }else{
             model.addAttribute("movieReview", null);
+            model.addAttribute("RateReview", 0.0);
+
         }
         model.addAttribute("movie", movieService.getMovie(id));
         session.setAttribute("movie", movieService.getMovie(id));
+        model.addAttribute("RateReview", 0.0);
         return "movie_detail";
     }
 

@@ -77,14 +77,14 @@
                         </div>
                         <!--comment input text-->
                         <div class="sixteen wide column">
-                            <div class="ui grid">
+                            <div class="ui grid" th:if="${session.user}">
                                 <div class="four wide column">
                                     <a href="#"><img class="ui fluid image" src="../static/images/portrait.png"
                                                      th:src="@{/images/portrait.png}"
                                                      alt="Image"></a>
                                 </div>
 
-                                <div class="twelve wide column">
+                                <div class="twelve wide column" >
                                     <div class="row">
                                         <a type="button" class="ui mini animated fade green button" tabindex="0"
                                            href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
@@ -105,10 +105,10 @@
 
 
                                     </div>
-
+                                    <br>
                                     <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
-                                        <div class="row">
+                                        <div class="row" >
                                             <!-- star rating-->
                                             <!--<div id="star_rate"-->
                                                  <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
@@ -116,20 +116,70 @@
                                             <!--</div>-->
                                             <!--<p id="rate_num" name="rate_num"></p>-->
 
-                                            <select name="star_rate" class="ui dropdown">
-                                                <option value="1" >&#11088</option>
+                                            <!-- defalut star rate-->
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 0.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
 
+                                            <!-- 1 star-->
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 1.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1" selected="selected">&#11088</option>
+                                                <option value="2">&#11088&#11088</option>
+                                                <option value="3">&#11088&#11088&#11088</option>
+                                                <option value="4">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
+
+
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 2.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1">&#11088</option>
+                                                <option value="2" selected="selected">&#11088&#11088</option>
+                                                <option value="3">&#11088&#11088&#11088</option>
+                                                <option value="4">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
+
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 3.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1">&#11088</option>
+                                                <option value="2">&#11088&#11088</option>
+                                                <option value="3" selected="selected">&#11088&#11088&#11088</option>
+                                                <option value="4">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
+
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 4.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1">&#11088</option>
+                                                <option value="2">&#11088&#11088</option>
+                                                <option value="3">&#11088&#11088&#11088</option>
+                                                <option value="4" selected="selected">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
+
+                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 5.0 }">
+                                                <option disabled selected value> -- select your rate -- </option>
+                                                <option value="1">&#11088</option>
+                                                <option value="2">&#11088&#11088</option>
+                                                <option value="3">&#11088&#11088&#11088</option>
+                                                <option value="4">&#11088&#11088&#11088&#11088</option>
+                                                <option value="5" selected="selected">&#11088&#11088&#11088&#11088&#11088</option>
+                                            </select>
+
+
                                         </div>
 
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea th:text="${movieReview}"  name="review_text" placeholder="Add a Review (Optional)"
+                                                <textarea required th:text="${movieReview}"  name="review_text" placeholder="Add a Review (Optional)"
                                                           rows="7"></textarea>
                                             </div>
                                         </div>
