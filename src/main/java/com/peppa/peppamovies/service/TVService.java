@@ -23,4 +23,7 @@ public interface TVService {
     Page<TVInfo> listCriticTopRatedTV(Pageable pageable);
 
     void deleteTV(Long id);
+
+
+
 }
