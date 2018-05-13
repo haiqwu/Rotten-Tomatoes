@@ -34,66 +34,45 @@
             </div>
 
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CRITIC SPOTLIGHT</h2>
+            <div    th:each="tag : ${top_critics}" >
+                <div class="ui four wide column" >
+                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}"   ><img class="ui small image" src="../static/images/portrait.png"
+                                     th:src="@{${tag.photo}}" alt="Image"></a>
+                    <a  th:href="@{/user_profile/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
 
-            <div class="ui four wide column">
-                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
-                                 th:src="@{/images/portrait.png}" alt="Image"></a>
-                <a href="#">First Last</a>
-            </div>
-            <div class="ui four wide column">
-                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
-                                 th:src="@{/images/portrait.png}" alt="Image"></a>
-                <a href="#">First Last</a>
-            </div>
-            <div class="ui four wide column">
-                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
-                                 th:src="@{/images/portrait.png}" alt="Image"></a>
-                <a href="#">First Last</a>
-            </div>
-            <div class="ui four wide column">
-                <a href="#"><img class="ui small image" src="../static/images/portrait.png"
-                                 th:src="@{/images/portrait.png}" alt="Image"></a>
-                <a href="#">First Last</a>
+                </div>
             </div>
 
             <!--latest review-->
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">LATEST REVIEWS</h2>
-            <div class="ui sixteen wide column m-padded-small">
+            <div class="ui sixteen wide column m-padded-small"  th:each="tag : ${latest_reviews}" >
+
                 <div class="ui top attached segment">
-                    <a href="#">After Auschwitz</a>
-                    <div class="m-left-padded-mini">
-                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
-                            shattering experiences in that camp and how they prevailed to the present day.
-                        </div>
-                        <div>
-                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
-                        </div>
-                    </div>
+
+                    by: <a class="label" th:href="@{/user_profile/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">UserName </a>
+                    <h5></h5>
+                    <a th:href="@{/movie/{id}(id=${tag[0].movieID})}"    th:text="${tag[0].comment}">  </a>
+                    <br>
+                    MOVIE: <a th:href="@{/movie/{id}(id=${tag[0].movieID})}"    th:text="${tag[1].movieName}">  </a>
+
+                    <p th:text="${tag[0].dayCommented}">May 4, 2018</p>
+                    <p th:text="${tag[0].rate+'/5'}">5/5</p>
+                    <!--<a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>-->
+
+                    <!--<a href="#">After Auschwitz</a>-->
+                    <!--<div class="m-left-padded-mini">-->
+                        <!--<div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their-->
+                            <!--shattering experiences in that camp and how they prevailed to the present day.-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--‐ <a>Harvey S. Karten</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
-                <div class="ui inverted attached segment">
-                    <a href="#">After Auschwitz</a>
-                    <div class="m-left-padded-mini">
-                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
-                            shattering experiences in that camp and how they prevailed to the present day.
-                        </div>
-                        <div>
-                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
-                        </div>
-                    </div>
-                </div>
 
-                <div class="ui bottom attached segment">
-                    <a href="#">After Auschwitz</a>
-                    <div class="m-left-padded-mini">
-                        <div>Six women, among the last survivors of the Auschwitz concentration camp, tell stories of their
-                            shattering experiences in that camp and how they prevailed to the present day.
-                        </div>
-                        <div>
-                            ‐ <a>Harvey S. Karten</a>, Big Apple Reviews
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
 
             <!--critics buzz-->
