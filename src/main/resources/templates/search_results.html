@@ -12,6 +12,7 @@
 
 <div>
     <div class="ui container">
+        <!-- search header-->
         <div class="ui top attached inverted segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
@@ -23,7 +24,25 @@
             </div>
         </div>
 
+        <!--search body-->
         <div class="ui top attached inverted segment">
+
+            <!--grid or list-->
+            <div class="ui grid" >
+                <div class="six column row">
+                    <div class="right floated column">
+                        <div  class="ui dropdown item">
+                            <div class="text">View By</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a href="#" class="item"><i class="th list icon"></i>List</a>
+                                <a href="#" class="item"><i class="th large icon"></i>Grid</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="ui padded vertical inverted segment" th:each="singleMovie : ${page.content}">
                 <div class="ui middle aligned mobile reversed stackable grid" >
                     <div class="ui grid">

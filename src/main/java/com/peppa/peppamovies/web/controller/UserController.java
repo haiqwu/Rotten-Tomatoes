@@ -91,6 +91,7 @@ public class UserController {
         if (user != null) {
             session.setAttribute("user", user);
             session.setAttribute("found", true);
+
             if(user.getUserName().equals("admin")){
                 session.setAttribute("type",1); // admin
             }

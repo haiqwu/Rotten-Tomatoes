@@ -1,18 +1,21 @@
+// $(window).on('beforeunload', function(){ alert ('Bye now'); console.log("bye now")});
+
 $('.ui.dropdown').dropdown();
 
-
 $('.ui.search')
-    .search({
-        apiSettings: {
-            url: '//api.github.com/search/repositories?q={query}'
-        },
-        fields: {
-            results : 'items',
-            title   : 'name',
-            url     : 'html_url'
-        },
-        minCharacters : 2
-    })
+    .search(
+    //     {
+    //     apiSettings: {
+    //         url: '//api.github.com/search/repositories?q={query}'
+    //     },
+    //     fields: {
+    //         results : 'items',
+    //         title   : 'name',
+    //         url     : 'html_url'
+    //     },
+    //     minCharacters : 2
+    // }
+    )
 ;
 
 
