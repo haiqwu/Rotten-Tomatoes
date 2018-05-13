@@ -128,11 +128,14 @@ public class UserController {
     public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
         UserInfo user = userService.getUser(id);
         List<MovieReview> ratedMovies = user.getMovieReviews();
+
         List<List<Object>> movies = new ArrayList<>();
+
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
         List<MovieInfo> notInterested = user.getNotInterestedList();
         Set<UserInfo> followers = user.getFollowers();
         Set<UserInfo> followings = user.getFollowings();
+
         for(MovieReview mr: ratedMovies){
             List<Object> obj = new ArrayList<>();
             obj.add(mr);
@@ -170,6 +173,7 @@ public class UserController {
     public String handleFollow(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
         UserInfo currentUser = userService.getUser(id);
+        currentUser.setNumFollowers(currentUser.getNumFollowers()+1);
         Set<UserInfo> followings = user.getFollowings();
         boolean isDulip = false;
         for(UserInfo ui: followings){
@@ -222,7 +226,8 @@ public class UserController {
     @GetMapping("/my_profile/delete/followings/{id}")
     public String handleDeleteFollowings(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
-        //UserInfo followingUser = userService.getUser(id);
+        UserInfo followingUser = userService.getUser(id);
+        followingUser.setNumFollowers(followingUser.getNumFollowers()-1);
         Set<UserInfo> followings = user.getFollowings();
         for(UserInfo ui: followings){
             if(ui.getUserID().equals(id)){
@@ -440,10 +445,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/pt_critics")
-    public String handlePTCritics(){
-        return "critics";
-    }
+
 
 
     @GetMapping("/help")

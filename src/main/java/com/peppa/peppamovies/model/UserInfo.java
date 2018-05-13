@@ -62,6 +62,7 @@ public class UserInfo {
 
     @ManyToMany(mappedBy="followings")
     private Set<UserInfo> followers = new HashSet<UserInfo>();
+    private int numFollowers;
 
     public UserInfo() {
     }
@@ -310,6 +311,14 @@ public class UserInfo {
         this.followings = followings;
     }
 
+    public int getNumFollowers() {
+        return numFollowers;
+    }
+
+    public void setNumFollowers(int numFollowers) {
+        this.numFollowers = numFollowers;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -338,8 +347,9 @@ public class UserInfo {
                 ", newsL=" + newsL +
                 ", wantsToSeeListTV=" + wantsToSeeListTV +
                 ", notInterestedListTV=" + notInterestedListTV +
-                ", followers=" + followers +
                 ", followings=" + followings +
+                ", followers=" + followers +
+                ", numFollowers=" + numFollowers +
                 ", VALID_EMAIL_ADDRESS_REGEX=" + VALID_EMAIL_ADDRESS_REGEX +
                 '}';
     }
