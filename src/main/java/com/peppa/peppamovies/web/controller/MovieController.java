@@ -154,6 +154,15 @@ public class MovieController {
         return "edit_movie_detail";
     }
 
+    @GetMapping("/report_review/{id}")
+    public String handleReportReview(@PathVariable Long id)
+    {
+        MovieReview movieReview = movieReviewService.getMovieReview(id);
+        movieReview.setReported(true);
+        movieReviewService.updateMovieReview( id,  movieReview );
+        return "redirect:/";//need a page!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    }
+
     @PostMapping("/edit_movie_content/{id}")
     public String handleEditMovieDetailForm(@PathVariable Long id,
 

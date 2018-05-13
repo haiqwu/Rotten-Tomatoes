@@ -256,7 +256,7 @@
                                     time. </p>
                                 <p th:text="${tag.dayCommented}">May 4, 2018</p>
                                 <p th:text="${tag.rate+'/5'}">5/5</p>
-                                <a href="#"   class="ui red label" >Report</a>
+                                <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
                             </div>
                         </div>
                     </div>
@@ -274,7 +274,7 @@
                                     time. </p>
                                 <p th:text="${tag.dayCommented}">May 4, 2018</p>
                                 <p th:text="${tag.rate/20+'/5'}">5/5</p>
-                                <a href="#"   class="ui red label" >Report</a>
+                                <a href="#"  th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
                             </div>
                         </div>
                     </div>
