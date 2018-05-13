@@ -56,6 +56,18 @@ public class AdminSystemController {
         
         List<MovieReview> movieReviews = user.getMovieReviews();
         for(MovieReview mr: movieReviews){
+            MovieInfo mi = movieService.getMovie(mr.getMovieID());
+            if(user.isCritic()){
+                mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-mr.getRate());
+                mi.setCriticRateCount(mi.getCriticRateCount()-1);
+                mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+            }else{
+                mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-mr.getRate());
+                mi.setAudiRateCount(mi.getAudiRateCount()-1);
+                mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+            }
+            mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+            movieService.updateMovie(mi.getMovieID(),mi);
             reviewService.deleteReview(mr.getReviewID());
         }
 
@@ -113,7 +125,18 @@ public class AdminSystemController {
     {
         //UserInfo user = userService.getUser(id);
         MovieReview movieReview = reviewService.getMovieReview(id);
-
+        MovieInfo mi = movieService.getMovie(movieReview.getMovieID());
+        if(movieReview.getUser().isCritic()){
+            mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-movieReview.getRate());
+            mi.setCriticRateCount(mi.getCriticRateCount()-1);
+            mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+        }else{
+            mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-movieReview.getRate());
+            mi.setAudiRateCount(mi.getAudiRateCount()-1);
+            mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+        }
+        mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+        movieService.updateMovie(mi.getMovieID(),mi);
         //user.setReported(false);
         //user.setOfficially_blocked(true);
         //userService.deleteUser(id);

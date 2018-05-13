@@ -18,8 +18,11 @@ public interface TVRepository extends JpaRepository<TVInfo,Long> {
 
 //    @Query("select m from MovieInfo m where m.releasedDate >= ?1 and m.releasedDate <= ?2")
 //    Page<MovieInfo> findByTwoDate(Date dateStart, Date dateEnd, Pageable pageable);
-//    @Query("select m from MovieInfo m order by m.totalRate desc")
-//    Page<MovieInfo> findByRate(Pageable pageable);
+    @Query("select m from TVInfo m order by m.totalRate desc")
+    Page<TVInfo> findAllTopRate(Pageable pageable);
+
+    @Query("select m from TVInfo m order by m.criticRate desc")
+    Page<TVInfo> findAllCriticTopRate(Pageable pageable);
 
 
 }

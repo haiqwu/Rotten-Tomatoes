@@ -2,9 +2,11 @@ package com.peppa.peppamovies.web.controller;
 
 import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieReview;
+import com.peppa.peppamovies.model.TVInfo;
 import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
+import com.peppa.peppamovies.service.TVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +28,9 @@ public class MovieController {
 
     @Autowired
     private MovieReviewService movieReviewService;
+
+    @Autowired
+    private TVService tvService;
 
     @GetMapping("/movie/{id}")
     public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
@@ -59,6 +64,14 @@ public class MovieController {
         model.addAttribute("reviewsByAudiance", movieAllReviewsByAudiance);
         session.setAttribute("movie", movieService.getMovie(id));
         return "movie_detail";
+    }
+
+    @GetMapping("/tv/{id}")
+    public String handleShowTVInfo(@PathVariable Long id, Model model, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        model.addAttribute("tv", tvService.getTV(id));
+        session.setAttribute("tvS", tvService.getTV(id));
+        return "tv_detail";
     }
 
     @GetMapping("/opening_this_week")
@@ -103,6 +116,7 @@ public class MovieController {
         Page<MovieInfo> movies = movieService.listOpeningMovie(dateStart, dateEnd, pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/opening_this_week");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
@@ -112,6 +126,7 @@ public class MovieController {
         Page<MovieInfo> movies = movieService.listTopMovie(pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/top_box_office");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
@@ -122,13 +137,35 @@ public class MovieController {
         Page<MovieInfo> movies = movieService.listComing(date, pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/comming_soon");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
-    @GetMapping("/certified_fresh_movies")
-    public String handleViewCertifiedFreshesMovies() {
+    @GetMapping("/top_rated_tv_shows")
+    public String handleTopRatedTVShows(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Page<TVInfo> tvs = tvService.listTopRatedTV(pageable);
+        model.addAttribute("page", tvs);
+        model.addAttribute("link", "/top_rated_tv_shows");
+        model.addAttribute("boolean", null);
         return "movie_category_info";
     }
+
+    @GetMapping("/certified_fresh_tv_shows")
+    public String handleCertifiedFreshTVShows(@PageableDefault(size = 8, sort = {"criticRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Date date = new Date();
+        Page<TVInfo> tvs = tvService.listCriticTopRatedTV(pageable);
+        model.addAttribute("page", tvs);
+        model.addAttribute("link", "/certified_fresh_tv_shows");
+        model.addAttribute("boolean", null);
+        return "movie_category_info";
+    }
+
+//    @GetMapping("/certified_fresh_movies")
+//    public String handleViewCertifiedFreshesMovies() {
+//        return "movie_category_info";
+//    }
 
     @RequestMapping("/search")
     public String handleSearchAction(@PageableDefault(size = 8, sort = {"movieName"},
