@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>TV Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css">
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid" th:if="${session.type == 1 }">
+            <div class="six column row">
+                <div class="right floated column">
+                    <a href="#" class="ui black basic label">Edit</a>
+                    <a href="#" class="ui black basic label">Delete</a>
+                </div>
+            </div>
+        </div>
+
+            <!--review-->
+            <div class="sixteen wide column">
+                <H2 th:text="${tv.tvName}">MOVIE TITLE</H2>
+                <select class="ui dropdown">
+                    <option value="">Season</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <img class="ui fluid image" name="poster main" alt="Image" th:src="@{${tv.tvPoster}}">
+                    </div>
+
+                    <div class="twelve wide column">
+                        <div class="sixteen wide column">
+                            <div class="ui grid">
+                                <div class="class eleven wide column">
+                                    <div class="ui grid">
+                                        <div class="class six wide column">
+                                            <h4>PEPPAMETER</h4>
+                                            <h1 th:text="${tv.criticRate+'%'}">92%</h1>
+                                            <p th:text="${'Reviews Counted: '+tv.criticRateCount}">Reviews Counted:
+                                                118</p>
+                                        </div>
+                                        <div class="class eight wide column">
+                                            <h5>All Critics | Top Critics</h5>
+                                            <p class="m-opacity-mini">
+                                                Critics Consensus: Love, Simon hits its coming-of-age beats more deftly
+                                                than many entries
+                                                in this well-traveled genre -- and represents an overdue, if not
+                                                entirely successful,
+                                                milestone of inclusion.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui five wide column">
+                                    <h4>AUDIENCE SCORE</h4>
+                                    <h1 th:text="${tv.audianceRate+'%'}">92%</h1>
+                                    <p th:text="${'Reviews Counted: '+tv.audiRateCount}">Reviews Counted: 118</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--comment input text-->
+                        <div class="sixteen wide column">
+                            <div class="ui grid">
+                                <div class="four wide column m-margin-top-mini">
+                                    <a href="#"><img class="ui fluid image" src="../static/images/portrait.png"
+                                                     th:src="@{/images/portrait.png}"
+                                                     alt="Image"></a>
+                                </div>
+
+                                <div class="twelve wide column">
+                                    <div class="row">
+                                        <a type="button" class="ui mini animated fade green button" tabindex="0"
+                                           href="#">
+                                            <div class="visible content">+ WANT TO SEE</div>
+                                            <div class="hidden content">
+                                                <i class="heart icon"></i>
+                                            </div>
+                                        </a>
+
+                                        <a type="button" class="ui mini animated fade red button" tabindex="0"
+                                           href="#">
+                                            <div class="visible content">- NOT INTERESTED</div>
+                                            <div class="hidden content">
+                                                <i class="thumbs down icon"></i>
+                                            </div>
+                                        </a>
+                                        <span class="ui m-left-padded-huge">
+                                            <select name="star_rate" class="ui dropdown">
+                                            <option value="1">&#11088</option>
+                                            <option value="2">&#11088&#11088</option>
+                                            <option value="3">&#11088&#11088&#11088</option>
+                                            <option value="4">&#11088&#11088&#11088&#11088</option>
+                                            <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
+                                        </select>
+                                        </span>
+
+
+                                    </div>
+
+                                    <form action="#" method="post">
+
+                                        <!--<div class="row">-->
+                                        <!-- star rating-->
+                                        <!--<div id="star_rate"-->
+                                        <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
+
+                                        <!--</div>-->
+                                        <!--<p id="rate_num" name="rate_num"></p>-->
+
+                                        <!--<select name="star_rate" class="ui dropdown">-->
+                                        <!--<option value="1" >&#11088</option>-->
+                                        <!--<option value="2">&#11088&#11088</option>-->
+                                        <!--<option value="3">&#11088&#11088&#11088</option>-->
+                                        <!--<option value="4">&#11088&#11088&#11088&#11088</option>-->
+                                        <!--<option value="5">&#11088&#11088&#11088&#11088&#11088</option>-->
+                                        <!--</select>-->
+
+                                        <!--</div>-->
+
+
+                                        <div class="ui m-padded-top-bottom-mini form">
+                                            <div class="field">
+                                                <textarea name="review_text"
+                                                          placeholder="Add a Review (Optional)"
+                                                          rows="7"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="ui grid">
+                                            <div class="ui right aligned column">
+                                                <button class="ui mini grey button">Post</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--review end-->
+
+
+
+            <!--movie info-->
+            <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">MOVIE INFO</div>-->
+
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">TV INFO</h2>
+
+            <div class="ui grid">
+                <div class="sixteen wide column">
+
+                    <p class="m-opacity-mini" th:text="${tv.briefIntro}">placeholder
+                    </p>
+                    <div class="ui list">
+                        <div class="item">
+                            Genre: &nbsp; &nbsp; <span th:text="${tv.genres}">Action & Adventure</span>
+                        </div>
+                        <div class="item">
+                            Released Date: &nbsp; &nbsp; <span th:text="${tv.releasedDate}">2018-05-11</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+            <!--movie info end-->
+
+            <!--cast-->
+            <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">CAST</div>-->
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CAST</h2>
+            <div class="ui grid">
+                <div class="ui sixteen wide column">
+                    <div class="ui relaxed horizontal list">
+                        <div class="item">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui avatar image" src="../static/images/portrait.png"
+                                 th:src="@{/images/portrait.png}">
+                            <div class="content">
+                                <a class="header">Daniel Louise</a>
+                                <span class="m-description">as Wade Owen Watts / Parzival</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--cast end-->
+
+            <!--review-->
+            <!-- critics review-->
+            <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>-->
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">REVIEWS</h2>
+            <div class="ui grid">
+                <div class="ui eight wide column ">
+                    <!--<div class="ui grid">-->
+                    <!--left is critics review-->
+                    <!--<div class="ui eight wide column" >-->
+                    <div class="row m-left-padded-medium m-right-padded-small">
+                        <div class="ui inverted attached segment" th:each="tag : ${reviewsByCritic}">
+
+                            <h3 th:text="${tag.reviewUser.userName}">
+                                UserName
+                            </h3>
+                            <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
+                                more urgent,
+                                doubling down on its messages with a seriousness that's entirely fitting for its
+                                time. </p>
+                            <p th:text="${tag.dayCommented}">May 4, 2018</p>
+                            <p th:text="${tag.rate+'/5'}">5/5</p>
+                            <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"
+                               class="ui red label">Report</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- common user  -->
+                <div class="ui eight wide column  ">
+                    <div class="row m-left-padded-small m-right-padded-medium">
+                        <div class="ui inverted attached segment" th:each="tag : ${reviewsByAudiance}">
+                            <h3 href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}"
+                                th:text="${tag.reviewUser.userName}">
+                                UserName
+                            </h3>
+                            <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
+                                more urgent,
+                                doubling down on its messages with a seriousness that's entirely fitting for its
+                                time. </p>
+                            <p th:text="${tag.dayCommented}">May 4, 2018</p>
+                            <p th:text="${tag.rate/20+'/5'}">5/5</p>
+                            <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"
+                               class="ui red label">Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--review end-->
+
+    </div>
+</div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+</body>
+
+</html>

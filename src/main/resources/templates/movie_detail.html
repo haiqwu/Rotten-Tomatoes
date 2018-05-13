@@ -233,27 +233,13 @@
                     </p>
                     <div class="ui list">
                         <div class="item">
-                            Rating: &nbsp; &nbsp; PG-13 (for sequences of sci-fi action violence, bloody images, some
-                            suggestive material, partial nudity and language)
+                            Genre: &nbsp; &nbsp; <span th:text="${movie.genres}">Action & Adventure</span>
                         </div>
                         <div class="item">
-                            Genre: &nbsp; &nbsp; <a href="#">Action & Adventure</a>, <a href="#">Science Fiction &
-                            Fantasy</a>
+                            Released Date: &nbsp; &nbsp; <span th:text="${movie.releasedDate}">2018-05-11</span>
                         </div>
                         <div class="item">
-                            Directed By: &nbsp; &nbsp; <a href="#">Steven Spielberg</a>
-                        </div>
-                        <div class="item">
-                            Written By: &nbsp; &nbsp; <a href="#">Zak Penn</a>, <a href="#">Ernest Cline</a>
-                        </div>
-                        <div class="item">
-                            In Theaters: &nbsp; &nbsp; Mar 29, 2018 Wide
-                        </div>
-                        <div class="item">
-                            Runtime: &nbsp; &nbsp; 140 minutes
-                        </div>
-                        <div class="item">
-                            Studio: &nbsp; &nbsp; <a href="#">Warner Bros. Pictures</a>
+                            Runtime: &nbsp; &nbsp; <span th:text="${movie.runtimeMinutes}">120</span> minutes
                         </div>
                     </div>
                 </div>
@@ -310,66 +296,35 @@
                         <!--left is critics review-->
                         <!--<div class="ui eight wide column" >-->
                         <div class="row review-padding">
-                            <div class="ui green inverted segment ">
-                                <div class="ui red image label">
+                            <div class="ui green inverted segment " th:each="tag : ${reviewsByCritic}" >
+                                <div class="ui red image label" th:text="${tag.reviewUser.userName}">
                                     UserName
                                 </div>
                                 <h5></h5>
-                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and more urgent,
                                     doubling down on its messages with a seriousness that's entirely fitting for its
                                     time. </p>
-                                <p>May 4, 2018</p>
-                                <a href="#"   class="ui red label" >Report</a>
+                                <p th:text="${tag.dayCommented}">May 4, 2018</p>
+                                <p th:text="${tag.rate+'/5'}">5/5</p>
+                                <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
                             </div>
                         </div>
-                        <!--</div>-->
-
-                        <!--<div class="ui eight wide column" >-->
-                        <div class="row review-padding">
-                            <div class="ui green inverted segment ">
-                                <div class="ui red image label">
-                                    UserName
-                                </div>
-                                <h5></h5>
-                                <p>The story makes the effects of prejudice more distressing and more urgent,
-                                    doubling down on its messages with a seriousness that's entirely fitting for its
-                                    time. </p>
-                                <p>May 4, 2018</p>
-                                <a href="#"   class="ui red label" >Report</a>
-                            </div>
-                        </div>
-                        <!--</div>-->
-
-                        <!--</div>-->
                     </div>
 
                     <!-- common user  -->
                     <div class="ui eight wide column  ">
                         <div class="row review-padding">
-                            <div class="ui grey inverted segment ">
-                                <div class="ui image label">
+                            <div class="ui grey inverted segment " th:each="tag : ${reviewsByAudiance}">
+                                <a href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                     UserName
-                                </div>
+                                </a>
                                 <h5></h5>
-                                <p>The story makes the effects of prejudice more distressing and more urgent,
+                                <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and more urgent,
                                     doubling down on its messages with a seriousness that's entirely fitting for its
                                     time. </p>
-                                <p>May 4, 2018</p>
-                                <a href="#"   class="ui red label" >Report</a>
-                            </div>
-                        </div>
-
-                        <div class="row review-padding">
-                            <div class="ui grey inverted segment ">
-                                <div class="ui image label">
-                                    UserName
-                                </div>
-                                <h5></h5>
-                                <p>The story makes the effects of prejudice more distressing and more urgent,
-                                    doubling down on its messages with a seriousness that's entirely fitting for its
-                                    time. </p>
-                                <p>May 4, 2018</p>
-                                <a href="#"   class="ui red label" >Report</a>
+                                <p th:text="${tag.dayCommented}">May 4, 2018</p>
+                                <p th:text="${tag.rate/20+'/5'}">5/5</p>
+                                <a href="#"  th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
                             </div>
                         </div>
                     </div>

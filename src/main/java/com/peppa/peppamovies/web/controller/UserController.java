@@ -1,13 +1,7 @@
 package com.peppa.peppamovies.web.controller;
 
-import com.peppa.peppamovies.model.MovieInfo;
-import com.peppa.peppamovies.model.MovieRankingData;
-import com.peppa.peppamovies.model.MovieReview;
-import com.peppa.peppamovies.model.UserInfo;
-import com.peppa.peppamovies.service.EmailService;
-import com.peppa.peppamovies.service.MovieReviewService;
-import com.peppa.peppamovies.service.MovieService;
-import com.peppa.peppamovies.service.UserService;
+import com.peppa.peppamovies.model.*;
+import com.peppa.peppamovies.service.*;
 import com.peppa.peppamovies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,10 +28,11 @@ public class UserController {
     private MovieRankingData movieRankingData;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private TVService tvService;
 
     @GetMapping("/")
-    public String loginPage(@PageableDefault(size = 8, sort = {"releasedDate"},
-            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public String loginPage(@PageableDefault(size = 8) Pageable pageable, Model model) {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -81,6 +76,10 @@ public class UserController {
         model.addAttribute("pageTop", moviesTop);
         Page<MovieInfo> moviesComing = movieService.listComing(date, pageable);
         model.addAttribute("pageComing", moviesComing);
+        Page<TVInfo> tvTop = tvService.listTopRatedTV(pageable);
+        model.addAttribute("pageTVTop", tvTop);
+        Page<TVInfo> tvCriticTop = tvService.listCriticTopRatedTV(pageable);
+        model.addAttribute("pageCriticTVTop", tvCriticTop);
         return "index";
     }
 
@@ -127,11 +126,16 @@ public class UserController {
 
     @GetMapping("/my_profile/{id}")
     public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
-        UserInfo user = (UserInfo) session.getAttribute("user");
+        UserInfo user = userService.getUser(id);
         List<MovieReview> ratedMovies = user.getMovieReviews();
+
         List<List<Object>> movies = new ArrayList<>();
+
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
         List<MovieInfo> notInterested = user.getNotInterestedList();
+        Set<UserInfo> followers = user.getFollowers();
+        Set<UserInfo> followings = user.getFollowings();
+
         for(MovieReview mr: ratedMovies){
             List<Object> obj = new ArrayList<>();
             obj.add(mr);
@@ -141,6 +145,9 @@ public class UserController {
         model.addAttribute("rateMovies", movies);
         model.addAttribute("wantToSee", wantsToSeeList);
         model.addAttribute("notInterested", notInterested);
+        model.addAttribute("followers", followers);
+        model.addAttribute("followings", followings);
+        model.addAttribute("currentUser", user);
         return "profile_template";
     }
 
@@ -150,6 +157,18 @@ public class UserController {
         List<MovieReview> ratedMovies = user.getMovieReviews();
         for(MovieReview mr: ratedMovies){
             if(mr.getMovieID().equals(mid)){
+                MovieInfo mi = movieService.getMovie(mr.getMovieID());
+                if(user.isCritic()){
+                    mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-mr.getRate());
+                    mi.setCriticRateCount(mi.getCriticRateCount()-1);
+                    mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+                }else{
+                    mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-mr.getRate());
+                    mi.setAudiRateCount(mi.getAudiRateCount()-1);
+                    mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+                }
+                mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+                movieService.updateMovie(mi.getMovieID(),mi);
                 ratedMovies.remove(mr);
                 user.setMovieReviews(ratedMovies);
                 movieReviewService.deleteReview(mr.getReviewID());
@@ -160,6 +179,28 @@ public class UserController {
             }
         }
         return "redirect:/my_profile/" + user.getUserID();
+    }
+
+    @GetMapping("/my_profile/follow/{id}")
+    public String handleFollow(@PathVariable Long id, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        UserInfo currentUser = userService.getUser(id);
+        currentUser.setNumFollowers(currentUser.getNumFollowers()+1);
+        Set<UserInfo> followings = user.getFollowings();
+        boolean isDulip = false;
+        for(UserInfo ui: followings){
+            if(ui.getUserID().equals(id)){
+                isDulip=true;
+                break;
+            }
+        }
+        if(!isDulip){
+            user.getFollowings().add(currentUser);
+            userService.updateUser(user.getUserID(), user);
+            session.setAttribute("user", user);
+        }
+
+        return "redirect:/my_profile/" + currentUser.getUserID();
     }
 
     @GetMapping("/my_profile/delete/wantsToSee/{mid}")
@@ -186,6 +227,24 @@ public class UserController {
             if(mi.getMovieID().equals(mid)){
                 movies.remove(mi);
                 user.setNotInterestedList(movies);
+                userService.updateUser(user.getUserID(),user);
+                session.setAttribute("user", user);
+                break;
+            }
+        }
+        return "redirect:/my_profile/" + user.getUserID();
+    }
+
+    @GetMapping("/my_profile/delete/followings/{id}")
+    public String handleDeleteFollowings(@PathVariable Long id, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        UserInfo followingUser = userService.getUser(id);
+        followingUser.setNumFollowers(followingUser.getNumFollowers()-1);
+        Set<UserInfo> followings = user.getFollowings();
+        for(UserInfo ui: followings){
+            if(ui.getUserID().equals(id)){
+                followings.remove(ui);
+                user.setFollowings(followings);
                 userService.updateUser(user.getUserID(),user);
                 session.setAttribute("user", user);
                 break;
@@ -285,9 +344,17 @@ public class UserController {
         if (currentUser != null) {
             boolean isDupli = false;
             List<MovieInfo> wts = currentUser.getWantsToSeeList();
+            List<MovieInfo> nit = currentUser.getNotInterestedList();
             for (int i = 0; i < wts.size(); i++) {
                 if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
+                    break;
+                }
+            }
+            for (MovieInfo mi: nit){
+                if(mi.getMovieID().equals(currentMovie.getMovieID())){
+                    nit.remove(mi);
+                    currentUser.setNotInterestedList(nit);
                     break;
                 }
             }
@@ -307,10 +374,17 @@ public class UserController {
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
         if (currentUser != null) {
             boolean isDupli = false;
-            List<MovieInfo> wts = currentUser.getNotInterestedList();
-            for (int i = 0; i < wts.size(); i++) {
-                if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
+            List<MovieInfo> nit = currentUser.getNotInterestedList();
+            List<MovieInfo> wts = currentUser.getWantsToSeeList();
+            for (int i = 0; i < nit.size(); i++) {
+                if (nit.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
+                    break;
+                }
+            }
+            for (MovieInfo mi: wts){
+                if(mi.getMovieID().equals(currentMovie.getMovieID())){
+                    currentUser.getWantsToSeeList().remove(mi);
                     break;
                 }
             }
@@ -328,6 +402,7 @@ public class UserController {
     public String handlePost(@RequestParam String review_text, int star_rate, HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
+        Date today = new Date();
         if (currentUser != null) {
             boolean isReviewed = false;
             List<MovieReview> movieReviews = currentUser.getMovieReviews();
@@ -335,6 +410,7 @@ public class UserController {
                 if(mr.getMovieID().equals(currentMovie.getMovieID())){
                     mr.setComment(review_text);
                     mr.setRate(star_rate*20);
+                    mr.setDayCommented(today);
                     movieReviewService.updateMovieReview(mr.getReviewID(), mr);
                     currentUser.setMovieReviews(movieReviews);
                     session.setAttribute("user", currentUser);
@@ -346,12 +422,34 @@ public class UserController {
                 MovieReview movieReview = new MovieReview();
                 movieReview.setComment(review_text);
                 movieReview.setRate(star_rate*20);
+                movieReview.setDayCommented(today);
                 movieReview.setMovieID(currentMovie.getMovieID());
                 movieReview.setUser(currentUser);
                 movieReviewService.saveMovieReview(movieReview);
                 movieReviews.add(movieReview);
                 currentUser.setMovieReviews(movieReviews);
                 session.setAttribute("user", currentUser);
+                if(currentUser.isCritic()){
+                    if(currentMovie.getCriticRateCount()==0){
+                        currentMovie.setCriticRate(star_rate*20);
+                        currentMovie.setCriticRateCount(currentMovie.getCriticRateCount()+1);
+                    }else{
+                        currentMovie.setCriticRate(currentMovie.getCriticRate()*currentMovie.getCriticRateCount());
+                        currentMovie.setCriticRateCount(currentMovie.getCriticRateCount()+1);
+                        currentMovie.setCriticRate((star_rate*20+currentMovie.getCriticRate())/currentMovie.getCriticRateCount());
+                    }
+                }else{
+                    if(currentMovie.getAudiRateCount()==0){
+                        currentMovie.setAudianceRate(star_rate*20);
+                        currentMovie.setAudiRateCount(currentMovie.getAudiRateCount()+1);
+                    }else{
+                        currentMovie.setAudianceRate(currentMovie.getAudianceRate()*currentMovie.getAudiRateCount());
+                        currentMovie.setAudiRateCount(currentMovie.getAudiRateCount()+1);
+                        currentMovie.setAudianceRate((star_rate*20+currentMovie.getAudiRateCount())/currentMovie.getAudiRateCount());
+                    }
+                }
+                currentMovie.setTotalRate((currentMovie.getCriticRate()+currentMovie.getAudianceRate())/2);
+                movieService.updateMovie(currentMovie.getMovieID(), currentMovie);
             }
         } else {
             System.out.println("No login");
@@ -381,10 +479,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/pt_critics")
-    public String handlePTCritics(){
-        return "critics";
-    }
+
 
 
     @GetMapping("/help")

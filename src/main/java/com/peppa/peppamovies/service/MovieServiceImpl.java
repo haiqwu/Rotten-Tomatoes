@@ -73,8 +73,6 @@ public class MovieServiceImpl implements MovieService {
 
 
 
-
-
     @Transactional
     @Override
     public Page<MovieInfo> listTopMovie(Pageable pageable) {

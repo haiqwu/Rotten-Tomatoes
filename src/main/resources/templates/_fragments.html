@@ -171,26 +171,20 @@
                     <span class="text">MOVIES & DVDS</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div class="header">MOVIES IN THEATERS</div>
-                        <div class="divider"></div>
                         <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This
                             Week</a>
                         <a th:href=@{/top_box_office} href="movie_category_info.html" class="item">Top Box Office</a>
                         <a th:href=@{/comming_soon} href="movie_category_info.html" class="item">Comming Soon</a>
-                        <a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified
-                            Movies</a>
+                        <!--<a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified-->
+                            <!--Movies</a>-->
                     </div>
                 </div>
                 <div class="ui dropdown pointing  link item ">
                     <span class="text">TV</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div class="header">OPENING TV</div>
-                        <div class="divider"></div>
-                        <a href="" class="item">Most Popular TV</a>
-                        <a class="item">Top TV Shows</a>
-                        <a class="item">Certified TV</a>
-                        <a class="item">More</a>
+                        <a th:href=@{/top_rated_tv_shows} href="#" class="item">Top Rated TV Shows</a>
+                        <a th:href=@{/certified_fresh_tv_shows} href="#" class="item">Certified Fresh TV Shows</a>
                     </div>
                 </div>
                 <div class="ui item ">

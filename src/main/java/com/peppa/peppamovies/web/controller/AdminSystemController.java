@@ -1,25 +1,15 @@
 package com.peppa.peppamovies.web.controller;
 
-import com.peppa.peppamovies.model.MovieInfo;
-import com.peppa.peppamovies.model.MovieRankingData;
-import com.peppa.peppamovies.model.MovieReview;
-import com.peppa.peppamovies.model.UserInfo;
-import com.peppa.peppamovies.service.EmailService;
-import com.peppa.peppamovies.service.MovieReviewService;
-import com.peppa.peppamovies.service.MovieService;
-import com.peppa.peppamovies.service.UserService;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import javafx.beans.binding.ObjectExpression;
+import com.peppa.peppamovies.model.*;
+import com.peppa.peppamovies.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -33,8 +23,8 @@ public class AdminSystemController {
     private EmailService emailService;
     @Autowired
     private MovieReviewService reviewService;
-
-
+    @Autowired
+    private TVService tvService;
 
 
     @GetMapping("/admin_summary/ignore_user/{id}")
@@ -66,6 +56,18 @@ public class AdminSystemController {
         
         List<MovieReview> movieReviews = user.getMovieReviews();
         for(MovieReview mr: movieReviews){
+            MovieInfo mi = movieService.getMovie(mr.getMovieID());
+            if(user.isCritic()){
+                mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-mr.getRate());
+                mi.setCriticRateCount(mi.getCriticRateCount()-1);
+                mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+            }else{
+                mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-mr.getRate());
+                mi.setAudiRateCount(mi.getAudiRateCount()-1);
+                mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+            }
+            mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+            movieService.updateMovie(mi.getMovieID(),mi);
             reviewService.deleteReview(mr.getReviewID());
         }
 
@@ -123,7 +125,18 @@ public class AdminSystemController {
     {
         //UserInfo user = userService.getUser(id);
         MovieReview movieReview = reviewService.getMovieReview(id);
-
+        MovieInfo mi = movieService.getMovie(movieReview.getMovieID());
+        if(movieReview.getUser().isCritic()){
+            mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-movieReview.getRate());
+            mi.setCriticRateCount(mi.getCriticRateCount()-1);
+            mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+        }else{
+            mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-movieReview.getRate());
+            mi.setAudiRateCount(mi.getAudiRateCount()-1);
+            mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+        }
+        mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+        movieService.updateMovie(mi.getMovieID(),mi);
         //user.setReported(false);
         //user.setOfficially_blocked(true);
         //userService.deleteUser(id);
@@ -196,7 +209,46 @@ public class AdminSystemController {
         movieService.saveMovie(m);
         return "redirect:/admin_summary_mapping";
     }
+    @PostMapping("/admin_summary/add_tv")
+    public String addTV(
+                           @RequestParam String description ,
+                           @RequestParam String tv_images ,
+                           @RequestParam String tv_name ,
+                           @RequestParam String  tv_poster,
+                           @RequestParam String  secondaryid,
+                           @RequestParam String  genres,
+                           @RequestParam String  runtime_minutes,
+                           @RequestParam String  title_type,
+                           @RequestParam String released_date ,
+                           @RequestParam String season
+                        )
+    {
+        TVInfo t = new TVInfo();
+        //MovieInfo m = new MovieInfo();
+        t.setBriefIntro( description);
+        t.setTvImages( tv_images );
+        t.setTvName( tv_name );
+        t.setRuntimeMinutes(  Integer.parseInt( runtime_minutes  ) );
+        t.setTvPoster( tv_poster );
+        t.setSecondaryID( secondaryid  );
+        t.setGenres( genres );
+        t.setSeason( Integer.parseInt( season)  );
+        t.setTitleType( title_type );
 
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date date = dateFormat.parse(released_date);
+            t.setReleasedDate(   date  );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //store to database
+        tvService.saveTV(t);
+        //movieService.saveMovie(m);
+        return "redirect:/admin_summary_mapping";
+    }
 
 
 

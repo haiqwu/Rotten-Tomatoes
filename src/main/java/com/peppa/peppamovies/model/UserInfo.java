@@ -4,10 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,6 +53,16 @@ public class UserInfo {
     private List<TVInfo> wantsToSeeListTV = new ArrayList<>();
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<TVInfo> notInterestedListTV = new ArrayList<>();
+
+    @ManyToMany(cascade={CascadeType.ALL})
+    @JoinTable(name="follow_relation",
+            joinColumns={@JoinColumn(name="userid")},
+            inverseJoinColumns={@JoinColumn(name="followingid")})
+    private Set<UserInfo> followings = new HashSet<UserInfo>();
+
+    @ManyToMany(mappedBy="followings")
+    private Set<UserInfo> followers = new HashSet<UserInfo>();
+    private int numFollowers;
 
     public UserInfo() {
     }
@@ -288,6 +295,30 @@ public class UserInfo {
         return matcher.find();
     }
 
+    public Set<UserInfo> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<UserInfo> followers) {
+        this.followers = followers;
+    }
+
+    public Set<UserInfo> getFollowings() {
+        return followings;
+    }
+
+    public void setFollowings(Set<UserInfo> followings) {
+        this.followings = followings;
+    }
+
+    public int getNumFollowers() {
+        return numFollowers;
+    }
+
+    public void setNumFollowers(int numFollowers) {
+        this.numFollowers = numFollowers;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -316,6 +347,9 @@ public class UserInfo {
                 ", newsL=" + newsL +
                 ", wantsToSeeListTV=" + wantsToSeeListTV +
                 ", notInterestedListTV=" + notInterestedListTV +
+                ", followings=" + followings +
+                ", followers=" + followers +
+                ", numFollowers=" + numFollowers +
                 ", VALID_EMAIL_ADDRESS_REGEX=" + VALID_EMAIL_ADDRESS_REGEX +
                 '}';
     }

@@ -18,9 +18,10 @@
 
                 <div class="m-profile-left-inner-padding">
                     <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="@{/images/portrait.png}" alt="Image"></a></div>
-                    <a href="#" th:text="${session.user.userName}">First Last</a>
-                    <div><a href="#" th:href="@{/account/{id}(id=${session.user.userID})}">Manage Account</a></div>
+                    <a href="#" th:text="${currentUser.userName}">First Last</a>
+                    <div><a href="#" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
                     <div><a href="#">Profile Summary</a></div>
+                    <div><a th:href="@{/my_profile/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
 
                     <form method="post" enctype="multipart/form-data">
                          <div>
@@ -73,6 +74,8 @@
                     <a class="item" data-tab="second">Want To See</a>
                     <a class="item " data-tab="third">Not Interested</a>
                     <a class="item " data-tab="four">Rating History</a>
+                    <a class="item " data-tab="fifth">Followers</a>
+                    <a class="item " data-tab="sixth">Followings</a>
                 </div>
                 <!--Summary detail-->
                 <!--tab 1-->
@@ -110,36 +113,36 @@
                         </div>
                     </div>
 
-                    <!--want to see tv-->
-                    <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
-                        <div class="ui inverted segment ">
-                            <div class="ui grid">
-                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                    <!--&lt;!&ndash;want to see tv&ndash;&gt;-->
+                    <!--<div class="row review-padding">-->
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                        <!--<div class="ui inverted segment ">-->
+                            <!--<div class="ui grid">-->
+                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
 
-                                </div>
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!--NOT INTEREST tv-->
-                    <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
-                        <div class="ui inverted segment ">
-                            <div class="ui grid">
-                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                    <!--<div class="row review-padding">-->
+                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
+                        <!--<div class="ui inverted segment ">-->
+                            <!--<div class="ui grid">-->
+                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
-                                </div>
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!--rating movie-->
                     <div class="row review-padding">
@@ -166,6 +169,38 @@
 
                         </div>
                     </div>
+
+                    <!--followers-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
+                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <p th:text="${tag.userName}">Black Panther   </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--followings-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${followings}"  >
+                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <p th:text="${tag.userName}">Black Panther   </p>
+                                    <a th:href="@{/my_profile/delete/followings/{id}(id=${tag.userID})}" href="#" class="ui red label ">Unfollow</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Want to see second-->
@@ -188,21 +223,21 @@
                         </div>
                     </div>
 
-                    <!-- want to see tv-->
-                    <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
-                        <div class="ui inverted segment ">
-                            <div class="ui grid">
-                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                    <!--&lt;!&ndash; want to see tv&ndash;&gt;-->
+                    <!--<div class="row review-padding">-->
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                        <!--<div class="ui inverted segment ">-->
+                            <!--<div class="ui grid">-->
+                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
 
-                                </div>
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
                 <!-- not interest-->
@@ -225,20 +260,20 @@
                     </div>
 
 
-                    <!--NOT INTEREST tv-->
-                    <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
-                        <div class="ui inverted segment ">
-                            <div class="ui grid">
-                                <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                    <!--&lt;!&ndash;NOT INTEREST tv&ndash;&gt;-->
+                    <!--<div class="row review-padding">-->
+                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
+                        <!--<div class="ui inverted segment ">-->
+                            <!--<div class="ui grid">-->
+                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
-                                </div>
-                            </div>
+                                <!--</div>-->
+                            <!--</div>-->
 
-                        </div>
-                    </div>
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
                 <!--rating history-->
@@ -284,6 +319,43 @@
 
                                 </div>
 
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- followers-->
+                <!--tab 5-->
+                <div class="ui inverted bottom attached tab segment " data-tab="fifth">
+                    <!--followers-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
+                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <p th:text="${tag.userName}">Black Panther   </p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- followings-->
+                <!--tab 6-->
+                <div class="ui inverted bottom attached tab segment " data-tab="sixth">
+                    <!--followings-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${followings}"  >
+                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <p th:text="${tag.userName}">Black Panther   </p>
+                                    <a th:href="@{/my_profile/delete/followings/{id}(id=${tag.userID})}" href="#" class="ui red label ">Unfollow</a>
+                                </div>
                             </div>
 
                         </div>

@@ -1,6 +1,9 @@
 package com.peppa.peppamovies.service;
 
 import com.peppa.peppamovies.model.MovieReview;
+import com.peppa.peppamovies.model.UserInfo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,6 +16,11 @@ public interface MovieReviewService {
 
     List<MovieReview> getReportedReviews();
 
+    List<MovieReview> getAllReviews();
+
     void deleteReview(Long id);
+
+    Page<MovieReview> listReviewsByTime(Pageable pageable);
+
 
 }

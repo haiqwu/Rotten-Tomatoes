@@ -20,7 +20,8 @@
                     <a class="item active" data-tab="first">View Reported Users</a>
                     <a class="item" data-tab="second">View Reported Reviews</a>
                     <a class="item" data-tab="third">Critic Account Application</a>
-                    <a class="item " data-tab="fourth">Create New Page</a>
+                    <a class="item " data-tab="fourth">Add New Movie</a>
+                    <a class="item " data-tab="fifth">Add New TV</a>
                     <!--<a class="item " data-tab="four">Rating History</a>-->
                 </div>
 
@@ -154,6 +155,56 @@
                         <div class="field">
                             <label>Released Date</label>
                             <input type="text" name="movie_date" placeholder="2018-05-10">
+                        </div>
+
+                        <button class="ui button" type="submit">Submit</button>
+                    </form>
+
+                </div>
+                <div class="ui inverted bottom attached tab segment" data-tab="fifth">
+                    <!--tab 3-->
+                    <form class="ui form inverted"   th:action="@{/admin_summary/add_tv}" method="post"    >
+                        <div class="field">
+                            <label>TV Description</label>
+                            <textarea rows="3" name="description" placeholder="Description of the TV show"></textarea>
+                        </div>
+                        <div class="field">
+                            <label>TV Images(url)</label>
+                            <input type="text" name="tv_images" ></input>
+                        </div>
+                        <div class="field">
+                            <label>TV Name</label>
+                            <input type="text" name="tv_name" >
+                        </div>
+                        <div class="field">
+                            <label>TV Poster(url)</label>
+                            <input type="text" name="tv_poster" >
+                        </div>
+
+                        <div class="field">
+                            <label>Seconday ID</label>
+                            <input type="text" name="secondaryid" >
+                        </div>
+
+                        <div class="field">
+                            <label>Genres</label>
+                            <input type="text" name="genres" placeholder="Action,Drama">
+                        </div>
+                        <div class="field">
+                            <label>Runtime Minutes</label>
+                            <input type="text" name="runtime_minutes" placeholder="120">
+                        </div>
+                        <div class="field">
+                            <label>Type</label>
+                            <input type="text" name="title_type" placeholder="movie/tv">
+                        </div>
+                        <div class="field">
+                            <label>Released Date</label>
+                            <input type="text" name="released_date" placeholder="2018-05-10">
+                        </div>
+                        <div class="field">
+                            <label>Season</label>
+                            <input type="text" name="season" >
                         </div>
 
                         <button class="ui button" type="submit">Submit</button>
