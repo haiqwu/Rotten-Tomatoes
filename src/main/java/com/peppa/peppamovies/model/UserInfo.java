@@ -58,10 +58,10 @@ public class UserInfo {
     @JoinTable(name="follow_relation",
             joinColumns={@JoinColumn(name="userid")},
             inverseJoinColumns={@JoinColumn(name="followingid")})
-    private Set<UserInfo> followers = new HashSet<UserInfo>();
-
-    @ManyToMany(mappedBy="followers")
     private Set<UserInfo> followings = new HashSet<UserInfo>();
+
+    @ManyToMany(mappedBy="followings")
+    private Set<UserInfo> followers = new HashSet<UserInfo>();
 
     public UserInfo() {
     }

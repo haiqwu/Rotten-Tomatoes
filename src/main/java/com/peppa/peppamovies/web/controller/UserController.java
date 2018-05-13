@@ -126,7 +126,7 @@ public class UserController {
 
     @GetMapping("/my_profile/{id}")
     public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
-        UserInfo user = (UserInfo) session.getAttribute("user");
+        UserInfo user = userService.getUser(id);
         List<MovieReview> ratedMovies = user.getMovieReviews();
         List<List<Object>> movies = new ArrayList<>();
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
@@ -144,6 +144,7 @@ public class UserController {
         model.addAttribute("notInterested", notInterested);
         model.addAttribute("followers", followers);
         model.addAttribute("followings", followings);
+        model.addAttribute("currentUser", user);
         return "profile_template";
     }
 
@@ -163,6 +164,27 @@ public class UserController {
             }
         }
         return "redirect:/my_profile/" + user.getUserID();
+    }
+
+    @GetMapping("/my_profile/follow/{id}")
+    public String handleFollow(@PathVariable Long id, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        UserInfo currentUser = userService.getUser(id);
+        Set<UserInfo> followings = user.getFollowings();
+        boolean isDulip = false;
+        for(UserInfo ui: followings){
+            if(ui.getUserID().equals(id)){
+                isDulip=true;
+                break;
+            }
+        }
+        if(!isDulip){
+            user.getFollowings().add(currentUser);
+            userService.updateUser(user.getUserID(), user);
+            session.setAttribute("user", user);
+        }
+
+        return "redirect:/my_profile/" + currentUser.getUserID();
     }
 
     @GetMapping("/my_profile/delete/wantsToSee/{mid}")
@@ -189,6 +211,23 @@ public class UserController {
             if(mi.getMovieID().equals(mid)){
                 movies.remove(mi);
                 user.setNotInterestedList(movies);
+                userService.updateUser(user.getUserID(),user);
+                session.setAttribute("user", user);
+                break;
+            }
+        }
+        return "redirect:/my_profile/" + user.getUserID();
+    }
+
+    @GetMapping("/my_profile/delete/followings/{id}")
+    public String handleDeleteFollowings(@PathVariable Long id, HttpSession session) {
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        //UserInfo followingUser = userService.getUser(id);
+        Set<UserInfo> followings = user.getFollowings();
+        for(UserInfo ui: followings){
+            if(ui.getUserID().equals(id)){
+                followings.remove(ui);
+                user.setFollowings(followings);
                 userService.updateUser(user.getUserID(),user);
                 session.setAttribute("user", user);
                 break;
@@ -288,9 +327,17 @@ public class UserController {
         if (currentUser != null) {
             boolean isDupli = false;
             List<MovieInfo> wts = currentUser.getWantsToSeeList();
+            List<MovieInfo> nit = currentUser.getNotInterestedList();
             for (int i = 0; i < wts.size(); i++) {
                 if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
+                    break;
+                }
+            }
+            for (MovieInfo mi: nit){
+                if(mi.getMovieID().equals(currentMovie.getMovieID())){
+                    nit.remove(mi);
+                    currentUser.setNotInterestedList(nit);
                     break;
                 }
             }
@@ -310,10 +357,17 @@ public class UserController {
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
         if (currentUser != null) {
             boolean isDupli = false;
-            List<MovieInfo> wts = currentUser.getNotInterestedList();
-            for (int i = 0; i < wts.size(); i++) {
-                if (wts.get(i).getMovieID().equals(currentMovie.getMovieID())) {
+            List<MovieInfo> nit = currentUser.getNotInterestedList();
+            List<MovieInfo> wts = currentUser.getWantsToSeeList();
+            for (int i = 0; i < nit.size(); i++) {
+                if (nit.get(i).getMovieID().equals(currentMovie.getMovieID())) {
                     isDupli = true;
+                    break;
+                }
+            }
+            for (MovieInfo mi: wts){
+                if(mi.getMovieID().equals(currentMovie.getMovieID())){
+                    currentUser.getWantsToSeeList().remove(mi);
                     break;
                 }
             }
@@ -336,8 +390,10 @@ public class UserController {
             List<MovieReview> movieReviews = currentUser.getMovieReviews();
             for(MovieReview mr: movieReviews){
                 if(mr.getMovieID().equals(currentMovie.getMovieID())){
+                    Date today = new Date();
                     mr.setComment(review_text);
                     mr.setRate(star_rate*20);
+                    mr.setDayCommented(today);
                     movieReviewService.updateMovieReview(mr.getReviewID(), mr);
                     currentUser.setMovieReviews(movieReviews);
                     session.setAttribute("user", currentUser);

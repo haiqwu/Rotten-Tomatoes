@@ -18,9 +18,10 @@
 
                 <div class="m-profile-left-inner-padding">
                     <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="@{/images/portrait.png}" alt="Image"></a></div>
-                    <a href="#" th:text="${session.user.userName}">First Last</a>
-                    <div><a href="#" th:href="@{/account/{id}(id=${session.user.userID})}">Manage Account</a></div>
+                    <a href="#" th:text="${currentUser.userName}">First Last</a>
+                    <div><a href="#" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
                     <div><a href="#">Profile Summary</a></div>
+                    <div><a th:href="@{/my_profile/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
 
                 </div>
 

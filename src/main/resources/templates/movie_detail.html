@@ -265,9 +265,9 @@
                     <div class="ui eight wide column  ">
                         <div class="row review-padding">
                             <div class="ui grey inverted segment " th:each="tag : ${reviewsByAudiance}">
-                                <div class="ui image label" th:text="${tag.reviewUser.userName}">
+                                <a href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                     UserName
-                                </div>
+                                </a>
                                 <h5></h5>
                                 <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and more urgent,
                                     doubling down on its messages with a seriousness that's entirely fitting for its
