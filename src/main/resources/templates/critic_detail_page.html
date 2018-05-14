@@ -35,10 +35,10 @@
                     <div class="ui teal m-header-median  inverted attached segment">BEST REVIEWS</div>
                     <div class="ui inverted segment ">
                         <div class="ui grid">
-                            <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
-                                <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                <p th:text="${tag.movieName}">Black Panther   </p>
-                                <a th:href="@{/my_profile/delete/wantsToSee/{mid}(mid=${tag.movieID})}" href="#" class="ui red label ">Delete</a>
+                            <div class="three wide center aligned column"  th:each="tag : ${bestMovieReview}"  >
+                                <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag[1].moviePoster}"  alt="Image"></a>
+                                <p th:text="${tag[1].movieName}">Black Panther   </p>
+                                <div th:text="${tag[0].rate/20+'/5'}"> </div>
 
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                     <div class="ui teal m-header-median  inverted attached segment">WORST REVIEWS</div>
                     <div class="ui inverted segment ">
                         <div class="ui grid">
-                            <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
-                                <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
-                                <p th:text="${tag.movieName}">Black Panther   </p>
-                                <a th:href="@{/my_profile/delete/wantsToSee/{mid}(mid=${tag.movieID})}" href="#" class="ui red label ">Delete</a>
+                            <div class="three wide center aligned column"  th:each="tag : ${worstMovieReview}"  >
+                                <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag[1].moviePoster}"  alt="Image"></a>
+                                <p th:text="${tag[1].movieName}">Black Panther   </p>
+                                <div th:text="${tag[0].rate/20+'/5'}"> </div>
 
                             </div>
                         </div>

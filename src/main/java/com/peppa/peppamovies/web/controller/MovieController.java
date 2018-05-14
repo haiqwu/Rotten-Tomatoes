@@ -159,12 +159,21 @@ public class MovieController {
     }
 
     @GetMapping("/comming_soon")
-    public String handleViewComingSoonMovies(@PageableDefault(size = 8, sort = {"releasedDate"},
-            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public String handleViewComingSoonMovies(@PageableDefault(size = 8) Pageable pageable, Model model) {
         Date date = new Date();
-        Page<MovieInfo> movies = movieService.listComing(date, pageable);
+        Page<MovieInfo> movies = movieService.listComing(date,pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/comming_soon");
+        model.addAttribute("boolean", "123");
+        return "movie_category_info";
+    }
+
+    @GetMapping("/top_rated_movies")
+    public String handleViewTopRatedMovies(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Page<MovieInfo> movies = movieService.listRateMovie(pageable);
+        model.addAttribute("page", movies);
+        model.addAttribute("link", "/top_rated_movies");
         model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
@@ -196,8 +205,7 @@ public class MovieController {
 //    }
 
     @RequestMapping("/search")
-    public String handleSearchAction(@PageableDefault(size = 8, sort = {"movieName"},
-            direction = Sort.Direction.ASC) Pageable pageable,
+    public String handleSearchAction(@PageableDefault(size = 8) Pageable pageable,
                                      String query, Model model, HttpSession session) {
         if (query == null) {
             Object queryItem = session.getAttribute("queryItem");
@@ -206,7 +214,9 @@ public class MovieController {
         query = query.trim();
         query = query.replaceAll("\\s+", " ");
         Page<MovieInfo> queryResult = movieService.listMovie("%" + query + "%", pageable);
+        Page<TVInfo> tvResoult = tvService.listTV("%" + query + "%", pageable);
         session.setAttribute("page", queryResult);
+        session.setAttribute("pageTV", tvResoult);
         model.addAttribute("query", query);
         session.setAttribute("queryItem", query);
         session.setAttribute("searchItem", query);
@@ -266,6 +276,16 @@ public class MovieController {
         return "search_results";
     }
 
+    @RequestMapping("/search/runtime")
+    public String handleSearchRuntime(@PageableDefault(size = 8, sort = {"runtimeMinutes"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/runtime");
+        return "search_results";
+    }
+
     @GetMapping("/edit_movie_detail/{id}")
     public String handleEditMovieDetail(@PathVariable Long id,Model model){
         System.out.println("movieId: "+ id);
@@ -290,7 +310,6 @@ public class MovieController {
         return "report";
 
     }
-
 
 
     @PostMapping("/edit_movie_content/{id}")

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "MovieReview")
-public class MovieReview {
+public class MovieReview implements Comparable<MovieReview>{
     @Id
     @GeneratedValue
     private Long reviewID;
@@ -122,5 +122,19 @@ public class MovieReview {
                 ", is_critic_review=" + is_critic_review +
                 ", reported=" + reported +
                 '}';
+    }
+
+    @Override
+    public int compareTo(MovieReview that) {
+        double rated1 = this.getRate();
+        double rated2 = that.getRate();
+
+        if (rated1 > rated2) {
+            return 1;
+        } else if (rated1 < rated2) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

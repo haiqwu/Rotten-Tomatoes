@@ -69,13 +69,15 @@ public class MovieServiceImpl implements MovieService {
     }
 
 
-
-
-
-
     @Transactional
     @Override
     public Page<MovieInfo> listTopMovie(Pageable pageable) {
+        return movieRepository.findByBoxOffice(pageable);
+    }
+
+    @Transactional
+    @Override
+    public Page<MovieInfo> listRateMovie(Pageable pageable) {
         return movieRepository.findByRate(pageable);
     }
 

@@ -9,9 +9,6 @@
 </head>
 <body>
 <nav th:replace="_fragments :: navBar()"></nav>
-<br>
-<br>
-<br>
 <div class="ui container">
     <div class="ui inverted attached segment">
         <div class="ui grid">
@@ -49,18 +46,10 @@
                 <h3>Delete Account</h3>
                 <p>Terminate your Peppa account and disconnect from any attached social networks.</p>
                 <a href="" th:href="@{/delete_account/{id}(id=${session.user.userID})}"  class="ui red label" >Delete</a>
-
             </div>
-
-
         </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
 <footer th:replace="_fragments :: footerImg()"></footer>
 <!--js-->
 

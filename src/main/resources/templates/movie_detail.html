@@ -43,9 +43,10 @@
             <!--review-->
             <div class="sixteen wide column">
                 <div class="ui grid">
-                    <div class="four wide column">
+                    <div class="four wide column center aligned">
                         <a href="#"><img class="ui fluid image" name="poster main" alt="Image"
                                          th:src="@{${movie.moviePoster}}"></a>
+                        <h3 th:text="${movie.movieName}">Movie Title</h3>
                     </div>
                     <div class="twelve wide column">
                         <div class="sixteen wide column">
@@ -54,8 +55,9 @@
                                     <div class="ui grid">
                                         <div class="class six wide column">
                                             <h4>PEPPAMETER</h4>
-                                            <h1 th:text="${movie.criticRate+'%'}">92%</h1>
-                                            <p th:text="${'Reviews Counted: '+movie.criticRateCount}">Reviews Counted: 118</p>
+                                            <h1 class="ui red header" th:text="${movie.criticRate+'%'}">92%</h1>
+                                            <p th:text="${'Reviews Counted: '+movie.criticRateCount}">Reviews Counted:
+                                                118</p>
                                         </div>
                                         <div class="class eight wide column">
                                             <h5>All Critics | Top Critics</h5>
@@ -71,7 +73,7 @@
                                 </div>
                                 <div class="ui five wide column">
                                     <h4>AUDIENCE SCORE</h4>
-                                    <h1 th:text="${movie.audianceRate+'%'}">92%</h1>
+                                    <h1 class="ui green header" th:text="${movie.audianceRate+'%'}">92%</h1>
                                     <p th:text="${'Reviews Counted: '+movie.audiRateCount}">Reviews Counted: 118</p>
                                 </div>
                             </div>
@@ -85,7 +87,7 @@
                                                      alt="Image"></a>
                                 </div>
 
-                                <div class="twelve wide column" >
+                                <div class="twelve wide column">
                                     <div class="row">
                                         <a type="button" class="ui mini animated fade green button" tabindex="0"
                                            href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
@@ -109,17 +111,18 @@
                                     <br>
                                     <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
-                                        <div class="row" >
+                                        <div class="row">
                                             <!-- star rating-->
                                             <!--<div id="star_rate"-->
-                                                 <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
+                                            <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
 
                                             <!--</div>-->
                                             <!--<p id="rate_num" name="rate_num"></p>-->
 
                                             <!-- defalut star rate-->
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 0.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 0.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
@@ -128,8 +131,9 @@
                                             </select>
 
                                             <!-- 1 star-->
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 1.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 1.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1" selected="selected">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
@@ -138,8 +142,9 @@
                                             </select>
 
 
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 2.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 2.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1">&#11088</option>
                                                 <option value="2" selected="selected">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
@@ -147,8 +152,9 @@
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
 
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 3.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 3.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3" selected="selected">&#11088&#11088&#11088</option>
@@ -156,22 +162,27 @@
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
 
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 4.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 4.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
-                                                <option value="4" selected="selected">&#11088&#11088&#11088&#11088</option>
+                                                <option value="4" selected="selected">&#11088&#11088&#11088&#11088
+                                                </option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
 
-                                            <select required name="star_rate" class="ui dropdown" th:if="${RateReview == 5.0 }">
-                                                <option disabled selected value> -- select your rate -- </option>
+                                            <select required name="star_rate" class="ui dropdown"
+                                                    th:if="${RateReview == 5.0 }">
+                                                <option disabled selected value> -- select your rate --</option>
                                                 <option value="1">&#11088</option>
                                                 <option value="2">&#11088&#11088</option>
                                                 <option value="3">&#11088&#11088&#11088</option>
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
-                                                <option value="5" selected="selected">&#11088&#11088&#11088&#11088&#11088</option>
+                                                <option value="5" selected="selected">
+                                                    &#11088&#11088&#11088&#11088&#11088
+                                                </option>
                                             </select>
 
 
@@ -180,7 +191,8 @@
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea required th:text="${movieReview}"  name="review_text" placeholder="Add a Review (Optional)"
+                                                <textarea required th:text="${movieReview}" name="review_text"
+                                                          placeholder="Add a Review (Optional)"
                                                           rows="7"></textarea>
                                             </div>
                                         </div>
@@ -300,18 +312,18 @@
             <!--review-->
             <!-- critics review-->
             <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>-->
-            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">REVIEWS</h2>
-            <div class="ui grid">
-                <div class="ui eight wide column ">
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small m-bottom-padded-medium">REVIEWS</h2>
+            <!--<div class="ui grid">-->
+                <div class="ui eight wide column m-right-padded-small m-left-padded-large ">
                     <!--<div class="ui grid">-->
                     <!--left is critics review-->
                     <!--<div class="ui eight wide column" >-->
-                    <div class="row m-left-padded-medium m-right-padded-small">
+                    <!--<div class="row m-left-padded-medium m-right-padded-small">-->
                         <div class="ui inverted attached segment" th:each="tag : ${reviewsByCritic}">
 
-                            <h3 th:text="${tag.reviewUser.userName}">
+                            <a th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                 UserName
-                            </h3>
+                            </a>
                             <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
                                 more urgent,
                                 doubling down on its messages with a seriousness that's entirely fitting for its
@@ -321,14 +333,14 @@
                             <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"
                                class="ui red label">Report</a>
                         </div>
-                    </div>
+                    <!--</div>-->
                 </div>
 
                     <!-- common user  -->
-                    <div class="ui eight wide column  ">
-                        <div class="row review-padding">
-                            <div class="ui grey inverted segment " th:each="tag : ${reviewsByAudiance}">
-                                <a href="#" th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
+                    <div class="ui eight wide column m-left-padded-small m-right-padded-large m-bottom-padded-medium ">
+                        <!--<div class="row review-padding">-->
+                            <div class="ui  inverted attached segment " th:each="tag : ${reviewsByAudiance}">
+                                <a class="ui green header" href="#" th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                     UserName
                                 </a>
                                 <h5></h5>
@@ -339,14 +351,14 @@
                                 <p th:text="${tag.rate/20+'/5'}">5/5</p>
                                 <a href="#"  th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
                             </div>
-                        </div>
+                        <!--</div>-->
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
             <!--cast end-->
 
-            <!--critics review-->
-            <!--critics review end-->
+        <!--critics review-->
+        <!--critics review end-->
 
     </div>
 </div>

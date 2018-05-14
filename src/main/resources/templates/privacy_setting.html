@@ -14,18 +14,18 @@
 <br>
 <div class="ui container">
     <div class="ui attached segment">
-    <form class="ui form" >
+    <form class="ui form" method="post" action="" th:action="@{/user_shy_setting/{id}(id=${session.user.userID})}"     >
         <div class="grouped fields">
             <label>VISIBILITY</label>
-            <div class="field">
+            <div class=" field">
                 <div class="ui radio checkbox">
-                    <input type="radio" name="privacy_private" >
+                    <input type="radio" name="privacy" value="pri" >
                     <label>Hide my profile. Only I can see my profile.</label>
                 </div>
             </div>
             <div class="field">
                 <div class="ui radio checkbox">
-                    <input type="radio" name="privacy_public" checked="checked">
+                    <input type="radio" name="privacy" checked="checked" value="pub">
                     <label>Show to all. Everybody (including anonymous users) can see my profile.</label>
                 </div>
             </div>
