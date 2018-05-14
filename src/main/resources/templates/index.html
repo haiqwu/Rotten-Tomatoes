@@ -71,26 +71,26 @@
                         <div th:text="${'Top Box: '+tag.box_office}"> </div>
                     </div>
                 </div>
-                <!--++++++++++++++++++++++++ Certified Fresh Peppa +++++++++++++++++++++++++++-->
+                <!--++++++++++++++++++++++++ Top Rated Movies +++++++++++++++++++++++++++-->
                 <div class="ui divider m-padded-top-bottom-mini"></div>
                 <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="teal header inverted ">Certified Fresh</h2>
+                            <h2 class="teal header inverted ">Top Rated Movies</h2>
                         </div>
                         <div class="column right aligned inverted ">
                             <div class="view-all">
-                                <a href="#">view all <i class="angle double right icon"></i></a>
+                                <a th:href=@{/top_rated_movies} href="#">view all <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--movie body-->
                 <div class="ui grid container inverted movie-body">
-                    <div class="four wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
+                    <div class="four wide center aligned column"  th:each="tag : ${pageTopRated.content}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
-                        <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
+                        <p th:text="${tag.totalRate/20+'/5'}">5/5</p>
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ Comming Soon +++++++++++++++++++++++++++-->
@@ -98,7 +98,7 @@
                 <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
-                            <h2 class="teal header inverted ">Comming Soon</h2>
+                            <h2 class="teal header inverted ">Coming Soon</h2>
                         </div>
                         <div class="column right aligned inverted ">
                             <div class="view-all">
