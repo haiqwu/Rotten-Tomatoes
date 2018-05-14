@@ -47,7 +47,12 @@ public class TVServiceImpl implements TVService {
 
     @Override
     public Page<TVInfo> listTV(Pageable pageable) {
-        return tvRepository.findAllTopRate(pageable);
+        return null;
+    }
+
+    @Override
+    public TVInfo getTVBySeason(int seasonNum, String movieName) {
+        return tvRepository.findTVBySeason(seasonNum, movieName);
     }
 
     @Transactional

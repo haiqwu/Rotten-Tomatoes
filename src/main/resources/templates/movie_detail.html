@@ -315,7 +315,7 @@
                     <div class="ui eight wide column  ">
                         <div class="row review-padding">
                             <div class="ui grey inverted segment " th:each="tag : ${reviewsByAudiance}">
-                                <a href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
+                                <a href="#" th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                     UserName
                                 </a>
                                 <h5></h5>

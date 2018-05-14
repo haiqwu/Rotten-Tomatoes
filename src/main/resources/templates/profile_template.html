@@ -21,7 +21,6 @@
                     <a href="#" th:text="${currentUser.userName}">First Last</a>
                     <div><a href="#" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
                     <div><a href="#">Profile Summary</a></div>
-                    <div><a th:href="@{/my_profile/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
 
                     <form method="post" th:action="@{/handleUploadPic/{id}(id=${currentUser.userID})}" enctype="multipart/form-data">
                          <div>
@@ -176,7 +175,7 @@
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
-                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
                                     <p th:text="${tag.userName}">Black Panther   </p>
 
                                 </div>
@@ -191,7 +190,7 @@
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followings}"  >
-                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
                                     <p th:text="${tag.userName}">Black Panther   </p>
                                     <a th:href="@{/my_profile/delete/followings/{id}(id=${tag.userID})}" href="#" class="ui red label ">Unfollow</a>
 
@@ -334,7 +333,7 @@
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
-                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
                                     <p th:text="${tag.userName}">Black Panther   </p>
                                 </div>
                             </div>
@@ -352,7 +351,7 @@
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followings}"  >
-                                    <a href="#" th:href="@{/my_profile/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.photo}"  alt="Image"></a>
                                     <p th:text="${tag.userName}">Black Panther   </p>
                                     <a th:href="@{/my_profile/delete/followings/{id}(id=${tag.userID})}" href="#" class="ui red label ">Unfollow</a>
                                 </div>

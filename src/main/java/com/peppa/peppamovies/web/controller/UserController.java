@@ -168,6 +168,18 @@ public class UserController {
         return "profile_template";
     }
 
+    @GetMapping("/user/{id}")
+    public String handleUserProfile(@PathVariable Long id, Model model) {
+        UserInfo user = userService.getUser(id);
+        List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
+        Set<UserInfo> followers = user.getFollowers();
+
+        model.addAttribute("wantToSee", wantsToSeeList);
+        model.addAttribute("followers", followers);
+        model.addAttribute("currentUser", user);
+        return "other_user_info";
+    }
+
     @GetMapping("/my_profile/delete/{mid}")
     public String handleDeleteReview(@PathVariable Long mid, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
@@ -198,7 +210,7 @@ public class UserController {
         return "redirect:/my_profile/" + user.getUserID();
     }
 
-    @GetMapping("/my_profile/follow/{id}")
+    @GetMapping("/user/follow/{id}")
     public String handleFollow(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
         UserInfo currentUser = userService.getUser(id);
@@ -217,7 +229,7 @@ public class UserController {
             session.setAttribute("user", user);
         }
 
-        return "redirect:/my_profile/" + currentUser.getUserID();
+        return "redirect:/user/" + currentUser.getUserID();
     }
 
     @GetMapping("/my_profile/delete/wantsToSee/{mid}")
