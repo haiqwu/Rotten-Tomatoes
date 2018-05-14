@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,8 @@ public class UserController {
     private EmailService emailService;
     @Autowired
     private TVService tvService;
+    @Autowired
+    private RecaptchaService recaptchaService;
 
     @GetMapping("/")
     public String loginPage(@PageableDefault(size = 8) Pageable pageable, Model model) {
@@ -375,8 +378,22 @@ public class UserController {
     @PostMapping("/signup")
     public String handleSignUp(@RequestParam String firstname, @RequestParam String lastname, @RequestParam String username,
                                @RequestParam String email, @RequestParam String password_signup, @RequestParam String re_password,
-                               HttpServletRequest request, HttpSession session) {
+                               HttpServletRequest request, HttpSession session, @RequestParam(name="g-recaptcha-response") String recaptchaResponse) {
         String referer = request.getHeader("Referer");
+
+        String ip = request.getRemoteAddr();
+        String captchaVerifyMessage = recaptchaService.verifyRecaptcha(ip, recaptchaResponse);
+
+        if ( !captchaVerifyMessage.equals("CAPTCHA SUCCESS") ) {
+
+            //Captcha Failed here:
+            //Map<String, Object> response = new HashMap<>();
+            //response.put("message", captchaVerifyMessage);
+            System.out.println(captchaVerifyMessage);//should have a message print to screen.!!!!!!!!!!!
+            return "redirect:" + referer;//early return since fail
+        }
+
+        //successful CAPTCHAed.
         if (userService.checkUsername(username)) { // not exist
             session.setAttribute("exist", false);
             UserInfo user = new UserInfo();
