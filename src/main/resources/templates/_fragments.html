@@ -82,13 +82,13 @@
                     <a href=" index.html " th:href=@{/}> Peppa </a>
                 </h2>
 
-                <div class="ui search search_bar ">
-                    <form name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
-                        <div class="ui icon input search_area">
-                            <input class="prompt" type="text" name="query" placeholder="Search Movies..."
-                                   th:value="${query}">
-                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
-                        </div>
+                <div  class="ui search search_bar ">
+                    <form  name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
+                            <div class="ui icon input search_area">
+                                <input class="prompt" type="text" name="query" placeholder="Search Movies..."
+                                       th:value="${query}">
+                                <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                            </div>
                     </form>
                     <div class="results"></div>
                 </div>
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="ui item ">
-                    <a href="#"> TRAILERS & VIDEOS</a>
+                    <a href="#" th:href="@{/trailer_page}"> TRAILERS & VIDEOS</a>
                 </div>
 
                 <div class="ui item ">

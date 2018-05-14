@@ -290,7 +290,7 @@
 
                 <!-- critics review-->
                 <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>
-                <div class="ui grid">
+                <!--<div class="ui grid">-->
                     <div class="ui eight wide column ">
                         <!--<div class="ui grid">-->
                         <!--left is critics review-->
@@ -299,6 +299,7 @@
                             <div class="ui green inverted segment " th:each="tag : ${reviewsByCritic}" >
                                 <div class="ui red image label" th:text="${tag.reviewUser.userName}">
                                     UserName
+
                                 </div>
                                 <h5></h5>
                                 <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and more urgent,
@@ -306,7 +307,7 @@
                                     time. </p>
                                 <p th:text="${tag.dayCommented}">May 4, 2018</p>
                                 <p th:text="${tag.rate+'/5'}">5/5</p>
-                                <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
+                                <a href="#" th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report Review</a>
                             </div>
                         </div>
                     </div>
@@ -315,20 +316,21 @@
                     <div class="ui eight wide column  ">
                         <div class="row review-padding">
                             <div class="ui grey inverted segment " th:each="tag : ${reviewsByAudiance}">
-                                <a href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
+                                <a href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}" class="ui circular olive label">
                                     UserName
                                 </a>
-                                <h5></h5>
+                                <!--<a href="#" th:href="@{/report_user/{id}(id=${tag.reviewUser.userID})}"  class="ui mini inverted circular red button" >Report</a>-->
+
                                 <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and more urgent,
                                     doubling down on its messages with a seriousness that's entirely fitting for its
                                     time. </p>
                                 <p th:text="${tag.dayCommented}">May 4, 2018</p>
                                 <p th:text="${tag.rate/20+'/5'}">5/5</p>
-                                <a href="#"  th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report</a>
+                                <a href="#"  th:href="@{/report_review/{id}(id=${tag.reviewID})}"  class="ui red label" >Report Review</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
             </div>
             <!--cast end-->
 

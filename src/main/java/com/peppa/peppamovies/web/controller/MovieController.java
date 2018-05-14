@@ -7,6 +7,7 @@ import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
 import com.peppa.peppamovies.service.TVService;
+import com.peppa.peppamovies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,9 @@ public class MovieController {
 
     @Autowired
     private TVService tvService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/movie/{id}")
     public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
@@ -202,8 +206,19 @@ public class MovieController {
         MovieReview movieReview = movieReviewService.getMovieReview(id);
         movieReview.setReported(true);
         movieReviewService.updateMovieReview( id,  movieReview );
-        return "redirect:/";//need a page!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        return "report";//need a page!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
+
+    @GetMapping("/user/report/{id}")
+    public String handleReportUser(@PathVariable Long id){
+        UserInfo user = userService.getUser(id);
+        user.setReported(true);
+        userService.updateUser(id,user);
+        return "report";
+
+    }
+
+
 
     @PostMapping("/edit_movie_content/{id}")
     public String handleEditMovieDetailForm(@PathVariable Long id,
@@ -255,6 +270,11 @@ public class MovieController {
     {
         movieService.deleteMovie(id);
         return "redirect:/admin_summary_mapping";
+    }
+
+    @GetMapping("/trailer_page")
+    public String handleTrailerPage(){
+        return "trailer";
     }
 
     public void handleTopMovies() {

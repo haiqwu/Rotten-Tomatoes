@@ -14,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,21 @@ public class CriticController {
         model.addAttribute("top_critics",top_critics);
         model.addAttribute("latest_reviews",latest_reviews);
         return "critics";
+    }
+
+    @GetMapping("/apply_ct")
+    public String handlePTBecome(){
+        return "apply_critics";
+    }
+    @GetMapping("/apply_critic_/{id}")
+    public String handle_Apply_Critic_(@PathVariable Long id)
+    {
+        UserInfo user = userService.getUser(id);
+        user.setApplying_critic(true);
+        userService.updateUser(id, user);
+        return "redirect: /" ;
+
+
     }
 
 

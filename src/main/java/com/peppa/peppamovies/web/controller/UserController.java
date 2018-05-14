@@ -97,6 +97,25 @@ public class UserController {
             }
             else{
                 session.setAttribute("type",2); // common user
+
+                if(user.isCritic()==true){
+                    System.out.println("isCritic");
+                    session.setAttribute("status", 1); // is critic
+                }
+                else{
+                    if(user.isApplying_critic()==true){
+                        System.out.println("apply Critic");
+                        session.setAttribute("status", 2); // apply critic
+                    }
+                    else{
+                        if(user.getNumFollowers()<1){
+                            System.out.println("not enough for Critic");
+                            session.setAttribute("status", 3); // not enough for critic
+                        }
+                    }
+
+                }
+
             }
             return "redirect:" + referer;
         } else {
@@ -113,6 +132,7 @@ public class UserController {
         session.removeAttribute("user");
         session.removeAttribute("found");
         session.removeAttribute("type");
+        session.removeAttribute("status");
         return "redirect:" ;
     }
 
