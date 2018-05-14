@@ -301,7 +301,7 @@
             <!-- critics review-->
             <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>-->
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">REVIEWS</h2>
-            <div class="ui grid">
+            <!--<div class="ui grid">-->
                 <div class="ui eight wide column ">
                     <!--<div class="ui grid">-->
                     <!--left is critics review-->
@@ -309,9 +309,9 @@
                     <div class="row m-left-padded-medium m-right-padded-small">
                         <div class="ui inverted attached segment" th:each="tag : ${reviewsByCritic}">
 
-                            <h3 th:text="${tag.reviewUser.userName}">
+                            <a th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
                                 UserName
-                            </h3>
+                            </a>
                             <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
                                 more urgent,
                                 doubling down on its messages with a seriousness that's entirely fitting for its
@@ -342,7 +342,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
             <!--cast end-->
 
             <!--critics review-->

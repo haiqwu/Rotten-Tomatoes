@@ -38,7 +38,6 @@
                                 <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
                                     <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                                     <p th:text="${tag.movieName}">Black Panther   </p>
-                                    <a th:href="@{/my_profile/delete/wantsToSee/{mid}(mid=${tag.movieID})}" href="#" class="ui red label ">Delete</a>
 
                                 </div>
                             </div>

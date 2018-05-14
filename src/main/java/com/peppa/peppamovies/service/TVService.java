@@ -14,7 +14,7 @@ public interface TVService {
 
     TVInfo updateTV(Long id, TVInfo tv);
 
-    Page<TVInfo> listTV(Pageable pageable);
+    Page<TVInfo> listTV(String query, Pageable pageable);
 
     Page<TVInfo> listOpeningTV(Date dateStart, Date dateEnd, Pageable pageable);
 

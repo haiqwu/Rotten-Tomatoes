@@ -10,8 +10,8 @@ import java.util.Date;
 
 public interface TVRepository extends JpaRepository<TVInfo,Long> {
 
-//    @Query("select m from MovieInfo m where LOWER(m.movieName) like LOWER(?1) ")
-//    Page<MovieInfo> findByQuery(String query, Pageable pageable);
+    @Query("select m from TVInfo m where LOWER(m.tvName) like LOWER(?1) ")
+    Page<TVInfo> findByQuery(String query, Pageable pageable);
 
 //    @Query("select m from MovieInfo m where m.releasedDate >= ?1 ")
 //    Page<MovieInfo> findByDate(Date date, Pageable pageable);
