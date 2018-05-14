@@ -26,11 +26,8 @@
                 </div>
 
                 <!--profile stats-->
-                <div>
-                    <div class="ui teal m-title inverted attached segment">
-                        <div class="ui tiny header item">Profile Stats</div>
-                    </div>
-
+                <div class="m-padded-top-bottom-small">
+                    <h2 class="ui inverted header">Profile Status</h2>
                     <div class="">
                         <h4>Total Profile Views: 0</h4>
                         <h4>Profile Views Last 7 Days: 0</h4>
@@ -38,16 +35,16 @@
                 </div>
 
                 <!--about-->
-                <div>
-                    <div class="ui teal m-title inverted attached segment two column grid">
+                <div class="m-padded-top-bottom-small">
+                    <div class="ui two column grid">
                         <div class="column">
-                            <div class="ui tiny inverted header item">About</div>
+                            <h2 class="ui inverted header">About</h2>
                         </div>
                         <div class="right aligned column">
                             <a class="ui right aligned column" href="#">Edit</a>
                         </div>
                     </div>
-                    <div>
+                    <div class="m-padded-top-bottom-mini">
                         <h4>Member Since: Feburuary 2018</h4>
                     </div>
 
@@ -58,7 +55,7 @@
             <!--right-->
             <div class="twelve wide column">
 
-                <div class="ui top inverted attached tabular menu ">
+                <div class="ui inverted menu">
                     <a class="item active" data-tab="first">Summary</a>
                     <a class="item" data-tab="second">Want To See</a>
                     <a class="item " data-tab="third">Not Interested</a>
@@ -68,11 +65,12 @@
                 </div>
                 <!--Summary detail-->
                 <!--tab 1-->
-                <div class="ui inverted bottom attached tab segment active" data-tab="first">
+                <div class="ui inverted bottom tab segment active" data-tab="first">
 
                     <!--want to see movie-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">WANT-TO-SEE MOVIES</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
@@ -88,7 +86,8 @@
 
                     <!--NOT INTEREST MOVIE-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">NO INTERESTED MOVIES</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${notInterested}"  >
@@ -104,7 +103,8 @@
 
                     <!--want to see tv-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">WANT-TO-SEE TVS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
@@ -120,7 +120,8 @@
 
                     <!--NOT INTEREST tv-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">WANT-TO-SEE TVS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
@@ -135,7 +136,8 @@
 
                     <!--rating movie-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">RATING HISTORY</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="row" th:each="tag : ${rateMovies}">
@@ -161,7 +163,8 @@
 
                     <!--followers-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">FOLLOWERS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
@@ -176,7 +179,8 @@
 
                     <!--followings-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">FOLLOWING</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followings}"  >
@@ -194,10 +198,11 @@
 
                 <!-- Want to see second-->
                 <!--tab 2-->
-                <div class="ui inverted bottom attached tab segment" data-tab="second">
+                <div class="ui inverted bottom tab segment" data-tab="second">
                     <!--want to see movie-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">WANT-TO-SEE MOVIES</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
@@ -214,7 +219,8 @@
 
                     <!-- want to see tv-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">WANT-TO-SEE TVS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
@@ -231,10 +237,11 @@
 
                 <!-- not interest-->
                 <!--tab 3-->
-                <div class="ui inverted bottom attached tab segment " data-tab="third">
+                <div class="ui inverted bottom tab segment " data-tab="third">
                     <!--NOT INTEREST MOVIE-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED MOVIE</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">NOT INTERESTED MOVIES</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${notInterested}"  >
@@ -251,7 +258,7 @@
 
                     <!--NOT INTEREST tv-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">NOT INTERESTED TVS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >
@@ -267,10 +274,11 @@
 
                 <!--rating history-->
                 <!-- tab 4-->
-                <div class="ui inverted bottom attached tab segment " data-tab="four">
+                <div class="ui inverted bottom tab segment " data-tab="four">
                     <!--rating movie-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">RATING HISTORY</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="row" th:each="tag : ${rateMovies}">
@@ -297,10 +305,11 @@
 
                 <!-- followers-->
                 <!--tab 5-->
-                <div class="ui inverted bottom attached tab segment " data-tab="fifth">
+                <div class="ui inverted bottom tab segment " data-tab="fifth">
                     <!--followers-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">FOLLOWERS</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">FOLLOWERS</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followers}"  >
@@ -315,10 +324,11 @@
 
                 <!-- followings-->
                 <!--tab 6-->
-                <div class="ui inverted bottom attached tab segment " data-tab="sixth">
+                <div class="ui inverted bottom tab segment " data-tab="sixth">
                     <!--followings-->
                     <div class="row review-padding">
-                        <div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>
+                        <!--<div class="ui teal m-header-median  inverted attached segment">FOLLOWINGS</div>-->
+                        <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">FOLLOWING</h2>
                         <div class="ui inverted segment ">
                             <div class="ui grid">
                                 <div class="three wide center aligned column"  th:each="tag : ${followings}"  >

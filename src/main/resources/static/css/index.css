@@ -4,7 +4,8 @@ html{
 
 body{
     /*background-color: whitesmoke;*/
-    background: url(../images/spiderman.jpg) no-repeat center center fixed;
+    /*background: url(../images/spiderman.jpg) no-repeat center center fixed;*/
+    background-color: #3a3d3e;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

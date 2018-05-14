@@ -21,6 +21,14 @@ img {
     padding-left: 150px;
 }
 
+.m-left-padded-medium {
+    padding-left: 30px !important;
+}
+
+.m-left-padded-small {
+    padding-left: 20px !important;
+}
+
 .m-right-padded-mini {
     padding-right: 10px;
 }

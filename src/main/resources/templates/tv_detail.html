@@ -3,7 +3,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-wide, initial-scale=1.0">
-    <title>Movie Detail</title>
+    <title>TV Detail</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" href="../static/css/mycss.css">
 </head>
@@ -21,27 +21,15 @@
             </div>
         </div>
 
-
-        <div class="ui grid">
-            <!--Trailer-->
-            <div class="sixteen wide column">
-                <video class="video-js vjs-big-play-centered " width="100%" height="300" controls preload="auto"
-                       poster="../static/images/1.jpg" th:poster="@{${movie.moviePoster}}" data-setup="{}">
-                    <source src="../static/videos/tt1825683trailer.mp4" th:src="@{${movie.movieTrailers}}"
-                            type='video/mp4'>
-                </video>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
             <!--review-->
             <div class="sixteen wide column">
+                <H2>MOVIE TITLE</H2>
+                <select class="ui dropdown">
+                    <option value="">Season</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+
                 <div class="ui grid">
                     <div class="four wide column">
                         <a href="#"><img class="ui fluid image" name="poster main" alt="Image"
@@ -163,35 +151,12 @@
             </div>
             <!--review end-->
 
-            <!--tickets & showtime-->
-            <!--<div class="m-padded-small">-->
-            <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">TICKETS &amp;-->
-            <!--SHOWTIMES-->
-            <!--</div>-->
 
-            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">TICKETS &amp;SHOWTIMES</h2>
-
-            <div class="ui grid">
-                <div class="sixteen wide column">
-                    <p>Showtimes for <b>today</b> near <b>East Setauket, NY</b><a href="#"> &nbsp; Change Location</a>
-                    </p>
-                    <hr>
-                    <p><a href="#"> P.J. CINEMAS </a> 1068 Route 112 | <a href="#"> Map </a> | <a href="#">
-                        631-928-3456 </a></p>
-                    <br>
-                    <p class="m-opacity-mini">STANDARD SHOWTIMES</p>
-                    <button class="ui small yellow button">12:50pm</button>
-                    <button class="ui small yellow button">12:50pm</button>
-                    <button class="ui small yellow button">12:50pm</button>
-                    <button class="ui small yellow button">12:50pm</button>
-                </div>
-            </div>
-            <!--tickets & showtime end-->
 
             <!--movie info-->
             <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">MOVIE INFO</div>-->
 
-            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">MOVIE INFO</h2>
+            <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">TV INFO</h2>
 
             <div class="ui grid">
                 <div class="sixteen wide column">
@@ -289,7 +254,7 @@
                     <div class="row m-left-padded-small m-right-padded-medium">
                         <div class="ui inverted attached segment" th:each="tag : ${reviewsByAudiance}">
                             <h3 href="#" th:href="@{/my_profile/{id}(id=${tag.reviewUser.userID})}"
-                               th:text="${tag.reviewUser.userName}">
+                                th:text="${tag.reviewUser.userName}">
                                 UserName
                             </h3>
                             <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
