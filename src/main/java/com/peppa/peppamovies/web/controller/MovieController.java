@@ -292,7 +292,6 @@ public class MovieController {
     }
 
 
-
     @PostMapping("/edit_movie_content/{id}")
     public String handleEditMovieDetailForm(@PathVariable Long id,
                                             @RequestParam String description,

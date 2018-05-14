@@ -172,13 +172,23 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String handleUserProfile(@PathVariable Long id, Model model) {
         UserInfo user = userService.getUser(id);
-        List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
-        Set<UserInfo> followers = user.getFollowers();
 
-        model.addAttribute("wantToSee", wantsToSeeList);
-        model.addAttribute("followers", followers);
-        model.addAttribute("currentUser", user);
-        return "other_user_info";
+        if(!user.isShy()) {
+
+            List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
+            Set<UserInfo> followers = user.getFollowers();
+
+            model.addAttribute("wantToSee", wantsToSeeList);
+            model.addAttribute("followers", followers);
+            model.addAttribute("currentUser", user);
+            return "other_user_info";
+        }
+        else
+        {
+            return "private_block";
+        }
+
+
     }
 
     @GetMapping("/my_profile/delete/{mid}")
@@ -509,8 +519,20 @@ public class UserController {
     }
 
 
-
-
+    @PostMapping("/user_shy_setting/{id}")
+    public String handlePrivacyShy(@PathVariable Long id,@RequestParam("privacy") String pub )
+    {
+        UserInfo user = userService.getUser(id);
+        if(pub.equals("pri"))
+        {
+            user.setShy(true);
+        }
+        else {
+            user.setShy(false);
+        }
+        userService.updateUser(id, user);
+        return "redirect:/my_profile/"+ id;
+    }
 
     @GetMapping("/help")
     public String handleHelp(){
