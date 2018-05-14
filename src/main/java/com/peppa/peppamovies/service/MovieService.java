@@ -22,5 +22,7 @@ public interface MovieService {
 
     Page<MovieInfo> listComing(Date date, Pageable pageable);
 
+    Page<MovieInfo> listRateMovie(Pageable pageable);
+
     void deleteMovie(Long id);
 }

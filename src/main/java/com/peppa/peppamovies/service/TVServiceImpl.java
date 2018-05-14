@@ -46,8 +46,8 @@ public class TVServiceImpl implements TVService {
     }
 
     @Override
-    public Page<TVInfo> listTV(Pageable pageable) {
-        return null;
+    public Page<TVInfo> listTV(String query, Pageable pageable) {
+        return tvRepository.findByQuery(query, pageable);
     }
 
     @Override

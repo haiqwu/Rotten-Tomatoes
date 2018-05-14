@@ -16,7 +16,7 @@
         <div class="ui top attached inverted segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <h2 class="ui teal header">Search Results</h2>
+                    <h2 class="ui teal header">Search Movie Results</h2>
                 </div>
                 <div class="right aligned column">
                     Found<h2 class="ui teal header" th:text="${session.page.totalElements}"></h2>movies
@@ -46,7 +46,8 @@
                                 <a th:href="@{/search/date}" href="#" class="item">Date </a>
                                 <a th:href="@{/search/rate}" href="#" class="item">Rate</a>
                                 <a th:href="@{/search/topBox}" href="#" class="item">Top Box</a>
-                                <a th:href="@{/search/alphabet}" href="#" class="item">alphabet</a>
+                                <a th:href="@{/search/alphabet}" href="#" class="item">Alphabet</a>
+                                <a th:href="@{/search/runtime}" href="#" class="item">Run Time</a>
                             </div>
                         </div>
                     </div>
@@ -70,12 +71,8 @@
                                     <p th:text="${singleMovie.totalRate/20 +'/5'}"></p>
                                     <p th:text="${'Released Date: '+singleMovie.releasedDate}"></p>
                                     <p th:text="${'Box Office: '+singleMovie.box_office}"></p>
+                                    <p th:text="${'Run Time: '+singleMovie.runtimeMinutes +' Minutes'}"></p>
                                 </div>
-                                <!--<div class="m-padded-bottom-mini">-->
-                                <!--<a href="#">actor</a>,-->
-                                <!--<a href="#">actor</a>-->
-                                <!--</div>-->
-                                <!--<div class="ui big star rating"></div>-->
                             </div>
                         </div>
                     </div>
@@ -111,6 +108,7 @@
                         <p th:text="${tag.totalRate/20 +'/5'}"></p>
                         <p th:text="${'Released Date: '+tag.releasedDate}"></p>
                         <p th:text="${'Box Office: '+tag.box_office}"></p>
+                        <p th:text="${'Run Time: '+tag.runtimeMinutes +' Minutes'}"></p>
                     </div>
                 </div>
 
@@ -128,6 +126,57 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div>
+    <div class="ui container">
+        <!-- search header-->
+        <div class="ui top attached inverted segment">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h2 class="ui teal header">Search TV Results</h2>
+                </div>
+                <div class="right aligned column">
+                    Found<h2 class="ui teal header" th:text="${session.pageTV.totalElements}"></h2>TVs
+                </div>
+            </div>
+        </div>
+
+        <!--search body-->
+        <div class="ui top attached inverted segment">
+
+                <div class="ui grid">
+                    <div class="four wide column " th:each="tag : ${session.pageTV.content}">
+                        <a href="#" th:href="@{/tv/{id}(id=${tag.tvID})}"><img class="ui small image"
+                                                                                     src="../static/images/1.jpg"
+                                                                                     th:src="@{${tag.tvPoster}}"
+                                                                                     alt="Image"
+                                                                                     width="100" height="200"></a>
+
+                        <div><a href="#" th:text="${tag.tvName}">Jumanji: Welcome to the Jungle</a></div>
+                        <p th:text="${tag.totalRate/20 +'/5'}"></p>
+                    </div>
+                </div>
+
+                <div class="ui bottom attached inverted segment" th:if="${session.pageTV.totalPages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.pageTV.number-1},size=${session.pageTV.size})}"
+                               th:unless="${session.pageTV.first}" class="ui mini teal basic button">Previous Page</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.pageTV.number+1},size=${session.pageTV.size})}"
+                               th:unless="${session.pageTV.last}" class="ui mini teal basic button">Next Page</a>
+                        </div>
+                    </div>
+                <!--</div>-->
             </div>
         </div>
     </div>

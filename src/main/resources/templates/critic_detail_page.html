@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Profile Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css">
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+
+            <!--left-->
+            <div class="four wide column">
+
+                <div class="m-profile-left-inner-padding">
+                    <div><a id="portrait_img" href="#"><img class="ui small image" src="../static/images/portrait.png"
+                                                            th:src="@{/images/portrait.png}" alt="Image"></a></div>
+                    <a href="#" th:text="${currentUser.userName}">First Last</a>
+                    <p th:text="${'Follower Count: '+followers.size()}" >Follower Count: 0</p>
+                    <p>Rank: 5</p>
+                    <div><a th:href="@{/user/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
+                    <div><a th:href="@{/user/report/{id}(id=${currentUser.userID})}" href="#">Report</a></div>
+                </div>
+
+            </div>
+
+            <!--right-->
+            <div class="twelve wide column">
+                <!--best reviews-->
+                <div class="row review-padding">
+                    <div class="ui teal m-header-median  inverted attached segment">BEST REVIEWS</div>
+                    <div class="ui inverted segment ">
+                        <div class="ui grid">
+                            <div class="three wide center aligned column"  th:each="tag : ${bestMovieReview}"  >
+                                <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag[1].moviePoster}"  alt="Image"></a>
+                                <p th:text="${tag[1].movieName}">Black Panther   </p>
+                                <div th:text="${tag[0].rate/20+'/5'}"> </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- worst reviews-->
+                <div class="row review-padding">
+                    <div class="ui teal m-header-median  inverted attached segment">WORST REVIEWS</div>
+                    <div class="ui inverted segment ">
+                        <div class="ui grid">
+                            <div class="three wide center aligned column"  th:each="tag : ${worstMovieReview}"  >
+                                <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag[1].moviePoster}"  alt="Image"></a>
+                                <p th:text="${tag[1].movieName}">Black Panther   </p>
+                                <div th:text="${tag[0].rate/20+'/5'}"> </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+<script>
+    $('.menu .item').tab({history: false});
+</script>
+</body>
+</html>
