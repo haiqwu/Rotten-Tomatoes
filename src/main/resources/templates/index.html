@@ -18,13 +18,12 @@
 </div>
 
 <!-- main -->
-<div class="ui container margin-m segment main inverted segment"   >
-    <div class="ui container ">
+<div class="ui container margin-m inverted segment"   >
         <div class="ui grid">
             <!--left main part-->
             <div class="sixteen wide column">
                 <!-- ++++++++++++++++++++++++ opening in the week +++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Opening This Week</h2>
@@ -43,13 +42,14 @@
                             <h4 th:text="${tag.movieName}">Black Panther   </h4>
                             <div th:text="${'Released Date: '+tag.releasedDate}"> </div>
                             <!--<p>Released Feb 16</p>-->
-                            <button class="ui mini red button">Get Tickets</button>
+                            <!--<button class="ui mini red button">Get Tickets</button>-->
                         </div>
 
 
                     </div>
                 <!--++++++++++++++++++++++++ top box Office +++++++++++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Top Box Office</h2>
@@ -72,7 +72,8 @@
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ Certified Fresh Peppa +++++++++++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Certified Fresh</h2>
@@ -93,7 +94,8 @@
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ Comming Soon +++++++++++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Comming Soon</h2>
@@ -114,7 +116,8 @@
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ top rated tv +++++++++++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Top Rated TV Shows</h2>
@@ -135,7 +138,8 @@
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ top critic rated tv +++++++++++++++++++++++++++-->
-                <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
                     <div class="ui container top m-padded-bottom-big movie-title two column grid">
                         <div class="column">
                             <h2 class="teal header inverted ">Certified Fresh TV Shows</h2>
@@ -155,55 +159,66 @@
                         <p th:text="${tag.totalRate/20+'/5'}">5/5</p>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!--++++++++++++++++++++++++ Trailer  +++++++++++++++++++++++++++-->
-        <div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">
-            <div class="ui container top m-padded-bottom-big movie-title two column grid">
-                <div class="column">
-                    <h2 class="teal header inverted ">Trailers & Videos</h2>
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+                <div class="ui teal m-header-median m-margin-top-bottom-small">
+                    <div class="ui container top m-padded-bottom-big movie-title two column grid">
+                        <div class="column">
+                            <h2 class="teal header inverted ">Trailers & Videos</h2>
+                        </div>
+                        <div class="column right aligned inverted ">
+                            <div class="view-all">
+                                <a  href="#">view all <i class="angle double right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="column right aligned inverted ">
-                    <div class="view-all">
-                        <a  href="#">view all <i class="angle double right icon"></i></a>
+
+                <div class="ui three column grid">
+                    <div class="column fluid container">
+                        <video  class="video-js vjs-big-play-centered " width="325" height="300" controls preload="auto"
+                                poster="../static/images/1.jpg" th:poster="@{/images/movie_posters/tt1825683poster_1.jpeg}" data-setup="{}">
+                            <source src="../static/videos/1.mp4" th:src="@{/videos/tt1825683trailer.mp4}" type='video/mp4'>
+                        </video>
+                    </div>
+
+                    <div class="column">
+                        <video  class="video-js vjs-big-play-centered " width="325" height="300" controls preload="auto"
+                                poster="../static/videos/Chappaquiddick.jpeg" th:poster="@{/images/movie_posters/tt2557478poster_1.jpeg}" data-setup="{}">
+                            <source src="../static/videos/1.mp4" th:src="@{/videos/tt2557478trailer.mp4}" type='video/mp4'>
+                        </video>
+                    </div>
+
+                    <div class="column">
+                        <video  class="video-js vjs-big-play-centered " width="325" height="300" controls preload="auto"
+                                poster="../static/videos/pacific.jpeg" th:poster="@{/images/movie_posters/tt5270948poster_1.jpeg}" data-setup="{}">
+                            <source src="../static/videos/1.mp4" th:src="@{/videos/tt5270948trailer.mp4}" type='video/mp4'>
+                        </video>
+                    </div>
+
+                    <div class="column">
+                        <video  class="video-js vjs-big-play-centered " width="330" height="300" controls preload="auto"
+                                poster="../static/videos/read-play-one.jpeg" th:poster="@{/images/movie_posters/tt6644200poster_1.jpeg}" data-setup="{}">
+                            <source src="../static/videos/1.mp4" th:src="@{/videos/tt6644200trailer.mp4}" type='video/mp4'>
+                        </video>
+                    </div>
+
+                    <div class="column">
+                        <video  class="video-js vjs-big-play-centered "  width="330" height="300"controls preload="auto"
+                                th:poster="@{/images/movie_posters/tt7424200poster_1.jpeg}" data-setup="{}">
+                            <source  th:src="@{/videos/tt7424200trailer.mp4}" type='video/mp4'>
+                        </video>
+                    </div>
+
+                    <div class="column">
+                        <video  class="video-js vjs-big-play-centered " width="330" height="300" controls preload="auto"
+                                th:poster="@{/images/movie_posters/tt7242142poster_1.jpeg}" data-setup="{}">
+                            <source  th:src="@{/videos/tt7242142trailer.mp4}" type='video/mp4'>
+                        </video>
                     </div>
                 </div>
             </div>
         </div>
-        <!--trailer body-->
-
-        <div class="ui grid">
-
-            <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/images/1.jpg" th:poster="@{/images/movie_posters/tt1825683poster_1.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/tt1825683trailer.mp4}" type='video/mp4'>
-            </video>
-
-            <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/Chappaquiddick.jpeg" th:poster="@{/images/movie_posters/tt2557478poster_1.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/tt2557478trailer.mp4}" type='video/mp4'>
-            </video>
-            <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/pacific.jpeg" th:poster="@{/images/movie_posters/tt5270948poster_1.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/tt5270948trailer.mp4}" type='video/mp4'>
-            </video>
-            <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    poster="../static/videos/read-play-one.jpeg" th:poster="@{/images/movie_posters/tt6644200poster_1.jpeg}" data-setup="{}">
-                <source src="../static/videos/1.mp4" th:src="@{/videos/tt6644200trailer.mp4}" type='video/mp4'>
-            </video>
-            <video  class="video-js vjs-big-play-centered "  width="350" height="300"controls preload="auto"
-                    th:poster="@{/images/movie_posters/tt7424200poster_1.jpeg}" data-setup="{}">
-                <source  th:src="@{/videos/tt7424200trailer.mp4}" type='video/mp4'>
-            </video>
-
-            <video  class="video-js vjs-big-play-centered " width="350" height="300" controls preload="auto"
-                    th:poster="@{/images/movie_posters/tt7242142poster_1.jpeg}" data-setup="{}">
-                <source  th:src="@{/videos/tt7242142trailer.mp4}" type='video/mp4'>
-            </video>
-
-        </div>
-    </div>
 </div>
 
 <!--footer-->

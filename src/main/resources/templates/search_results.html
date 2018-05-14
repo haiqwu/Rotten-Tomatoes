@@ -13,23 +13,23 @@
 <div>
     <div class="ui container">
         <!-- search header-->
-        <div class="ui top attached inverted segment">
+        <div class="ui attached inverted segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
-                    <h2 class="ui teal header">Search Results</h2>
+                    <h2 class="ui inverted header">Search Results</h2>
                 </div>
                 <div class="right aligned column">
-                    Found<h2 class="ui teal header" th:text="${session.page.totalElements}"></h2>movies
+                    Found<h2 class="ui inverted header" th:text="${session.page.totalElements}"></h2>movies
                 </div>
             </div>
         </div>
 
         <!--search body-->
-        <div class="ui top attached inverted segment">
+        <div class="ui attached inverted segment">
 
             <!--grid or list-->
             <div class="ui grid">
-                <div class="four column row">
+                <div class="row">
                     <div class="right floated column">
                         <div class="ui dropdown item">
                             <div class="text">View By<i class="dropdown icon"></i></div>
@@ -81,17 +81,17 @@
                     </div>
                 </div>
 
-                <div class="ui bottom attached inverted segment" th:if="${session.page.totalPages}>1">
+                <div class="" th:if="${session.page.totalPages}>1">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
                             <a href="#"
                                th:href="@{${session.link}(page=${session.page.number-1},size=${session.page.size})}"
-                               th:unless="${session.page.first}" class="ui mini teal basic button">Previous Page</a>
+                               th:unless="${session.page.first}" class="ui mini basic inverted button">Previous Page</a>
                         </div>
                         <div class="right aligned column">
                             <a href="#"
                                th:href="@{${session.link}(page=${session.page.number+1},size=${session.page.size})}"
-                               th:unless="${session.page.last}" class="ui mini teal basic button">Next Page</a>
+                               th:unless="${session.page.last}" class="ui mini basic inverted button">Next Page</a>
                         </div>
                     </div>
                 </div>
@@ -114,17 +114,17 @@
                     </div>
                 </div>
 
-                <div class="ui bottom attached inverted segment" th:if="${session.page.totalPages}>1">
+                <div class="" th:if="${session.page.totalPages}>1">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
                             <a href="#"
                                th:href="@{${session.link}(page=${session.page.number-1},size=${session.page.size})}"
-                               th:unless="${session.page.first}" class="ui mini teal basic button">Previous Page</a>
+                               th:unless="${session.page.first}" class="ui mini basic inverted button">Previous Page</a>
                         </div>
                         <div class="right aligned column">
                             <a href="#"
                                th:href="@{${session.link}(page=${session.page.number+1},size=${session.page.size})}"
-                               th:unless="${session.page.last}" class="ui mini teal basic button">Next Page</a>
+                               th:unless="${session.page.last}" class="ui mini basic inverted button">Next Page</a>
                         </div>
                     </div>
                 </div>

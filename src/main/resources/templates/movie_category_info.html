@@ -17,7 +17,7 @@
                 <nav>
                     <div class="ui container">
                         <div class="ui inverted secondary stackable vertical menu">
-                            <div class="ui teal header item">Category</div>
+                            <div class="ui header item">Category</div>
                             <div class="m-padded-right">
                                 <a th:href=@{/opening_this_week} href="#" class="item">Opening This Week</a>
                                 <a th:href=@{/top_box_office} href="#" class="item">Top Box Office</a>
@@ -31,13 +31,13 @@
             </div>
 
             <!--movie list-->
-            <div class="twelve wide column grid">
+            <div class="twelve wide column grid center aligned container">
                 <!--<h2 class="ui teal center aligned header">Coming Soon</h2>-->
                 <!--<div class="ui center aligned  container " th:each="singleMovie : ${page.content}">-->
                 <div th:if="${boolean}">
                     <div class="ui grid">
-                        <div class="four wide column "  th:each="singleMovie : ${page.content}">
-                            <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
+                        <div class="four wide column"  th:each="singleMovie : ${page.content}">
+                            <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui big image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
 
                             <div><a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a></div>
                             <div th:text="${'Top Box: '+singleMovie.box_office}"> </div>
@@ -49,7 +49,7 @@
                 <div th:unless="${boolean}">
                     <div class="ui grid">
                         <div class="four wide column "  th:each="singleTV : ${page.content}">
-                            <a href="#" th:href="@{/tv/{id}(id=${singleTV.tvID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleTV.tvPoster}}" alt="Image" width="100" height="200" ></a>
+                            <a href="#" th:href="@{/tv/{id}(id=${singleTV.tvID})}"><img class="ui big image" src="../static/images/1.jpg" th:src="@{${singleTV.tvPoster}}" alt="Image" width="100" height="200" ></a>
 
                             <div><a href="#" th:text="${singleTV.tvName}">Jumanji: Welcome to the Jungle</a></div>
                             <p th:text="${singleTV.totalRate/20 +'/5'}"></p>
@@ -59,15 +59,15 @@
 
 
 
-                <div class="ui bottom attached inverted segment" th:if="${page.totalPages}>1">
-                    <div class="ui middle aligned two column grid">
-                        <div class="column">
-                            <a href="#" th:href="@{${link}(page=${page.number-1},size=${page.size})}" th:unless="${page.first}" class="ui mini teal basic button">Previous Page</a>
+                <div class="ui middle aligned two column grid" th:if="${page.totalPages}>1">
+                    <!--<div class="">-->
+                        <div class="left aligned column">
+                            <a href="#" th:href="@{${link}(page=${page.number-1},size=${page.size})}" th:unless="${page.first}" class="ui mini black inverted basic button">Previous Page</a>
                         </div>
                         <div class="right aligned column">
-                            <a href="#" th:href="@{${link}(page=${page.number+1},size=${page.size})}" th:unless="${page.last}" class="ui mini teal basic button">Next Page</a>
+                            <a href="#" th:href="@{${link}(page=${page.number+1},size=${page.size})}" th:unless="${page.last}" class="ui mini black inverted basic button">Next Page</a>
                         </div>
-                    </div>
+                    <!--</div>-->
                 </div>
 
 

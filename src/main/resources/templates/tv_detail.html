@@ -22,16 +22,10 @@
 
             <!--review-->
             <div class="sixteen wide column">
-                <H2 th:text="${tv.tvName}">MOVIE TITLE</H2>
                 <div class="ui grid">
-                    <div class="four wide column" th:each="num: ${seasonNum}">
-                        <a th:text="${'Season '+num.intValue()}"  th:href="@{/tv/season/{num}(num=${num.intValue()})}" href="#" class="item"><i class="th list icon"></i>List</a>
-                    </div>
-                </div>
-
-                <div class="ui grid">
-                    <div class="four wide column">
+                    <div class="four wide column center aligned column">
                         <a href="#"><img class="ui fluid image" name="poster main tv" alt="Image" th:src="@{${tv.tvPoster}}"></a>
+                        <h3 th:text="${tv.tvName}">MOVIE TITLE</h3>
                     </div>
 
                     <div class="twelve wide column">
@@ -67,80 +61,10 @@
                         <!--comment input text-->
                         <div class="sixteen wide column">
                             <div class="ui grid">
-                                <div class="four wide column m-margin-top-mini">
-                                    <a href="#"><img class="ui fluid image" src="../static/images/portrait.png"
-                                                     th:src="@{/images/portrait.png}"
-                                                     alt="Image"></a>
-                                </div>
-
-                                <div class="twelve wide column">
-                                    <div class="row">
-                                        <a type="button" class="ui mini animated fade green button" tabindex="0"
-                                           href="#">
-                                            <div class="visible content">+ WANT TO SEE</div>
-                                            <div class="hidden content">
-                                                <i class="heart icon"></i>
-                                            </div>
-                                        </a>
-
-                                        <a type="button" class="ui mini animated fade red button" tabindex="0"
-                                           href="#">
-                                            <div class="visible content">- NOT INTERESTED</div>
-                                            <div class="hidden content">
-                                                <i class="thumbs down icon"></i>
-                                            </div>
-                                        </a>
-                                        <span class="ui m-left-padded-huge">
-                                            <select name="star_rate" class="ui dropdown">
-                                            <option value="1">&#11088</option>
-                                            <option value="2">&#11088&#11088</option>
-                                            <option value="3">&#11088&#11088&#11088</option>
-                                            <option value="4">&#11088&#11088&#11088&#11088</option>
-                                            <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
-                                        </select>
-                                        </span>
-
-
+                                <div class="four wide column" th:each="num: ${seasonNum}">
+                                    <div>
+                                        <a class="ui black inverted basic button" th:text="${'Season '+num.intValue()}"  th:href="@{/tv/season/{num}(num=${num.intValue()})}" href="#"><i class="th list icon"></i>List</a>
                                     </div>
-
-                                    <form action="#" method="post">
-
-                                        <!--<div class="row">-->
-                                        <!-- star rating-->
-                                        <!--<div id="star_rate"-->
-                                        <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
-
-                                        <!--</div>-->
-                                        <!--<p id="rate_num" name="rate_num"></p>-->
-
-                                        <!--<select name="star_rate" class="ui dropdown">-->
-                                        <!--<option value="1" >&#11088</option>-->
-                                        <!--<option value="2">&#11088&#11088</option>-->
-                                        <!--<option value="3">&#11088&#11088&#11088</option>-->
-                                        <!--<option value="4">&#11088&#11088&#11088&#11088</option>-->
-                                        <!--<option value="5">&#11088&#11088&#11088&#11088&#11088</option>-->
-                                        <!--</select>-->
-
-                                        <!--</div>-->
-
-
-                                        <div class="ui m-padded-top-bottom-mini form">
-                                            <div class="field">
-                                                <textarea name="review_text"
-                                                          placeholder="Add a Review (Optional)"
-                                                          rows="7"></textarea>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="ui grid">
-                                            <div class="ui right aligned column">
-                                                <button class="ui mini grey button">Post</button>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
                                 </div>
                             </div>
 

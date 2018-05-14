@@ -38,7 +38,7 @@
                 <div class="ui four wide column" >
                     <a href="#" th:href="@{/user/{id}(id=${tag.userID})}"   ><img class="ui small image" src="../static/images/portrait.png"
                                      th:src="@{${tag.photo}}" alt="Image"></a>
-                    <a  th:href="@{/user/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
+                    <a class="ui inverted black basic button" th:href="@{/user/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
 
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">LATEST REVIEWS</h2>
             <div class="ui sixteen wide column m-padded-small"  th:each="tag : ${latest_reviews}" >
 
-                <div class="ui top attached segment">
+                <div class="ui inverted attached segment">
 
                     by: <a class="label" th:href="@{/user/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">UserName </a>
                     <h5></h5>
