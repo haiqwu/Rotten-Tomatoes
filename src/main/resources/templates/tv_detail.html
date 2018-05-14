@@ -23,11 +23,11 @@
             <!--review-->
             <div class="sixteen wide column">
                 <H2 th:text="${tv.tvName}">MOVIE TITLE</H2>
-                <select class="ui dropdown">
-                    <option value="">Season</option>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
-                </select>
+                <div class="ui grid">
+                    <div class="four wide column" th:each="num: ${seasonNum}">
+                        <a th:text="${'Season '+num.intValue()}"  th:href="@{/tv/season/{num}(num=${num.intValue()})}" href="#" class="item"><i class="th list icon"></i>List</a>
+                    </div>
+                </div>
 
                 <div class="ui grid">
                     <div class="four wide column">

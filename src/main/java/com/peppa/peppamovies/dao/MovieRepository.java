@@ -18,7 +18,7 @@ public interface MovieRepository extends JpaRepository<MovieInfo,Long> {
 
     @Query("select m from MovieInfo m where m.releasedDate >= ?1 and m.releasedDate <= ?2")
     Page<MovieInfo> findByTwoDate(Date dateStart, Date dateEnd, Pageable pageable);
-    @Query("select m from MovieInfo m order by m.totalRate desc")
+    @Query("select m from MovieInfo m order by m.box_office desc")
     Page<MovieInfo> findByRate(Pageable pageable);
 
 
