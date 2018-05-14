@@ -46,8 +46,13 @@ public class TVServiceImpl implements TVService {
     }
 
     @Override
-    public Page<TVInfo> listTV(String query, Pageable pageable) {
+    public Page<TVInfo> listTV(Pageable pageable) {
         return null;
+    }
+
+    @Override
+    public TVInfo getTVBySeason(int seasonNum, String movieName) {
+        return tvRepository.findTVBySeason(seasonNum, movieName);
     }
 
     @Transactional
@@ -57,13 +62,13 @@ public class TVServiceImpl implements TVService {
     }
     @Transactional
     @Override
-    public Page<TVInfo> listTopTV(Pageable pageable) {
-        return null;
+    public Page<TVInfo> listTopRatedTV(Pageable pageable) {
+        return tvRepository.findAllTopRate(pageable);
     }
     @Transactional
     @Override
-    public Page<TVInfo> listComingTV(Date date, Pageable pageable) {
-        return null;
+    public Page<TVInfo> listCriticTopRatedTV(Pageable pageable) {
+        return tvRepository.findAllCriticTopRate(pageable);
     }
 
 }

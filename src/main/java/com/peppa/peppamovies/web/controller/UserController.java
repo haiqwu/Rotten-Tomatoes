@@ -1,13 +1,7 @@
 package com.peppa.peppamovies.web.controller;
 
-import com.peppa.peppamovies.model.MovieInfo;
-import com.peppa.peppamovies.model.MovieRankingData;
-import com.peppa.peppamovies.model.MovieReview;
-import com.peppa.peppamovies.model.UserInfo;
-import com.peppa.peppamovies.service.EmailService;
-import com.peppa.peppamovies.service.MovieReviewService;
-import com.peppa.peppamovies.service.MovieService;
-import com.peppa.peppamovies.service.UserService;
+import com.peppa.peppamovies.model.*;
+import com.peppa.peppamovies.service.*;
 import com.peppa.peppamovies.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,9 +12,14 @@ import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -34,10 +33,11 @@ public class UserController {
     private MovieRankingData movieRankingData;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private TVService tvService;
 
     @GetMapping("/")
-    public String loginPage(@PageableDefault(size = 8, sort = {"releasedDate"},
-            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+    public String loginPage(@PageableDefault(size = 8) Pageable pageable, Model model) {
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -81,6 +81,10 @@ public class UserController {
         model.addAttribute("pageTop", moviesTop);
         Page<MovieInfo> moviesComing = movieService.listComing(date, pageable);
         model.addAttribute("pageComing", moviesComing);
+        Page<TVInfo> tvTop = tvService.listTopRatedTV(pageable);
+        model.addAttribute("pageTVTop", tvTop);
+        Page<TVInfo> tvCriticTop = tvService.listCriticTopRatedTV(pageable);
+        model.addAttribute("pageCriticTVTop", tvCriticTop);
         return "index";
     }
 
@@ -90,16 +94,29 @@ public class UserController {
         UserInfo user = userService.checkUser(username, MD5Util.mdCode(password));
         session.setAttribute("type",0); // not login click
         if (user != null) {
-            session.setAttribute("user", user);
-            session.setAttribute("found", true);
-            if(user.getUserName().equals("admin")){
-                session.setAttribute("type",1); // admin
+            if( user.isEmailVerified() || user.getUserName().equals("admin")  ) {
+                session.setAttribute("user", user);
+                session.setAttribute("found", true);
+
+                if (user.getUserName().equals("admin")) {
+                    session.setAttribute("type", 1); // admin
+                } else {
+                    session.setAttribute("type", 2); // common user
+                }
+                return "redirect:" + referer;
             }
-            else{
-                session.setAttribute("type",2); // common user
+            else
+            {
+                //session.setAttribute("type",4); // not found
+                session.setAttribute("user_uv", user);
+
+                System.out.println("NOLogin");
+                //return "redirect:" + referer;
+                return "email_verify_needed_pl";
             }
-            return "redirect:" + referer;
-        } else {
+
+        }
+        else {
             session.setAttribute("found", false);
             session.setAttribute("type",3); // not found
             System.out.println("NOLogin");
@@ -113,6 +130,7 @@ public class UserController {
         session.removeAttribute("user");
         session.removeAttribute("found");
         session.removeAttribute("type");
+        session.removeAttribute("status");
         return "redirect:" ;
     }
 
@@ -128,11 +146,14 @@ public class UserController {
     public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
         UserInfo user = userService.getUser(id);
         List<MovieReview> ratedMovies = user.getMovieReviews();
+
         List<List<Object>> movies = new ArrayList<>();
+
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
         List<MovieInfo> notInterested = user.getNotInterestedList();
         Set<UserInfo> followers = user.getFollowers();
         Set<UserInfo> followings = user.getFollowings();
+
         for(MovieReview mr: ratedMovies){
             List<Object> obj = new ArrayList<>();
             obj.add(mr);
@@ -148,12 +169,36 @@ public class UserController {
         return "profile_template";
     }
 
+    @GetMapping("/user/{id}")
+    public String handleUserProfile(@PathVariable Long id, Model model) {
+        UserInfo user = userService.getUser(id);
+        List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
+        Set<UserInfo> followers = user.getFollowers();
+
+        model.addAttribute("wantToSee", wantsToSeeList);
+        model.addAttribute("followers", followers);
+        model.addAttribute("currentUser", user);
+        return "other_user_info";
+    }
+
     @GetMapping("/my_profile/delete/{mid}")
     public String handleDeleteReview(@PathVariable Long mid, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
         List<MovieReview> ratedMovies = user.getMovieReviews();
         for(MovieReview mr: ratedMovies){
             if(mr.getMovieID().equals(mid)){
+                MovieInfo mi = movieService.getMovie(mr.getMovieID());
+                if(user.isCritic()){
+                    mi.setCriticRate((mi.getCriticRate()*mi.getCriticRateCount())-mr.getRate());
+                    mi.setCriticRateCount(mi.getCriticRateCount()-1);
+                    mi.setCriticRate(mi.getCriticRate()/mi.getCriticRateCount());
+                }else{
+                    mi.setAudianceRate((mi.getAudianceRate()*mi.getAudiRateCount())-mr.getRate());
+                    mi.setAudiRateCount(mi.getAudiRateCount()-1);
+                    mi.setAudianceRate(mi.getAudianceRate()/mi.getAudiRateCount());
+                }
+                mi.setTotalRate((mi.getCriticRate()+mi.getAudianceRate())/2);
+                movieService.updateMovie(mi.getMovieID(),mi);
                 ratedMovies.remove(mr);
                 user.setMovieReviews(ratedMovies);
                 movieReviewService.deleteReview(mr.getReviewID());
@@ -166,10 +211,11 @@ public class UserController {
         return "redirect:/my_profile/" + user.getUserID();
     }
 
-    @GetMapping("/my_profile/follow/{id}")
+    @GetMapping("/user/follow/{id}")
     public String handleFollow(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
         UserInfo currentUser = userService.getUser(id);
+        currentUser.setNumFollowers(currentUser.getNumFollowers()+1);
         Set<UserInfo> followings = user.getFollowings();
         boolean isDulip = false;
         for(UserInfo ui: followings){
@@ -184,7 +230,7 @@ public class UserController {
             session.setAttribute("user", user);
         }
 
-        return "redirect:/my_profile/" + currentUser.getUserID();
+        return "redirect:/user/" + currentUser.getUserID();
     }
 
     @GetMapping("/my_profile/delete/wantsToSee/{mid}")
@@ -222,7 +268,8 @@ public class UserController {
     @GetMapping("/my_profile/delete/followings/{id}")
     public String handleDeleteFollowings(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
-        //UserInfo followingUser = userService.getUser(id);
+        UserInfo followingUser = userService.getUser(id);
+        followingUser.setNumFollowers(followingUser.getNumFollowers()-1);
         Set<UserInfo> followings = user.getFollowings();
         for(UserInfo ui: followings){
             if(ui.getUserID().equals(id)){
@@ -385,12 +432,12 @@ public class UserController {
     public String handlePost(@RequestParam String review_text, int star_rate, HttpSession session) {
         UserInfo currentUser = (UserInfo) session.getAttribute("user");
         MovieInfo currentMovie = (MovieInfo) session.getAttribute("movie");
+        Date today = new Date();
         if (currentUser != null) {
             boolean isReviewed = false;
             List<MovieReview> movieReviews = currentUser.getMovieReviews();
             for(MovieReview mr: movieReviews){
                 if(mr.getMovieID().equals(currentMovie.getMovieID())){
-                    Date today = new Date();
                     mr.setComment(review_text);
                     mr.setRate(star_rate*20);
                     mr.setDayCommented(today);
@@ -405,12 +452,34 @@ public class UserController {
                 MovieReview movieReview = new MovieReview();
                 movieReview.setComment(review_text);
                 movieReview.setRate(star_rate*20);
+                movieReview.setDayCommented(today);
                 movieReview.setMovieID(currentMovie.getMovieID());
                 movieReview.setUser(currentUser);
                 movieReviewService.saveMovieReview(movieReview);
                 movieReviews.add(movieReview);
                 currentUser.setMovieReviews(movieReviews);
                 session.setAttribute("user", currentUser);
+                if(currentUser.isCritic()){
+                    if(currentMovie.getCriticRateCount()==0){
+                        currentMovie.setCriticRate(star_rate*20);
+                        currentMovie.setCriticRateCount(currentMovie.getCriticRateCount()+1);
+                    }else{
+                        currentMovie.setCriticRate(currentMovie.getCriticRate()*currentMovie.getCriticRateCount());
+                        currentMovie.setCriticRateCount(currentMovie.getCriticRateCount()+1);
+                        currentMovie.setCriticRate((star_rate*20+currentMovie.getCriticRate())/currentMovie.getCriticRateCount());
+                    }
+                }else{
+                    if(currentMovie.getAudiRateCount()==0){
+                        currentMovie.setAudianceRate(star_rate*20);
+                        currentMovie.setAudiRateCount(currentMovie.getAudiRateCount()+1);
+                    }else{
+                        currentMovie.setAudianceRate(currentMovie.getAudianceRate()*currentMovie.getAudiRateCount());
+                        currentMovie.setAudiRateCount(currentMovie.getAudiRateCount()+1);
+                        currentMovie.setAudianceRate((star_rate*20+currentMovie.getAudiRateCount())/currentMovie.getAudiRateCount());
+                    }
+                }
+                currentMovie.setTotalRate((currentMovie.getCriticRate()+currentMovie.getAudianceRate())/2);
+                movieService.updateMovie(currentMovie.getMovieID(), currentMovie);
             }
         } else {
             System.out.println("No login");
@@ -440,10 +509,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/pt_critics")
-    public String handlePTCritics(){
-        return "critics";
-    }
+
 
 
     @GetMapping("/help")
@@ -451,7 +517,65 @@ public class UserController {
         return "help";
     }
 
+    @PostMapping("/handleUploadPic/{id}")
+    public String handleUploadPic(@PathVariable Long id, @RequestParam MultipartFile profile_pic,HttpServletRequest request  )
+    {
+        String referer = request.getHeader("Referer");
+        UserInfo user = userService.getUser(id);
+        String userName = user.getUserName();
+        //String oriName = profile_pic.getOriginalFilename();
 
+        String path = System.getProperty("user.dir")+"/src/main/resources/static/images/profile_img/"+userName+".png" ;
+        convert(profile_pic, path);//save to the path
+        String databasePath = "/images/profile_img/"+userName+".png" ;
+        user.setPhoto(databasePath);
+        userService.updateUser(id, user );
+        return "redirect:"+referer;
+    }
+    public File convert(MultipartFile file, String path)
+    {
+
+        File convFile = new File(path);
+        try {
+            convFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(convFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return convFile;
+    }
+
+
+    @PostMapping("/resend_ver_email_request/{id}")
+    public String handleResendVerificationEmailRequest(@PathVariable Long id)
+    {
+        UserInfo user =  userService.getUser(id);
+
+        final String uuid = UUID.randomUUID().toString();
+        user.setRegisterUUID(uuid);
+        try {
+            emailService.sendRegisterVerification(user, uuid);
+        } catch (MailException me) {
+            me.printStackTrace();
+        }
+        userService.updateUser(  id, user  );
+        return "redirect:/";
+    }
 
     public void handleShowCriticInfo() {
     }

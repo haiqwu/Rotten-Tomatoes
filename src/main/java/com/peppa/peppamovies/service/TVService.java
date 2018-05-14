@@ -14,13 +14,15 @@ public interface TVService {
 
     TVInfo updateTV(Long id, TVInfo tv);
 
-    Page<TVInfo> listTV(String query, Pageable pageable);
+    Page<TVInfo> listTV(Pageable pageable);
 
     Page<TVInfo> listOpeningTV(Date dateStart, Date dateEnd, Pageable pageable);
 
-    Page<TVInfo> listTopTV(Pageable pageable);
+    Page<TVInfo> listTopRatedTV(Pageable pageable);
 
-    Page<TVInfo> listComingTV(Date date, Pageable pageable);
+    Page<TVInfo> listCriticTopRatedTV(Pageable pageable);
+
+    TVInfo getTVBySeason(int seasonNum, String movieName);
 
     void deleteTV(Long id);
 }

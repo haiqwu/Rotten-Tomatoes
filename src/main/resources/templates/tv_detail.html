@@ -14,27 +14,26 @@
         <div class="ui grid" th:if="${session.type == 1 }">
             <div class="six column row">
                 <div class="right floated column">
-                    <a href="#" th:href="@{/edit_movie_detail/{id}(id=${movie.movieID})}" class="ui black basic label">Edit</a>
-                    <a href="#" th:href="@{/delete_movie_detail/{id}(id=${movie.movieID})}"
-                       class="ui black basic label">Delete</a>
+                    <a href="#" th:href="@{/edit_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Edit</a>
+                    <a href="#" th:href="@{/delete_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Delete</a>
                 </div>
             </div>
         </div>
 
             <!--review-->
             <div class="sixteen wide column">
-                <H2>MOVIE TITLE</H2>
-                <select class="ui dropdown">
-                    <option value="">Season</option>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
-                </select>
+                <H2 th:text="${tv.tvName}">MOVIE TITLE</H2>
+                <div class="ui grid">
+                    <div class="four wide column" th:each="num: ${seasonNum}">
+                        <a th:text="${'Season '+num.intValue()}"  th:href="@{/tv/season/{num}(num=${num.intValue()})}" href="#" class="item"><i class="th list icon"></i>List</a>
+                    </div>
+                </div>
 
                 <div class="ui grid">
                     <div class="four wide column">
-                        <a href="#"><img class="ui fluid image" name="poster main" alt="Image"
-                                         th:src="@{${movie.moviePoster}}"></a>
+                        <a href="#"><img class="ui fluid image" name="poster main tv" alt="Image" th:src="@{${tv.tvPoster}}"></a>
                     </div>
+
                     <div class="twelve wide column">
                         <div class="sixteen wide column">
                             <div class="ui grid">
@@ -42,8 +41,8 @@
                                     <div class="ui grid">
                                         <div class="class six wide column">
                                             <h4>PEPPAMETER</h4>
-                                            <h1 th:text="${movie.criticRate+'%'}">92%</h1>
-                                            <p th:text="${'Reviews Counted: '+movie.criticRateCount}">Reviews Counted:
+                                            <h1 th:text="${tv.criticRate+'%'}">92%</h1>
+                                            <p th:text="${'Reviews Counted: '+tv.criticRateCount}">Reviews Counted:
                                                 118</p>
                                         </div>
                                         <div class="class eight wide column">
@@ -60,8 +59,8 @@
                                 </div>
                                 <div class="ui five wide column">
                                     <h4>AUDIENCE SCORE</h4>
-                                    <h1 th:text="${movie.audianceRate+'%'}">92%</h1>
-                                    <p th:text="${'Reviews Counted: '+movie.audiRateCount}">Reviews Counted: 118</p>
+                                    <h1 th:text="${tv.audianceRate+'%'}">92%</h1>
+                                    <p th:text="${'Reviews Counted: '+tv.audiRateCount}">Reviews Counted: 118</p>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +76,7 @@
                                 <div class="twelve wide column">
                                     <div class="row">
                                         <a type="button" class="ui mini animated fade green button" tabindex="0"
-                                           href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
+                                           href="#">
                                             <div class="visible content">+ WANT TO SEE</div>
                                             <div class="hidden content">
                                                 <i class="heart icon"></i>
@@ -85,7 +84,7 @@
                                         </a>
 
                                         <a type="button" class="ui mini animated fade red button" tabindex="0"
-                                           href="#" th:href="@{/movie/{id}/not_interested(id=${movie.movieID})}">
+                                           href="#">
                                             <div class="visible content">- NOT INTERESTED</div>
                                             <div class="hidden content">
                                                 <i class="thumbs down icon"></i>
@@ -104,7 +103,7 @@
 
                                     </div>
 
-                                    <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
+                                    <form action="#" method="post">
 
                                         <!--<div class="row">-->
                                         <!-- star rating-->
@@ -127,7 +126,7 @@
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
-                                                <textarea th:text="${movieReview}" name="review_text"
+                                                <textarea name="review_text"
                                                           placeholder="Add a Review (Optional)"
                                                           rows="7"></textarea>
                                             </div>
@@ -161,17 +160,14 @@
             <div class="ui grid">
                 <div class="sixteen wide column">
 
-                    <p class="m-opacity-mini" th:text="${movie.briefIntro}">placeholder
+                    <p class="m-opacity-mini" th:text="${tv.briefIntro}">placeholder
                     </p>
                     <div class="ui list">
                         <div class="item">
-                            Genre: &nbsp; &nbsp; <span th:text="${movie.genres}">Action & Adventure</span>
+                            Genre: &nbsp; &nbsp; <span th:text="${tv.genres}">Action & Adventure</span>
                         </div>
                         <div class="item">
-                            Released Date: &nbsp; &nbsp; <span th:text="${movie.releasedDate}">2018-05-11</span>
-                        </div>
-                        <div class="item">
-                            Runtime: &nbsp; &nbsp; <span th:text="${movie.runtimeMinutes}">120</span> minutes
+                            Released Date: &nbsp; &nbsp; <span th:text="${tv.releasedDate}">2018-05-11</span>
                         </div>
                     </div>
                 </div>

@@ -85,5 +85,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.getAllCriticApplyers();
     }
 
+    @Override
+    public Page<UserInfo> listCriticsByReview(Pageable pageable) {
+        return userRepository.getAllCriticUsers(pageable);
+    }
+
 
 }

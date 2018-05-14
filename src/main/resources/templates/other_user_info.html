@@ -20,41 +20,30 @@
                     <div><a id="portrait_img" href="#"><img class="ui small image" src="../static/images/portrait.png"
                                                             th:src="@{/images/portrait.png}" alt="Image"></a></div>
                     <a href="#" th:text="${currentUser.userName}">First Last</a>
-                    <div><a th:href="@{/my_profile/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
-
+                    <p th:text="${'Follower Count: '+followers.size()}" >Follower Count: 0</p>
+                    <p>Rank: 5</p>
+                    <div><a th:href="@{/user/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
+                    <div><a th:href="@{/user/report/{id}(id=${currentUser.userID})}" href="#">Report</a></div>
                 </div>
+
             </div>
 
             <!--right-->
             <div class="twelve wide column">
-                <!--rating movie-->
-                <div class="row review-padding">
-                    <!--<div class="ui teal m-header-median  inverted attached segment">RATING HISTORY</div>-->
-                    <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">RATING HISTORY</h2>
-                    <div class="ui inverted segment ">
-                        <div class="ui grid">
-                            <div class="row" th:each="tag : ${rateMovies}">
-                                <div class="three wide center aligned column">
-                                    <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}"><img
-                                            class="ui fluid image" src="../static/images/1.jpg"
-                                            th:src="${tag[1].moviePoster}" alt="Image"></a>
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
-                                    <p>score</p>
-                                    <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
-
+                    <!--want to see movie-->
+                    <div class="row review-padding">
+                        <div class="ui teal m-header-median  inverted attached segment">WANT TO SEE MOVIE</div>
+                        <div class="ui inverted segment ">
+                            <div class="ui grid">
+                                <div class="three wide center aligned column"  th:each="tag : ${wantToSee}"  >
+                                    <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
+                                    <p th:text="${tag.movieName}">Black Panther   </p>
+                                    <a th:href="@{/my_profile/delete/wantsToSee/{mid}(mid=${tag.movieID})}" href="#" class="ui red label ">Delete</a>
 
                                 </div>
-                                <div class="nine wide column">
-                                    <p th:text="${tag[0].comment}">
-                                        fjdafoiadsjfioasjfaiosfjasvjidaosjfdsiaovjcdaisovjaiocjsiaodjciso</p>
-                                    <a th:href="@{/my_profile/delete/{mid}(mid=${tag[1].movieID})}" href="#"
-                                       class="ui red label ">Delete</a>
-                                </div>
-
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>

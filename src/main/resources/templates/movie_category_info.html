@@ -17,12 +17,13 @@
                 <nav>
                     <div class="ui container">
                         <div class="ui inverted secondary stackable vertical menu">
-                            <div class="ui teal header item">IN THEATERS</div>
+                            <div class="ui teal header item">Category</div>
                             <div class="m-padded-right">
                                 <a th:href=@{/opening_this_week} href="#" class="item">Opening This Week</a>
                                 <a th:href=@{/top_box_office} href="#" class="item">Top Box Office</a>
-                                <a href="#" class="item">Coming Soon</a>
-                                <a href="#" class="item">Certified Fresh Movies</a>
+                                <a th:href=@{/comming_soon} href="#" class="item">Coming Soon</a>
+                                <a th:href=@{/top_rated_tv_shows} href="#" class="item">Top Rated TV Shows</a>
+                                <a th:href=@{/certified_fresh_tv_shows} href="#" class="item">Certified Fresh TV Shows</a>
                             </div>
                         </div>
                     </div>
@@ -33,15 +34,30 @@
             <div class="twelve wide column grid">
                 <!--<h2 class="ui teal center aligned header">Coming Soon</h2>-->
                 <!--<div class="ui center aligned  container " th:each="singleMovie : ${page.content}">-->
-                <div class="ui grid">
-                    <div class="four wide column "  th:each="singleMovie : ${page.content}">
-                        <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
+                <div th:if="${boolean}">
+                    <div class="ui grid">
+                        <div class="four wide column "  th:each="singleMovie : ${page.content}">
+                            <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
 
-                        <div><a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a></div>
-                        <div id="star_rate" class=" ui big star rating"></div>
-                        <p class="m-opacity-mini">In Theaters Apr 6</p>
+                            <div><a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a></div>
+                            <div th:text="${'Top Box: '+singleMovie.box_office}"> </div>
+                            <div th:text="${'Released Date: '+singleMovie.releasedDate}"> </div>
+
+                        </div>
                     </div>
                 </div>
+                <div th:unless="${boolean}">
+                    <div class="ui grid">
+                        <div class="four wide column "  th:each="singleTV : ${page.content}">
+                            <a href="#" th:href="@{/tv/{id}(id=${singleTV.tvID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleTV.tvPoster}}" alt="Image" width="100" height="200" ></a>
+
+                            <div><a href="#" th:text="${singleTV.tvName}">Jumanji: Welcome to the Jungle</a></div>
+                            <p th:text="${singleTV.totalRate/20 +'/5'}"></p>
+                        </div>
+                    </div>
+                </div>
+
+
 
                 <div class="ui bottom attached inverted segment" th:if="${page.totalPages}>1">
                     <div class="ui middle aligned two column grid">

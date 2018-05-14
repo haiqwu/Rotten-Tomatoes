@@ -27,6 +27,7 @@ public class TVInfo {
     private String tvImages;
     private int criticRateCount;
     private int audiRateCount;
+    private int totalSeason;
     @ManyToMany
     private List<ActorInfo> tvActors = new ArrayList<>();
     @ManyToMany(mappedBy = "wantsToSeeListTV")
@@ -190,6 +191,14 @@ public class TVInfo {
         this.audiRateCount = audiRateCount;
     }
 
+    public int getTotalSeason() {
+        return totalSeason;
+    }
+
+    public void setTotalSeason(int totalSeason) {
+        this.totalSeason = totalSeason;
+    }
+
     @Override
     public String toString() {
         return "TVInfo{" +
@@ -209,6 +218,7 @@ public class TVInfo {
                 ", tvImages='" + tvImages + '\'' +
                 ", criticRateCount=" + criticRateCount +
                 ", audiRateCount=" + audiRateCount +
+                ", totalSeason=" + totalSeason +
                 ", tvActors=" + tvActors +
                 ", interestedUsers=" + interestedUsers +
                 ", notInterestedUsers=" + notInterestedUsers +

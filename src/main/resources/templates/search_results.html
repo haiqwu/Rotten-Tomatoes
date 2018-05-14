@@ -12,50 +12,124 @@
 
 <div>
     <div class="ui container">
+        <!-- search header-->
         <div class="ui top attached inverted segment">
             <div class="ui middle aligned two column grid">
                 <div class="column">
                     <h2 class="ui teal header">Search Results</h2>
                 </div>
                 <div class="right aligned column">
-                        Found<h2 class="ui teal header" th:text="${page.totalElements}">  </h2>movies
+                    Found<h2 class="ui teal header" th:text="${session.page.totalElements}"></h2>movies
                 </div>
             </div>
         </div>
 
+        <!--search body-->
         <div class="ui top attached inverted segment">
-            <div class="ui padded vertical inverted segment" th:each="singleMovie : ${page.content}">
-                <div class="ui middle aligned mobile reversed stackable grid" >
-                    <div class="ui grid">
-                        <div class="four wide column">
-                            <a class="ui container" href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui small image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
+
+            <!--grid or list-->
+            <div class="ui grid">
+                <div class="four column row">
+                    <div class="right floated column">
+                        <div class="ui dropdown item">
+                            <div class="text">View By<i class="dropdown icon"></i></div>
+
+                            <div class="menu">
+                                <a th:href="@{/search/list}" href="#" class="item"><i class="th list icon"></i>List</a>
+                                <a th:href="@{/search/grid}" href="#" class="item"><i class="th large icon"></i>Grid</a>
+                            </div>
                         </div>
-                        <div class="twelve wide column">
-                            <div class="m-padded-bottom-mini">
-                                <a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a>
+                        <div class="ui dropdown item">
+                            <div class="text">Sort</div>
+                            <i class="filter icon"></i>
+                            <div class="menu">
+                                <a th:href="@{/search/date}" href="#" class="item">Date </a>
+                                <a th:href="@{/search/rate}" href="#" class="item">Rate</a>
+                                <a th:href="@{/search/topBox}" href="#" class="item">Top Box</a>
+                                <a th:href="@{/search/alphabet}" href="#" class="item">alphabet</a>
                             </div>
-                            <div class="m-padded-bottom-mini">
-                                <a href="#">actor</a>,
-                                <a href="#">actor</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:if="${session.boolean}">
+                <div class="ui padded vertical inverted segment" th:each="singleMovie : ${session.page.content}">
+                    <div class="ui middle aligned mobile reversed stackable grid">
+                        <div class="ui grid">
+                            <div class="four wide column">
+                                <a class="ui container" href="#"
+                                   th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img
+                                        class="ui small image" src="../static/images/1.jpg"
+                                        th:src="@{${singleMovie.moviePoster}}"
+                                        alt="Image" width="100" height="200"></a>
                             </div>
-                            <div class="ui big star rating"></div>
+                            <div class="twelve wide column">
+                                <div class="m-padded-bottom-mini">
+                                    <a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a>
+                                    <p th:text="${singleMovie.totalRate/20 +'/5'}"></p>
+                                    <p th:text="${'Released Date: '+singleMovie.releasedDate}"></p>
+                                    <p th:text="${'Box Office: '+singleMovie.box_office}"></p>
+                                </div>
+                                <!--<div class="m-padded-bottom-mini">-->
+                                <!--<a href="#">actor</a>,-->
+                                <!--<a href="#">actor</a>-->
+                                <!--</div>-->
+                                <!--<div class="ui big star rating"></div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui bottom attached inverted segment" th:if="${session.page.totalPages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.page.number-1},size=${session.page.size})}"
+                               th:unless="${session.page.first}" class="ui mini teal basic button">Previous Page</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.page.number+1},size=${session.page.size})}"
+                               th:unless="${session.page.last}" class="ui mini teal basic button">Next Page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:unless="${session.boolean}">
+
+                <div class="ui grid">
+                    <div class="four wide column " th:each="tag : ${session.page.content}">
+                        <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}"><img class="ui small image"
+                                                                                     src="../static/images/1.jpg"
+                                                                                     th:src="@{${tag.moviePoster}}"
+                                                                                     alt="Image"
+                                                                                     width="100" height="200"></a>
+
+                        <div><a href="#" th:text="${tag.movieName}">Jumanji: Welcome to the Jungle</a></div>
+                        <p th:text="${tag.totalRate/20 +'/5'}"></p>
+                        <p th:text="${'Released Date: '+tag.releasedDate}"></p>
+                        <p th:text="${'Box Office: '+tag.box_office}"></p>
+                    </div>
+                </div>
+
+                <div class="ui bottom attached inverted segment" th:if="${session.page.totalPages}>1">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.page.number-1},size=${session.page.size})}"
+                               th:unless="${session.page.first}" class="ui mini teal basic button">Previous Page</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#"
+                               th:href="@{${session.link}(page=${session.page.number+1},size=${session.page.size})}"
+                               th:unless="${session.page.last}" class="ui mini teal basic button">Next Page</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="ui bottom attached inverted segment" th:if="${page.totalPages}>1">
-            <div class="ui middle aligned two column grid">
-                <div class="column">
-                    <a href="#" th:href="@{${'/search'}(page=${page.number-1},size=${page.size})}" th:unless="${page.first}" class="ui mini teal basic button">Previous Page</a>
-                </div>
-                <div class="right aligned column">
-                    <a href="#" th:href="@{${'/search'}(page=${page.number+1},size=${page.size})}" th:unless="${page.last}" class="ui mini teal basic button">Next Page</a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

@@ -4,6 +4,8 @@ import com.peppa.peppamovies.dao.MovieReviewRepository;
 import com.peppa.peppamovies.model.MovieReview;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -54,6 +56,13 @@ public class MovieReviewServiceImpl implements MovieReviewService {
 
         //userRepository.delete( getUser(id) );
         movieReviewRepository.delete(  getMovieReview(id)  );
+
+
+    }
+
+    @Override
+    public Page<MovieReview> listReviewsByTime(Pageable pageable) {
+        return movieReviewRepository.getAllCriticReviews( pageable );
 
 
     }

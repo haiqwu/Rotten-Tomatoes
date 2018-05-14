@@ -22,6 +22,8 @@ public class MovieReview {
     @JoinColumn(name = "userID", nullable = false)
     private UserInfo reviewUser;
 
+    private boolean is_critic_review;
+
     private boolean reported;
 
     public MovieReview() {
@@ -99,6 +101,14 @@ public class MovieReview {
         this.reported = reported;
     }
 
+    public boolean isIs_critic_review() {
+        return is_critic_review;
+    }
+
+    public void setIs_critic_review(boolean is_critic_review) {
+        this.is_critic_review = is_critic_review;
+    }
+
     @Override
     public String toString() {
         return "MovieReview{" +
@@ -109,6 +119,7 @@ public class MovieReview {
                 ", dayCommented=" + dayCommented +
                 ", groupName='" + groupName + '\'' +
                 ", reviewUser=" + reviewUser +
+                ", is_critic_review=" + is_critic_review +
                 ", reported=" + reported +
                 '}';
     }

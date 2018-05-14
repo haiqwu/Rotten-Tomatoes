@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Peppametter Criteria</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/mycss.css" th:href="@{/css/mycss.css}">
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+
+<div class="ui container">
+    <div class="ui inverted attached segment">
+        <div class="ui grid">
+            <div class="ui sixteen wide column">
+                <div class="ui inverted secondary menu">
+                    <a class="item">Critics Home</a>
+                    <a class="item">Critics List</a>
+                    <a class="item">Publication List</a>
+                    <a class="item">Critics Groups</a>
+                    <a class="item">Latest Film Reviews</a>
+                    <a class="item">Critics Criteria</a>
+                </div>
+            </div>
+
+            <div class="ui sixteen wide column">
+                <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">PEPPAMETER CRITERIA</h2>
+                <P class="m-text">
+                    Movie and television reviews in the Tomatometer® come from publications (e.g., newspapers,
+                    magazines,
+                    websites, etc.) or individual critics that have been selected by the Rotten Tomatoes® staff. The
+                    criteria for inclusion for both publications and critics are separated across three divisions:
+                    print,
+                    broadcast, and online, each with its own criteria for Tomatometer inclusion, more fully described
+                    below.
+                    In many cases, for a variety of reasons, we may also include publications or critics that do not
+                    meet
+                    the below criteria, and may assign them to the below categories, if we feel that their inclusion
+                    will
+                    benefit the relevance and utility of the Tomatometer.
+                </P>
+
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+
+                <h3>SOURCE APPROVAL</h3>
+
+                <div class="m-text">
+                    <p>Print publications must achieve and maintain status as one of the following:</p>
+
+                    <ul class="ui list">
+                        <div class="item">A top 100 daily US newspaper</div>
+                        <div class="item"> A top 100 weekly US newspaper</div>
+                        <div class="item"> A top 100 magazine</div>
+                        <div class="item"> A top 100 weekly US newspaper</div>
+                    </ul>
+
+                    <p>Sources used to determine national publication ranks include the Audit Bureau of Circulations,
+                        The Magazine Publishers of America, and the Association of Alternative Weeklies. Applications
+                        for international publications will be made on a case-by-case basis, with input from local
+                        Rotten Tomatoes editors when applicable.
+                    </p>
+                    <p>
+                        Broadcast outlets must achieve and maintain status as a national TV or radio outlet (either via
+                        syndication or network broadcast) for Tomatometer consideration. Alternatively, a TV outlet must
+                        be broadcasting in one of the top ten DMAs, as listed by Nielsen Ratings. Radio outlets must be
+                        broadcasting in one of the top five DMAs, as listed by Arbitron. In almost all cases, an
+                        outlet's individual reviews must be available online, either as a segment transcript or an
+                        alternate, written review.
+                    </p>
+                    <p>
+                        Online publications must achieve and maintain a minimum 500,000 unique monthly visitors
+                        according to comScore, Inc or Nielsen Net Ratings and reviews must have an average length of at
+                        least 300 words. Publications must also show a consistent standard of professionalism, writing
+                        quality, and editorial integrity across all reviews and articles. Lastly, site design and layout
+                        should also reflect a reasonable level of quality and must have a domain name specific to the
+                        property.
+                    </p>
+                    <p>
+                        For all outlets, reviews should be readable within a standard browser; reviews that require
+                        users to download additional software or browser plugins (ie PDFs) are strongly discouraged.
+                        Applications for international outlets will be made on a case-by-case basis, with input from
+                        local Rotten Tomatoes editors when applicable.
+                    </p>
+                </div>
+
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+
+                <h3>CRITICS APPROVAL</h3>
+
+                <div class="m-text">
+                    <p>
+                        Print critics must be currently employed as a film critic at a Tomatometer-approved publication for a minimum of two calendar years to be considered for individual approval.
+                    </p>
+                    <p>
+                        Broadcast critics must be currently employed as a film critic at a Tomatometer-approved outlet for a minimum of two calendar years to be considered for individual approval.
+                    </p>
+                    <p>
+                        Online critics must have published no less than 100 reviews across two calendar years at a single, Tomatometer-approved publication, and all reviews should have an average length of at least 300 words to be considered for individual approval.
+                    </p>
+                    <p>
+                        In all cases applicants should have two years' worth of published reviews available online, and all applicants must be able to demonstrate that their reviews have editorial oversight.
+                    </p>
+                    <p>
+                        In some cases, critics that are publishing reviews on a Tomatometer-approved outlet and have membership in select critics associations may be considered for individual approval. However, membership in a critics association does not guarantee approval.
+                    </p>
+                </div>
+
+                <div class="ui divider m-padded-top-bottom-mini"></div>
+
+                <div class="ui center aligned container" th:if="${session.type == 2 }">
+                    <div class="ui center aligned container" th:unless="${session.status}">
+                        <h3>Ready to be a Peppa Critic?</h3>
+                        <a th:href="@{/apply_critic_/{id}(id=${session.user.userID})}" class="ui green inverted button">Apply For Peppa Critic</a>
+
+                    </div>
+
+                    <div class="ui center aligned container" th:if="${session.status==1}">
+                        <h3  class="ui red label">You Are PT Critic</h3>
+
+                    </div>
+
+                    <div class="ui center aligned container" th:if="${session.status==2}">
+                        <h3  class="ui red label">You Are Applying PT Critic</h3>
+
+                    </div>
+
+                    <div class="ui center aligned container" th:if="${session.status==3}">
+                        <h3  class="ui red label">You Are Not Qualified for PT Critic</h3>
+
+                    </div>
+
+
+                </div>
+
+                <div class="ui center aligned container" th:if="${session.type != 2 }">
+
+                    <h3  class="ui red label">You need to Log in</h3>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<footer th:replace="_fragments :: footerImg()"></footer>
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
+</body>
+
+
+</html>

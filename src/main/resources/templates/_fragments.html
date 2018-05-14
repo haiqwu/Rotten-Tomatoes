@@ -49,10 +49,10 @@
             </div>
             <div class="six wide column">
                 <h4 class="ui inverted header">FOLLOW US <i class="angle double down icon"></i></h4>
-                <div class="follow"><a href="#" class="item"><img src="static/images/004-facebook.png"
+                <div class="follow"><a href="https://www.facebook.com/pg/Peppa-Movies-1903357799954886" class="item"><img src="static/images/004-facebook.png"
                                                                   th:src="@{/images/004-facebook.png}"
                                                                   alt="loading"></a></div>
-                <div class="follow"><a href="#" class="item"><img src="static/images/003-twitter.png"
+                <div class="follow"><a href="https://twitter.com/Peppa54093257" class="item"><img src="static/images/003-twitter.png"
                                                                   th:src="@{/images/003-twitter.png}"
                                                                   alt="loading"></a>
                 </div>
@@ -82,13 +82,13 @@
                     <a href=" index.html " th:href=@{/}> Peppa </a>
                 </h2>
 
-                <div class="ui search search_bar ">
-                    <form name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
-                        <div class="ui icon input search_area">
-                            <input class="prompt" type="text" name="query" placeholder="Search Movies..."
-                                   th:value="${query}">
-                            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
-                        </div>
+                <div  class="ui search search_bar ">
+                    <form  name="search" action="#" th:action="@{/search}" method="post" targe="_blank">
+                            <div class="ui icon input search_area">
+                                <input class="prompt" type="text" name="query" placeholder="Search Movies..."
+                                       th:value="${query}">
+                                <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                            </div>
                     </form>
                     <div class="results"></div>
                 </div>
@@ -171,30 +171,24 @@
                     <span class="text">MOVIES & DVDS</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div class="header">MOVIES IN THEATERS</div>
-                        <div class="divider"></div>
                         <a th:href=@{/opening_this_week} href="movie_category_info.html" class="item">Opening This
                             Week</a>
                         <a th:href=@{/top_box_office} href="movie_category_info.html" class="item">Top Box Office</a>
                         <a th:href=@{/comming_soon} href="movie_category_info.html" class="item">Comming Soon</a>
-                        <a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified
-                            Movies</a>
+                        <!--<a th:href=@{/certified_fresh_movies} href="movie_category_info.html" class="item">Certified-->
+                            <!--Movies</a>-->
                     </div>
                 </div>
                 <div class="ui dropdown pointing  link item ">
                     <span class="text">TV</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <div class="header">OPENING TV</div>
-                        <div class="divider"></div>
-                        <a href="" class="item">Most Popular TV</a>
-                        <a class="item">Top TV Shows</a>
-                        <a class="item">Certified TV</a>
-                        <a class="item">More</a>
+                        <a th:href=@{/top_rated_tv_shows} href="#" class="item">Top Rated TV Shows</a>
+                        <a th:href=@{/certified_fresh_tv_shows} href="#" class="item">Certified Fresh TV Shows</a>
                     </div>
                 </div>
                 <div class="ui item ">
-                    <a href="#"> TRAILERS & VIDEOS</a>
+                    <a href="#" th:href="@{/trailer_page}"> TRAILERS & VIDEOS</a>
                 </div>
 
                 <div class="ui item ">
@@ -244,6 +238,7 @@
                                 <input type="password" name="password" placeholder="Password">
                             </div>
                         </div>
+
                         <div class="field">
                             <button class="ui fluid large teal submit button" onclick="login_fun2()">Log In</button>
                         </div>

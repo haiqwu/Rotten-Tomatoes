@@ -22,4 +22,8 @@ public interface UserRepository extends JpaRepository<UserInfo, Long>{
 
     @Query("select m from UserInfo m where m.applying_critic = 1 ")
     List<UserInfo> getAllCriticApplyers();
+
+    @Query("select m from UserInfo m where m.isCritic = 1 order by m.numFollowers desc ")
+    Page<UserInfo> getAllCriticUsers(Pageable pageable);
+
 }

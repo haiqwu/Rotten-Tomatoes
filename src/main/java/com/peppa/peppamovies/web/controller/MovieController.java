@@ -2,9 +2,12 @@ package com.peppa.peppamovies.web.controller;
 
 import com.peppa.peppamovies.model.MovieInfo;
 import com.peppa.peppamovies.model.MovieReview;
+import com.peppa.peppamovies.model.TVInfo;
 import com.peppa.peppamovies.model.UserInfo;
 import com.peppa.peppamovies.service.MovieReviewService;
 import com.peppa.peppamovies.service.MovieService;
+import com.peppa.peppamovies.service.TVService;
+import com.peppa.peppamovies.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +30,12 @@ public class MovieController {
     @Autowired
     private MovieReviewService movieReviewService;
 
+    @Autowired
+    private TVService tvService;
+
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/movie/{id}")
     public String handleShowMovieInfo(@PathVariable Long id, Model model, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
@@ -39,13 +48,17 @@ public class MovieController {
                 if(mr.getMovieID().equals(id)){
                     model.addAttribute("movieReview", mr.getComment());
                     model.addAttribute("RateReview", mr.getRate()/20);
+                    System.out.println(mr.getRate()/20);
                     break;
                 }else{
                     model.addAttribute("movieReview", null);
+                    model.addAttribute("RateReview", 0.0);
                 }
             }
         }else{
             model.addAttribute("movieReview", null);
+            model.addAttribute("RateReview", 0.0);
+
         }
         for(MovieReview mr: moviesAllReviews){
             if(mr.getMovieID().equals(id) && mr.getUser().isCritic()){
@@ -58,7 +71,35 @@ public class MovieController {
         model.addAttribute("reviewsByCritic", movieAllReviewsByCritic);
         model.addAttribute("reviewsByAudiance", movieAllReviewsByAudiance);
         session.setAttribute("movie", movieService.getMovie(id));
+        model.addAttribute("RateReview", 0.0);
         return "movie_detail";
+    }
+
+    @GetMapping("/tv/{id}")
+    public String handleShowTVInfo(@PathVariable Long id, Model model, HttpSession session) {
+        TVInfo tv = tvService.getTV(id);
+        List<Integer> seasonList = new ArrayList<>();
+        for(int i=1; i<=tv.getTotalSeason(); i++){
+            seasonList.add(new Integer(i));
+        }
+        model.addAttribute("tv", tvService.getTV(id));
+        model.addAttribute("seasonNum", seasonList);
+        session.setAttribute("tvS", tvService.getTV(id));
+        return "tv_detail";
+    }
+
+    @GetMapping("/tv/season/{num}")
+    public String handleShowTVInfo(@PathVariable int num, Model model, HttpSession session) {
+        TVInfo tv = (TVInfo) session.getAttribute("tvS");
+        String name = tv.getTvName();
+        name = name.substring(0,name.length()-2);
+        name = name + " " + num;
+        TVInfo seasonTV = tvService.getTVBySeason(num, name);
+        List<Integer> seasonList = new ArrayList<>();
+        for(int i=1; i<=seasonTV.getTotalSeason(); i++){
+            seasonList.add(new Integer(i));
+        }
+        return "redirect:/tv/" + seasonTV.getTvID();
     }
 
     @GetMapping("/opening_this_week")
@@ -103,15 +144,17 @@ public class MovieController {
         Page<MovieInfo> movies = movieService.listOpeningMovie(dateStart, dateEnd, pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/opening_this_week");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
     @GetMapping("/top_box_office")
-    public String handleViewTopBoxMovies(@PageableDefault(size = 8, sort = {"totalRate"},
+    public String handleViewTopBoxMovies(@PageableDefault(size = 8, sort = {"box_office"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Page<MovieInfo> movies = movieService.listTopMovie(pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/top_box_office");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
@@ -122,17 +165,39 @@ public class MovieController {
         Page<MovieInfo> movies = movieService.listComing(date, pageable);
         model.addAttribute("page", movies);
         model.addAttribute("link", "/comming_soon");
+        model.addAttribute("boolean", "123");
         return "movie_category_info";
     }
 
-    @GetMapping("/certified_fresh_movies")
-    public String handleViewCertifiedFreshesMovies() {
+    @GetMapping("/top_rated_tv_shows")
+    public String handleTopRatedTVShows(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Page<TVInfo> tvs = tvService.listTopRatedTV(pageable);
+        model.addAttribute("page", tvs);
+        model.addAttribute("link", "/top_rated_tv_shows");
+        model.addAttribute("boolean", null);
         return "movie_category_info";
     }
+
+    @GetMapping("/certified_fresh_tv_shows")
+    public String handleCertifiedFreshTVShows(@PageableDefault(size = 8, sort = {"criticRate"},
+            direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        Date date = new Date();
+        Page<TVInfo> tvs = tvService.listCriticTopRatedTV(pageable);
+        model.addAttribute("page", tvs);
+        model.addAttribute("link", "/certified_fresh_tv_shows");
+        model.addAttribute("boolean", null);
+        return "movie_category_info";
+    }
+
+//    @GetMapping("/certified_fresh_movies")
+//    public String handleViewCertifiedFreshesMovies() {
+//        return "movie_category_info";
+//    }
 
     @RequestMapping("/search")
     public String handleSearchAction(@PageableDefault(size = 8, sort = {"movieName"},
-            direction = Sort.Direction.DESC) Pageable pageable,
+            direction = Sort.Direction.ASC) Pageable pageable,
                                      String query, Model model, HttpSession session) {
         if (query == null) {
             Object queryItem = session.getAttribute("queryItem");
@@ -141,9 +206,63 @@ public class MovieController {
         query = query.trim();
         query = query.replaceAll("\\s+", " ");
         Page<MovieInfo> queryResult = movieService.listMovie("%" + query + "%", pageable);
-        model.addAttribute("page", queryResult);
+        session.setAttribute("page", queryResult);
         model.addAttribute("query", query);
         session.setAttribute("queryItem", query);
+        session.setAttribute("searchItem", query);
+        session.setAttribute("link", "/search");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/list")
+    public String handleSearchList(HttpSession session) {
+        session.setAttribute("boolean", "123");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/grid")
+    public String handleSearchGrid(HttpSession session) {
+        session.setAttribute("boolean", null);
+        return "search_results";
+    }
+
+    @RequestMapping("/search/date")
+    public String handleSearchDate(@PageableDefault(size = 8, sort = {"releasedDate"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/date");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/rate")
+    public String handleSearchRate(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/rate");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/topBox")
+    public String handleSearchTopBox(@PageableDefault(size = 8, sort = {"box_office"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/topBox");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/alphabet")
+    public String handleSearchAlphabet(@PageableDefault(size = 8, sort = {"movieName"},
+            direction = Sort.Direction.ASC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/alphabet");
         return "search_results";
     }
 
@@ -160,12 +279,22 @@ public class MovieController {
         MovieReview movieReview = movieReviewService.getMovieReview(id);
         movieReview.setReported(true);
         movieReviewService.updateMovieReview( id,  movieReview );
-        return "redirect:/";//need a page!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        return "report";//need a page!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     }
+
+    @GetMapping("/user/report/{id}")
+    public String handleReportUser(@PathVariable Long id){
+        UserInfo user = userService.getUser(id);
+        user.setReported(true);
+        userService.updateUser(id,user);
+        return "report";
+
+    }
+
+
 
     @PostMapping("/edit_movie_content/{id}")
     public String handleEditMovieDetailForm(@PathVariable Long id,
-
                                             @RequestParam String description,
                                             @RequestParam String movie_name,
                                             @RequestParam String movie_genres,
@@ -214,6 +343,11 @@ public class MovieController {
     {
         movieService.deleteMovie(id);
         return "redirect:/admin_summary_mapping";
+    }
+
+    @GetMapping("/trailer_page")
+    public String handleTrailerPage(){
+        return "trailer";
     }
 
     public void handleTopMovies() {

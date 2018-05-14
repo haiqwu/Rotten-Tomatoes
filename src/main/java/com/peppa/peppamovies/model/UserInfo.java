@@ -23,11 +23,9 @@ public class UserInfo {
     private String passW;
     private boolean isCritic;
 
-
     private boolean officially_blocked;
     private boolean reported;
     private boolean applying_critic;
-
 
     private boolean isEmailVerified;
     private String photo;
@@ -62,6 +60,8 @@ public class UserInfo {
 
     @ManyToMany(mappedBy="followings")
     private Set<UserInfo> followers = new HashSet<UserInfo>();
+    private int numFollowers;
+    private boolean shy;
 
     public UserInfo() {
     }
@@ -310,6 +310,22 @@ public class UserInfo {
         this.followings = followings;
     }
 
+    public int getNumFollowers() {
+        return numFollowers;
+    }
+
+    public void setNumFollowers(int numFollowers) {
+        this.numFollowers = numFollowers;
+    }
+
+    public boolean isShy() {
+        return shy;
+    }
+
+    public void setShy(boolean shy) {
+        this.shy = shy;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -338,8 +354,10 @@ public class UserInfo {
                 ", newsL=" + newsL +
                 ", wantsToSeeListTV=" + wantsToSeeListTV +
                 ", notInterestedListTV=" + notInterestedListTV +
-                ", followers=" + followers +
                 ", followings=" + followings +
+                ", followers=" + followers +
+                ", numFollowers=" + numFollowers +
+                ", shy=" + shy +
                 ", VALID_EMAIL_ADDRESS_REGEX=" + VALID_EMAIL_ADDRESS_REGEX +
                 '}';
     }
