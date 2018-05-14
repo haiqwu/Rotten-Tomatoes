@@ -14,8 +14,8 @@
         <div class="ui grid" th:if="${session.type == 1 }">
             <div class="six column row">
                 <div class="right floated column">
-                    <a href="#" class="ui black basic label">Edit</a>
-                    <a href="#" class="ui black basic label">Delete</a>
+                    <a href="#" th:href="@{/edit_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Edit</a>
+                    <a href="#" th:href="@{/delete_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Delete</a>
                 </div>
             </div>
         </div>
@@ -23,11 +23,11 @@
             <!--review-->
             <div class="sixteen wide column">
                 <H2 th:text="${tv.tvName}">MOVIE TITLE</H2>
-                <select class="ui dropdown">
-                    <option value="">Season</option>
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
-                </select>
+                <div class="ui grid">
+                    <div class="four wide column" th:each="num: ${seasonNum}">
+                        <a th:text="${'Season '+num.intValue()}"  th:href="@{/tv/season/{num}(num=${num.intValue()})}" href="#" class="item"><i class="th list icon"></i>List</a>
+                    </div>
+                </div>
 
                 <div class="ui grid">
                     <div class="four wide column">

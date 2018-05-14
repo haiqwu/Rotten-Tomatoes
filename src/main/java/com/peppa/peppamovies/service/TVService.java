@@ -22,8 +22,7 @@ public interface TVService {
 
     Page<TVInfo> listCriticTopRatedTV(Pageable pageable);
 
+    TVInfo getTVBySeason(int seasonNum, String movieName);
+
     void deleteTV(Long id);
-
-
-
 }

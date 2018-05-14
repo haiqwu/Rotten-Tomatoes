@@ -12,9 +12,14 @@ import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -89,36 +94,29 @@ public class UserController {
         UserInfo user = userService.checkUser(username, MD5Util.mdCode(password));
         session.setAttribute("type",0); // not login click
         if (user != null) {
-            session.setAttribute("user", user);
-            session.setAttribute("found", true);
+            if( user.isEmailVerified() || user.getUserName().equals("admin")  ) {
+                session.setAttribute("user", user);
+                session.setAttribute("found", true);
 
-            if(user.getUserName().equals("admin")){
-                session.setAttribute("type",1); // admin
-            }
-            else{
-                session.setAttribute("type",2); // common user
-
-                if(user.isCritic()==true){
-                    System.out.println("isCritic");
-                    session.setAttribute("status", 1); // is critic
+                if (user.getUserName().equals("admin")) {
+                    session.setAttribute("type", 1); // admin
+                } else {
+                    session.setAttribute("type", 2); // common user
                 }
-                else{
-                    if(user.isApplying_critic()==true){
-                        System.out.println("apply Critic");
-                        session.setAttribute("status", 2); // apply critic
-                    }
-                    else{
-                        if(user.getNumFollowers()<1){
-                            System.out.println("not enough for Critic");
-                            session.setAttribute("status", 3); // not enough for critic
-                        }
-                    }
-
-                }
-
+                return "redirect:" + referer;
             }
-            return "redirect:" + referer;
-        } else {
+            else
+            {
+                //session.setAttribute("type",4); // not found
+                session.setAttribute("user_uv", user);
+
+                System.out.println("NOLogin");
+                //return "redirect:" + referer;
+                return "email_verify_needed_pl";
+            }
+
+        }
+        else {
             session.setAttribute("found", false);
             session.setAttribute("type",3); // not found
             System.out.println("NOLogin");
@@ -171,6 +169,18 @@ public class UserController {
         return "profile_template";
     }
 
+    @GetMapping("/user/{id}")
+    public String handleUserProfile(@PathVariable Long id, Model model) {
+        UserInfo user = userService.getUser(id);
+        List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
+        Set<UserInfo> followers = user.getFollowers();
+
+        model.addAttribute("wantToSee", wantsToSeeList);
+        model.addAttribute("followers", followers);
+        model.addAttribute("currentUser", user);
+        return "other_user_info";
+    }
+
     @GetMapping("/my_profile/delete/{mid}")
     public String handleDeleteReview(@PathVariable Long mid, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
@@ -201,7 +211,7 @@ public class UserController {
         return "redirect:/my_profile/" + user.getUserID();
     }
 
-    @GetMapping("/my_profile/follow/{id}")
+    @GetMapping("/user/follow/{id}")
     public String handleFollow(@PathVariable Long id, HttpSession session) {
         UserInfo user = (UserInfo) session.getAttribute("user");
         UserInfo currentUser = userService.getUser(id);
@@ -220,7 +230,7 @@ public class UserController {
             session.setAttribute("user", user);
         }
 
-        return "redirect:/my_profile/" + currentUser.getUserID();
+        return "redirect:/user/" + currentUser.getUserID();
     }
 
     @GetMapping("/my_profile/delete/wantsToSee/{mid}")
@@ -507,7 +517,65 @@ public class UserController {
         return "help";
     }
 
+    @PostMapping("/handleUploadPic/{id}")
+    public String handleUploadPic(@PathVariable Long id, @RequestParam MultipartFile profile_pic,HttpServletRequest request  )
+    {
+        String referer = request.getHeader("Referer");
+        UserInfo user = userService.getUser(id);
+        String userName = user.getUserName();
+        //String oriName = profile_pic.getOriginalFilename();
 
+        String path = System.getProperty("user.dir")+"/src/main/resources/static/images/profile_img/"+userName+".png" ;
+        convert(profile_pic, path);//save to the path
+        String databasePath = "/images/profile_img/"+userName+".png" ;
+        user.setPhoto(databasePath);
+        userService.updateUser(id, user );
+        return "redirect:"+referer;
+    }
+    public File convert(MultipartFile file, String path)
+    {
+
+        File convFile = new File(path);
+        try {
+            convFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(convFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return convFile;
+    }
+
+
+    @PostMapping("/resend_ver_email_request/{id}")
+    public String handleResendVerificationEmailRequest(@PathVariable Long id)
+    {
+        UserInfo user =  userService.getUser(id);
+
+        final String uuid = UUID.randomUUID().toString();
+        user.setRegisterUUID(uuid);
+        try {
+            emailService.sendRegisterVerification(user, uuid);
+        } catch (MailException me) {
+            me.printStackTrace();
+        }
+        userService.updateUser(  id, user  );
+        return "redirect:/";
+    }
 
     public void handleShowCriticInfo() {
     }

@@ -24,5 +24,6 @@ public interface TVRepository extends JpaRepository<TVInfo,Long> {
     @Query("select m from TVInfo m order by m.criticRate desc")
     Page<TVInfo> findAllCriticTopRate(Pageable pageable);
 
-
+    @Query("select m from TVInfo m where m.season = ?1 and m.tvName = ?2")
+    TVInfo findTVBySeason(int seasonNum, String movieName);
 }

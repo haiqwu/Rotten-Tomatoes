@@ -41,7 +41,7 @@
                         <div class="four wide center aligned column"  th:each="tag : ${pageOpen.content}"  >
                             <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                             <h4 th:text="${tag.movieName}">Black Panther   </h4>
-                            <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
+                            <div th:text="${'Released Date: '+tag.releasedDate}"> </div>
                             <!--<p>Released Feb 16</p>-->
                             <button class="ui mini red button">Get Tickets</button>
                         </div>
@@ -68,7 +68,7 @@
                     <div class="four wide center aligned column"  th:each="tag : ${pageTop.content}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
-                        <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
+                        <div th:text="${'Top Box: '+tag.box_office}"> </div>
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ Certified Fresh Peppa +++++++++++++++++++++++++++-->
@@ -110,7 +110,7 @@
                     <div class="four wide center aligned column"  th:each="tag : ${pageComing.content}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
-                        <div th:text="${tag.runtimeMinutes}"> </div><div>Minutes</div>
+                        <div th:text="${'Released Date: '+tag.releasedDate}"> </div>
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ top rated tv +++++++++++++++++++++++++++-->

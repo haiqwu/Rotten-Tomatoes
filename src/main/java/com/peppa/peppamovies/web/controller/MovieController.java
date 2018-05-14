@@ -77,10 +77,29 @@ public class MovieController {
 
     @GetMapping("/tv/{id}")
     public String handleShowTVInfo(@PathVariable Long id, Model model, HttpSession session) {
-        UserInfo user = (UserInfo) session.getAttribute("user");
+        TVInfo tv = tvService.getTV(id);
+        List<Integer> seasonList = new ArrayList<>();
+        for(int i=1; i<=tv.getTotalSeason(); i++){
+            seasonList.add(new Integer(i));
+        }
         model.addAttribute("tv", tvService.getTV(id));
+        model.addAttribute("seasonNum", seasonList);
         session.setAttribute("tvS", tvService.getTV(id));
         return "tv_detail";
+    }
+
+    @GetMapping("/tv/season/{num}")
+    public String handleShowTVInfo(@PathVariable int num, Model model, HttpSession session) {
+        TVInfo tv = (TVInfo) session.getAttribute("tvS");
+        String name = tv.getTvName();
+        name = name.substring(0,name.length()-2);
+        name = name + " " + num;
+        TVInfo seasonTV = tvService.getTVBySeason(num, name);
+        List<Integer> seasonList = new ArrayList<>();
+        for(int i=1; i<=seasonTV.getTotalSeason(); i++){
+            seasonList.add(new Integer(i));
+        }
+        return "redirect:/tv/" + seasonTV.getTvID();
     }
 
     @GetMapping("/opening_this_week")
@@ -130,7 +149,7 @@ public class MovieController {
     }
 
     @GetMapping("/top_box_office")
-    public String handleViewTopBoxMovies(@PageableDefault(size = 8, sort = {"totalRate"},
+    public String handleViewTopBoxMovies(@PageableDefault(size = 8, sort = {"box_office"},
             direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         Page<MovieInfo> movies = movieService.listTopMovie(pageable);
         model.addAttribute("page", movies);
@@ -178,7 +197,7 @@ public class MovieController {
 
     @RequestMapping("/search")
     public String handleSearchAction(@PageableDefault(size = 8, sort = {"movieName"},
-            direction = Sort.Direction.DESC) Pageable pageable,
+            direction = Sort.Direction.ASC) Pageable pageable,
                                      String query, Model model, HttpSession session) {
         if (query == null) {
             Object queryItem = session.getAttribute("queryItem");
@@ -187,9 +206,63 @@ public class MovieController {
         query = query.trim();
         query = query.replaceAll("\\s+", " ");
         Page<MovieInfo> queryResult = movieService.listMovie("%" + query + "%", pageable);
-        model.addAttribute("page", queryResult);
+        session.setAttribute("page", queryResult);
         model.addAttribute("query", query);
         session.setAttribute("queryItem", query);
+        session.setAttribute("searchItem", query);
+        session.setAttribute("link", "/search");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/list")
+    public String handleSearchList(HttpSession session) {
+        session.setAttribute("boolean", "123");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/grid")
+    public String handleSearchGrid(HttpSession session) {
+        session.setAttribute("boolean", null);
+        return "search_results";
+    }
+
+    @RequestMapping("/search/date")
+    public String handleSearchDate(@PageableDefault(size = 8, sort = {"releasedDate"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/date");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/rate")
+    public String handleSearchRate(@PageableDefault(size = 8, sort = {"totalRate"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/rate");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/topBox")
+    public String handleSearchTopBox(@PageableDefault(size = 8, sort = {"box_office"},
+            direction = Sort.Direction.DESC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/topBox");
+        return "search_results";
+    }
+
+    @RequestMapping("/search/alphabet")
+    public String handleSearchAlphabet(@PageableDefault(size = 8, sort = {"movieName"},
+            direction = Sort.Direction.ASC)Pageable pageable, HttpSession session) {
+        String query = (String) session.getAttribute("searchItem");
+        Page<MovieInfo> movies = movieService.listMovie("%" + query + "%", pageable);
+        session.setAttribute("page", movies);
+        session.setAttribute("link", "/search/alphabet");
         return "search_results";
     }
 
