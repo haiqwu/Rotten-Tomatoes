@@ -36,9 +36,9 @@
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CRITIC SPOTLIGHT</h2>
             <div    th:each="tag : ${top_critics}" >
                 <div class="ui four wide column" >
-                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}"   ><img class="ui small image" src="../static/images/portrait.png"
+                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}"   ><img class="ui small image" src="../static/images/portrait.png"
                                      th:src="@{${tag.photo}}" alt="Image"></a>
-                    <a  th:href="@{/user_profile/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
+                    <a  th:href="@{/user/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
 
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
                 <div class="ui top attached segment">
 
-                    by: <a class="label" th:href="@{/user_profile/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">UserName </a>
+                    by: <a class="label" th:href="@{/user/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">UserName </a>
                     <h5></h5>
                     <a th:href="@{/movie/{id}(id=${tag[0].movieID})}"    th:text="${tag[0].comment}">  </a>
                     <br>

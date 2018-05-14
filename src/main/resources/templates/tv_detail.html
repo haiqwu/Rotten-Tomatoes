@@ -14,8 +14,8 @@
         <div class="ui grid" th:if="${session.type == 1 }">
             <div class="six column row">
                 <div class="right floated column">
-                    <a href="#" class="ui black basic label">Edit</a>
-                    <a href="#" class="ui black basic label">Delete</a>
+                    <a href="#" th:href="@{/edit_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Edit</a>
+                    <a href="#" th:href="@{/delete_tv_detail/{id}(id=${tv.tvID})}" class="ui black basic label">Delete</a>
                 </div>
             </div>
         </div>

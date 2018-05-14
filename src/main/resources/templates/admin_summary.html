@@ -32,7 +32,10 @@
                         <div class="ui grid">
                             <div class="row" th:each="tag : ${reported_user_list}">
                                 <div class="three wide center aligned column">
-                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}" th:text="${tag.userName}">
+
+
+                                    <div><a href="#" th:href="@{/user/{id}(id=${tag.userID})}"><img class="ui small image"  th:src="${tag.photo}" alt="Image"></a></div>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" th:text="${tag.userName}">
 
 
                                     </a>
@@ -65,7 +68,7 @@
                                     </a>
                                     <p th:text="${tag[0].comment}">   </p>
                                     <p>Reviewed by </p>
-                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">
+                                    <a href="#" th:href="@{/user/{id}(id=${tag[0].reviewUser.userID})}" th:text="${tag[0].reviewUser.userName}">
 
 
                                     <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
@@ -89,7 +92,9 @@
                         <div class="ui grid">
                             <div class="row" th:each="tag : ${critic_applyers}">
                                 <div class="three wide center aligned column">
-                                    <a href="#" th:href="@{/user_profile/{id}(id=${tag.userID})}" th:text="${tag.userName}"  >  </a>
+
+                                    <div><a href="#" th:href="@{/user/{id}(id=${tag.userID})}"><img class="ui small image" th:src="${tag.photo}" alt="Image"></a></div>
+                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" th:text="${tag.userName}"  >  </a>
                                     <p th:text="${tag.userName}">user name  </p>
                                     <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 

@@ -252,11 +252,65 @@ public class AdminSystemController {
 
 
 
+    @GetMapping("/edit_tv_detail/{id}")
+    public String handleEditTVDetail(@PathVariable Long id,Model model){
+        //System.out.println("movieId: "+ id);
+        model.addAttribute( "tv_tbe", tvService.getTV(id));
+        return "edit_tv_detail";
+    }
 
 
+    @PostMapping("/edit_tv_content/{id}")
+    public String handleEditTVDetailForm(@PathVariable Long id,
+
+                                            @RequestParam String  description ,
+                                            @RequestParam String  tv_name,
+                                            @RequestParam String genres ,
+                                            @RequestParam String runtime_minutes ,
+                                            @RequestParam String  released_date,
+                                            @RequestParam String season ,
+                                            @RequestParam String secondaryid ,
+                                            @RequestParam String  tv_images,
+                                            @RequestParam String  tv_poster
+                                        )
+    {
+
+        TVInfo t = tvService.getTV(id);
+        t.setBriefIntro( description  );
+        t.setTvName( tv_name );
+        t.setGenres( genres);
+        t.setRuntimeMinutes(  Integer.parseInt(  runtime_minutes )   );
+        t.setSeason(  Integer.parseInt( season ) );
+        t.setTvImages( tv_images );
+        t.setTvPoster( tv_poster );
+        t.setSecondaryID( secondaryid  );
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = dateFormat.parse(released_date);
+            t.setReleasedDate(     date  );
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        tvService.updateTV(  id, t);
+        //movieService.updateMovie(  id , m  );
+        return "redirect:/admin_summary_mapping";
+    }
 
 
+    @GetMapping("/delete_tv_detail/{id}")
+    public String handleDeleteTVDetail(@PathVariable Long id,Model model){
+        //System.out.println("movieId: "+ id);
+        model.addAttribute("tv_tbd_id",id);
+        return "deleteTVDetail";
+    }
 
+    @PostMapping("/delete_tv_detail2/{id}")
+    public String del_tv_by_admin(@PathVariable Long id)
+    {
+        tvService.deleteTV(id);
+        return "redirect:/admin_summary_mapping";
+    }
 
 
 

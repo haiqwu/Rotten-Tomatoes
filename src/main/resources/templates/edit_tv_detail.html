@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-wide, initial-scale=1.0">
+    <title>Edit TV Detail Page</title>
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >-->
+    <!--<link rel="stylesheet" href="../static/css/mycss.css">-->
+</head>
+<body>
+<nav th:replace="_fragments :: navBar()"></nav>
+<br>
+<br>
+<br>
+<div class="ui container">
+    <div class="ui  attached segment">
+        <form class="ui form " method="post" th:action="@{/edit_tv_content/{id}(id=${tv_tbe.tvID})}"      >
+
+            <div class="field">
+                <label>TV Description</label>
+                <textarea rows="3" name="description" th:text="${tv_tbe.briefIntro}"></textarea>
+            </div>
+            <div class="field">
+                <label>TV Name</label>
+                <input type="text" name="tv_name" th:value="${tv_tbe.tvName}" >
+            </div>
+            <div class="field">
+                <label>Genres</label>
+                <input type="text" name="genres" th:value="${tv_tbe.genres}" placeholder="Action,Drama">
+            </div>
+            <div class="field">
+                <label>Runtime Minutes</label>
+                <input type="text" name="runtime_minutes" th:value="${tv_tbe.runtimeMinutes}" placeholder="120">
+            </div>
+
+            <div class="field">
+                <label>Released Date</label>
+                <input type="text" name="released_date" th:value="${tv_tbe.releasedDate}" placeholder="2018-5-10">
+            </div>
+            <div class="field">
+                <label>Season</label>
+                <input type="text" name="season" th:value="${tv_tbe.season}" >
+            </div>
+            <div class="field">
+                <label>Secondary ID</label>
+                <input type="text" name="secondaryid" th:value="${tv_tbe.secondaryID}" >
+            </div>
+            <div class="field">
+                <label>TV Images(url)</label>
+                <input type="text" name="tv_images" th:value="${tv_tbe.tvImages}" >
+            </div>
+            <div class="field">
+                <label>TV Poster(url)</label>
+                <input type="text" name="tv_poster" th:value="${tv_tbe.tvPoster}">
+            </div>
+
+
+
+            <button class="ui button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:replace="_fragments :: footerImg()"></footer>
+<!--js-->
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.4.1.js "></script>
+<script type="text/javascript" src="../static/slick/slick.min.js" th:src="@{/slick/slick.min.js}"></script>
+<script type="text/javascript" src="../static/js/myjs.js" th:src="@{/js/myjs.js}"></script>
+
+</body>
+</html>
