@@ -151,8 +151,15 @@ public class UserController {
 
         List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
         List<MovieInfo> notInterested = user.getNotInterestedList();
-        Set<UserInfo> followers = user.getFollowers();
+        Set<UserInfo> followers = user.getFollowers(); // fans
         Set<UserInfo> followings = user.getFollowings();
+        int size=followers.size();
+        if (size>=1){
+            model.addAttribute("vip",true);
+        }
+        else{
+            model.addAttribute("vip",false);
+        }
 
         for(MovieReview mr: ratedMovies){
             List<Object> obj = new ArrayList<>();

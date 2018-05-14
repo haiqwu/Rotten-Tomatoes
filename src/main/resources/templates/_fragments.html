@@ -25,13 +25,13 @@
                     <a th:href="@{/help}" class="item">Help</a>
                     <a href="about" class="item" methods="get">About Peppa Tomatoes</a>
                     <a href="#" class="item">What's the Peppameter?</a>
-                    <a href="#" class="item">Feedback</a>
+                    <a href="#" th:href="@{/terms_policies}" class="item">Terms and Policies</a>
                 </div>
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">INFO</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">Critic Submission</a>
+                    <a href="#" th:href="@{/contact_us}" class="item">Contact Us</a>
                     <a href="licensing" class="item" methods="get">Licensing</a>
                     <a href="#" class="item">Advertise</a>
                     <a href="#" class="item">Careers</a>
@@ -72,8 +72,14 @@
 </footer>
 
 <body>
+
+
+
+
+
 <!-- nav bar-->
 <nav class="ui sticky inverted m-nav-opacity attached segment " th:fragment="navBar()">
+
     <div class="ui container  ">
         <div class="ui container ">
             <div class="ui inverted secondary menu">
@@ -379,6 +385,32 @@
                 </p>
             </div>
         </div>
+    </div>
+
+    <div class="ui visible sidebar inverted vertical">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <a href="#" th:href="@{https://www.starbucks.com/}"> <img src="#" th:src="@{/images/ad/ad1.jpg}" width="150"></a>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="#" th:href="@{https://www.wessonoil.com/}"><img src="#" th:src="@{/images/ad/ad2.jpg}" width="150"></a>
+
     </div>
 </nav>
 </body>

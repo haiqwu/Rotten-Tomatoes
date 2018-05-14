@@ -14,38 +14,45 @@
         <div class="ui grid">
 
             <!--left-->
-            <div class="four wide column">
+            <div class="four wide column ui center aligned container">
 
-                <div class="m-profile-left-inner-padding">
-                    <div><a id="portrait_img" href="#"><img class="ui small image"  src="../static/images/portrait.png" th:src="${currentUser.photo}" alt="Image"></a></div>
-                    <a href="#" th:text="${currentUser.userName}">First Last</a>
-                    <div><a href="#" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
-                    <div><a href="#">Profile Summary</a></div>
+                <div class="">
+                    <!--<div class="m-margin-left-big m-margin-right-big m-margin-top-big">-->
+                    <a id="portrait_img" href="#"><img  src="../static/images/portrait.png" height="200" width="200" th:src="${currentUser.photo}" alt="Image"></a>
+                    <!--</div>-->
+                    <div th:if="${vip==false}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
+                    <div th:if="${vip==true}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
+
+                    <br>
+                    <div><a href="#" class="ui black inverted mini basic button" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
+                    <br>
+                    <div><a href="#" class="ui black inverted mini basic button">Profile Summary</a></div>
 
                     <form method="post" th:action="@{/handleUploadPic/{id}(id=${currentUser.userID})}" enctype="multipart/form-data">
                          <div>
                             <label for="profile_pic">Choose image to upload</label>
                             <input type="file" id="profile_pic" name="profile_pic"
                                    accept=".png">
-                          </div>
-                          <div>
-                            <button>Upload</button>
-                          </div>
+                    </div>
+                        <!--<div class="ui "></div>-->
+                        <div>
+                            <button>Upload</button>
+                        </div>
                     </form>
 
                 </div>
 
                 <!--profile stats-->
-                <div class="m-padded-top-bottom-small">
+                <div class="m-top-padded-large">
                     <h2 class="ui inverted header">Profile Status</h2>
-                    <div class="">
-                        <h4>Total Profile Views: 0</h4>
-                        <h4>Profile Views Last 7 Days: 0</h4>
-                    </div>
+                    <!--<div class="">-->
+                    <p>Total Profile Views: 0</p>
+                    <p>Profile Views Last 7 Days: 0</p>
+                    <!--</div>-->
                 </div>
 
                 <!--about-->
-                <div class="m-padded-top-bottom-small">
+                <div class="m-top-padded-large">
                     <div class="ui two column grid">
                         <div class="column">
                             <h2 class="ui inverted header">About</h2>
@@ -54,8 +61,8 @@
                             <a class="ui right aligned column" href="#">Edit</a>
                         </div>
                     </div>
-                    <div class="m-padded-top-bottom-mini">
-                        <h4>Member Since: Feburuary 2018</h4>
+                    <div class="">
+                        <p>Member Since: Feburuary 2018</p>
                     </div>
 
                 </div>
@@ -113,33 +120,33 @@
 
                     <!--&lt;!&ndash;want to see tv&ndash;&gt;-->
                     <!--<div class="row review-padding">-->
-                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
-                        <!--<div class="ui inverted segment ">-->
-                            <!--<div class="ui grid">-->
-                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
-                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                    <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                    <!--<div class="ui inverted segment ">-->
+                    <!--<div class="ui grid">-->
+                    <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
 
-                                <!--</div>-->
-                            <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                        <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
 
                     <!--NOT INTEREST tv-->
                     <!--<div class="row review-padding">-->
-                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
-                        <!--<div class="ui inverted segment ">-->
-                            <!--<div class="ui grid">-->
-                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
-                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                    <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
+                    <!--<div class="ui inverted segment ">-->
+                    <!--<div class="ui grid">-->
+                    <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
-                                <!--</div>-->
-                            <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                        <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
 
                     <!--rating movie-->
@@ -227,18 +234,18 @@
 
                     <!--&lt;!&ndash; want to see tv&ndash;&gt;-->
                     <!--<div class="row review-padding">-->
-                        <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
-                        <!--<div class="ui inverted segment ">-->
-                            <!--<div class="ui grid">-->
-                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
-                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                    <!--<div class="ui teal m-header-median  inverted attached segment">WANT TO SEE TV</div>-->
+                    <!--<div class="ui inverted segment ">-->
+                    <!--<div class="ui grid">-->
+                    <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
 
-                                <!--</div>-->
-                            <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                        <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
 
@@ -265,17 +272,17 @@
 
                     <!--&lt;!&ndash;NOT INTEREST tv&ndash;&gt;-->
                     <!--<div class="row review-padding">-->
-                        <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
-                        <!--<div class="ui inverted segment ">-->
-                            <!--<div class="ui grid">-->
-                                <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
-                                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
-                                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
+                    <!--<div class="ui teal m-header-median  inverted attached segment">NOT INTERESTED TV</div>-->
+                    <!--<div class="ui inverted segment ">-->
+                    <!--<div class="ui grid">-->
+                    <!--<div class="three wide center aligned column"  th:each="tag : ${movie_lists[2]}"  >-->
+                    <!--<a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>-->
+                    <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
-                                <!--</div>-->
-                            <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
 
-                        <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
 
@@ -369,7 +376,7 @@
                 </div>
 
             </div>
-            
+
         </div>
     </div>
 </div>

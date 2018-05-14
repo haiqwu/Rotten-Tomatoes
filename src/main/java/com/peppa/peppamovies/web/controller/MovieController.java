@@ -350,6 +350,17 @@ public class MovieController {
         return "trailer";
     }
 
+    @GetMapping("/terms_policies")
+    public String handleTerms(){
+        return "terms";
+    }
+
+
+    @GetMapping("/contact_us")
+    public String handleContactUs(){
+        return "contact_us";
+    }
+
     public void handleTopMovies() {
     }
 
