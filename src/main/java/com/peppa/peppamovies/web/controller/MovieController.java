@@ -71,7 +71,7 @@ public class MovieController {
         model.addAttribute("reviewsByCritic", movieAllReviewsByCritic);
         model.addAttribute("reviewsByAudiance", movieAllReviewsByAudiance);
         session.setAttribute("movie", movieService.getMovie(id));
-        model.addAttribute("RateReview", 0.0);
+//        model.addAttribute("RateReview", 0.0);
         return "movie_detail";
     }
 

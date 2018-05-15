@@ -37,6 +37,8 @@ function login_fun2(){
 function signup_fun2() {
     sessionStorage.removeItem("signup_successful");
     sessionStorage.removeItem("signup_fail");
+    sessionStorage.removeItem("signup_robot");
+
 }
 
 
@@ -100,6 +102,24 @@ $(window).on('load',function(){
     }
 
 });
+
+
+$(window).on('load',function(){
+
+    if (sessionStorage.getItem("signup_fail") == undefined) {
+        $('#signup_not_robot_modal').modal('show');
+        // $ .cookie("popup_1_2", "2");
+    }
+
+    //$('#after_login_modal').modal('show');
+    // $('#after_login_modal').modal('show');
+    if (  $('signup_not_robot_modal').hasClass('in') == true ){
+        sessionStorage.setItem("signup_robot", "1");
+    }
+
+});
+
+
 
 
 function logout_fun(){

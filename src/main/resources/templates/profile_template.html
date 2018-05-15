@@ -22,8 +22,7 @@
                     <!--</div>-->
 
                     <div th:if="${vip==false}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
-                    <div th:if="${vip==true}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
-                    <div><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
+                    <div th:if="${vip==true}"><a href="#" class="ui orange button small" th:text="${'[VIP]  '+currentUser.userName}">First Last</a></div>
                     <br>
                     <div><a href="#" class="ui black inverted mini basic button" th:href="@{/account/{id}(id=${currentUser.userID})}">Manage Account</a></div>
                     <br>
@@ -160,7 +159,11 @@
                                     <div class="three wide center aligned column">
                                         <a href="#" th:href="@{/movie/{id}(id=${tag[1].movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag[1].moviePoster}"  alt="Image"></a>
                                         <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
-                                        <p>score</p>
+                                        <p th:if="${tag[0].rate == 20}" >&#11088</p>
+                                        <p th:if="${tag[0].rate == 40}" >&#11088&#11088</p>
+                                        <p th:if="${tag[0].rate == 60}" >&#11088&#11088&#11088</p>
+                                        <p th:if="${tag[0].rate == 80}" >&#11088&#11088&#11088&#11088</p>
+                                        <p th:if="${tag[0].rate == 100}" >&#11088&#11088&#11088&#11088&#11088</p>
                                         <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->
 
 

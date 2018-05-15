@@ -326,7 +326,7 @@
                             </div>
                         </div>
                         <!--capcha-->
-                        <div class="g-recaptcha"  data-sitekey="6LeKKFkUAAAAAC2V9Wfe4ni1OoVrpm2K91eeHSLR"></div>
+                        <div class="g-recaptcha field"  data-sitekey="6LeKKFkUAAAAAC2V9Wfe4ni1OoVrpm2K91eeHSLR"></div>
 
 
                         <div class="field">
@@ -350,13 +350,13 @@
         </div>
     </div>
 
-    <div class="ui m-padded-big modal" id="signup_successful_modal" th:if="${session.exist == false}">
+    <div class="ui m-padded-big modal" id="signup_successful_modal" th:if="${session.exist == 0}">
         <i class="close icon"></i>
         <div class="ui aligned center aligned grid">
             <div class="column">
                 <h2 class="ui image header">
                     <div class="content">
-                        Please verify your email to complete register!
+                        Please Verify Your Email To Complete Register!
                     </div>
                 </h2>
             </div>
@@ -364,13 +364,26 @@
     </div>
 
 
-    <div class="ui m-padded-big modal" id="signup_fail_modal" th:if="${session.exist == true}">
+    <div class="ui m-padded-big modal" id="signup_fail_modal" th:if="${session.exist == 1}">
         <i class="close icon"></i>
         <div class="ui aligned center aligned grid">
             <div class="column">
                 <h2 class="ui image header">
                     <div class="content">
-                        Sorry! UserName already exist.
+                        Sorry! UserName Already Exist.
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui m-padded-big modal" id="signup_not_robot_modal" th:if="${session.exist == 2}">
+        <i class="close icon"></i>
+        <div class="ui aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        Sorry! You Did Not Pass Robotic Check.
                     </div>
                 </h2>
             </div>

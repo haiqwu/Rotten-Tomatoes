@@ -186,6 +186,16 @@ public class UserController {
         UserInfo user = userService.getUser(id);
 
         if(!user.isShy()){
+            Set<UserInfo> followers_1 = user.getFollowers(); // fans
+            int size=followers_1.size();
+
+            if (size>=1){
+                model.addAttribute("vip",true);
+            }
+            else{
+                model.addAttribute("vip",false);
+            }
+
             if(!user.isCritic()){
                 List<MovieInfo> wantsToSeeList = user.getWantsToSeeList();
                 Set<UserInfo> followers = user.getFollowers();
@@ -390,12 +400,15 @@ public class UserController {
             //Map<String, Object> response = new HashMap<>();
             //response.put("message", captchaVerifyMessage);
             System.out.println(captchaVerifyMessage);//should have a message print to screen.!!!!!!!!!!!
+
+
+            session.setAttribute("exist",2);
             return "redirect:" + referer;//early return since fail
         }
 
         //successful CAPTCHAed.
         if (userService.checkUsername(username)) { // not exist
-            session.setAttribute("exist", false);
+            session.setAttribute("exist", 0);
             UserInfo user = new UserInfo();
             user.setFirstName(firstname);
             user.setLastName(lastname);
@@ -412,7 +425,7 @@ public class UserController {
             }
             userService.saveUser(user);
         } else { // already exist
-            session.setAttribute("exist", true);
+            session.setAttribute("exist", 1);
         }
         return "redirect:" + referer;
     }

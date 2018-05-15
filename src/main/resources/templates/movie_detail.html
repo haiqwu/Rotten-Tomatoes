@@ -111,15 +111,8 @@
                                     <br>
                                     <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
-                                        <div class="row">
-                                            <!-- star rating-->
-                                            <!--<div id="star_rate"-->
-                                            <!--class=" ui m-padded-top-bottom-tiny m-margin-top-mini segment huge star rating">-->
+                                        <div class="row" th:if="${RateReview == 0.0 }"   >
 
-                                            <!--</div>-->
-                                            <!--<p id="rate_num" name="rate_num"></p>-->
-
-                                            <!-- defalut star rate-->
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 0.0 }">
                                                 <option disabled selected value> -- select your rate --</option>
@@ -129,7 +122,8 @@
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
-
+                                        </div>
+                                        <div class="row" th:if="${RateReview == 1.0 }"   >
                                             <!-- 1 star-->
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 1.0 }">
@@ -140,7 +134,9 @@
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
+                                        </div>
 
+                                        <div class="row" th:if="${RateReview == 2.0 }"   >
 
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 2.0 }">
@@ -151,6 +147,9 @@
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
+                                        </div>
+
+                                        <div class="row" th:if="${RateReview == 3.0 }"   >
 
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 3.0 }">
@@ -161,6 +160,9 @@
                                                 <option value="4">&#11088&#11088&#11088&#11088</option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
+                                        </div>
+
+                                        <div class="row" th:if="${RateReview == 4.0 }"   >
 
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 4.0 }">
@@ -172,6 +174,9 @@
                                                 </option>
                                                 <option value="5">&#11088&#11088&#11088&#11088&#11088</option>
                                             </select>
+                                        </div>
+
+                                        <div class="row" th:if="${RateReview == 5.0 }"   >
 
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 5.0 }">
@@ -184,10 +189,7 @@
                                                     &#11088&#11088&#11088&#11088&#11088
                                                 </option>
                                             </select>
-
-
                                         </div>
-
 
                                         <div class="ui m-padded-top-bottom-mini form">
                                             <div class="field">
@@ -314,16 +316,17 @@
             <!--<div class="ui teal m-header-median m-margin-top-bottom-small inverted attached segment">REVIEWS</div>-->
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small m-bottom-padded-medium">REVIEWS</h2>
             <!--<div class="ui grid">-->
-                <div class="ui eight wide column m-right-padded-small m-left-padded-large ">
+                <div class="ui eight wide column m-left-padded-small m-right-padded-large m-bottom-padded-medium ">
                     <!--<div class="ui grid">-->
                     <!--left is critics review-->
                     <!--<div class="ui eight wide column" >-->
                     <!--<div class="row m-left-padded-medium m-right-padded-small">-->
-                        <div class="ui inverted attached segment" th:each="tag : ${reviewsByCritic}">
+                        <div class="ui inverted  attached grey segment" th:each="tag : ${reviewsByCritic}">
 
-                            <a th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName}">
+                            <a class="ui red header" th:href="@{/user/{id}(id=${tag.reviewUser.userID})}" th:text="${tag.reviewUser.userName+' (Critic)'}">
                                 UserName
                             </a>
+                            <h5></h5>
                             <p th:text="${tag.comment}">The story makes the effects of prejudice more distressing and
                                 more urgent,
                                 doubling down on its messages with a seriousness that's entirely fitting for its

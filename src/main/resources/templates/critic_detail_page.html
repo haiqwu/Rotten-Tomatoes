@@ -19,7 +19,11 @@
                 <div class="m-profile-left-inner-padding">
                     <div><a id="portrait_img" href="#"><img class="ui small image" src="../static/images/portrait.png"
                                                             th:src="@{/images/portrait.png}" alt="Image"></a></div>
-                    <a href="#" th:text="${currentUser.userName}">First Last</a>
+                    <!--<a href="#" th:text="${currentUser.userName}">First Last</a>-->
+                    <br>
+                    <div th:unless="${vip==true}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>
+                    <div th:if="${vip==true}"><a href="#" class="ui orange button small" th:text="${'[VIP]  '+currentUser.userName}">First Last</a></div>
+
                     <p th:text="${'Follower Count: '+followers.size()}" >Follower Count: 0</p>
                     <p>Rank: 5</p>
                     <div><a th:href="@{/user/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
