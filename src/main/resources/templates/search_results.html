@@ -128,59 +128,103 @@
                 </div>
             </div>
         </div>
+
+        <div class="ui attached inverted segment">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h2 class="ui inverted header">Search TV Results</h2>
+                </div>
+                <div class="right aligned column">
+                    Found<h2 class="ui inverted header" th:text="${session.pageTV.totalElements}"></h2>TVs
+                </div>
+            </div>
+        </div>
+
+        <div class="ui attached inverted segment">
+
+            <div class="ui grid">
+                <div class="four wide column " th:each="tag : ${session.pageTV.content}">
+                    <a href="#" th:href="@{/tv/{id}(id=${tag.tvID})}"><img class="ui small image"
+                                                                           src="../static/images/1.jpg"
+                                                                           th:src="@{${tag.tvPoster}}"
+                                                                           alt="Image"
+                                                                           width="100" height="200"></a>
+
+                    <div><a href="#" th:text="${tag.tvName}">Jumanji: Welcome to the Jungle</a></div>
+                    <p th:text="${tag.totalRate/20 +'/5'}"></p>
+                </div>
+            </div>
+
+            <div class="" th:if="${session.pageTV.totalPages}>1">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <a href="#"
+                           th:href="@{${session.link}(page=${session.pageTV.number-1},size=${session.pageTV.size})}"
+                           th:unless="${session.pageTV.first}" class="ui mini inverted basic button">Previous Page</a>
+                    </div>
+                    <div class="right aligned column">
+                        <a href="#"
+                           th:href="@{${session.link}(page=${session.pageTV.number+1},size=${session.pageTV.size})}"
+                           th:unless="${session.pageTV.last}" class="ui mini inverted basic button">Next Page</a>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+
     </div>
 </div>
 
 <br>
 
-<div>
-    <div class="ui container">
+<!--<div>-->
+    <!--<div class="ui container">-->
         <!-- search header-->
-        <div class="ui top attached inverted segment">
-            <div class="ui middle aligned two column grid">
-                <div class="column">
-                    <h2 class="ui teal header">Search TV Results</h2>
-                </div>
-                <div class="right aligned column">
-                    Found<h2 class="ui teal header" th:text="${session.pageTV.totalElements}"></h2>TVs
-                </div>
-            </div>
-        </div>
+        <!--<div class="ui attached inverted segment">-->
+            <!--<div class="ui middle aligned two column grid">-->
+                <!--<div class="column">-->
+                    <!--<h2 class="ui teal header">Search TV Results</h2>-->
+                <!--</div>-->
+                <!--<div class="right aligned column">-->
+                    <!--Found<h2 class="ui teal header" th:text="${session.pageTV.totalElements}"></h2>TVs-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <!--search body-->
-        <div class="ui top attached inverted segment">
+        <!--<div class="ui top attached inverted segment">-->
 
-                <div class="ui grid">
-                    <div class="four wide column " th:each="tag : ${session.pageTV.content}">
-                        <a href="#" th:href="@{/tv/{id}(id=${tag.tvID})}"><img class="ui small image"
-                                                                                     src="../static/images/1.jpg"
-                                                                                     th:src="@{${tag.tvPoster}}"
-                                                                                     alt="Image"
-                                                                                     width="100" height="200"></a>
+                <!--<div class="ui grid">-->
+                    <!--<div class="four wide column " th:each="tag : ${session.pageTV.content}">-->
+                        <!--<a href="#" th:href="@{/tv/{id}(id=${tag.tvID})}"><img class="ui small image"-->
+                                                                                     <!--src="../static/images/1.jpg"-->
+                                                                                     <!--th:src="@{${tag.tvPoster}}"-->
+                                                                                     <!--alt="Image"-->
+                                                                                     <!--width="100" height="200"></a>-->
 
-                        <div><a href="#" th:text="${tag.tvName}">Jumanji: Welcome to the Jungle</a></div>
-                        <p th:text="${tag.totalRate/20 +'/5'}"></p>
-                    </div>
-                </div>
-
-                <div class="ui bottom attached inverted segment" th:if="${session.pageTV.totalPages}>1">
-                    <div class="ui middle aligned two column grid">
-                        <div class="column">
-                            <a href="#"
-                               th:href="@{${session.link}(page=${session.pageTV.number-1},size=${session.pageTV.size})}"
-                               th:unless="${session.pageTV.first}" class="ui mini teal basic button">Previous Page</a>
-                        </div>
-                        <div class="right aligned column">
-                            <a href="#"
-                               th:href="@{${session.link}(page=${session.pageTV.number+1},size=${session.pageTV.size})}"
-                               th:unless="${session.pageTV.last}" class="ui mini teal basic button">Next Page</a>
-                        </div>
-                    </div>
+                        <!--<div><a href="#" th:text="${tag.tvName}">Jumanji: Welcome to the Jungle</a></div>-->
+                        <!--<p th:text="${tag.totalRate/20 +'/5'}"></p>-->
+                    <!--</div>-->
                 <!--</div>-->
-            </div>
-        </div>
-    </div>
-</div>
+
+                <!--<div class="ui bottom attached inverted segment" th:if="${session.pageTV.totalPages}>1">-->
+                    <!--<div class="ui middle aligned two column grid">-->
+                        <!--<div class="column">-->
+                            <!--<a href="#"-->
+                               <!--th:href="@{${session.link}(page=${session.pageTV.number-1},size=${session.pageTV.size})}"-->
+                               <!--th:unless="${session.pageTV.first}" class="ui mini teal basic button">Previous Page</a>-->
+                        <!--</div>-->
+                        <!--<div class="right aligned column">-->
+                            <!--<a href="#"-->
+                               <!--th:href="@{${session.link}(page=${session.pageTV.number+1},size=${session.pageTV.size})}"-->
+                               <!--th:unless="${session.pageTV.last}" class="ui mini teal basic button">Next Page</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <footer th:replace="_fragments :: footerImg()"></footer>
 <!--js-->
