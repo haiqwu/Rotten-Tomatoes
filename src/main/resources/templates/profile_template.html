@@ -18,7 +18,10 @@
 
                 <div class="">
                     <!--<div class="m-margin-left-big m-margin-right-big m-margin-top-big">-->
-                        <a id="portrait_img" href="#"><img  src="../static/images/portrait.png" height="200" width="200" th:src="${currentUser.photo}" alt="Image"></a>
+                        <!--<a id="portrait_img" href="#"><img  src="../static/images/portrait.png" height="200" width="200" th:src="${currentUser.photo}" alt="1" ></a>-->
+                    <a id="portrait_img" href="#"><img  src="" height="200" width="200" th:src="${currentUser.photo}"  onError="this.onerror=null;this.src='/images/default_user.png';"></a>
+
+
                     <!--</div>-->
 
                     <div th:if="${vip==false}"><a href="#" class="ui green small basic button" th:text="${currentUser.userName}">First Last</a></div>

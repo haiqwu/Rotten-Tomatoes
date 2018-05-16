@@ -171,6 +171,8 @@ public class UserController {
     @GetMapping("/my_profile/{id}")
     public String handleProfileSummaryPage(@PathVariable Long id, Model model, HttpSession session) {
         UserInfo user = userService.getUser(id);
+        String ph = user.getPhoto();
+        System.out.println(user.getPhoto());
         List<MovieReview> ratedMovies = user.getMovieReviews();
 
         List<List<Object>> movies = new ArrayList<>();

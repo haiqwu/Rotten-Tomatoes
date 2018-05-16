@@ -89,6 +89,7 @@ public class CriticController {
         UserInfo user = userService.getUser(id);
         user.setApplying_critic(true);
         userService.updateUser(id, user);
+        user = userService.getUser(id);
         session.setAttribute("user",user);
 
 //        return "index" ;

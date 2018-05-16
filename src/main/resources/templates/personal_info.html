@@ -14,14 +14,18 @@
 <br>
 <div class="ui container">
     <div class="ui  attached segment">
-    <form class="ui form">
+        <label>Current First Name</label>
+        <p   th:text="${session.user.firstName}">    </p>
+        <label>Current Last Name</label>
+        <p   th:text="${session.user.lastName}">    </p>
+    <form class="ui form" th:action="@{/my_profile/{id}/changepersoninfo(id=${session.user.userID})}" method="post">
         <div class="field">
             <label>First Name</label>
-            <input type="text" name="first-name" placeholder="First Name">
+            <input type="text" name="first_name" placeholder="First Name">
         </div>
         <div class="field">
             <label>Last Name</label>
-            <input type="text" name="last-name" placeholder="Last Name">
+            <input type="text" name="last_name" placeholder="Last Name">
         </div>
         <div class="field">
         </div>

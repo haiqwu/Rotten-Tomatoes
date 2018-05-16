@@ -36,9 +36,10 @@
             <h2 class="ui inverted horizontal divider header m-padded-top-bottom-small">CRITIC SPOTLIGHT</h2>
             <div    th:each="tag : ${top_critics}" >
                 <div class="ui four wide column" >
-                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}"   ><img class="ui small image" src="../static/images/portrait.png"
-                                     th:src="@{${tag.photo}}" alt="Image"></a>
-                    <a class="ui inverted black basic button" th:href="@{/user/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
+                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}"   ><img class="ui tiny image" src="../static/images/portrait.png"
+                                     th:src="@{${tag.photo}}" onError="this.onerror=null;this.src='/images/default_user.png';"></a>
+                    <br>
+                    <a class="ui yellow basic button" th:href="@{/user/{id}(id=${tag.userID})}"   th:text="${tag.userName}"> </a>
 
                 </div>
             </div>

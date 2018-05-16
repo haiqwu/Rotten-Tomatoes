@@ -51,6 +51,21 @@ public class PasswordController {
         return "redirect:/";
     }
 
+    @PostMapping("/my_profile/{id}/changepersoninfo")
+    public String changePersonalInfo(@PathVariable Long id,@RequestParam String first_name, @RequestParam String last_name, HttpSession session){
+        UserInfo user  = userService.getUser(id);
+        String s1 = first_name;
+        String s2 = last_name;
+        user.setFirstName(first_name);
+        user.setLastName(last_name);
+        userService.updateUser(user.getUserID(), user);
+        session.setAttribute("user",user);
+
+        return "redirect:/my_profile/"+ id;
+
+
+
+    }
 
 
     @PostMapping("/my_profile/{id}/changepassword")
@@ -76,7 +91,7 @@ public class PasswordController {
 
 
     @PostMapping("/my_profile/{id}/change_email")
-    public String changeEmail(@PathVariable Long id,@RequestParam String enteredPasswd, @RequestParam String email_change_email){
+    public String changeEmail(@PathVariable Long id,@RequestParam String enteredPasswd, @RequestParam String email_change_email, HttpSession session){
         UserInfo user = userService.getUser(id);
         String usrName  = user.getUserName();
 
@@ -96,6 +111,7 @@ public class PasswordController {
             user2.setEmailVerified(false);
             userService.updateUser(user2.getUserID(), user2);
             System.out.println("changed email.");
+            session.setAttribute("user",user);
             return "redirect:/my_profile/"+ id;
         }
         else{
