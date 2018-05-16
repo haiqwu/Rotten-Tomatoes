@@ -24,7 +24,7 @@
             <div class="sixteen wide column">
                 <div class="ui grid">
                     <div class="four wide column center aligned column">
-                        <a href="#"><img class="ui fluid image" name="poster main tv" alt="Image" th:src="@{${tv.tvPoster}}"></a>
+                        <a href="#"><img class="ui fluid image" name="poster main tv" alt=" " th:src="@{${tv.tvPoster}}"  onError="this.onerror=null;this.src='/images/default_movie.png';"></a>
                         <h3 th:text="${tv.tvName}">MOVIE TITLE</h3>
                     </div>
 

@@ -17,7 +17,7 @@
             <div class="four wide column">
 
                 <div class="m-profile-left-inner-padding">
-                    <div><a id="portrait_img" href="#"><img class="ui small image" height="200" width="200" src="../static/images/portrait.png"
+                    <div><a id="portrait_img" href="#"><img class="ui small image" height="200" width="200" src=" "
                                                             th:src="${currentUser.photo}"  onError="this.onerror=null;this.src='/images/default_user.png';"></a></div>
                     <!--<a href="#" th:text="${currentUser.userName}">First Last</a>-->
                     <br>
@@ -26,8 +26,8 @@
 
                     <p th:text="${'Follower Count: '+followers.size()}" >Follower Count: 0</p>
                     <p>Rank: 5</p>
-                    <div><a th:href="@{/user/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
-                    <div><a th:href="@{/user/report/{id}(id=${currentUser.userID})}" href="#">Report</a></div>
+                    <div class="ui blue label"><a th:href="@{/user/follow/{id}(id=${currentUser.userID})}" href="#">+ Follow</a></div>
+                    <div class="ui red label"><a th:href="@{/user/report/{id}(id=${currentUser.userID})}" href="#">Report</a></div>
                 </div>
 
             </div>

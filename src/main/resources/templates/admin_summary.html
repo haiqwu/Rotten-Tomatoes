@@ -34,7 +34,7 @@
                                 <div class="three wide center aligned column">
 
 
-                                    <div><a href="#" th:href="@{/user/{id}(id=${tag.userID})}"><img class="ui small image"  th:src="${tag.photo}" alt="Image"></a></div>
+                                    <div><a href="#" th:href="@{/user/{id}(id=${tag.userID})}"><img class="ui tiny image"  th:src="${tag.photo}" alt=" " onError="this.onerror=null;this.src='/images/default_user.png';"></a></div>
                                     <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" th:text="${tag.userName}">
 
 
@@ -93,9 +93,12 @@
                             <div class="row" th:each="tag : ${critic_applyers}">
                                 <div class="three wide center aligned column">
 
-                                    <div><a href="#" th:href="@{/user/{id}(id=${tag.userID})}"><img class="ui small image" th:src="${tag.photo}" alt="Image"></a></div>
-                                    <a href="#" th:href="@{/user/{id}(id=${tag.userID})}" th:text="${tag.userName}"  >  </a>
-                                    <p th:text="${tag.userName}">user name  </p>
+                                    <div>
+                                        <!--<a href="#" th:href="@{/user/{id}(id=${tag.userID})}" style="padding-right: 0;"><img class="ui tiny image" th:src="${tag.photo}" alt=" " onError="this.onerror=null;this.src='/images/default_user.png';"></a>-->
+                                        <a class="ui inverted black basic button" href="#" th:href="@{/user/{id}(id=${tag.userID})}" th:text="${tag.userName}"  >  </a>
+
+                                    </div>
+                                    <!--<p th:text="${tag.userName}">user name  </p>-->
                                     <!--<p th:text="${tag.movieName}">Black Panther   </p>-->
 
                                     <!--<a href="#"  class="ui blue label"><i class="inverted edit outline icon"></i>Edit</a>-->

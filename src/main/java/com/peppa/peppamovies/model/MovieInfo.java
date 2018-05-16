@@ -8,8 +8,9 @@ import java.util.List;
 @Entity
 @Table(name = "MovieInfo")
 public class MovieInfo {
+    //            (strategy = GenerationType.TABLE)
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movieID;
     private String secondaryID;
     private String titleType;
