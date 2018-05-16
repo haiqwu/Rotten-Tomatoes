@@ -72,7 +72,7 @@
                     <div class="four wide center aligned column"  th:each="tag : ${pageTop.content}"  >
                         <a href="#" th:href="@{/movie/{id}(id=${tag.movieID})}" ><img class="ui fluid image" src="../static/images/1.jpg" th:src="${tag.moviePoster}"  alt="Image"></a>
                         <h4 th:text="${tag.movieName}">Black Panther   </h4>
-                        <div th:text="${'Top Box: '+tag.box_office}"> </div>
+                        <div th:text="${'Box office: '+tag.box_office/1000000 +'M'}"> </div>
                     </div>
                 </div>
                 <!--++++++++++++++++++++++++ Top Rated Movies +++++++++++++++++++++++++++-->

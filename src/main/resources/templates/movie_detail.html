@@ -87,7 +87,7 @@
                                                      alt="Image"></a>
                                 </div>
 
-                                <div class="twelve wide column">
+                                <div class="twelve wide column" th:if="${session.type == 2}">
                                     <div class="row">
                                         <a type="button" class="ui mini animated fade green button" tabindex="0"
                                            href="#" th:href="@{/movie/{id}/wants_to_see(id=${movie.movieID})}">
@@ -111,7 +111,7 @@
                                     <br>
                                     <form action="#" th:action="@{/movie/{id}/post(id=${movie.movieID})}" method="post">
 
-                                        <div class="row" th:if="${RateReview == 0.0 }"   >
+                                        <div class="row" th:unless="${RateReview}" th:if="${RateReview == 0.0 }" >
 
                                             <select required name="star_rate" class="ui dropdown"
                                                     th:if="${RateReview == 0.0 }">

@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,16 +50,49 @@ public class CriticController {
     }
 
     @GetMapping("/apply_ct")
-    public String handlePTBecome(){
+    public String handlePTBecome(HttpSession session){
+        UserInfo user = (UserInfo) session.getAttribute("user");
+        int size=user.getNumFollowers();
+        boolean isCritic = user.isCritic();
+        boolean isapply = user.isApplying_critic();
+
+        if(isCritic == true){
+            session.setAttribute("status",1);
+        }
+        else{
+            if(isapply == true){
+                session.setAttribute("status",2);
+            }
+
+            else{
+                if (size<1){
+                session.setAttribute("status",3);
+                }
+            }
+
+
+        }
+
+
+
         return "apply_critics";
     }
+
+
+
+
     @GetMapping("/apply_critic_/{id}")
-    public String handle_Apply_Critic_(@PathVariable Long id)
+    public String handle_Apply_Critic_(@PathVariable Long id, HttpSession session,HttpServletRequest request)
     {
+        String referer = request.getHeader("Referer");
+        System.out.println(id);
         UserInfo user = userService.getUser(id);
         user.setApplying_critic(true);
         userService.updateUser(id, user);
-        return "redirect: /" ;
+        session.setAttribute("user",user);
+
+//        return "index" ;
+        return "redirect:" + referer;
 
 
     }

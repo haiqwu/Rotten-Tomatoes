@@ -45,7 +45,7 @@
                             <div class="menu">
                                 <a th:href="@{/search/date}" href="#" class="item">Date </a>
                                 <a th:href="@{/search/rate}" href="#" class="item">Rate</a>
-                                <a th:href="@{/search/topBox}" href="#" class="item">Top Box</a>
+                                <a th:href="@{/search/topBox}" href="#" class="item">Box Office</a>
                                 <a th:href="@{/search/alphabet}" href="#" class="item">Alphabet</a>
                                 <a th:href="@{/search/runtime}" href="#" class="item">Run Time</a>
                             </div>
@@ -107,7 +107,7 @@
                         <div><a href="#" th:text="${tag.movieName}">Jumanji: Welcome to the Jungle</a></div>
                         <p th:text="${tag.totalRate/20 +'/5'}"></p>
                         <p th:text="${'Released Date: '+tag.releasedDate}"></p>
-                        <p th:text="${'Box Office: '+tag.box_office}"></p>
+                        <p th:text="${'Box Office: '+tag.box_office/1000000 +'M'}"></p>
                         <p th:text="${'Run Time: '+tag.runtimeMinutes +' Minutes'}"></p>
                     </div>
                 </div>

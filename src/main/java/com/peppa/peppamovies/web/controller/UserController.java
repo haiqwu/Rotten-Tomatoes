@@ -53,24 +53,31 @@ public class UserController {
             case Calendar.SUNDAY:
                 dayStart = dd - 6;
                 dayEnd = dd;
+                break;
             case Calendar.MONDAY:
                 dayStart = dd;
                 dayEnd = dd + 6;
+                break;
             case Calendar.TUESDAY:
                 dayStart = dd - 1;
                 dayEnd = dd + 5;
+                break;
             case Calendar.WEDNESDAY:
                 dayStart = dd - 2;
                 dayEnd = dd + 4;
+                break;
             case Calendar.THURSDAY:
                 dayStart = dd - 3;
                 dayEnd = dd + 3;
+                break;
             case Calendar.FRIDAY:
                 dayStart = dd - 4;
                 dayEnd = dd + 2;
+                break;
             case Calendar.SATURDAY:
                 dayStart = dd - 5;
                 dayEnd = dd + 1;
+                break;
         }
         Calendar calStart = Calendar.getInstance();
         calStart.set(year, month, dayStart);
@@ -100,15 +107,29 @@ public class UserController {
         session.setAttribute("type",0); // not login click
         if (user != null) {
             if( user.isEmailVerified() || user.getUserName().equals("admin")  ) {
-                session.setAttribute("user", user);
-                session.setAttribute("found", true);
 
-                if (user.getUserName().equals("admin")) {
-                    session.setAttribute("type", 1); // admin
-                } else {
-                    session.setAttribute("type", 2); // common user
+                if(!user.isOfficially_blocked()) {
+
+                    session.setAttribute("user", user);
+
+                    session.setAttribute("found", true);
+
+                    if (user.getUserName().equals("admin")) {
+                        session.setAttribute("type", 1); // admin
+                    } else {
+                        session.setAttribute("type", 2); // common user
+                    }
+                    return "redirect:" + referer;
                 }
-                return "redirect:" + referer;
+                else{
+                    //session.setAttribute("type",4); // not found
+                    session.setAttribute("user_uv", user);
+
+                    System.out.println("block");
+                    //return "redirect:" + referer;
+                    return "blocked_user.html";
+
+                }
             }
             else
             {
@@ -270,6 +291,7 @@ public class UserController {
                 userService.updateUser(user.getUserID(),user);
                 session.removeAttribute("user");
                 session.setAttribute("user", user);
+
                 break;
             }
         }

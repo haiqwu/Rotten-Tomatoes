@@ -44,16 +44,19 @@ public class MovieController {
         List<MovieReview> movieAllReviewsByAudiance = new ArrayList<>();
         if(user != null){
             List<MovieReview> movieReviews = user.getMovieReviews();
+            boolean isIn = false;
             for(MovieReview mr: movieReviews){
                 if(mr.getMovieID().equals(id)){
                     model.addAttribute("movieReview", mr.getComment());
                     model.addAttribute("RateReview", mr.getRate()/20);
                     System.out.println(mr.getRate()/20);
+                    isIn = true;
                     break;
-                }else{
-                    model.addAttribute("movieReview", null);
-                    model.addAttribute("RateReview", 0.0);
                 }
+            }
+            if(!isIn){
+                model.addAttribute("movieReview", null);
+                model.addAttribute("RateReview", 0.0);
             }
         }else{
             model.addAttribute("movieReview", null);
@@ -116,24 +119,31 @@ public class MovieController {
             case Calendar.SUNDAY:
                 dayStart = dd - 6;
                 dayEnd = dd;
+                break;
             case Calendar.MONDAY:
                 dayStart = dd;
                 dayEnd = dd + 6;
+                break;
             case Calendar.TUESDAY:
                 dayStart = dd - 1;
                 dayEnd = dd + 5;
+                break;
             case Calendar.WEDNESDAY:
                 dayStart = dd - 2;
                 dayEnd = dd + 4;
+                break;
             case Calendar.THURSDAY:
                 dayStart = dd - 3;
                 dayEnd = dd + 3;
+                break;
             case Calendar.FRIDAY:
                 dayStart = dd - 4;
                 dayEnd = dd + 2;
+                break;
             case Calendar.SATURDAY:
                 dayStart = dd - 5;
                 dayEnd = dd + 1;
+                break;
         }
         Calendar calStart = Calendar.getInstance();
         calStart.set(year, month, dayStart);

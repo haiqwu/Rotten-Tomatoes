@@ -43,7 +43,7 @@
                             <a href="#" th:href="@{/movie/{id}(id=${singleMovie.movieID})}"><img class="ui big image" src="../static/images/1.jpg" th:src="@{${singleMovie.moviePoster}}" alt="Image" width="100" height="200" ></a>
 
                             <div><a href="#" th:text="${singleMovie.movieName}">Jumanji: Welcome to the Jungle</a></div>
-                            <div th:text="${'Top Box: '+singleMovie.box_office}"> </div>
+                            <div th:text="${'Box Office: '+singleMovie.box_office/1000000 +'M'}"> </div>
                             <div th:text="${'Released Date: '+singleMovie.releasedDate}"> </div>
                             <div th:text="${singleMovie.totalRate/20+'/5'}"> </div>
 
